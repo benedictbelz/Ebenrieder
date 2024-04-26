@@ -1,0 +1,128 @@
+@import '../../General/Variables.scss';
+
+#header {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    transition: transform $transition-l ease;
+    mix-blend-mode: difference;
+    
+    #left {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $spacing-m;
+        height: 100%;
+        width: fit-content;
+        padding: 0 $spacing-l;
+
+        img:first-child {
+            width: 40px;
+        }
+
+        img:last-child {
+            width: 150px;
+        }
+    }
+
+    #right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        box-sizing: border-box;
+        padding: $spacing-l;
+
+        #language {
+            cursor: pointer;
+            display: block;
+            color: $color-white;
+            font-weight: 400;
+            font-size: $font-size-m;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+    }
+
+    @media (max-width: $media-m) {
+        &:not(.menu) #right {
+            padding: calc($spacing-l + $spacing-m + 30px);
+        }
+    }
+}
+
+#burger {
+    position: fixed;
+    z-index: 300;
+    right: $spacing-l;
+    height: 100px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    transition: transform $transition-l ease;
+    mix-blend-mode: difference;
+
+    #content {
+        cursor: pointer;
+        display: block;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    span {
+        background: $color-white;
+        border-radius: 10px;
+        height: 2px;
+        margin: 3px 0;
+        transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+        &:nth-of-type(1) {
+            width: 50%;
+        }
+        
+        &:nth-of-type(2) {
+            width: 100%;
+        }
+        
+        &:nth-of-type(3) {
+            width: 75%;
+        }
+    }
+
+    &.active span {
+        &:nth-of-type(1) {
+            transform-origin: bottom;
+            transform: rotatez(45deg) translate(3px,0px)
+        }
+
+        &:nth-of-type(2) {
+            transform-origin: top;
+            transform: rotatez(-45deg)
+        }
+
+        &:nth-of-type(3) {
+            transform-origin: bottom;
+            width: 50%;
+            transform: translate(13px,-3px) rotatez(45deg);  
+        }
+    }
+
+    &:not(.active) {
+        @media (min-width: $media-m) {
+            display: none;
+        }
+    }
+}

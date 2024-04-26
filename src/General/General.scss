@@ -1,0 +1,50 @@
+@import './Fonts.scss';
+@import './Variables.scss';
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none;
+}
+
+body {
+    color: $color-black;
+    font-family: 'Roboto', 'Web', sans-serif;
+    font-weight: $font-weight-thin;
+    line-height: 1.25;
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: $color-blue;
+    text-decoration: none;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}

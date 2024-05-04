@@ -153,7 +153,7 @@ class Main extends React.Component<{}, States> {
                 />
                 <div id='welcome'>
                     <div id='scrollHint' />
-                    <video src='assets/montage.mov' autoPlay loop muted playsInline />
+                    <video src='assets/media/montage.mov' autoPlay loop muted playsInline />
                 </div>
                 <div id='content'>
                     <section>
@@ -168,11 +168,11 @@ class Main extends React.Component<{}, States> {
                             erat, sed diam voluptua.
                         </main>
                         <Gallery browser={this.state.browser}>
-                            <img src='assets/pictures/ort_01.png' />
-                            <img src='assets/pictures/ort_02.png' />
-                            <img src='assets/pictures/ort_03.png' />
-                            <img src='assets/pictures/ort_04.png' />
-                            <img src='assets/pictures/ort_05.png' />
+                            <img src='assets/media/ort_01.png' />
+                            <img src='assets/media/ort_02.png' />
+                            <img src='assets/media/ort_03.png' />
+                            <img src='assets/media/ort_04.png' />
+                            <img src='assets/media/ort_05.png' />
                         </Gallery>
                     </section>
                 </div>

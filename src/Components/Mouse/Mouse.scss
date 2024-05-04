@@ -1,0 +1,27 @@
+#mouse {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    z-index: 99999;
+
+    &.left,
+    &.right {
+        display: block;
+        height: 50px;
+        width: 75px;
+        background-repeat: no-repeat;
+        background-position: center;
+        mix-blend-mode: difference;
+        filter: invert(100%);
+        margin-left: -37.5px;
+        margin-top: -25px;
+    }
+
+    &.left {
+        background-image: url('assets/svg/arrow_large_left.svg');
+    }
+
+    &.right {
+        background-image: url('assets/svg/arrow_large_right.svg');
+    }
+}

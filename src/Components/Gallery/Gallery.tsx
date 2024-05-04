@@ -6,6 +6,7 @@ import './Gallery.scss';
 
 interface Props {
     autoPlay?: boolean;
+    children: React.ReactNode;
     fullScreen?: boolean;
     browser: Browser;
 }

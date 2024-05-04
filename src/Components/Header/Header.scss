@@ -1,4 +1,4 @@
-@import '../../General/Variables.scss';
+@import '../../App/Variables.scss';
 
 #header {
     pointer-events: none;
@@ -54,5 +54,9 @@
             text-transform: uppercase;
             width: fit-content;
         }
+    }
+
+    &.welcome {
+        transform: translateY(-100%);
     }
 }

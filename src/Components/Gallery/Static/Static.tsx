@@ -5,6 +5,7 @@ import './Static.scss';
 interface Props {
     autoPlay?: boolean;
     browser: Browser;
+    children: React.ReactNode;
     handlePosition: (position: number) => void;
     id: string;
     position: number;

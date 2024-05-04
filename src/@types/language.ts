@@ -7,6 +7,6 @@ export type Dictionary = {
     language_en: string;
     backToTop: string;
     imprint: string;
-    privacyPolicy: string;
-    agb: string;
+    privacy: string;
+    conditions: string;
 };

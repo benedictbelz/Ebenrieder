@@ -5,8 +5,8 @@ const de: Dictionary = {
     language_en: 'Englisch',
     backToTop: 'Zurück nach oben',
     imprint: 'Impressum',
-    privacyPolicy: 'Datenschutzerklärung',
-    agb: 'AGB'
+    privacy: 'Datenschutzerklärung',
+    conditions: 'AGB'
 };
 
 const en: Dictionary = {
@@ -14,8 +14,8 @@ const en: Dictionary = {
     language_en: 'English',
     backToTop: 'Back to top',
     imprint: 'Imprint',
-    privacyPolicy: 'Privacy Policy',
-    agb: 'Terms & Conditions'
+    privacy: 'Privacy Policy',
+    conditions: 'Terms & Conditions'
 };
 
 export const getLanguage = (language: Language, key: keyof Dictionary) => {

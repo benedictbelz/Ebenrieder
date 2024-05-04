@@ -4,7 +4,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/Components/Main/Main.tsx',
+    entry: './src/App/App.tsx',
+    devServer: {
+        historyApiFallback: true
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.[contenthash].js'

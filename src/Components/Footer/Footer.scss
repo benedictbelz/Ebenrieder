@@ -1,4 +1,4 @@
-@import '../../General/Variables.scss';
+@import '../../App/Variables.scss';
 
 #footer {
     display: grid;
@@ -24,7 +24,7 @@
         }
     }
 
-    #backToTop {
+    #scrollToTop {
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
@@ -42,11 +42,6 @@
                 height: 20px;
             }
         }
-
-        /* span {
-            word-break: break-all;
-            word-spacing: 100vw;
-        } */
     }
 
     #links {

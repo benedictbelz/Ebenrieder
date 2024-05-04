@@ -1,0 +1,65 @@
+@import '../../App/Variables.scss';
+
+#overview {
+    #welcome {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+
+        .guide {
+            position: absolute;
+            left: 50%;
+            bottom: $spacing-l;
+            transform: translate(-50%, 0%);
+            mix-blend-mode: difference;
+            filter: invert(100%);
+            animation: guide 1s ease;
+            opacity: 0;
+            transition: opacity $transition-l ease;
+
+            @keyframes guide {
+                0% {
+                    opacity: 0;
+                    transform: translate(-50%, -25px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(-50%, 0px);
+                }
+            }
+        }
+
+        video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            max-width: 100%;
+        }
+    }
+
+    #content {
+        padding: var(--padding-vertical) 0;
+
+        section {
+            header {
+                font-size: $font-size-header;
+                margin-bottom: calc(var(--padding-vertical) / 2);
+                padding: 0 var(--padding-horizontal);
+            }
+
+            main {
+                font-size: $font-size-text;
+                margin-bottom: var(--padding-vertical);
+                padding: 0 var(--padding-horizontal);
+            }
+        }
+    }
+
+    &.welcome {
+        #welcome .guide {
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@import '../../App/Variables.scss';
+
+.guide {
+    &.scroll {
+        position: relative;
+        height: 40px;
+        width: 25px;
+        border: 2px solid $color-blue;
+        border-radius: 50px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: $color-blue;
+            border-radius: 50%;
+            animation: wheel 2s infinite ease;
+        }
+
+        @keyframes wheel {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                top: 10px;
+                opacity: 1;
+            }
+            80% {
+                top: 20px;
+                opacity: 1;
+            }
+            90% {
+                opacity: 0;
+            }
+            100% {
+                top: 20px;
+                opacity: 0;
+            }
+        }
+    }
+}

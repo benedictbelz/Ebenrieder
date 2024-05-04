@@ -1,16 +1,20 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { getLanguage } from '../../@presets/language';
 import { Language } from '../../@types/language';
 import './Footer.scss';
 
 interface Props {
-    handleBackToTop: () => void;
     language: Language;
 }
 
 interface States {}
 
 export default class Header extends React.Component<Props, States> {
+    handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     render() {
         return (
             <div id='footer'>
@@ -27,17 +31,23 @@ export default class Header extends React.Component<Props, States> {
                         <span>Deutschland</span>
                     </div>
                 </div>
-                <div id='backToTop'>
-                    <div onClick={this.props.handleBackToTop}>
+                <div id='scrollToTop'>
+                    <div onClick={this.handleScrollToTop}>
                         <span className='underline'>{getLanguage(this.props.language, 'backToTop')}</span>
                         <img src='assets/svg/arrow_small_top.svg' />
                     </div>
                 </div>
                 <div id='links'>
                     © Ebenrieder
-                    <span className='underline'>{getLanguage(this.props.language, 'imprint')}</span>
-                    <span className='underline'>{getLanguage(this.props.language, 'privacyPolicy')}</span>
-                    <span className='underline'>{getLanguage(this.props.language, 'agb')}</span>
+                    <Link to={'/imprint'} className='underline'>
+                        {getLanguage(this.props.language, 'imprint')}
+                    </Link>
+                    <Link to={'/privacy'} className='underline'>
+                        {getLanguage(this.props.language, 'privacy')}
+                    </Link>
+                    <Link to={'/conditions'} className='underline'>
+                        {getLanguage(this.props.language, 'conditions')}
+                    </Link>
                 </div>
                 <div id='social'>
                     <a href='https://www.instagram.com/ebenrieder' target='_blank' rel='noopener noreferrer'>

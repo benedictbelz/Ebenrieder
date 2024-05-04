@@ -1,0 +1,9 @@
+@import '../../General/Variables.scss';
+
+.gallery {
+    height: $spacing-gallery;
+
+    @media (min-width: $media-l) {
+        min-height: 50vmax;
+    }
+}

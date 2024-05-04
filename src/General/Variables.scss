@@ -2,60 +2,49 @@
 /************ COLOR ***********/
 /******************************/
 
-$color-white: #FFFFFF;
-$color-white-shadow: #FFFFFF40;
-
+$color-white: #ffffff;
 $color-black: #000000;
-$color-black-shadow: #00000040;
-
-$color-red: #B32323;
-$color-green: #00c327;
-$color-blue: #0249ce;
+$color-blue: #32468a;
 
 /******************************/
 /********** FONT-SIZE *********/
 /******************************/
 
-$font-size-xs: 12px;
-$font-size-s: 14px;
-$font-size-m: 16px;
-$font-size-l: 20px;
-$font-size-xl: 24px;
-$font-size-xxl: 48px;
+$font-size-text: 16px;
+$font-size-header: 48px;
 
 /******************************/
 /********* FONT-WEIGHT ********/
 /******************************/
 
-$font-weight-thin: 300;
+$font-weight-thin: 200;
 $font-weight-regular: 400;
-$font-weight-bold: 700;
+$font-weight-bold: 800;
 
 /******************************/
 /*********** SPACING **********/
 /******************************/
 
-$spacing-xs: 5px;
 $spacing-s: 10px;
 $spacing-m: 25px;
 $spacing-l: 50px;
-$spacing-xl: 75px;
+
+$spacing-gallery: 600px;
+$spacing-bullet: 5px;
+$spacing-icon: 75px;
+$spacing-click: 200px;
+$spacing-padding-desktop-horizontal: 125px;
+$spacing-padding-desktop-vertical: 75px;
+$spacing-padding-mobile-horizontal: 100px;
+$spacing-padding-mobile-vertical: 100px;
 
 /******************************/
-/******** BORDER-RADIUS *******/
+/*********** BORDER ***********/
 /******************************/
 
-$border-radius-s: 5px;
-$border-radius-m: 10px;
-$border-radius-l: 20px;
-
-/******************************/
-/************ MEDIA ***********/
-/******************************/
-
-$media-s: 600px;
-$media-m: 1000px;
-$media-l: 1500px;
+$border-width: 2.5px;
+$border-underline: 2px;
+$border-icon: 3px;
 
 /******************************/
 /********* TRANSITION *********/
@@ -66,15 +55,28 @@ $transition-m: 0.5s;
 $transition-l: 1s;
 
 /******************************/
-/******** BORDER WIDTH ********/
+/************ MEDIA ***********/
 /******************************/
 
-$border-circle: 2.5px;
-$border-underline: 1.5px;
+$media-s: 600px;
+$media-m: 1000px;
+$media-l: 2000px;
 
 /******************************/
-/********* BOX-SHADOW *********/
+/********** VARIABLES *********/
 /******************************/
 
-$box-shadow-blur: 10px;
-$box-shadow-spread: 0px;
+:root {
+    --padding-horizontal: #{$spacing-padding-desktop-horizontal};
+    --padding-vertical: #{$spacing-padding-desktop-vertical};
+    --media-s: #{$media-s};
+    --media-m: #{$media-m};
+    --media-l: #{$media-l};
+}
+
+@media (max-width: $media-s) {
+    :root {
+        --padding-horizontal: #{$spacing-padding-mobile-horizontal};
+        --padding-vertical: #{$spacing-padding-mobile-vertical};
+    }
+}

@@ -1,0 +1,109 @@
+@import '../../General/Variables.scss';
+
+#footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: $spacing-l * 2 0;
+    box-sizing: border-box;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    width: 100%;
+
+    #information {
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: $spacing-m;
+
+        #address {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    #backToTop {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        grid-column: 3;
+        grid-row: 1;
+
+        div {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: $spacing-s;
+
+            img {
+                height: 20px;
+            }
+        }
+
+        /* span {
+            word-break: break-all;
+            word-spacing: 100vw;
+        } */
+    }
+
+    #links {
+        grid-column: 1 / 2;
+        grid-row: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: $spacing-m;
+        white-space: nowrap;
+    }
+
+    #social {
+        grid-column: 3;
+        grid-row: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        a {
+            position: relative;
+            width: $spacing-icon;
+            height: $spacing-icon;
+
+            img {
+                pointer-events: none;
+                box-sizing: border-box;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                padding: 25px;
+            }
+
+            svg {
+                height: 100%;
+                width: 100%;
+
+                circle {
+                    fill: transparent;
+                    stroke: $color-blue;
+                    stroke-width: $border-icon;
+                    stroke-dasharray: 250;
+                    stroke-dashoffset: 1000;
+
+                    &:hover {
+                        animation: rotate $transition-l * 1.25 linear forwards;
+                    }
+                }
+
+                @keyframes rotate {
+                    to {
+                        stroke-dashoffset: 500;
+                    }
+                }
+            }
+        }
+    }
+}

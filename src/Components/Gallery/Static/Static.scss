@@ -1,0 +1,115 @@
+@import '../../../General/Variables.scss';
+
+.static {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    .drag {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 500;
+    }
+
+    .click {
+        pointer-events: none;
+        position: absolute;
+        z-index: 750;
+        height: 100%;
+        width: 100%;
+
+        .left,
+        .right {
+            cursor: none;
+            pointer-events: all;
+            position: absolute;
+            width: $spacing-click;
+            height: 100%;
+
+            @media (max-width: $media-s) {
+                width: 50%;
+            }
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    }
+
+    .bullets {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $spacing-bullet * 2;
+        position: absolute;
+        z-index: 250;
+        height: $spacing-m * 4;
+        width: 100%;
+        bottom: 0;
+        mix-blend-mode: difference;
+        filter: invert(100%);
+
+        div {
+            display: none;
+            border-radius: 50%;
+            height: $spacing-bullet;
+            width: $spacing-bullet;
+            background-color: transparentize($color-blue, 0.5);
+
+            &.current {
+                background-color: $color-blue;
+            }
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+
+    .images {
+        img,
+        video {
+            display: none;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+
+    .placeholder {
+        opacity: 0;
+        width: 100%;
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &.transition {
+        .images img,
+        .images video {
+            transition:
+                left $transition-m ease,
+                right $transition-m ease;
+        }
+
+        .bullets div {
+            transition: background-color $transition-m ease;
+        }
+    }
+}

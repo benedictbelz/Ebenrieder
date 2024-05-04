@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 50">
+    <defs>
+        <style>
+            .polyline {
+                stroke-linecap: square;
+            }
+
+            .polyline, .line {
+                fill: none;
+                stroke: #32468a;
+                stroke-miterlimit: 10;
+                stroke-width: 2.5px;
+            }
+        </style>
+    </defs>
+    <line class="line" x1="75" y1="25" x2="3" y2="25"/>
+    <polyline class="polyline" points="22.5 45 2.5 25 22.5 5"/>
+</svg>

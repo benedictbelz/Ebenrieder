@@ -3,11 +3,19 @@
 
 * {
     -webkit-touch-callout: none;
+
     -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    -ms-user-drag: none;
 }
 
 html,
@@ -21,14 +29,21 @@ body {
 }
 
 body {
-    color: $color-black;
-    font-family: 'Roboto', 'Web', sans-serif;
-    font-weight: $font-weight-thin;
+    color: $color-blue;
+    font-family: 'Futura', sans-serif;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text;
     line-height: 1.25;
     letter-spacing: 0.5px;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
     padding: 0;
 }
@@ -44,7 +59,44 @@ a {
     text-decoration: none;
 }
 
-#root {
-    height: 100%;
-    width: 100%;
+.underline {
+    cursor: pointer;
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+
+    &:hover::after {
+        animation: underline $transition-l ease;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        height: $border-underline;
+        width: 100%;
+        transform: scaleX(1);
+        border-radius: $border-underline;
+        background-color: $color-blue;
+    }
+
+    @keyframes underline {
+        0% {
+            transform-origin: right;
+            transform: scaleX(1);
+        }
+        49% {
+            transform-origin: right;
+            transform: scaleX(0);
+        }
+        51% {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        100% {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+    }
 }

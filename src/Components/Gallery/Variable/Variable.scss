@@ -1,0 +1,134 @@
+@import '../../../General/Variables.scss';
+
+.variable {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    .click {
+        pointer-events: none;
+        position: absolute;
+        z-index: 1000;
+        height: 100%;
+        width: 100%;
+
+        .left,
+        .right {
+            cursor: none;
+            pointer-events: all;
+            position: absolute;
+            height: 100%;
+            width: $spacing-click;
+
+            @media (max-width: $media-s) {
+                width: 50% !important;
+            }
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    }
+
+    .bullets {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $spacing-bullet * 2;
+        position: absolute;
+        z-index: 750;
+        height: $spacing-m * 4;
+        width: 100%;
+        bottom: 0;
+        mix-blend-mode: difference;
+        filter: invert(100%);
+
+        div {
+            display: none;
+            border-radius: 50%;
+            height: $spacing-bullet;
+            width: $spacing-bullet;
+            background-color: transparentize($color-blue, 0.5);
+            transition: background-color $transition-m ease;
+
+            &.current {
+                background-color: $color-blue;
+            }
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+
+    .images {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 0 var(--padding-horizontal);
+
+        img,
+        video {
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .placeholder {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 0 var(--padding-horizontal);
+        z-index: 500;
+        visibility: hidden;
+        transition: transform $transition-m ease;
+
+        img,
+        video {
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        &.show {
+            visibility: visible;
+        }
+    }
+
+    &.fullScreen {
+        .images {
+            padding: 0;
+
+            img,
+            video {
+                min-width: 100%;
+            }
+        }
+
+        .placeholder {
+            padding: 0;
+
+            img,
+            video {
+                min-width: 100%;
+            }
+        }
+    }
+}

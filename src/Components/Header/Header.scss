@@ -6,22 +6,22 @@
     position: fixed;
     z-index: 99999;
     display: grid;
-    grid-template-columns: var(--padding-horizontal) auto var(--padding-horizontal);
+    grid-template-columns: var(--padding) auto var(--padding);
     grid-template-rows: 1fr;
-    height: 100px;
+    height: $spacing-header;
     width: 100%;
-    transition: transform $transition-l ease;
     mix-blend-mode: difference;
     filter: invert(100%);
+    transition: padding $transition-m ease,
+                transform $transition-l ease;
 
     #left {
         grid-column: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: $spacing-m;
+        gap: 25px;
         height: 100%;
-        padding: 0 $spacing-l;
 
         .logo {
             cursor: pointer;
@@ -41,7 +41,7 @@
         align-items: center;
         flex-direction: row;
         box-sizing: border-box;
-        padding: $spacing-l;
+        height: 100%;
 
         #language {
             cursor: pointer;
@@ -49,7 +49,7 @@
             display: block;
             color: $color-blue;
             font-weight: 400;
-            font-size: $font-size-text;
+            font-size: var(--font-size-p);
             letter-spacing: 2.5px;
             text-transform: uppercase;
             width: fit-content;
@@ -58,5 +58,11 @@
 
     &.welcome {
         transform: translateY(-100%);
+    }
+
+    @media (max-width: $media-s) {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 var(--padding);
     }
 }

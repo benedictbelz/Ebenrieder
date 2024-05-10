@@ -43,7 +43,7 @@
         gap: $spacing-bullet * 2;
         position: absolute;
         z-index: 750;
-        height: $spacing-m * 4;
+        height: 100px;
         width: 100%;
         bottom: 0;
         mix-blend-mode: difference;
@@ -74,7 +74,7 @@
         align-items: center;
         height: 100%;
         width: 100%;
-        padding: 0 var(--padding-horizontal);
+        padding: 0 var(--padding);
 
         img,
         video {
@@ -95,7 +95,7 @@
         align-items: center;
         height: 100%;
         width: 100%;
-        padding: 0 var(--padding-horizontal);
+        padding: 0 var(--padding);
         z-index: 500;
         visibility: hidden;
         transition: transform $transition-m ease;

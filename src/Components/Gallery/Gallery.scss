@@ -6,4 +6,12 @@
     @media (min-width: $media-l) {
         min-height: 50vmax;
     }
+
+    @media (max-height: $spacing-gallery) {
+        max-height: 100vh;
+    }
+
+    @media (max-height: 500px) {
+        max-height: 500px;
+    }
 }

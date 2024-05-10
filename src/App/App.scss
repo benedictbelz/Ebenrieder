@@ -32,14 +32,34 @@ body {
     color: $color-blue;
     font-family: 'Futura', sans-serif;
     font-weight: $font-weight-regular;
-    font-size: $font-size-text;
+    font-size: var(--font-size-p);
     line-height: 1.25;
     letter-spacing: 0.5px;
 }
 
 #app {
+    position: relative;
     height: 100%;
     width: 100%;
+
+    &.welcome {
+        #header {
+            transform: translateY(-100%);
+        }
+
+        #welcome .guide {
+            animation: guide 1s ease;
+            opacity: 1;
+        }
+    }
+
+    #overview #content section header,
+    #overview #content section main,
+    #imprint,
+    #footer {
+        transition: margin $transition-m ease,
+                    padding $transition-m ease;
+    }
 }
 
 h1,
@@ -51,6 +71,18 @@ h6,
 p {
     margin: 0;
     padding: 0;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
 }
 
 ul {

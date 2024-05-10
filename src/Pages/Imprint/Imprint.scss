@@ -1,1 +1,82 @@
 @import '../../App/Variables.scss';
+
+#imprint {
+    padding: calc($spacing-header + 50px) var(--padding) 0 var(--padding);
+
+    h1 {
+        margin-bottom: 100px;
+    }
+
+    #content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 100px;
+
+        #left {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            white-space: nowrap;
+
+            article {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: fit-content;
+
+                h3 {
+                    display: block;
+                    margin-bottom: 2.5px;
+                }
+
+                &.grid {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    gap: 5px 25px;
+                }
+            }
+        }
+
+        #right {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+
+            h2 {
+                margin-bottom: 25px;
+            }
+
+            p {
+                text-align: justify;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    @media (max-width: $media-m) {
+        #content {
+            flex-direction: column;
+            gap: 100px;
+
+            #left {
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+
+                article {
+                    flex-basis: 45%;
+
+                    &.contact {
+                        flex-basis: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: $media-s) {
+        padding: calc($spacing-header + 25px) var(--padding) 0 var(--padding);
+    }
+}

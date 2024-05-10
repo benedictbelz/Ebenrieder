@@ -10,8 +10,14 @@ $color-blue: #32468a;
 /********** FONT-SIZE *********/
 /******************************/
 
-$font-size-text: 16px;
-$font-size-header: 48px;
+$font-size-desktop-p: 16px;
+$font-size-desktop-h1: 56px;
+$font-size-desktop-h2: 32px;
+$font-size-desktop-h3: 16px;
+$font-size-mobile-p: 16px;
+$font-size-mobile-h1: 56px;
+$font-size-mobile-h2: 32px;
+$font-size-mobile-h3: 16px;
 
 /******************************/
 /********* FONT-WEIGHT ********/
@@ -25,18 +31,13 @@ $font-weight-bold: 800;
 /*********** SPACING **********/
 /******************************/
 
-$spacing-s: 10px;
-$spacing-m: 25px;
-$spacing-l: 50px;
-
-$spacing-gallery: 600px;
+$spacing-header: 100px;
+$spacing-gallery: 800px;
 $spacing-bullet: 5px;
 $spacing-icon: 75px;
 $spacing-click: 200px;
-$spacing-padding-desktop-horizontal: 125px;
-$spacing-padding-desktop-vertical: 75px;
-$spacing-padding-mobile-horizontal: 100px;
-$spacing-padding-mobile-vertical: 100px;
+$spacing-padding-desktop: 125px;
+$spacing-padding-mobile: 50px;
 
 /******************************/
 /*********** BORDER ***********/
@@ -67,8 +68,11 @@ $media-l: 2000px;
 /******************************/
 
 :root {
-    --padding-horizontal: #{$spacing-padding-desktop-horizontal};
-    --padding-vertical: #{$spacing-padding-desktop-vertical};
+    --padding: #{$spacing-padding-desktop};
+    --font-size-p: #{$font-size-desktop-p};
+    --font-size-h1: #{$font-size-desktop-h1};
+    --font-size-h2: #{$font-size-desktop-h2};
+    --font-size-h3: #{$font-size-desktop-h3};
     --media-s: #{$media-s};
     --media-m: #{$media-m};
     --media-l: #{$media-l};
@@ -76,7 +80,10 @@ $media-l: 2000px;
 
 @media (max-width: $media-s) {
     :root {
-        --padding-horizontal: #{$spacing-padding-mobile-horizontal};
-        --padding-vertical: #{$spacing-padding-mobile-vertical};
+        --padding: #{$spacing-padding-mobile};
+        --font-size-p: #{$font-size-mobile-p};
+        --font-size-h1: #{$font-size-mobile-h1};
+        --font-size-h2: #{$font-size-mobile-h2};
+        --font-size-h3: #{$font-size-mobile-h3};
     }
 }

@@ -10,17 +10,21 @@ import Overview from '../Pages/Overview/Overview';
 import Privacy from '../Pages/Privacy/Privacy';
 import { Browser } from '../@types/browser';
 import { Language } from '../@types/language';
+import { Wrapper } from '../Components/Router/Router';
 import './App.scss';
 
 interface States {
     browser: Browser;
-    language: Language;
+    status: 'Welcome' | 'None';
 }
 
 class App extends React.Component<{}, States> {
+    private timerInit: number = new Date().getTime();
+    private timerScroll: number;
+
     state: States = {
         browser: this.initBrowser(),
-        language: navigator.language.split('-').shift() === 'de' ? 'de' : 'en'
+        status: 'Welcome'
     };
 
     componentDidMount() {
@@ -39,6 +43,7 @@ class App extends React.Component<{}, States> {
         // DEFINE VARIABLES
         let device: Browser['device'],
             height: Browser['height'],
+            language: Browser['language'],
             mouse: Browser['mouse'],
             scroll: Browser['scroll'],
             type: Browser['type'],
@@ -52,6 +57,8 @@ class App extends React.Component<{}, States> {
         // INITIALIZE HEIGHT AND WIDTH
         height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        // INITIALIZE LANGUAGE
+        language = navigator.language.split('-').shift() === 'de' ? 'de' : 'en';
         // INITIALIZE MOUSE
         mouse = {
             x: 0,
@@ -74,11 +81,15 @@ class App extends React.Component<{}, States> {
             type = 'Unknown';
         }
         // RETURN VARIABLES
-        return { device, height, mouse, scroll, type, width };
+        return { device, height, language, mouse, scroll, type, width };
     }
 
+    handleChangeStatus = (status: States['status']) => {
+        this.setState({ status });
+    };
+
     handleLanguage = (language: Language) => {
-        this.setState({ language });
+        this.setState({ browser: { ...this.state.browser, language }});
     };
 
     handleMouse = (event: any) => {
@@ -104,29 +115,51 @@ class App extends React.Component<{}, States> {
     };
 
     handleScroll = () => {
+        // DEFINE VARIABLES
         let scroll = document.documentElement.scrollTop;
+        let direction: 'Up' | 'Down' = 'Down';
+        // GET DIRECTION
+        if (scroll < this.state.browser.scroll) {
+            direction = 'Up';
+        }
+        // HIDE WELCOME
+        if (this.state.status === 'Welcome' && direction === 'Down' && scroll > 0 && !this.timerScroll) {
+            this.timerScroll = new Date().getTime();
+            if (this.timerScroll - this.timerInit >= 1000) {
+                this.setState({ status: 'None' });
+            } else {
+                setTimeout(() => this.setState({ status: 'None' }), 1050 - (this.timerScroll - this.timerInit));
+            }
+        }
+        // UPDATE STATE
         this.setState({ browser: { ...this.state.browser, scroll } });
     };
 
     render() {
         return (
             <div
-                id='main'
-                className={[this.state.browser.device === 'Desktop' && 'desktop', this.state.browser.device === 'Mobile' && 'mobile']
+                id='app'
+                className={[
+                    this.state.browser.device === 'Desktop' && 'desktop',
+                    this.state.browser.device === 'Mobile' && 'mobile',
+                    this.state.status === 'Welcome' && 'welcome'
+                ]
                     .filter(x => x)
                     .join(' ')}
             >
                 <Router>
-                    <Header handleLanguage={this.handleLanguage} language={this.state.language} />
+                    <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
-                    <Routes>
-                        <Route path='/' element={<Overview browser={this.state.browser} />} />
-                        <Route path='/conditions' element={<Conditions />} />
-                        <Route path='/imprint' element={<Imprint />} />
-                        <Route path='/privacy' element={<Privacy />} />
-                        <Route path='*' element={<Overview browser={this.state.browser} />} />
-                    </Routes>
-                    <Footer language={this.state.language} />
+                    <Wrapper>
+                        <Routes>
+                            <Route path='/' element={<Overview browser={this.state.browser} />} />
+                            <Route path='/conditions' element={<Conditions />} />
+                            <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
+                            <Route path='/privacy' element={<Privacy />} />
+                            <Route path='*' element={<Overview browser={this.state.browser} />} />
+                        </Routes>
+                    </Wrapper>
+                    <Footer browser={this.state.browser} />
                 </Router>
             </div>
         );

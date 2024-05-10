@@ -2,11 +2,11 @@
 
 #footer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto;
     grid-template-rows: auto auto;
-    gap: $spacing-l * 2 0;
+    gap: 100px 0;
     box-sizing: border-box;
-    padding: var(--padding-vertical) var(--padding-horizontal);
+    padding: var(--padding);
     width: 100%;
 
     #information {
@@ -16,11 +16,12 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: $spacing-m;
+        gap: 25px;
 
         #address {
             display: flex;
             flex-direction: column;
+            line-height: 1.5;
         }
     }
 
@@ -36,7 +37,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: $spacing-s;
+            gap: 10px;
 
             img {
                 height: 20px;
@@ -51,7 +52,7 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        gap: $spacing-m;
+        gap: 25px;
         white-space: nowrap;
     }
 
@@ -99,6 +100,62 @@
                     }
                 }
             }
+        }
+    }
+
+    @media (max-width: $media-m) {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        gap: 50px 0;
+
+        #scrollToTop {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        #information {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        #social {
+            grid-column: 1;
+            grid-row: 2;
+            justify-content: center;
+        }
+
+        #links {
+            grid-column: 1;
+            grid-row: 3;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+
+            .copyright {
+                display: block;
+                min-width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    @media (max-width: $media-s) {
+        grid-template-rows: auto auto auto auto;
+        padding: 100px var(--padding);
+
+        #scrollToTop {
+            grid-row: 1;
+        }
+
+        #information {
+            grid-row: 2;
+        }
+
+        #social {
+            grid-row: 3;
+        }
+
+        #links {
+            grid-row: 4;
         }
     }
 }

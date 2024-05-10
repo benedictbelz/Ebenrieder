@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Browser } from '../../../@types/browser';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import './Variable.scss';
 
-interface Props {
+interface Props extends PropsWithRouter {
     autoPlay?: boolean;
     browser: Browser;
     children: React.ReactNode;
@@ -23,7 +24,7 @@ interface States {
     } | null;
 }
 
-export default class Variable extends React.Component<Props, States> {
+class Variable extends React.Component<Props, States> {
     private interval: NodeJS.Timer;
 
     state: States = {
@@ -40,7 +41,7 @@ export default class Variable extends React.Component<Props, States> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.props.browser.width !== prevProps.browser.width) {
+        if (this.props.browser.height !== prevProps.browser.height || this.props.browser.width !== prevProps.browser.width) {
             this.setImages();
         }
     }
@@ -56,7 +57,7 @@ export default class Variable extends React.Component<Props, States> {
         setTimeout(() => {
             this.setBullets(this.props.position);
             this.setImages();
-        }, 50);
+        }, 100);
     };
 
     private getOrder = (position: number | null) => {
@@ -130,7 +131,7 @@ export default class Variable extends React.Component<Props, States> {
         // UPDATE IMAGES
         setTimeout(() => {
             // CALCULATE WIDTH
-            let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding-horizontal').split('px').shift());
+            let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
             let clickWidth = padding;
             let width = container.clientWidth - padding * 2;
             let translate = images[0].clientWidth + images[1].clientWidth;
@@ -159,7 +160,7 @@ export default class Variable extends React.Component<Props, States> {
             return;
         }
         // DEFINE VARIABLES
-        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding-horizontal').split('px').shift());
+        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
         let width: number = container.clientWidth - padding * 2;
         let translate: number;
         let position = this.props.position - 1;
@@ -227,7 +228,7 @@ export default class Variable extends React.Component<Props, States> {
             return;
         }
         // DEFINE VARIABLES
-        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding-horizontal').split('px').shift());
+        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
         let width: number = container.clientWidth - padding * 2;
         let translate: number;
         let position = this.props.position + 1;
@@ -341,3 +342,5 @@ export default class Variable extends React.Component<Props, States> {
         );
     }
 }
+
+export default withRouter(Variable);

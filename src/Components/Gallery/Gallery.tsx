@@ -2,9 +2,10 @@ import * as React from 'react';
 import Static from './Static/Static';
 import Variable from './Variable/Variable';
 import { Browser } from '../../@types/browser';
+import { PropsWithRouter, withRouter } from '../Router/Router';
 import './Gallery.scss';
 
-interface Props {
+interface Props extends PropsWithRouter {
     autoPlay?: boolean;
     children: React.ReactNode;
     fullScreen?: boolean;
@@ -18,7 +19,7 @@ interface States {
     size: number;
 }
 
-export default class Gallery extends React.Component<Props, States> {
+class Gallery extends React.Component<Props, States> {
     state: States = {
         id: `gly${Math.random().toString(36).slice(2)}`,
         media: Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift()),
@@ -62,3 +63,5 @@ export default class Gallery extends React.Component<Props, States> {
         );
     }
 }
+
+export default withRouter(Gallery);

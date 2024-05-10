@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { getLanguage } from '../../@presets/language';
-import { Language } from '../../@types/language';
+import { Browser } from '../../@types/browser';
 import './Footer.scss';
 
 interface Props {
-    language: Language;
+    browser: Browser;
 }
 
 interface States {}
@@ -16,6 +16,7 @@ export default class Header extends React.Component<Props, States> {
     };
 
     render() {
+        const language = this.props.browser.language;
         return (
             <div id='footer'>
                 <div id='information'>
@@ -33,20 +34,20 @@ export default class Header extends React.Component<Props, States> {
                 </div>
                 <div id='scrollToTop'>
                     <div onClick={this.handleScrollToTop}>
-                        <span className='underline'>{getLanguage(this.props.language, 'backToTop')}</span>
+                        <span className='underline'>{getLanguage(language, 'backToTop')}</span>
                         <img src='assets/svg/arrow_small_top.svg' />
                     </div>
                 </div>
                 <div id='links'>
-                    © Ebenrieder
+                    <span className='copyright'>© Ebenrieder</span>
                     <Link to={'/imprint'} className='underline'>
-                        {getLanguage(this.props.language, 'imprint')}
+                        {getLanguage(language, 'imprint')}
                     </Link>
                     <Link to={'/privacy'} className='underline'>
-                        {getLanguage(this.props.language, 'privacy')}
+                        {getLanguage(language, 'privacy')}
                     </Link>
                     <Link to={'/conditions'} className='underline'>
-                        {getLanguage(this.props.language, 'conditions')}
+                        {getLanguage(language, 'conditions')}
                     </Link>
                 </div>
                 <div id='social'>

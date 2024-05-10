@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Browser } from '../../../@types/browser';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import './Static.scss';
 
-interface Props {
+interface Props extends PropsWithRouter {
     autoPlay?: boolean;
     browser: Browser;
     children: React.ReactNode;
@@ -18,7 +19,7 @@ interface States {
     transition: boolean;
 }
 
-export default class Static extends React.Component<Props, States> {
+class Static extends React.Component<Props, States> {
     private interval: NodeJS.Timer;
 
     state: States = {
@@ -269,3 +270,5 @@ export default class Static extends React.Component<Props, States> {
         );
     }
 }
+
+export default withRouter(Static);

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Language } from '../../@types/language';
+import { Browser } from '../../@types/browser';
+import { Language } from '../../@types/language'
 import './Header.scss';
 
 interface Props {
+    browser: Browser;
     handleLanguage: (language: Language) => void;
-    language: Language;
 }
 
 export default class Header extends React.Component<Props, {}> {
@@ -18,8 +19,8 @@ export default class Header extends React.Component<Props, {}> {
                     </Link>
                 </div>
                 <div id='right'>
-                    <span id='language' onClick={() => this.props.handleLanguage(this.props.language === 'de' ? 'en' : 'de')}>
-                        {this.props.language === 'de' ? 'EN' : 'DE'}
+                    <span id='language' onClick={() => this.props.handleLanguage(this.props.browser.language === 'de' ? 'en' : 'de')}>
+                        {this.props.browser.language === 'de' ? 'EN' : 'DE'}
                     </span>
                 </div>
             </div>

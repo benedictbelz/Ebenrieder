@@ -18,14 +18,10 @@ export const withRouter = <T extends PropsWithRouter>(Component: React.Component
     };
 };
 
-export const scollToTop = (): null => {
-    const { pathname } = useLocation();
-    React.useEffect(() => {
-        document.documentElement.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'instant'
-        });
-    }, [pathname]);
-    return null;
+export const Wrapper = ({ children }: { children: React.ReactNode }) => {
+    const location = useLocation();
+    React.useLayoutEffect(() => {
+        document.documentElement.scrollTo(0, 0);
+    }, [location.pathname]);
+    return children;
 };

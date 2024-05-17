@@ -14,7 +14,6 @@ interface Props extends PropsWithRouter {
 
 interface States {
     id: string;
-    media: number;
     position: number;
     size: number;
 }
@@ -22,7 +21,6 @@ interface States {
 class Gallery extends React.Component<Props, States> {
     state: States = {
         id: `gly${Math.random().toString(36).slice(2)}`,
-        media: Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift()),
         position: 0,
         size: React.Children.toArray(this.props.children).length
     };
@@ -32,6 +30,9 @@ class Gallery extends React.Component<Props, States> {
     };
 
     render() {
+        // DEFINE VARIABLES
+        const media = this.props.browser.media;
+        // RETURN COMPONENT
         return (
             <div className={['gallery', this.state.id].filter(x => x).join(' ')} style={this.props.fullScreen ? { height: '100vh' } : {}}>
                 {(this.props.browser.device === 'Mobile' || this.props.fullScreen) && (
@@ -51,7 +52,7 @@ class Gallery extends React.Component<Props, States> {
                         autoPlay={this.props.autoPlay}
                         browser={this.props.browser}
                         handlePosition={this.handlePosition}
-                        fullScreen={this.props.browser.width <= this.state.media || this.props.fullScreen}
+                        fullScreen={this.props.fullScreen}
                         id={this.state.id}
                         position={this.state.position}
                         size={this.state.size}

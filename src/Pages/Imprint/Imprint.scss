@@ -1,10 +1,10 @@
 @import '../../App/Variables.scss';
 
 #imprint {
-    padding: calc($spacing-header + 50px) var(--padding) 0 var(--padding);
+    padding: calc($spacing-header + 50px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
 
     h1 {
-        margin-bottom: 100px;
+        margin-bottom: var(--spacing-vertical-m);
     }
 
     #content {
@@ -12,12 +12,12 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: 100px;
+        gap: var(--spacing-vertical-m);
 
         #left {
             display: flex;
             flex-direction: column;
-            gap: 50px;
+            gap: var(--spacing-vertical-s);
             white-space: nowrap;
 
             article {
@@ -26,7 +26,7 @@
                 gap: 5px;
                 width: fit-content;
 
-                h3 {
+                h4 {
                     display: block;
                     margin-bottom: 2.5px;
                 }
@@ -42,10 +42,10 @@
         #right {
             display: flex;
             flex-direction: column;
-            gap: 50px;
+            gap: var(--spacing-vertical-s);
 
             h2 {
-                margin-bottom: 25px;
+                margin-bottom: 30px;
             }
 
             p {
@@ -58,7 +58,6 @@
     @media (max-width: $media-m) {
         #content {
             flex-direction: column;
-            gap: 100px;
 
             #left {
                 flex-direction: row;
@@ -77,6 +76,6 @@
     }
 
     @media (max-width: $media-s) {
-        padding: calc($spacing-header + 25px) var(--padding) 0 var(--padding);
+        padding: calc($spacing-header + 25px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
     }
 }

@@ -1,0 +1,99 @@
+@import '../../App/Variables.scss';
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    max-height: -webkit-fill-available;
+    max-width: 100%;
+    z-index: 1000;
+
+    .modalForeground {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1200px;
+        z-index: 1250;
+        background-color: $color-white;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition:
+            width 0.5s ease,
+            transform 0.5s ease;
+
+        @media (max-width: $media-l) {
+            width: 800px;
+        }
+
+        @media (max-width: $media-m) {
+            width: 100%;
+        }
+
+        .button {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: $spacing-header;
+            gap: 10px;
+            padding: 0 var(--spacing-event-horizontal);
+
+            @media (max-width: $media-m) {
+                margin-top: calc($spacing-header - 25px);
+            }
+
+            img {
+                height: 15px;
+            }
+        }
+    }
+
+    .modalBackground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        transition: background-color 0.5s ease;
+    }
+
+    &.show {
+        .modalForeground {
+            transform: translateX(0%);
+        }
+
+        .modalBackground {
+            background-color: transparentize($color-blue, $amount: 0.5);
+        }
+    }
+
+    .event {
+        .gallery {
+            height: 400px !important;
+            min-height: 30vmax !important;
+        }
+
+        .modalContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: var(--spacing-event-vertical);
+            padding: var(--spacing-event-vertical) var(--spacing-event-horizontal);
+
+            .modalTitle {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .modalDescription {
+                text-align: justify;
+                line-height: 1.5;
+            }
+        }
+    }
+}

@@ -7,14 +7,33 @@ interface Props {
 }
 
 export default class Mouse extends React.Component<Props> {
+    componentDidUpdate(prevProps: Props) {
+        // GET ELEMENT
+        const app = document.getElementById('app');
+        // HIDE CURSOR
+        if (app && this.props.browser.mouse.cursor && !prevProps.browser.mouse.cursor) {
+            app.classList.add('hide');
+        }
+        // SHOW CURSOR
+        else if (app && !this.props.browser.mouse.cursor && prevProps.browser.mouse.cursor) {
+            app.classList.remove('hide');
+        }
+    }
+
     render() {
+        // DEFINE VARIABLES
         const cursor = this.props.browser.mouse.cursor;
         const left = this.props.browser.mouse.x;
         const top = this.props.browser.mouse.y;
+        // IF NO CURSOR RETURN NULL
+        if (!cursor) {
+            return null;
+        }
+        // RETURN COMPONENT
         return (
             <div
                 id='mouse'
-                className={[cursor === 'Left' && 'left', cursor === 'Right' && 'right'].filter(x => x).join(' ')}
+                className={[cursor === 'Left' && 'cursorLeft', cursor === 'Right' && 'cursorRight'].filter(x => x).join(' ')}
                 style={{ left: `${left}px`, top: `${top}px` }}
             />
         );

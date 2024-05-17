@@ -253,14 +253,14 @@ class Static extends React.Component<Props, States> {
                 {!this.props.autoPlay && <div className='drag' />}
                 {!this.props.autoPlay && this.props.browser.device === 'Desktop' && (
                     <div className='click'>
-                        <div className='left' onClick={() => this.handlePreviousImage()} />
-                        <div className='right' onClick={() => this.handleNextImage()} />
+                        <div className='left cursorLeft' onClick={() => this.handlePreviousImage()} />
+                        <div className='right cursorRight' onClick={() => this.handleNextImage()} />
                     </div>
                 )}
                 {!this.props.autoPlay && (
                     <div className={'bullets'}>
                         {[...Array(this.props.size)].map((bullet, index) => {
-                            return <div key={index} data-index={index} className='bullet' />;
+                            return <div key={`bullet_${index}`} data-index={index} className='bullet' />;
                         })}
                     </div>
                 )}

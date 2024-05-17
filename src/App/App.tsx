@@ -44,6 +44,7 @@ class App extends React.Component<{}, States> {
         let device: Browser['device'],
             height: Browser['height'],
             language: Browser['language'],
+            media: Browser['media'],
             mouse: Browser['mouse'],
             scroll: Browser['scroll'],
             type: Browser['type'],
@@ -59,6 +60,25 @@ class App extends React.Component<{}, States> {
         width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         // INITIALIZE LANGUAGE
         language = navigator.language.split('-').shift() === 'de' ? 'de' : 'en';
+        // INITIALIZE MEDIA
+        const xs = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
+        const s = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
+        const m = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
+        const l = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
+        const xl = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
+        if (width <= xs) {
+            media = 'Extra Small';
+        } else if (width > xs && width <= s) {
+            media = 'Small';
+        } else if (width > s && width <= m) {
+            media = 'Medium';
+        } else if (width > m && width <= l) {
+            media = 'Large';
+        } else if (width > l && width <= xl) {
+            media = 'Extra Large';
+        } else {
+            media = 'Huge';
+        }
         // INITIALIZE MOUSE
         mouse = {
             x: 0,
@@ -81,7 +101,7 @@ class App extends React.Component<{}, States> {
             type = 'Unknown';
         }
         // RETURN VARIABLES
-        return { device, height, language, mouse, scroll, type, width };
+        return { device, height, language, media, mouse, scroll, type, width };
     }
 
     handleChangeStatus = (status: States['status']) => {
@@ -89,7 +109,7 @@ class App extends React.Component<{}, States> {
     };
 
     handleLanguage = (language: Language) => {
-        this.setState({ browser: { ...this.state.browser, language }});
+        this.setState({ browser: { ...this.state.browser, language } });
     };
 
     handleMouse = (event: any) => {
@@ -99,9 +119,9 @@ class App extends React.Component<{}, States> {
             y: event.clientY
         };
         // UPDATE CURSOR
-        if (event.target.className === 'left') {
+        if (event.target.classList.contains('cursorLeft')) {
             mouse.cursor = 'Left';
-        } else if (event.target.className === 'right') {
+        } else if (event.target.classList.contains('cursorRight')) {
             mouse.cursor = 'Right';
         }
         // UPDATE STATE
@@ -109,15 +129,46 @@ class App extends React.Component<{}, States> {
     };
 
     handleResize = () => {
-        const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        this.setState({ browser: { ...this.state.browser, height, width } });
+        // DEFINE VARIABLES
+        let media = this.state.browser.media;
+        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        // INITIALIZE MEDIA
+        const xs = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
+        const s = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
+        const m = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
+        const l = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
+        const xl = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
+        // UPDATE MEDIA
+        if (width <= xs) {
+            media = 'Extra Small';
+        } else if (width > xs && width <= s) {
+            media = 'Small';
+        } else if (width > s && width <= m) {
+            media = 'Medium';
+        } else if (width > m && width <= l) {
+            media = 'Large';
+        } else if (width > l && width <= xl) {
+            media = 'Extra Large';
+        } else {
+            media = 'Huge';
+        }
+        // UPDATE STATE
+        this.setState({ browser: { ...this.state.browser, media, height, width } });
     };
 
-    handleScroll = () => {
+    handleScroll = (event: any) => {
         // DEFINE VARIABLES
+        let modal = document.querySelector('.modal');
         let scroll = document.documentElement.scrollTop;
         let direction: 'Up' | 'Down' = 'Down';
+        // IF MODAL
+        if (modal) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.documentElement.scrollTop = this.state.browser.scroll;
+            return;
+        }
         // GET DIRECTION
         if (scroll < this.state.browser.scroll) {
             direction = 'Up';

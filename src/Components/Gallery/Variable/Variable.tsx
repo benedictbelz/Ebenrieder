@@ -131,7 +131,7 @@ class Variable extends React.Component<Props, States> {
         // UPDATE IMAGES
         setTimeout(() => {
             // CALCULATE WIDTH
-            let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
+            let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
             let clickWidth = padding;
             let width = container.clientWidth - padding * 2;
             let translate = images[0].clientWidth + images[1].clientWidth;
@@ -160,7 +160,7 @@ class Variable extends React.Component<Props, States> {
             return;
         }
         // DEFINE VARIABLES
-        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
+        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
         let width: number = container.clientWidth - padding * 2;
         let translate: number;
         let position = this.props.position - 1;
@@ -228,7 +228,7 @@ class Variable extends React.Component<Props, States> {
             return;
         }
         // DEFINE VARIABLES
-        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--padding').split('px').shift());
+        let padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
         let width: number = container.clientWidth - padding * 2;
         let translate: number;
         let position = this.props.position + 1;
@@ -285,28 +285,30 @@ class Variable extends React.Component<Props, States> {
 
     private handleClick = (event: any) => {
         const mouse = document.getElementById('mouse');
-        if (mouse && mouse.className === 'left' && event.target.className !== 'left') {
+        if (mouse && mouse.className === 'cursorLeft' && !event.target.classList.contains('cursorLeft')) {
             this.handlePreviousImage();
-        } else if (mouse && mouse.className === 'right' && event.target.className !== 'right') {
+        } else if (mouse && mouse.className === 'cursorRight' && !event.target.classList.contains('cursorRight')) {
             this.handleNextImage();
         }
     };
 
     render() {
+        // DEFINE VARIABLES
         const children = this.props.children as React.ReactNode[];
         const images = { ...this.getOrder(this.props.position) };
         const placeholder = { ...this.getOrder(this.state.placeholder?.position) };
+        // RETURN COMPONENT
         return (
             <div className={['variable', this.props.fullScreen && 'fullScreen'].filter(x => x).join(' ')} onClick={this.handleClick}>
                 {!this.props.autoPlay && (
                     <div className='click'>
                         <div
-                            className='left'
+                            className='left cursorLeft'
                             onClick={() => this.handlePreviousImage()}
                             style={this.state.clickWidth ? { width: `${this.state.clickWidth}px` } : {}}
                         />
                         <div
-                            className='right'
+                            className='right cursorRight'
                             onClick={() => this.handleNextImage()}
                             style={this.state.clickWidth ? { width: `${this.state.clickWidth}px` } : {}}
                         />
@@ -315,7 +317,7 @@ class Variable extends React.Component<Props, States> {
                 {!this.props.autoPlay && (
                     <div className={'bullets'}>
                         {[...Array(this.props.size)].map((bullet, index) => {
-                            return <div key={index} data-index={index} className='bullet' />;
+                            return <div key={`bullet_${index}`} data-index={index} className='bullet' />;
                         })}
                     </div>
                 )}
@@ -324,19 +326,19 @@ class Variable extends React.Component<Props, States> {
                         className={['placeholder', this.state.placeholder.show && 'show'].filter(x => x).join(' ')}
                         style={{ transform: this.state.placeholder.translate }}
                     >
-                        {children[placeholder.beforePrevious]}
-                        {children[placeholder.previous]}
-                        {children[placeholder.current]}
-                        {children[placeholder.next]}
-                        {children[placeholder.afterNext]}
+                        <React.Fragment key='placeholder_01'>{children[placeholder.beforePrevious]}</React.Fragment>
+                        <React.Fragment key='placeholder_02'>{children[placeholder.previous]}</React.Fragment>
+                        <React.Fragment key='placeholder_03'>{children[placeholder.current]}</React.Fragment>
+                        <React.Fragment key='placeholder_04'>{children[placeholder.next]}</React.Fragment>
+                        <React.Fragment key='placeholder_05'>{children[placeholder.afterNext]}</React.Fragment>
                     </div>
                 )}
                 <div className='images'>
-                    {children[images.beforePrevious]}
-                    {children[images.previous]}
-                    {children[images.current]}
-                    {children[images.next]}
-                    {children[images.afterNext]}
+                    <React.Fragment key='image_01'>{children[images.beforePrevious]}</React.Fragment>
+                    <React.Fragment key='image_02'>{children[images.previous]}</React.Fragment>
+                    <React.Fragment key='image_03'>{children[images.current]}</React.Fragment>
+                    <React.Fragment key='image_04'>{children[images.next]}</React.Fragment>
+                    <React.Fragment key='image_05'>{children[images.afterNext]}</React.Fragment>
                 </div>
             </div>
         );

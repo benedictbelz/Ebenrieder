@@ -1,9 +1,10 @@
-import { Language } from "./language";
+import { Language } from './language';
 
 export type Browser = {
     device: 'Desktop' | 'Mobile';
     height: number;
     language: Language;
+    media: 'Extra Small' | 'Small' | 'Medium' | 'Large' | 'Extra Large' | 'Huge';
     mouse: {
         x: number;
         y: number;

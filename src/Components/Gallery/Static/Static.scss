@@ -104,12 +104,12 @@
         .images img,
         .images video {
             transition:
-                left $transition-m ease,
-                right $transition-m ease;
+                left 0.5s ease,
+                right 0.5s ease;
         }
 
         .bullets div {
-            transition: background-color $transition-m ease;
+            transition: background-color 0.5s ease;
         }
     }
 }

@@ -1,58 +1,383 @@
 @import '../../App/Variables.scss';
 
+$paddingLogo: 10px;
+$paddingLanguage: 10px;
+
 #header {
     pointer-events: none;
     box-sizing: border-box;
     position: fixed;
     z-index: 99999;
-    display: grid;
-    grid-template-columns: var(--padding) auto var(--padding);
-    grid-template-rows: 1fr;
+    display: flex;
+    justify-content: space-between;
     height: $spacing-header;
     width: 100%;
     mix-blend-mode: difference;
+    transition: transform 1s ease;
     filter: invert(100%);
-    transition: padding $transition-m ease,
-                transform $transition-l ease;
 
     #left {
-        grid-column: 1;
         display: flex;
-        justify-content: center;
         align-items: center;
-        gap: 25px;
         height: 100%;
+        width: var(--spacing-horizontal);
+        margin: 0;
+        transition: margin 0.5s ease;
 
-        .logo {
-            cursor: pointer;
-            pointer-events: all;
-            width: 40px;
-        }
+        a {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
 
-        .text {
-            width: 150px;
+            #logo {
+                cursor: pointer;
+                pointer-events: all;
+                width: 40px;
+                padding: $paddingLogo;
+
+                #logo_01,
+                #logo_02,
+                #logo_03 {
+                    fill: none;
+                    stroke: $color-blue;
+                    stroke-width: 25;
+                    stroke-dashoffset: 0;
+                }
+
+                #logo_01 {
+                    stroke-dasharray: 518 518;
+                }
+
+                #logo_02 {
+                    stroke-dasharray: 379 379;
+                }
+
+                #logo_03 {
+                    stroke-dasharray: 163 163;
+                }
+
+                @media (hover: hover) {
+                    &:hover {
+                        #logo_01 {
+                            animation-duration: 1.5s;
+                            animation-fill-mode: forwards;
+                            animation-name: logo_01;
+                            animation-iteration-count: 1;
+                            animation-timing-function: linear;
+
+                            @keyframes logo_01 {
+                                0% {
+                                    stroke-dashoffset: 0;
+                                }
+                                20% {
+                                    stroke-dashoffset: -518;
+                                }
+                                40% {
+                                    stroke-dashoffset: -518;
+                                }
+                                50% {
+                                    stroke-dashoffset: -518;
+                                }
+                                50.00001% {
+                                    stroke-dashoffset: 518;
+                                }
+                                70% {
+                                    stroke-dashoffset: 0;
+                                }
+                                90% {
+                                    stroke-dashoffset: 0;
+                                }
+                                100% {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+                        }
+
+                        #logo_02 {
+                            animation-duration: 1.5s;
+                            animation-fill-mode: forwards;
+                            animation-name: logo_02;
+                            animation-iteration-count: 1;
+                            animation-timing-function: linear;
+
+                            @keyframes logo_02 {
+                                0% {
+                                    stroke-dashoffset: 0;
+                                }
+                                20% {
+                                    stroke-dashoffset: 0;
+                                }
+                                40% {
+                                    stroke-dashoffset: -379;
+                                }
+                                50% {
+                                    stroke-dashoffset: -379;
+                                }
+                                50.00001% {
+                                    stroke-dashoffset: 379;
+                                }
+                                70% {
+                                    stroke-dashoffset: 379;
+                                }
+                                90% {
+                                    stroke-dashoffset: 0;
+                                }
+                                100% {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+                        }
+
+                        #logo_03 {
+                            animation-duration: 1.5s;
+                            animation-fill-mode: forwards;
+                            animation-name: logo_03;
+                            animation-iteration-count: 1;
+                            animation-timing-function: linear;
+
+                            @keyframes logo_03 {
+                                0% {
+                                    stroke-dashoffset: 0;
+                                }
+                                20% {
+                                    stroke-dashoffset: 0;
+                                }
+                                40% {
+                                    stroke-dashoffset: 0;
+                                }
+                                50% {
+                                    stroke-dashoffset: -163;
+                                }
+                                50.00001% {
+                                    stroke-dashoffset: 163;
+                                }
+                                70% {
+                                    stroke-dashoffset: 163;
+                                }
+                                90% {
+                                    stroke-dashoffset: 163;
+                                }
+                                100% {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
     #right {
-        grid-column: 3;
         display: flex;
-        justify-content: center;
         align-items: center;
-        flex-direction: row;
-        box-sizing: border-box;
         height: 100%;
+        width: var(--spacing-horizontal);
+        margin: 0;
+        transition: margin 0.5s ease;
 
         #language {
             cursor: pointer;
             pointer-events: all;
-            display: block;
-            color: $color-blue;
-            font-weight: 400;
-            font-size: var(--font-size-p);
+            margin: 0 auto;
+            padding: $paddingLanguage;
             letter-spacing: 2.5px;
-            text-transform: uppercase;
-            width: fit-content;
+
+            #english,
+            #german {
+                height: 22.5px;
+                width: 30px;
+            }
+
+            #english_01,
+            #english_02,
+            #english_03,
+            #german_01,
+            #german_02,
+            #german_03 {
+                fill: none;
+                stroke: $color-blue;
+                stroke-width: 1.75;
+                stroke-dashoffset: 0;
+            }
+
+            #english_01 {
+                stroke-dasharray: 5.61 5.61;
+            }
+
+            #english_02 {
+                stroke-dasharray: 21.88 21.88;
+            }
+
+            #english_03 {
+                stroke-dasharray: 33.94 33.94;
+            }
+
+            #german_01 {
+                stroke-dasharray: 33.22 33.22;
+            }
+
+            #german_02 {
+                stroke-dasharray: 5.62 5.62;
+            }
+
+            #german_03 {
+                stroke-dasharray: 21.89 21.89;
+            }
+
+            @media (hover: hover) {
+                &:hover {
+                    #english_01 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: english_01;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes english_01 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            25% {
+                                stroke-dashoffset: 5.61;
+                            }
+                            50% {
+                                stroke-dashoffset: 5.61;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: 5.61;
+                            }
+                            75% {
+                                stroke-dashoffset: 5.61;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+
+                    #english_02 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: english_02;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes english_02 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            50% {
+                                stroke-dashoffset: 21.88;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: -21.88;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+
+                    #english_03 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: english_03;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes english_03 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            50% {
+                                stroke-dashoffset: -33.94;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: 33.94;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+
+                    #german_01 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: german_01;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes german_01 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            50% {
+                                stroke-dashoffset: -33.22;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: 33.22;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+
+                    #german_02 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: german_02;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes german_02 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            25% {
+                                stroke-dashoffset: 5.62;
+                            }
+                            50% {
+                                stroke-dashoffset: 5.62;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: 5.62;
+                            }
+                            75% {
+                                stroke-dashoffset: 5.62;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+
+                    #german_03 {
+                        animation-duration: 1s;
+                        animation-fill-mode: forwards;
+                        animation-name: german_03;
+                        animation-iteration-count: 1;
+                        animation-timing-function: linear;
+
+                        @keyframes german_03 {
+                            0% {
+                                stroke-dashoffset: 0;
+                            }
+                            50% {
+                                stroke-dashoffset: 21.89;
+                            }
+                            50.00001% {
+                                stroke-dashoffset: -21.89;
+                            }
+                            100% {
+                                stroke-dashoffset: 0;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -61,8 +386,17 @@
     }
 
     @media (max-width: $media-s) {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 var(--padding);
+        #left,
+        #right {
+            width: fit-content;
+        }
+
+        #left {
+            margin-left: calc(var(--spacing-horizontal) - $paddingLogo);
+        }
+
+        #right {
+            margin-right: calc(var(--spacing-horizontal) - $paddingLanguage);
+        }
     }
 }

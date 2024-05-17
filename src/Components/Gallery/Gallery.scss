@@ -3,7 +3,7 @@
 .gallery {
     height: $spacing-gallery;
 
-    @media (min-width: $media-l) {
+    @media (min-width: 2000px) {
         min-height: 50vmax;
     }
 

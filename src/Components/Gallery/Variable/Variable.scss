@@ -15,7 +15,6 @@
 
         .left,
         .right {
-            cursor: none;
             pointer-events: all;
             position: absolute;
             height: 100%;
@@ -55,7 +54,7 @@
             height: $spacing-bullet;
             width: $spacing-bullet;
             background-color: transparentize($color-blue, 0.5);
-            transition: background-color $transition-m ease;
+            transition: background-color 0.5s ease;
 
             &.current {
                 background-color: $color-blue;
@@ -74,7 +73,7 @@
         align-items: center;
         height: 100%;
         width: 100%;
-        padding: 0 var(--padding);
+        padding: 0 var(--spacing-horizontal);
 
         img,
         video {
@@ -95,10 +94,10 @@
         align-items: center;
         height: 100%;
         width: 100%;
-        padding: 0 var(--padding);
+        padding: 0 var(--spacing-horizontal);
         z-index: 500;
         visibility: hidden;
-        transition: transform $transition-m ease;
+        transition: transform 0.5s ease;
 
         img,
         video {

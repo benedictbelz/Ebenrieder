@@ -1,0 +1,294 @@
+@import '../../App/Variables.scss';
+
+#events {
+    padding: 0 var(--spacing-horizontal);
+    overflow: hidden;
+
+    #selection {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+        margin: var(--spacing-vertical-s) 0;
+
+        #left,
+        #right {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                height: 50px;
+                width: 75px;
+
+                line,
+                polyline {
+                    fill: none;
+                    stroke: $color-blue;
+                    stroke-miterlimit: 10;
+                    stroke-width: 2.5px;
+                    stroke-dashoffset: 0;
+                }
+
+                line {
+                    stroke-dasharray: 72 72;
+                }
+
+                polyline {
+                    stroke-dasharray: 56.57 56.57;
+                }
+            }
+
+            &.disabled {
+                pointer-events: none;
+                visibility: hidden;
+            }
+        }
+
+        @media (hover: hover) {
+            #left:hover {
+                line {
+                    animation: line 1s linear forwards;
+                }
+
+                polyline {
+                    animation: leftPolyline 1s linear forwards;
+                }
+            }
+
+            #right:hover {
+                line {
+                    animation: line 1s linear forwards;
+                }
+
+                polyline {
+                    animation: rightPolyline 1s linear forwards;
+                }
+            }
+        }
+
+        @keyframes line {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            30% {
+                stroke-dashoffset: -72;
+            }
+            50% {
+                stroke-dashoffset: -72;
+            }
+            50.00001% {
+                stroke-dashoffset: 72;
+            }
+            80% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes leftPolyline {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            30% {
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dashoffset: 56.57;
+            }
+            50.00001% {
+                stroke-dashoffset: -56.57;
+            }
+            80% {
+                stroke-dashoffset: -56.57;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes rightPolyline {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            30% {
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dashoffset: -56.57;
+            }
+            50.00001% {
+                stroke-dashoffset: 56.57;
+            }
+            80% {
+                stroke-dashoffset: 56.57;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @media (max-width: $media-s) {
+            #left,
+            #right {
+                svg {
+                    height: 35px;
+                    width: 18px;
+
+                    line,
+                    polyline {
+                        stroke-width: 3px;
+                    }
+                }
+            }
+
+            @keyframes leftPolyline {
+                0% {
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dashoffset: 56.57;
+                }
+                50.00001% {
+                    stroke-dashoffset: -56.57;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @keyframes rightPolyline {
+                0% {
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dashoffset: -56.57;
+                }
+                50.00001% {
+                    stroke-dashoffset: 56.57;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+
+        #center {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .input {
+                width: fit-content;
+
+                &:first-of-type {
+                    justify-self: flex-end;
+                }
+
+                &:last-of-type {
+                    justify-self: flex-start;
+                }
+            }
+        }
+    }
+
+    #message {
+        text-align: center;
+        line-height: 2;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 50px;
+
+        @media (max-width: $media-xl) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: $media-l) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: $media-m) {
+            grid-template-columns: 1fr;
+        }
+
+        @media (max-width: $media-s) {
+            gap: var(--spacing-horizontal);
+        }
+
+        .event {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            border: $border-width solid $color-blue;
+
+            &.opacity {
+                opacity: 0;
+            }
+
+            &.animate {
+                animation: animate 0.5s ease forwards;
+            }
+
+            @keyframes animate {
+                0% {
+                    opacity: 0;
+                    transform: translateY(200px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0px);
+                }
+            }
+
+            .eventImage {
+                position: relative;
+                padding-bottom: 75%;
+                height: 0%;
+                width: 100%;
+
+                img {
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .eventContent {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-event-vertical);
+                padding: var(--spacing-event-vertical) var(--spacing-event-horizontal);
+                height: 100%;
+                width: 100%;
+
+                .eventTitle {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 25px;
+                }
+
+                .eventDescription {
+                    line-height: 1.5;
+                    text-align: justify;
+                }
+
+                .eventButton {
+                    margin-top: auto;
+                }
+            }
+        }
+    }
+}

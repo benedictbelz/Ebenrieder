@@ -11,7 +11,9 @@ interface States {}
 
 export default class Imprint extends React.Component<Props, States> {
     render() {
+        // DEFINE VARIABLES
         const language = this.props.browser.language;
+        // RETURN COMPONENT
         return (
             <div id='imprint'>
                 <h1>{getLanguage(this.props.browser.language, 'imprint')}</h1>
@@ -24,41 +26,41 @@ export default class Imprint extends React.Component<Props, States> {
                             <span>Deutschland</span>
                         </article>
                         <article className='phone'>
-                            <h3>{getLanguage(language, 'phone')}</h3>
+                            <h4>{getLanguage(language, 'phone')}</h4>
                             <a className='underline' href='tel:+491633938055'>
                                 +49 163 3938055
                             </a>
                         </article>
-                        <article className='eMail'>
-                            <h3>{getLanguage(language, 'eMail')}</h3>
+                        <article className='email'>
+                            <h4>{getLanguage(language, 'email')}</h4>
                             <a className='underline' href='mailto:hallo@ebenrieder.de'>
                                 hallo@ebenrieder.de
                             </a>
                         </article>
-                        <article className='ustId'>
-                            <h3>{getLanguage(language, 'ustId')}</h3>
+                        <article className='taxIdentification'>
+                            <h4>{getLanguage(language, 'taxIdentification')}</h4>
                             <span>DE11111111</span>
                         </article>
                         <article className='commercialRegister'>
-                            <h3>{getLanguage(language, 'commercialRegister')}</h3>
+                            <h4>{getLanguage(language, 'commercialRegister')}</h4>
                             <span>München HRB 111111 B</span>
                         </article>
                         <article className='executiveBoard'>
-                            <h3>{getLanguage(language, 'executiveBoard')}</h3>
+                            <h4>{getLanguage(language, 'executiveBoard')}</h4>
                             <span>Stefan Hahn</span>
                             <span>Jasmin Hahn</span>
                         </article>
                         <article className='responsibleForContent'>
-                            <h3>{getLanguage(language, 'responsibleForContent')}</h3>
+                            <h4>{getLanguage(language, 'responsibleForContent')}</h4>
                             <span>Stefan Hahn</span>
                         </article>
                         <article className='conception'>
-                            <h3>{getLanguage(language, 'conception')}</h3>
+                            <h4>{getLanguage(language, 'conception')}</h4>
                             <span>Gerwin Schmidt</span>
                             <span>Benedict Belz</span>
                         </article>
                         <article className='photography'>
-                            <h3>{getLanguage(language, 'photography')}</h3>
+                            <h4>{getLanguage(language, 'photography')}</h4>
                             <span>Regina Recht</span>
                         </article>
                     </div>

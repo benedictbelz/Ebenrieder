@@ -16,7 +16,9 @@ export default class Header extends React.Component<Props, States> {
     };
 
     render() {
+        // DEFINE VARIABLES
         const language = this.props.browser.language;
+        // RETURN COMPONENT
         return (
             <div id='footer'>
                 <div id='information'>
@@ -54,7 +56,8 @@ export default class Header extends React.Component<Props, States> {
                     <a href='https://www.instagram.com/ebenrieder' target='_blank' rel='noopener noreferrer'>
                         <img src='assets/svg/instagram.svg' />
                         <svg viewBox='0 0 100 100'>
-                            <circle cx='50' cy='50' r='40' />
+                            <circle className='rotate' cx='50' cy='50' r='40' />
+                            <circle className='static' cx='50' cy='50' r='40' />
                         </svg>
                     </a>
                 </div>

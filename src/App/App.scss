@@ -41,6 +41,7 @@ body {
     position: relative;
     height: 100%;
     width: 100%;
+    background-color: $color-white;
 
     &.welcome {
         #header {
@@ -53,12 +54,21 @@ body {
         }
     }
 
+    &.hide {
+        cursor: none !important;
+    }
+
     #overview #content section header,
     #overview #content section main,
     #imprint,
     #footer {
-        transition: margin $transition-m ease,
-                    padding $transition-m ease;
+        transition:
+            margin 0.5s ease,
+            padding 0.5s ease;
+    }
+
+    @media (max-width: 320px) {
+        width: 320px;
     }
 }
 
@@ -85,6 +95,10 @@ h3 {
     font-size: var(--font-size-h3);
 }
 
+h4 {
+    font-size: var(--font-size-h4);
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -102,8 +116,10 @@ a {
     height: fit-content;
     width: fit-content;
 
-    &:hover::after {
-        animation: underline $transition-l ease;
+    @media (hover: hover) {
+        &:hover::after {
+            animation: underline 1s ease;
+        }
     }
 
     &::after {

@@ -6,7 +6,7 @@
     grid-template-rows: auto auto;
     gap: 100px 0;
     box-sizing: border-box;
-    padding: var(--padding);
+    padding: var(--spacing-vertical-l) var(--spacing-horizontal);
     width: 100%;
 
     #information {
@@ -86,17 +86,54 @@
                     fill: transparent;
                     stroke: $color-blue;
                     stroke-width: $border-icon;
-                    stroke-dasharray: 250;
-                    stroke-dashoffset: 1000;
 
-                    &:hover {
-                        animation: rotate $transition-l * 1.25 linear forwards;
+                    &.rotate {
+                        opacity: 0;
+                        stroke-dasharray: 250;
+                        stroke-dashoffset: 1000;
+                    }
+
+                    &.static {
+                        opacity: 1;
+                    }
+                }
+
+                @media (hover: hover) {
+                    &:hover circle {
+                        &.rotate {
+                            animation: rotate 1.25s linear forwards;
+                        }
+
+                        &.static {
+                            animation: static 1.25s linear forwards;
+                        }
                     }
                 }
 
                 @keyframes rotate {
-                    to {
+                    0% {
+                        opacity: 1;
+                        stroke-dashoffset: 1000;
+                    }
+                    99% {
+                        opacity: 1;
                         stroke-dashoffset: 500;
+                    }
+                    100% {
+                        opacity: 0;
+                        stroke-dashoffset: 500;
+                    }
+                }
+
+                @keyframes static {
+                    0% {
+                        opacity: 0;
+                    }
+                    99% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
                     }
                 }
             }
@@ -140,7 +177,6 @@
 
     @media (max-width: $media-s) {
         grid-template-rows: auto auto auto auto;
-        padding: 100px var(--padding);
 
         #scrollToTop {
             grid-row: 1;

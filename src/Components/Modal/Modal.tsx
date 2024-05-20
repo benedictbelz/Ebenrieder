@@ -12,20 +12,20 @@ interface Props {
 }
 
 interface States {
-    show: boolean;
+    active: boolean;
 }
 
 export default class Modal extends React.Component<Props, States> {
     state = {
-        show: false
+        active: false
     };
 
     componentDidMount() {
-        setTimeout(() => this.setState({ show: true }), 100);
+        setTimeout(() => this.setState({ active: true }), 100);
     }
 
     handleClose = () => {
-        this.setState({ show: false });
+        this.setState({ active: false });
         setTimeout(() => this.props.handleClose(), 500);
     };
 
@@ -39,7 +39,7 @@ export default class Modal extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return createPortal(
-            <div className={['modal', this.state.show && 'show'].filter(x => x).join(' ')}>
+            <div className={['modal', this.state.active && 'active'].filter(x => x).join(' ')}>
                 <div className={['modalForeground', this.props.className && this.props.className].filter(x => x).join(' ')}>
                     <div className='button'>
                         <img src='assets/svg/arrow_small_left.svg' />

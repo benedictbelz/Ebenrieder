@@ -4,7 +4,7 @@ import Gallery from '../../Components/Gallery/Gallery';
 import Guide from '../../Components/Guide/Guide';
 import Title from '../../Components/Title/Title';
 import { Browser } from '../../@types/browser';
-import { PropsWithRouter, withRouter } from '../../Components/Router/Router';
+import { PropsWithRouter, withRouter } from '../../@functions/router';
 import './Overview.scss';
 
 interface Props extends PropsWithRouter {

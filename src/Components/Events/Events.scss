@@ -140,7 +140,7 @@
 
                     line,
                     polyline {
-                        stroke-width: 3px;
+                        stroke-width: $border-l;
                     }
                 }
             }
@@ -197,6 +197,32 @@
         }
     }
 
+    #filters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: var(--spacing-vertical-s);
+
+        img {
+            display: none;
+            height: 25px;
+        }
+
+        .filter {
+            cursor: pointer;
+            border: $border-s solid $color-blue;
+            padding: 10px;
+
+            &.active {
+                color: $color-white;
+                background-color: $color-blue;
+            }
+        }
+    }
+
     #message {
         text-align: center;
         line-height: 2;
@@ -228,7 +254,7 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
-            border: $border-width solid $color-blue;
+            border: $border-m solid $color-blue;
 
             &.opacity {
                 opacity: 0;
@@ -268,8 +294,8 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: var(--spacing-event-vertical);
-                padding: var(--spacing-event-vertical) var(--spacing-event-horizontal);
+                gap: var(--spacing-box-vertical);
+                padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
                 height: 100%;
                 width: 100%;
 
@@ -278,6 +304,16 @@
                     flex-direction: column;
                     text-align: center;
                     gap: 25px;
+
+                    > .eventSubtitle {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+                        letter-spacing: 1px;
+                    }
                 }
 
                 .eventDescription {

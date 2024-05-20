@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropsWithRouter, withRouter } from '../../Components/Router/Router';
+import { PropsWithRouter, withRouter } from '../../@functions/router';
 import './Privacy.scss';
 
 interface Props extends PropsWithRouter {}

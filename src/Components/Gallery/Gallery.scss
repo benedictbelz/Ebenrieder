@@ -1,17 +1,132 @@
 @import '../../App/Variables.scss';
 
 .gallery {
+    position: relative;
     height: $spacing-gallery;
+    width: 100%;
+    overflow: hidden;
 
     @media (min-width: 2000px) {
         min-height: 50vmax;
     }
 
     @media (max-height: $spacing-gallery) {
-        max-height: 100vh;
+        max-height: 75vmax;
     }
 
     @media (max-height: 500px) {
         max-height: 500px;
+    }
+
+    .click {
+        pointer-events: none;
+        position: absolute;
+        z-index: 1000;
+        height: 100%;
+        width: 100%;
+
+        .left,
+        .right {
+            pointer-events: all;
+            position: absolute;
+            height: 100%;
+            width: $spacing-click;
+
+            @media (max-width: $media-s) {
+                width: 50% !important;
+            }
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    }
+
+    .drag {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 750;
+        height: 100%;
+        width: 100%;
+    }
+
+    .bullets {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $spacing-bullet * 2;
+        position: absolute;
+        z-index: 500;
+        height: 100px;
+        width: 100%;
+        bottom: 0;
+        mix-blend-mode: difference;
+        filter: invert(100%);
+
+        div {
+            display: none;
+            border-radius: 50%;
+            height: $spacing-bullet;
+            width: $spacing-bullet;
+            background-color: transparentize($color-blue, 0.5);
+            transition: background-color 0.5s ease;
+
+            &.current {
+                background-color: $color-blue;
+            }
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+    .galleryA,
+    .galleryB {
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 0 var(--spacing-horizontal);
+        visibility: hidden;
+
+        img,
+        video {
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        &.active {
+            visibility: visible;
+        }
+
+        &.transition {
+            transition: transform 0.5s ease;
+        }
+    }
+
+    &.fullScreen {
+        .galleryA,
+        .galleryB {
+            padding: 0;
+
+            img,
+            video {
+                min-width: 100%;
+            }
+        }
     }
 }

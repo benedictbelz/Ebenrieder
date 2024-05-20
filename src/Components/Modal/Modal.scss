@@ -6,7 +6,7 @@
     left: 0;
     height: 100vh;
     width: 100%;
-    max-height: -webkit-fill-available;
+    max-height: 100dvh;
     max-width: 100%;
     z-index: 1000;
 
@@ -19,8 +19,10 @@
         z-index: 1250;
         background-color: $color-white;
         overflow-y: auto;
+        box-shadow: 0px 0px 50px 0px transparent;
         transform: translateX(100%);
         transition:
+            box-shadow 0.5s ease,
             width 0.5s ease,
             transform 0.5s ease;
 
@@ -38,7 +40,7 @@
             align-items: center;
             height: $spacing-header;
             gap: 10px;
-            padding: 0 var(--spacing-event-horizontal);
+            padding: 0 var(--spacing-box-horizontal);
 
             @media (max-width: $media-m) {
                 margin-top: calc($spacing-header - 25px);
@@ -60,13 +62,14 @@
         transition: background-color 0.5s ease;
     }
 
-    &.show {
+    &.active {
         .modalForeground {
+            box-shadow: 0px 0px 50px 0px transparentize($color-shadow, 0.75);
             transform: translateX(0%);
         }
 
         .modalBackground {
-            background-color: transparentize($color-blue, $amount: 0.5);
+            background-color: transparentize($color-blue, $amount: 0.75);
         }
     }
 
@@ -77,22 +80,69 @@
         }
 
         .modalContent {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: var(--spacing-event-vertical);
-            padding: var(--spacing-event-vertical) var(--spacing-event-horizontal);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
+            gap: var(--spacing-box-vertical);
 
-            .modalTitle {
+            @media (max-width: $media-l) {
                 display: flex;
                 flex-direction: column;
-                gap: 25px;
             }
 
-            .modalDescription {
-                text-align: justify;
-                line-height: 1.5;
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: var(--spacing-box-vertical);
+
+                .modalTitle {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+
+                    > .modalSubtitle {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 5px;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .modalDescription {
+                    text-align: justify;
+                    line-height: 1.5;
+                }
+            }
+
+            .right {
+                .modalDetails {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 6px;
+                    font-size: var(--font-size-detail);
+                    line-height: 1.5;
+                    letter-spacing: 0.75px;
+
+                    p {
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        gap: 5px;
+                    }
+
+                    .line {
+                        height: $border-s;
+                        width: 100%;
+                        background: $color-blue;
+                    }
+                }
             }
         }
     }

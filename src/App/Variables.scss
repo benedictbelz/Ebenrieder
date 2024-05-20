@@ -5,6 +5,7 @@
 $color-white: #ffffff;
 $color-black: #000000;
 $color-blue: #32468a;
+$color-shadow: #1b2a5b;
 
 /******************************/
 /********* FONT-WEIGHT ********/
@@ -28,9 +29,9 @@ $spacing-click: 200px;
 /*********** BORDER ***********/
 /******************************/
 
-$border-width: 2.5px;
-$border-underline: 2px;
-$border-icon: 2.75px;
+$border-s: 2px;
+$border-m: 2.5px;
+$border-l: 3px;
 
 /******************************/
 /************ MEDIA ***********/
@@ -51,9 +52,10 @@ $media-xl: 1700px;
     --spacing-vertical-s: 75px;
     --spacing-vertical-m: 100px;
     --spacing-vertical-l: 150px;
-    --spacing-event-horizontal: 50px;
-    --spacing-event-vertical: 50px;
-    --font-size-p: 16px;
+    --spacing-box-horizontal: 50px;
+    --spacing-box-vertical: 50px;
+    --font-size-text: 16px;
+    --font-size-detail: 14px;
     --font-size-h1: 56px;
     --font-size-h2: 32px;
     --font-size-h3: 22px;
@@ -71,11 +73,6 @@ $media-xl: 1700px;
         --spacing-vertical-s: 50px;
         --spacing-vertical-m: 75px;
         --spacing-vertical-l: 100px;
-        --font-size-p: 16px;
-        --font-size-h1: 56px;
-        --font-size-h2: 32px;
-        --font-size-h3: 22px;
-        --font-size-h4: 16px;
     }
 }
 
@@ -85,9 +82,10 @@ $media-xl: 1700px;
         --spacing-vertical-s: 40px;
         --spacing-vertical-m: 50px;
         --spacing-vertical-l: 75px;
-        --spacing-event-horizontal: 25px;
-        --spacing-event-vertical: 50px;
-        --font-size-p: 16px;
+        --spacing-box-horizontal: 25px;
+        --spacing-box-vertical: 50px;
+        --font-size-text: 16px;
+        --font-size-detail: 14px;
         --font-size-h1: 42px;
         --font-size-h2: 28px;
         --font-size-h3: 22px;

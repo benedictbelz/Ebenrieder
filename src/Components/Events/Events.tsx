@@ -2,10 +2,9 @@ import * as React from 'react';
 import Gallery from '../Gallery/Gallery';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
-import { translateLanguage } from '../../@functions/translateLanguage';
 import { getEvents } from '../../@presets/event';
-import { getLanguage } from '../../@presets/language';
-import { Event } from '../../@types/event';
+import { getFilter, getLocal, getLanguage } from '../../@presets/language';
+import { Event, Filter, availableFilters } from '../../@types/event';
 import { Browser } from '../../@types/browser';
 import './Events.scss';
 
@@ -15,6 +14,7 @@ interface Props {
 
 interface States {
     event: Event | null;
+    filters: Filter[];
     month: number;
     year: number;
 }
@@ -26,6 +26,7 @@ export default class Events extends React.Component<Props, States> {
 
     state: States = {
         event: null,
+        filters: [],
         month: this.month,
         year: this.year
     };
@@ -69,19 +70,56 @@ export default class Events extends React.Component<Props, States> {
         }
     };
 
-    handleChangeMonth = (value: number) => {
-        this.setState({ month: value });
-    };
-
-    handleChangeYear = (value: number) => {
-        // DEFINE MONTH
-        let month = this.state.month;
-        // IF MONTH IS NOT IN TIME FRAME OF ONE YEAR
-        if ((month < this.month && value === this.year) || (month > this.month && value === this.year + 1)) {
-            month = this.month;
+    handleChangeDate = (value: number) => {
+        // DEFINE VARIABLES
+        let month, year;
+        // IF VALUE IS OF CURRENT YEAR
+        if (value + this.month < 12) {
+            month = value + this.month;
+            year = this.year;
+        }
+        // IF VALUE IS OF NEXT YEAR
+        else {
+            month = value + this.month - 12;
+            year = this.year + 1;
         }
         // UPDATE STATE
-        this.setState({ month, year: value });
+        this.setState({ month, year });
+    };
+
+    handleChangeFilter = (filter: Filter) => {
+        // GET FILTERS
+        let filters = this.state.filters;
+        // IF FILTER IS AVAILABLE
+        if (filters.includes(filter)) {
+            filters = filters.filter(item => item !== filter);
+        }
+        // IF FILTER IS UNAVAILABLE
+        else {
+            filters = [...filters, filter];
+        }
+        // UPDATE STATE
+        this.setState({ filters });
+        // ANIMATE EVENTS
+        const previousEvents = getEvents()
+            .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
+            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
+            .filter(item =>
+                item.date instanceof Date
+                    ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
+                    : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
+            );
+        const nextEvents = getEvents()
+            .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
+            .filter(item => filters.length === 0 || item.type.find(filter => filters.includes(filter)))
+            .filter(item =>
+                item.date instanceof Date
+                    ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
+                    : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
+            );
+        if (previousEvents.length !== nextEvents.length || JSON.stringify(previousEvents) !== JSON.stringify(nextEvents)) {
+            setTimeout(() => this.animateEvents());
+        }
     };
 
     handleClickNextMonth = () => {
@@ -121,13 +159,29 @@ export default class Events extends React.Component<Props, States> {
         const language = this.props.browser.language;
         const media = this.props.browser.media;
         const event = this.state.event;
+        const description = event.descriptionLong;
+        const details = event.details;
         const price = event.price;
         const title = event.title;
-        const description = event.descriptionLong;
+        const subtitle = event.subtitle;
         const date =
             event.date instanceof Date
-                ? `${event.date.toLocaleString(translateLanguage(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
-                : `${event.date.start.toLocaleString(translateLanguage(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(translateLanguage(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
+                : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+        // DEFINE EMAIL
+        const emailDate =
+            event.date instanceof Date
+                ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
+                : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
+        const emailSubject = `${getLanguage(language, 'emailSubject')} ${title[language]}`;
+        const emailBody =
+            `${getLanguage(language, 'emailGreeting')},${'%0D%0A'}${'%0D%0A'}` +
+            `${getLanguage(language, 'emailText')}:${'%0D%0A'}${'%0D%0A'}` +
+            `${getLanguage(language, 'emailEvent')}: ${title[language]}${'%0D%0A'}` +
+            `${getLanguage(language, 'emailDate')}: ${emailDate}${'%0D%0A'}` +
+            `${getLanguage(language, 'emailQuantity')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}` +
+            `${getLanguage(language, 'emailName')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}${'%0D%0A'}` +
+            `${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
             <Modal className='event' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>
@@ -137,12 +191,43 @@ export default class Events extends React.Component<Props, States> {
                     ))}
                 </Gallery>
                 <div className='modalContent'>
-                    <div className='modalTitle'>
-                        <h1>{title[language]}</h1>
-                        <p>{`${date} • ${price} EUR`}</p>
+                    <div className='left'>
+                        <div className='modalTitle'>
+                            <h1>{title[language]}</h1>
+                            <div className='modalSubtitle'>
+                                <span>{date}</span>
+                                <span>•</span>
+                                {subtitle &&
+                                    subtitle.map((item, index) => (
+                                        <React.Fragment key={`subtitle_${index}`}>
+                                            <span>{item[language]}</span>
+                                            <span>•</span>
+                                        </React.Fragment>
+                                    ))}
+                                <span>{`${price} EUR`}</span>
+                            </div>
+                        </div>
+                        <div className='modalDescription'>{description[language]}</div>
+                        <div className='modalButton underline'>
+                            <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
+                        </div>
                     </div>
-                    <div className='modalDescription'>{description[language]}</div>
-                    <div className='modalButton underline'>{getLanguage(language, 'book')}</div>
+                    <div className='right'>
+                        {details.length !== 0 && (
+                            <div className='modalDetails'>
+                                {details.map((item, index) => (
+                                    <React.Fragment key={`subtitle_${index}`}>
+                                        <span className='line' />
+                                        <p>
+                                            {item.title && <strong>{item.title[language]}</strong>}
+                                            {item.content && item.content[language]}
+                                        </p>
+                                    </React.Fragment>
+                                ))}
+                                <span className='line' />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </Modal>
         );
@@ -152,23 +237,10 @@ export default class Events extends React.Component<Props, States> {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
         const media = this.props.browser.media;
-        const months = [
-            getLanguage(language, 'january'),
-            getLanguage(language, 'february'),
-            getLanguage(language, 'march'),
-            getLanguage(language, 'april'),
-            getLanguage(language, 'may'),
-            getLanguage(language, 'june'),
-            getLanguage(language, 'july'),
-            getLanguage(language, 'august'),
-            getLanguage(language, 'september'),
-            getLanguage(language, 'october'),
-            getLanguage(language, 'november'),
-            getLanguage(language, 'december')
-        ];
         // GET CURRENT EVENTS
         const currentEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
+            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
             .filter(item =>
                 item.date instanceof Date
                     ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
@@ -177,6 +249,7 @@ export default class Events extends React.Component<Props, States> {
         // GET UPCOMING EVENTS
         const upcompingEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
+            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
             .filter(item =>
                 item.date instanceof Date
                     ? (item.date.getMonth() >= this.month && item.date.getFullYear() === this.year) ||
@@ -191,6 +264,21 @@ export default class Events extends React.Component<Props, States> {
                     : (item.date.start.getMonth() > this.state.month && item.date.start.getFullYear() >= this.state.year) ||
                       item.date.start.getFullYear() === this.state.year + 1
             );
+        // GET ANNUAL EVENTS
+        const annualEvents = getEvents().filter(item =>
+            item.date instanceof Date
+                ? (item.date.getMonth() >= this.month && item.date.getFullYear() === this.year) ||
+                  (item.date.getMonth() <= this.month && item.date.getFullYear() === this.year + 1)
+                : (item.date.start.getMonth() >= this.month && item.date.start.getFullYear() === this.year) ||
+                  (item.date.start.getMonth() <= this.month && item.date.start.getFullYear() === this.year + 1)
+        );
+        // GET FILTERS
+        const filters = availableFilters
+            .filter(item => annualEvents.find(event => event.type.includes(item)))
+            .map(item => ({
+                label: getFilter(language, item),
+                value: item
+            }));
         // RETURN COMPONENT
         return (
             <div id='events'>
@@ -214,21 +302,17 @@ export default class Events extends React.Component<Props, States> {
                     </div>
                     <div id='center'>
                         <Input
-                            handleChange={value => this.handleChangeMonth(value as number)}
-                            items={months.map((month, index) => ({
-                                label: month,
-                                value: index,
-                                disabled:
-                                    (index < this.month && this.state.year === this.year) || (index > this.month && this.state.year === this.year + 1)
-                            }))}
+                            handleChange={value => this.handleChangeDate(value as number)}
+                            items={Array.from(Array(13).keys(), index => {
+                                const month = index + this.month < 12 ? index + this.month : index + this.month - 12;
+                                const date = new Date(this.year, month).toLocaleString(getLocal(language), { month: 'long' });
+                                return {
+                                    label: `${date} ${index + this.month < 12 ? this.year : this.year + 1}`,
+                                    value: index
+                                };
+                            })}
                             type='Select'
-                            value={this.state.month}
-                        />
-                        <Input
-                            handleChange={value => this.handleChangeYear(value as number)}
-                            items={[...Array(2).keys()].map(x => ({ label: `${this.year + x}`, value: this.year + x }))}
-                            type='Select'
-                            value={this.state.year}
+                            value={this.state.year === this.year ? this.state.month - this.month : this.state.month - this.month + 12}
                         />
                     </div>
                     <div
@@ -248,6 +332,22 @@ export default class Events extends React.Component<Props, States> {
                         )}
                     </div>
                 </div>
+                <div id='filters'>
+                    <img src='assets/svg/filter.svg' />
+                    {filters.map((item, index) => (
+                        <div
+                            key={`filter_${index}`}
+                            className={['filter', this.state.filters.includes(item.value) && 'active'].filter(x => x).join(' ')}
+                            onClick={() => this.handleChangeFilter(item.value)}
+                        >
+                            {item.label}
+                            <span className='borderTop' />
+                            <span className='borderBottom' />
+                            <span className='borderLeft' />
+                            <span className='borderRight' />
+                        </div>
+                    ))}
+                </div>
                 {currentEvents.length !== 0 ? (
                     <div id='grid'>
                         {currentEvents.map((event: Event, index: number) => {
@@ -257,8 +357,8 @@ export default class Events extends React.Component<Props, States> {
                             const previewImage = event.previewImage;
                             const date =
                                 event.date instanceof Date
-                                    ? `${event.date.toLocaleString(translateLanguage(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
-                                    : `${event.date.start.toLocaleString(translateLanguage(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(translateLanguage(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                                    ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
+                                    : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
                             return (
                                 <div className='event' key={`event_${index}`}>
                                     <div className='eventImage'>
@@ -267,7 +367,11 @@ export default class Events extends React.Component<Props, States> {
                                     <div className='eventContent'>
                                         <div className='eventTitle'>
                                             <h3>{title[language]}</h3>
-                                            <span>{`${date} • ${price} EUR`}</span>
+                                            <div className='eventSubtitle'>
+                                                <span>{date}</span>
+                                                <span>•</span>
+                                                <span>{`${price} EUR`}</span>
+                                            </div>
                                         </div>
                                         <div className='eventDescription'>{description[language]}</div>
                                         <div className='eventButton underline' onClick={() => this.handleClickEvent(event)}>
@@ -281,10 +385,10 @@ export default class Events extends React.Component<Props, States> {
                 ) : (
                     <div id='message'>
                         {upcompingEvents.length === 0 ? (
-                            <p>{`${getLanguage(language, 'noEvents')} ...`}</p>
+                            <p>{`${getLanguage(language, 'eventUnavailable')} ...`}</p>
                         ) : (
                             <p>
-                                {`${getLanguage(language, 'noEvents')}, ${getLanguage(language, 'upcomingEvents')} `}
+                                {`${getLanguage(language, 'eventUnavailable')}, ${getLanguage(language, 'eventUpcoming')} `}
                                 <span
                                     onClick={() => {
                                         const date =
@@ -293,14 +397,9 @@ export default class Events extends React.Component<Props, States> {
                                     }}
                                     className='underline'
                                 >
-                                    {
-                                        months[
-                                            (upcompingEvents[0].date instanceof Date
-                                                ? upcompingEvents[0].date
-                                                : upcompingEvents[0].date.start
-                                            ).getMonth()
-                                        ]
-                                    }
+                                    {upcompingEvents[0].date instanceof Date
+                                        ? upcompingEvents[0].date.toLocaleString(getLocal(language), { month: 'long' })
+                                        : upcompingEvents[0].date.start.toLocaleString(getLocal(language), { month: 'long' })}
                                 </span>
                                 {` ...`}
                             </p>

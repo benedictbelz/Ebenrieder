@@ -393,6 +393,7 @@ $paddingLanguage: 10px;
 
         #left {
             margin-left: calc(var(--spacing-horizontal) - $paddingLogo);
+            padding-left: 4px;
         }
 
         #right {

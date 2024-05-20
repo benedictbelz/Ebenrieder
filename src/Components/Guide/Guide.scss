@@ -5,7 +5,7 @@
         position: relative;
         height: 40px;
         width: 25px;
-        border: 2px solid $color-blue;
+        border: $border-s solid $color-blue;
         border-radius: 50px;
 
         &::after {

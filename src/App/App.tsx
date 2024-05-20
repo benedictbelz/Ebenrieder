@@ -10,7 +10,7 @@ import Overview from '../Pages/Overview/Overview';
 import Privacy from '../Pages/Privacy/Privacy';
 import { Browser } from '../@types/browser';
 import { Language } from '../@types/language';
-import { Wrapper } from '../Components/Router/Router';
+import { Wrapper } from '../@functions/router';
 import './App.scss';
 
 interface States {
@@ -154,7 +154,7 @@ class App extends React.Component<{}, States> {
             media = 'Huge';
         }
         // UPDATE STATE
-        this.setState({ browser: { ...this.state.browser, media, height, width } });
+        this.setState({ browser: { ...this.state.browser, media, height, width, mouse: { x: 0, y: 0 } } });
     };
 
     handleScroll = (event: any) => {
@@ -173,7 +173,7 @@ class App extends React.Component<{}, States> {
         if (scroll < this.state.browser.scroll) {
             direction = 'Up';
         }
-        // HIDE WELCOME
+        // CHANGE STATUS
         if (this.state.status === 'Welcome' && direction === 'Down' && scroll > 0 && !this.timerScroll) {
             this.timerScroll = new Date().getTime();
             if (this.timerScroll - this.timerInit >= 1000) {

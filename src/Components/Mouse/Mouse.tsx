@@ -12,11 +12,11 @@ export default class Mouse extends React.Component<Props> {
         const app = document.getElementById('app');
         // HIDE CURSOR
         if (app && this.props.browser.mouse.cursor && !prevProps.browser.mouse.cursor) {
-            app.classList.add('hide');
+            app.classList.add('hideCursor');
         }
         // SHOW CURSOR
         else if (app && !this.props.browser.mouse.cursor && prevProps.browser.mouse.cursor) {
-            app.classList.remove('hide');
+            app.classList.remove('hideCursor');
         }
     }
 

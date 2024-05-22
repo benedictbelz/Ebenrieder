@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Events from '../../Components/Events/Events';
 import Gallery from '../../Components/Gallery/Gallery';
-import Guide from '../../Components/Guide/Guide';
+import Information from '../../Components/Information/Information';
 import Parallax from '../../Components/Parallax/Parallax';
 import Title from '../../Components/Title/Title';
 import { Browser } from '../../@types/browser';
@@ -23,7 +23,7 @@ class Overview extends React.Component<Props, States> {
         return (
             <div id='overview' className={[].filter(x => x).join(' ')}>
                 <div id='welcome'>
-                    <Guide type='Scroll' />
+                    <Information type='Scroll' />
                     <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
                         <video src='assets/media/gallery/montage.mov' autoPlay loop muted playsInline />
                     </Parallax>

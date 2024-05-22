@@ -10,12 +10,8 @@
         min-height: 50vmax;
     }
 
-    @media (max-height: $spacing-gallery) {
-        max-height: 75vmax;
-    }
-
-    @media (max-height: 500px) {
-        max-height: 500px;
+    @media (max-height: calc($spacing-gallery + 200px)) {
+        max-height: 50vmax;
     }
 
     .click {

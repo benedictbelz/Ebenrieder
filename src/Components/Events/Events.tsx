@@ -2,6 +2,7 @@ import * as React from 'react';
 import Gallery from '../Gallery/Gallery';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
+import Parallax from '../Parallax/Parallax';
 import { getEvents } from '../../@presets/event';
 import { getFilter, getLocal, getLanguage } from '../../@presets/language';
 import { Event, Filter, availableFilters } from '../../@types/event';
@@ -15,6 +16,10 @@ interface Props {
 interface States {
     event: Event | null;
     filters: Filter[];
+    modal: {
+        height: number;
+        scroll: number;
+    };
     month: number;
     year: number;
 }
@@ -27,6 +32,10 @@ export default class Events extends React.Component<Props, States> {
     state: States = {
         event: null,
         filters: [],
+        modal: {
+            height: 0,
+            scroll: 0
+        },
         month: this.month,
         year: this.year
     };
@@ -184,8 +193,22 @@ export default class Events extends React.Component<Props, States> {
             `${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
-            <Modal className='event' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>
-                <Gallery browser={this.props.browser} fullScreen={media === 'Extra Small' || media === 'Small' || media === 'Medium'}>
+            <Modal
+                className='event'
+                browser={this.props.browser}
+                handleClose={() => this.setState({ event: null })}
+                handleScroll={(scroll: number) => {
+                    this.setState({ modal: { ...this.state.modal, scroll } });
+                }}
+                handleResize={(height: number) => {
+                    this.setState({ modal: { ...this.state.modal, height } });
+                }}
+            >
+                <Gallery
+                    browser={this.props.browser}
+                    fullScreen={media === 'Extra Small' || media === 'Small' || media === 'Medium'}
+                    modal={this.state.modal}
+                >
                     {event.gallery.map((item, index) => (
                         <img key={index} src={item} />
                     ))}
@@ -362,7 +385,9 @@ export default class Events extends React.Component<Props, States> {
                             return (
                                 <div className='event' key={`event_${index}`}>
                                     <div className='eventImage'>
-                                        <img src={previewImage} />
+                                        <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={10} modus={'Complex'}>
+                                            <img src={previewImage} />
+                                        </Parallax>
                                     </div>
                                     <div className='eventContent'>
                                         <div className='eventTitle'>

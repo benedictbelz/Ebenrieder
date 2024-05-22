@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Parallax from '../Parallax/Parallax';
 import { Browser } from '../../@types/browser';
 import './Gallery.scss';
 
@@ -7,6 +8,10 @@ interface Props {
     browser: Browser;
     children: React.ReactNode;
     fullScreen: boolean;
+    modal?: {
+        height: number;
+        scroll: number;
+    };
 }
 
 interface States {
@@ -16,13 +21,10 @@ interface States {
     } | null;
     positionA: number;
     positionB: number;
+    click: number | null;
     size: number;
     status: 'A' | 'B';
     transition: boolean;
-    width: {
-        click: number;
-        drag: number;
-    } | null;
 }
 
 export default class Gallery extends React.Component<Props, States> {
@@ -40,13 +42,10 @@ export default class Gallery extends React.Component<Props, States> {
         this.galleryB = React.createRef();
         this.state = {
             drag: null,
-            size: React.Children.toArray(this.props.children).length,
-            width: {
-                click: null,
-                drag: null
-            },
+            click: null,
             positionA: 0,
             positionB: 0,
+            size: React.Children.toArray(this.props.children).length,
             status: 'A',
             transition: false
         };
@@ -70,12 +69,12 @@ export default class Gallery extends React.Component<Props, States> {
         clearInterval(this.interval);
     }
 
-    private initGallery = () => {
+    private initGallery = async () => {
+        const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
         const position = this.state.status === 'A' ? this.state.positionA : this.state.positionB;
-        setTimeout(() => {
-            this.handleBullets(position);
-            this.handleChangeImage('Current');
-        }, 100);
+        await this.waitForElement(gallery, this.getSource(position));
+        this.handleBullets(position);
+        this.handleChangeImage('Current');
     };
 
     private initDrag = () => {
@@ -118,7 +117,7 @@ export default class Gallery extends React.Component<Props, States> {
             const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
             const end = position - this.state.drag.start;
             // UPDATE GALLERY
-            gallery.style.transform = `translateX(${-this.getTranslate(this.state.status, 'Current').number + end}px)`;
+            gallery.style.transform = `translateX(${-this.getTranslate(this.state.status, 'Current', false).number + end}px)`;
             // UPDATE STATE
             this.setState({ drag: { ...this.state.drag, end } });
         };
@@ -154,7 +153,7 @@ export default class Gallery extends React.Component<Props, States> {
             // UPDATE STATE
             this.setState({ drag: null });
             // BEFORE TRANSITION
-            setTimeout(() => {
+            setTimeout(async () => {
                 // UPDATE ACTIVE GALLERY
                 galleryActive.classList.add('transition');
                 galleryActive.style.transform = this.getTranslate(statusActive, direction).string;
@@ -166,12 +165,16 @@ export default class Gallery extends React.Component<Props, States> {
                 this.handleBullets(position);
                 // UPDATE POSITION
                 if (this.state.status === 'A') {
-                    this.setState({ positionB: position });
+                    this.setState({ positionB: position }, async () => {
+                        await this.waitForElement(galleryInactive, this.getSource(position));
+                        galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                    });
                 } else {
-                    this.setState({ positionA: position });
+                    this.setState({ positionA: position }, async () => {
+                        await this.waitForElement(galleryInactive, this.getSource(position));
+                        galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                    });
                 }
-                // UPDATE INACTIVE GALLERY
-                setTimeout(() => (galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string), 100);
             });
             // AFTER TRANSITION
             setTimeout(() => {
@@ -209,11 +212,15 @@ export default class Gallery extends React.Component<Props, States> {
         }
     };
 
+    private getSource = (position: number) => {
+        return (this.props.children as any[])[this.getPosition(position)].props.src;
+    };
+
     private getPosition = (position: number) => {
         return (position + this.state.size) % this.state.size;
     };
 
-    private getTranslate = (status: States['status'], direction: 'Previous' | 'Current' | 'Next', update?: boolean) => {
+    private getTranslate = (status: States['status'], direction: 'Previous' | 'Current' | 'Next', updateClick?: boolean) => {
         // GET ELEMENTS
         const gallery = status === 'A' ? this.galleryA.current : this.galleryB.current;
         const images = gallery.children;
@@ -235,19 +242,17 @@ export default class Gallery extends React.Component<Props, States> {
         }
         // DEFINE VARIABLES
         let click = padding;
-        let drag = width;
         let translate = Array.from(images)
             .slice(0, position)
             .reduce((sum, image) => sum + image.clientWidth, 0);
         // IF CURRENT IMAGE IS SMALLER THAN CONTAINER
         if (!this.props.fullScreen && width !== images[position].clientWidth) {
             click = click + Math.round((width - images[position].clientWidth) / 2);
-            drag = images[position].clientWidth;
             translate = translate - Math.round((width - images[position].clientWidth) / 2);
         }
         // IF UPDATE IS TRUE
-        if (update) {
-            this.setState({ width: !this.props.fullScreen ? { click, drag } : null });
+        if (updateClick) {
+            this.setState({ click: !this.props.fullScreen ? click : null });
         }
         // RETURN TRANSLATE
         return {
@@ -295,7 +300,7 @@ export default class Gallery extends React.Component<Props, States> {
             (this.state.status === 'A' ? this.state.positionA : this.state.positionB) + (direction === 'Previous' ? -1 : 1)
         );
         // BEFORE TRANSITION
-        setTimeout(() => {
+        setTimeout(async () => {
             // UPDATE ACTIVE GALLERY
             galleryActive.classList.add('transition');
             galleryActive.style.transform = this.getTranslate(statusActive, direction).string;
@@ -303,12 +308,16 @@ export default class Gallery extends React.Component<Props, States> {
             this.handleBullets(position);
             // UPDATE POSITION
             if (this.state.status === 'A') {
-                this.setState({ positionB: position });
+                this.setState({ positionB: position }, async () => {
+                    await this.waitForElement(galleryInactive, this.getSource(position));
+                    galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                });
             } else {
-                this.setState({ positionA: position });
+                this.setState({ positionA: position }, async () => {
+                    await this.waitForElement(galleryInactive, this.getSource(position));
+                    galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                });
             }
-            // UPDATE INACTIVE GALLERY
-            setTimeout(() => (galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string), 100);
         });
         // AFTER TRANSITION
         setTimeout(() => {
@@ -326,12 +335,72 @@ export default class Gallery extends React.Component<Props, States> {
     };
 
     private handleClick = (event: any) => {
-        const mouse = document.getElementById('mouse');
         if (this.props.browser.mouse.cursor === 'Left' && !event.target.classList.contains('cursorLeft')) {
             this.handleChangeImage('Previous');
         } else if (this.props.browser.mouse.cursor === 'Right' && !event.target.classList.contains('cursorRight')) {
             this.handleChangeImage('Next');
         }
+    };
+
+    private waitForElement = (element: HTMLElement, srcUpdated: string) => {
+        return new Promise<void>((resolve, reject) => {
+            // DEFINE VARIABELS
+            let counter = 0;
+            let images = Array.from(element.children);
+            let numberImages = images.length;
+            let numberImagesResolved = 0;
+            let numberImagesFailed = 0;
+            // SET INTERVAL
+            let interval = setInterval(() => {
+                counter++;
+                const srcCurrent = (Array.from(element.children) as any[])[3].src.replace(`${window.location.origin}/`, '');
+                if (Array.from(element.children).length === 7 && srcCurrent === srcUpdated) {
+                    clearInterval(interval);
+                    checkImages();
+                } else if (counter > 500) {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, 10);
+            // HANDLE IMAGE LOADED
+            const handleImageLoaded = () => {
+                numberImagesResolved++;
+                if (numberImagesResolved === numberImages) {
+                    resolve();
+                }
+            };
+            // HANDLE IMAGE FAILED
+            const handleImageFailed = () => {
+                numberImagesResolved++;
+                numberImagesFailed++;
+                if (numberImagesResolved === numberImages) {
+                    resolve();
+                }
+            };
+            // CHECK IMAGES
+            const checkImages = () => {
+                images.forEach((image: any) => {
+                    if (image.complete && image.naturalWidth > 0) {
+                        handleImageLoaded();
+                    } else if (image.complete && image.naturalWidth <= 0) {
+                        handleImageFailed();
+                    } else {
+                        let loadImage = (event: any) => {
+                            event.target.removeEventListener('load', loadImage);
+                            event.target.removeEventListener('error', errorImage);
+                            handleImageLoaded();
+                        };
+                        let errorImage = (event: any) => {
+                            event.target.removeEventListener('load', loadImage);
+                            event.target.removeEventListener('error', errorImage);
+                            handleImageFailed();
+                        };
+                        image.addEventListener('load', loadImage);
+                        image.addEventListener('error', errorImage);
+                    }
+                });
+            };
+        });
     };
 
     render() {
@@ -348,12 +417,12 @@ export default class Gallery extends React.Component<Props, States> {
                         <div
                             className='left cursorLeft'
                             onClick={() => this.handleChangeImage('Previous')}
-                            style={this.state.width ? { width: `${this.state.width.click}px` } : {}}
+                            style={this.state.click ? { width: `${this.state.click}px` } : {}}
                         />
                         <div
                             className='right cursorRight'
                             onClick={() => this.handleChangeImage('Next')}
-                            style={this.state.width ? { width: `${this.state.width.click}px` } : {}}
+                            style={this.state.click ? { width: `${this.state.click}px` } : {}}
                         />
                     </div>
                 )}
@@ -364,24 +433,31 @@ export default class Gallery extends React.Component<Props, States> {
                         })}
                     </div>
                 )}
-                <div ref={this.galleryA} className={['galleryA', this.state.status === 'A' && 'active'].filter(x => x).join(' ')}>
-                    <React.Fragment key='galleryA_01'>{children[this.getPosition(positionA - 3)]}</React.Fragment>
-                    <React.Fragment key='galleryA_02'>{children[this.getPosition(positionA - 2)]}</React.Fragment>
-                    <React.Fragment key='galleryA_03'>{children[this.getPosition(positionA - 1)]}</React.Fragment>
-                    <React.Fragment key='galleryA_04'>{children[positionA]}</React.Fragment>
-                    <React.Fragment key='galleryA_05'>{children[this.getPosition(positionA + 1)]}</React.Fragment>
-                    <React.Fragment key='galleryA_06'>{children[this.getPosition(positionA + 2)]}</React.Fragment>
-                    <React.Fragment key='galleryA_07'>{children[this.getPosition(positionA + 3)]}</React.Fragment>
-                </div>
-                <div ref={this.galleryB} className={['galleryB', this.state.status === 'B' && 'active'].filter(x => x).join(' ')}>
-                    <React.Fragment key='galleryB_01'>{children[this.getPosition(positionB - 3)]}</React.Fragment>
-                    <React.Fragment key='galleryB_02'>{children[this.getPosition(positionB - 2)]}</React.Fragment>
-                    <React.Fragment key='galleryB_03'>{children[this.getPosition(positionB - 1)]}</React.Fragment>
-                    <React.Fragment key='galleryB_04'>{children[positionB]}</React.Fragment>
-                    <React.Fragment key='galleryB_05'>{children[this.getPosition(positionB + 1)]}</React.Fragment>
-                    <React.Fragment key='galleryB_06'>{children[this.getPosition(positionB + 2)]}</React.Fragment>
-                    <React.Fragment key='galleryB_07'>{children[this.getPosition(positionB + 3)]}</React.Fragment>
-                </div>
+                <Parallax
+                    height={this.props.modal ? this.props.modal.height : this.props.browser.height}
+                    scroll={this.props.modal ? this.props.modal.scroll : this.props.browser.scroll}
+                    factor={20}
+                    modus={this.props.modal ? 'Simple' : 'Complex'}
+                >
+                    <div ref={this.galleryA} className={['galleryA', this.state.status === 'A' && 'active'].filter(x => x).join(' ')}>
+                        <React.Fragment key='galleryA_01'>{children[this.getPosition(positionA - 3)]}</React.Fragment>
+                        <React.Fragment key='galleryA_02'>{children[this.getPosition(positionA - 2)]}</React.Fragment>
+                        <React.Fragment key='galleryA_03'>{children[this.getPosition(positionA - 1)]}</React.Fragment>
+                        <React.Fragment key='galleryA_04'>{children[positionA]}</React.Fragment>
+                        <React.Fragment key='galleryA_05'>{children[this.getPosition(positionA + 1)]}</React.Fragment>
+                        <React.Fragment key='galleryA_06'>{children[this.getPosition(positionA + 2)]}</React.Fragment>
+                        <React.Fragment key='galleryA_07'>{children[this.getPosition(positionA + 3)]}</React.Fragment>
+                    </div>
+                    <div ref={this.galleryB} className={['galleryB', this.state.status === 'B' && 'active'].filter(x => x).join(' ')}>
+                        <React.Fragment key='galleryB_01'>{children[this.getPosition(positionB - 3)]}</React.Fragment>
+                        <React.Fragment key='galleryB_02'>{children[this.getPosition(positionB - 2)]}</React.Fragment>
+                        <React.Fragment key='galleryB_03'>{children[this.getPosition(positionB - 1)]}</React.Fragment>
+                        <React.Fragment key='galleryB_04'>{children[positionB]}</React.Fragment>
+                        <React.Fragment key='galleryB_05'>{children[this.getPosition(positionB + 1)]}</React.Fragment>
+                        <React.Fragment key='galleryB_06'>{children[this.getPosition(positionB + 2)]}</React.Fragment>
+                        <React.Fragment key='galleryB_07'>{children[this.getPosition(positionB + 3)]}</React.Fragment>
+                    </div>
+                </Parallax>
             </div>
         );
     }

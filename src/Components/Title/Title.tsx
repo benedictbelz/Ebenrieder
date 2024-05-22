@@ -14,16 +14,18 @@ interface Props {
 
 interface States {
     position: number;
-    rotation: number;
 }
 
 export default class Title extends React.Component<Props, States> {
-    private element: HTMLDivElement;
+    private element: React.RefObject<HTMLDivElement>;
 
-    state: States = {
-        position: 0,
-        rotation: 0
-    };
+    constructor(props: Props) {
+        super(props);
+        this.element = React.createRef();
+        this.state = {
+            position: 0
+        };
+    }
 
     componentDidUpdate(prevProps: Props) {
         if (
@@ -36,17 +38,10 @@ export default class Title extends React.Component<Props, States> {
     }
 
     private handleTransform = () => {
-        // IF NO ELEMENT RETURN
-        if (!this.element) {
-            return;
-        }
         // DEFINE VARIABLES
         const scroll = this.props.browser.scroll;
-        const width = this.props.browser.width;
-        const elementStart = this.element.getBoundingClientRect().top + scroll - this.props.browser.height;
-        const elementEnd = this.element.getBoundingClientRect().top + scroll + this.element.clientHeight;
-        // CALCULATE ROTATION
-        let rotation = Math.round(((this.props.browser.mouse.x - width / 2) / (width / 2)) * 10) / 10;
+        const elementStart = this.element.current.getBoundingClientRect().top + scroll - this.props.browser.height;
+        const elementEnd = this.element.current.getBoundingClientRect().top + scroll + this.element.current.clientHeight;
         // CALCULATE POSITION
         let position;
         if (scroll < elementStart) {
@@ -57,16 +52,15 @@ export default class Title extends React.Component<Props, States> {
             position = 1;
         }
         // UPDATE STATE
-        this.setState({ position, rotation });
+        this.setState({ position });
     };
 
     render() {
         // DEFINE VARIABLES
         let media = this.props.browser.media;
+        let rotation = 2.5 * this.state.position;
         let translateForeground = -25 * this.state.position;
-        let translateBackground = 5 * this.state.position - 10;
-        let rotateHorizontal = 0; // 2.5 * this.state.rotation;
-        let rotateVertical = 5 * this.state.position;
+        let translateBackground = -10 * this.state.position;
         let scaleForeground = this.props.foregroundScale ? this.props.foregroundScale : 1;
         let scaleBackground = this.props.backgroundScale ? this.props.backgroundScale : 1;
         // MEDIA SMALL
@@ -81,22 +75,22 @@ export default class Title extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div className='title' ref={element => (this.element = element)}>
+            <div className='title' ref={this.element}>
                 <div
                     className='foregroundImage'
                     style={{ transform: `perspective(250px) translateY(${translateForeground}px) scale(${scaleForeground})` }}
                 >
-                    <img src={this.props.foregroundImage} style={{ transform: `perspective(250px) translateX(${rotateHorizontal}px)` }} />
+                    <img src={this.props.foregroundImage} />
                 </div>
                 <div
                     className='backgroundImage'
                     style={{
                         left: this.props.backgroundX || 0,
                         top: this.props.backgroundY || 0,
-                        transform: `perspective(250px) translateY(${translateBackground}px) rotateX(${rotateVertical}deg) scale(${scaleBackground})`
+                        transform: `perspective(250px) translateY(${translateBackground}px) rotateX(${rotation}deg) scale(${scaleBackground})`
                     }}
                 >
-                    <img src={this.props.backgroundImage} style={{ transform: `perspective(250px) rotateY(${rotateHorizontal}deg)` }} />
+                    <img src={this.props.backgroundImage} />
                 </div>
             </div>
         );

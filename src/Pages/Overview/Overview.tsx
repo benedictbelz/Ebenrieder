@@ -2,6 +2,7 @@ import * as React from 'react';
 import Events from '../../Components/Events/Events';
 import Gallery from '../../Components/Gallery/Gallery';
 import Guide from '../../Components/Guide/Guide';
+import Parallax from '../../Components/Parallax/Parallax';
 import Title from '../../Components/Title/Title';
 import { Browser } from '../../@types/browser';
 import { PropsWithRouter, withRouter } from '../../@functions/router';
@@ -23,7 +24,9 @@ class Overview extends React.Component<Props, States> {
             <div id='overview' className={[].filter(x => x).join(' ')}>
                 <div id='welcome'>
                     <Guide type='Scroll' />
-                    <video src='assets/media/gallery/montage.mov' autoPlay loop muted playsInline />
+                    <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
+                        <video src='assets/media/gallery/montage.mov' autoPlay loop muted playsInline />
+                    </Parallax>
                 </div>
                 <div id='content'>
                     <article>

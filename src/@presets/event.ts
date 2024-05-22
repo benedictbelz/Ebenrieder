@@ -98,7 +98,7 @@ export function getEvents(): Event[] {
                 de: 'Gin Gin!',
                 en: 'Gin Gin!'
             },
-            type: ['Drink', 'Food'],
+            type: ['Drink'],
             price: 59
         },
         {
@@ -225,7 +225,7 @@ export function getEvents(): Event[] {
                 de: "Chef's Table",
                 en: "Chef's Table"
             },
-            type: ['Drink', 'Food'],
+            type: ['Food', 'Accomodation'],
             price: 199
         },
         {
@@ -347,7 +347,7 @@ export function getEvents(): Event[] {
                 de: 'Whisky Dinner',
                 en: 'Whisky Dinner'
             },
-            type: ['Drink', 'Food'],
+            type: ['Drink', 'Accomodation'],
             price: 199
         },
         {
@@ -458,7 +458,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food'],
+            type: ['Drink', 'Food', 'Accomodation'],
             price: 135
         },
         {
@@ -668,7 +668,7 @@ export function getEvents(): Event[] {
                 de: "Chef's Table",
                 en: "Chef's Table"
             },
-            type: ['Drink', 'Food'],
+            type: ['Food', 'Accomodation'],
             price: 199
         },
         {
@@ -779,7 +779,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food'],
+            type: ['Drink', 'Food', 'Accomodation'],
             price: 135
         },
         {
@@ -1222,7 +1222,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food'],
+            type: ['Drink', 'Food', 'Accomodation'],
             price: 135
         }
     ];

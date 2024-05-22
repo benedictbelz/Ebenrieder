@@ -11,7 +11,7 @@
         max-width: 100%;
         overflow: hidden;
 
-        .guide {
+        .information {
             position: absolute;
             z-index: 250;
             left: 50%;
@@ -22,7 +22,7 @@
             transition: opacity 1s ease;
             filter: invert(100%);
 
-            @keyframes guide {
+            @keyframes information {
                 0% {
                     opacity: 0;
                     transform: translate(-50%, -25px);

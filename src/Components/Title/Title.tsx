@@ -60,7 +60,7 @@ export default class Title extends React.Component<Props, States> {
         let media = this.props.browser.media;
         let rotation = 2.5 * this.state.position;
         let translateForeground = -25 * this.state.position;
-        let translateBackground = -10 * this.state.position;
+        let translateBackground = -5 * this.state.position;
         let scaleForeground = this.props.foregroundScale ? this.props.foregroundScale : 1;
         let scaleBackground = this.props.backgroundScale ? this.props.backgroundScale : 1;
         // MEDIA SMALL

@@ -436,7 +436,7 @@ export default class Gallery extends React.Component<Props, States> {
                 <Parallax
                     height={this.props.modal ? this.props.modal.height : this.props.browser.height}
                     scroll={this.props.modal ? this.props.modal.scroll : this.props.browser.scroll}
-                    factor={20}
+                    factor={40}
                     modus={this.props.modal ? 'Simple' : 'Complex'}
                 >
                     <div ref={this.galleryA} className={['galleryA', this.state.status === 'A' && 'active'].filter(x => x).join(' ')}>

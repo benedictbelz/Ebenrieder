@@ -36,11 +36,13 @@
 
         video {
             position: absolute;
+            display: block;
             height: calc(100% + 2px);
             width: calc(100% + 2px);
             object-fit: cover;
             object-position: center;
-            display: block;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
     }
 
@@ -59,7 +61,7 @@
                 font-size: var(--font-size-text);
                 padding: 0 var(--spacing-horizontal);
                 text-align: justify;
-                line-height: 1.5;
+                line-height: $line-height-m;
             }
         }
     }

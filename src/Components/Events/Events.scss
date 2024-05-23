@@ -225,7 +225,7 @@
 
     #message {
         text-align: center;
-        line-height: 2;
+        line-height: $line-height-l;
     }
 
     #grid {
@@ -320,7 +320,7 @@
                 }
 
                 .eventDescription {
-                    line-height: 1.5;
+                    line-height: $line-height-m;
                     text-align: justify;
                 }
 

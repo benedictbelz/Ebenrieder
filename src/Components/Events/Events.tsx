@@ -190,7 +190,9 @@ export default class Events extends React.Component<Props, States> {
             `${getLanguage(language, 'emailDate')}: ${emailDate}${'%0D%0A'}` +
             `${getLanguage(language, 'emailName')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}` +
             `${getLanguage(language, 'emailQuantity')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}` +
-            (event.type.includes('Accomodation') ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}${'%0D%0A'}` : `${'%0D%0A'}`) +
+            (event.type.includes('Accomodation')
+                ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}${'%0D%0A'}`
+                : `${'%0D%0A'}`) +
             `${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
@@ -386,7 +388,12 @@ export default class Events extends React.Component<Props, States> {
                             return (
                                 <div className='event' key={`event_${index}`}>
                                     <div className='eventImage'>
-                                        <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={10} modus={'Complex'}>
+                                        <Parallax
+                                            height={this.props.browser.height}
+                                            scroll={this.props.browser.scroll}
+                                            factor={this.props.browser.media === 'Extra Small' ? 15 : 20}
+                                            modus={'Complex'}
+                                        >
                                             <img src={previewImage} />
                                         </Parallax>
                                     </div>

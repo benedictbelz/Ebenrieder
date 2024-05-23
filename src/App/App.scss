@@ -33,7 +33,7 @@ body {
     font-family: 'Futura', sans-serif;
     font-weight: $font-weight-regular;
     font-size: var(--font-size-text);
-    line-height: 1.25;
+    line-height: $line-height-s;
     letter-spacing: 0.5px;
 }
 

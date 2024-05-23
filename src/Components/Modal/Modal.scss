@@ -116,7 +116,7 @@
 
                 .modalDescription {
                     text-align: justify;
-                    line-height: 1.5;
+                    line-height: $line-height-m;
                 }
             }
 
@@ -127,7 +127,7 @@
                     width: 100%;
                     gap: 6px;
                     font-size: var(--font-size-detail);
-                    line-height: 1.5;
+                    line-height: $line-height-m;
                     letter-spacing: 0.75px;
 
                     p {

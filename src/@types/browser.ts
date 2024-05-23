@@ -1,6 +1,7 @@
 import { Language } from './language';
 
 export type Browser = {
+    cookies: 'Accept' | 'Decline' | 'Unknown';
     device: 'Desktop' | 'Mobile';
     height: number;
     language: Language;

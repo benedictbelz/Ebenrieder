@@ -25,7 +25,14 @@ class Overview extends React.Component<Props, States> {
                 <div id='welcome'>
                     <Information type='Scroll' />
                     <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
-                        <video src='assets/media/gallery/montage.mov' autoPlay loop muted playsInline />
+                        <video
+                            src='assets/media/gallery/montage.mov'
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            onLoadedData={event => (event.currentTarget.style.opacity = '1')}
+                        />
                     </Parallax>
                 </div>
                 <div id='content'>

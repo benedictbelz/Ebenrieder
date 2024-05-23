@@ -1,0 +1,37 @@
+@import '../../App/Variables.scss';
+
+#cookies {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: white;
+    color: $color-blue;
+    padding: 40px;
+    margin: var(--spacing-box-horizontal);
+    max-width: 350px;
+    box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 0.75);
+
+    #cookiesText {
+        font-size: var(--font-size-text);
+        line-height: $line-height-m;
+    }
+
+    #cookiesButtons {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
+    @media (max-width: $media-s) {
+        max-width: 100%;
+    }
+
+    @media (max-width: $media-xs) {
+        padding: var(--spacing-box-horizontal);
+    }
+}

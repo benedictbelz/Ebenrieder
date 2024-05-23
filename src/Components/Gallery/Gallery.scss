@@ -5,6 +5,7 @@
     height: $spacing-gallery;
     width: 100%;
     overflow: hidden;
+    background: $color-white;
 
     @media (min-width: 2000px) {
         min-height: 50vmax;
@@ -97,6 +98,8 @@
         width: 100%;
         padding: 0 var(--spacing-horizontal);
         visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease;
 
         img,
         video {
@@ -123,6 +126,13 @@
             video {
                 min-width: 100%;
             }
+        }
+    }
+
+    &.isLoaded {
+        .galleryA,
+        .galleryB {
+            opacity: 1;
         }
     }
 }

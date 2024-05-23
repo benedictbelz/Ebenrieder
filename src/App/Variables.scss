@@ -34,6 +34,14 @@ $border-m: 2.5px;
 $border-l: 3px;
 
 /******************************/
+/******** LINE HEIGHT *********/
+/******************************/
+
+$line-height-s: 1.25;
+$line-height-m: 1.5;
+$line-height-l: 2;
+
+/******************************/
 /************ MEDIA ***********/
 /******************************/
 
@@ -79,7 +87,7 @@ $media-xl: 1700px;
 @media (max-width: $media-xs) {
     :root {
         --spacing-horizontal: 25px;
-        --spacing-vertical-s: 40px;
+        --spacing-vertical-s: 50px;
         --spacing-vertical-m: 50px;
         --spacing-vertical-l: 75px;
         --spacing-box-horizontal: 25px;

@@ -15,14 +15,15 @@ interface Props {
 }
 
 interface States {
+    click: number | null;
     drag: {
         start: number;
         end: number;
     } | null;
+    isLoaded: boolean;
+    length: number;
     positionA: number;
     positionB: number;
-    click: number | null;
-    size: number;
     status: 'A' | 'B';
     transition: boolean;
 }
@@ -41,11 +42,12 @@ export default class Gallery extends React.Component<Props, States> {
         this.galleryA = React.createRef();
         this.galleryB = React.createRef();
         this.state = {
-            drag: null,
             click: null,
+            drag: null,
+            isLoaded: false,
+            length: React.Children.toArray(this.props.children).length,
             positionA: 0,
             positionB: 0,
-            size: React.Children.toArray(this.props.children).length,
             status: 'A',
             transition: false
         };
@@ -75,6 +77,7 @@ export default class Gallery extends React.Component<Props, States> {
         await this.waitForElement(gallery, this.getSource(position));
         this.handleBullets(position);
         this.handleChangeImage('Current');
+        this.setState({ isLoaded: true });
     };
 
     private initDrag = () => {
@@ -217,7 +220,7 @@ export default class Gallery extends React.Component<Props, States> {
     };
 
     private getPosition = (position: number) => {
-        return (position + this.state.size) % this.state.size;
+        return (position + this.state.length) % this.state.length;
     };
 
     private getTranslate = (status: States['status'], direction: 'Previous' | 'Current' | 'Next', updateClick?: boolean) => {
@@ -267,7 +270,7 @@ export default class Gallery extends React.Component<Props, States> {
             return;
         }
         // DELETE CLASS NAME FOR ALL BULLETS
-        for (let index = 0; index < this.state.size; index++) {
+        for (let index = 0; index < this.state.length; index++) {
             if (index >= Math.floor(position / 10) * 10 && index < Math.floor(position / 10) * 10 + 10) {
                 this.bullets.current.children[index].className = 'active';
             } else {
@@ -366,7 +369,7 @@ export default class Gallery extends React.Component<Props, States> {
             const handleImageLoaded = () => {
                 numberImagesResolved++;
                 if (numberImagesResolved === numberImages) {
-                    resolve();
+                    setTimeout(() => resolve(), 50);
                 }
             };
             // HANDLE IMAGE FAILED
@@ -374,7 +377,7 @@ export default class Gallery extends React.Component<Props, States> {
                 numberImagesResolved++;
                 numberImagesFailed++;
                 if (numberImagesResolved === numberImages) {
-                    resolve();
+                    setTimeout(() => resolve(), 50);
                 }
             };
             // CHECK IMAGES
@@ -410,7 +413,10 @@ export default class Gallery extends React.Component<Props, States> {
         const positionB = this.state.positionB;
         // RETURN COMPONENT
         return (
-            <div className={['gallery', this.props.fullScreen && 'fullScreen'].filter(x => x).join(' ')} onClick={this.handleClick}>
+            <div
+                className={['gallery', this.props.fullScreen && 'fullScreen', this.state.isLoaded && 'isLoaded'].filter(x => x).join(' ')}
+                onClick={this.handleClick}
+            >
                 {!this.props.autoPlay && <div ref={this.drag} className='drag' />}
                 {!this.props.autoPlay && !this.state.drag && this.props.browser.device === 'Desktop' && (
                     <div className='click'>
@@ -428,7 +434,7 @@ export default class Gallery extends React.Component<Props, States> {
                 )}
                 {!this.props.autoPlay && (
                     <div ref={this.bullets} className={'bullets'}>
-                        {Array.from(Array(this.state.size).keys(), index => {
+                        {Array.from(Array(this.state.length).keys(), index => {
                             return <div key={`bullet_${index}`} data-index={index} className='bullet' />;
                         })}
                     </div>
@@ -436,7 +442,7 @@ export default class Gallery extends React.Component<Props, States> {
                 <Parallax
                     height={this.props.modal ? this.props.modal.height : this.props.browser.height}
                     scroll={this.props.modal ? this.props.modal.scroll : this.props.browser.scroll}
-                    factor={40}
+                    factor={this.props.browser.media === 'Extra Small' ? 15 : 20}
                     modus={this.props.modal ? 'Simple' : 'Complex'}
                 >
                     <div ref={this.galleryA} className={['galleryA', this.state.status === 'A' && 'active'].filter(x => x).join(' ')}>

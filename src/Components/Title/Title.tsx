@@ -65,13 +65,13 @@ export default class Title extends React.Component<Props, States> {
         let scaleBackground = this.props.backgroundScale ? this.props.backgroundScale : 1;
         // MEDIA SMALL
         if (media === 'Small') {
-            translateForeground = -18.75 * this.state.position;
-            translateBackground = 5 * this.state.position;
+            translateForeground = -20 * this.state.position;
+            translateBackground = -5 * this.state.position;
         }
         // MEDIA EXTRA SMALL
         if (media === 'Extra Small') {
-            translateForeground = -10 * this.state.position;
-            translateBackground = 5 * this.state.position;
+            translateForeground = -15 * this.state.position;
+            translateBackground = -5 * this.state.position;
         }
         // RETURN COMPONENT
         return (

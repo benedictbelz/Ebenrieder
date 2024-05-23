@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Conditions from '../Pages/Conditions/Conditions';
+import Cookies from '../Components/Cookies/Cookies';
 import Footer from '../Components/Footer/Footer';
 import Header from '../Components/Header/Header';
-import Mouse from '../Components/Mouse/Mouse';
-import Conditions from '../Pages/Conditions/Conditions';
 import Imprint from '../Pages/Imprint/Imprint';
+import Mouse from '../Components/Mouse/Mouse';
 import Overview from '../Pages/Overview/Overview';
 import Privacy from '../Pages/Privacy/Privacy';
 import { Browser } from '../@types/browser';
@@ -41,7 +42,8 @@ class App extends React.Component<{}, States> {
 
     initBrowser() {
         // DEFINE VARIABLES
-        let device: Browser['device'],
+        let cookies: Browser['cookies'],
+            device: Browser['device'],
             height: Browser['height'],
             language: Browser['language'],
             media: Browser['media'],
@@ -49,6 +51,14 @@ class App extends React.Component<{}, States> {
             scroll: Browser['scroll'],
             type: Browser['type'],
             width: Browser['width'];
+        // INITIALIZE COOKIES
+        if (localStorage.getItem('ebenriederCookies') === 'Accept') {
+            cookies = 'Accept';
+        } else if (localStorage.getItem('ebenriederCookies') === 'Decline') {
+            cookies = 'Decline';
+        } else {
+            cookies = 'Unknown';
+        }
         // INITIALIZE DEVICE
         if ('ontouchstart' in window || 'onmsgesturechange' in window) {
             device = 'Mobile';
@@ -101,8 +111,18 @@ class App extends React.Component<{}, States> {
             type = 'Unknown';
         }
         // RETURN VARIABLES
-        return { device, height, language, media, mouse, scroll, type, width };
+        return { cookies, device, height, language, media, mouse, scroll, type, width };
     }
+
+    handleAcceptCookies = () => {
+        localStorage.setItem('ebenriederCookies', 'Accept');
+        this.setState({ browser: { ...this.state.browser, cookies: 'Accept' } });
+    };
+
+    handleDeclineCookies = () => {
+        localStorage.setItem('ebenriederCookies', 'Decline');
+        this.setState({ browser: { ...this.state.browser, cookies: 'Decline' } });
+    };
 
     handleChangeStatus = (status: States['status']) => {
         this.setState({ status });
@@ -199,6 +219,9 @@ class App extends React.Component<{}, States> {
                     .join(' ')}
             >
                 <Router>
+                    {this.state.browser.cookies === 'Unknown' && (
+                        <Cookies browser={this.state.browser} handleAccept={this.handleAcceptCookies} handleDecline={this.handleDeclineCookies} />
+                    )}
                     <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
                     <Wrapper>

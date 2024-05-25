@@ -20,7 +20,7 @@
             gap: var(--spacing-vertical-s);
             white-space: nowrap;
 
-            article {
+            section {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
@@ -64,7 +64,7 @@
                 flex-wrap: wrap;
                 width: 100%;
 
-                article {
+                section {
                     flex-basis: 45%;
 
                     &.contact {

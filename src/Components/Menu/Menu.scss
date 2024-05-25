@@ -139,23 +139,33 @@
 
     &.wide {
         pointer-events: none;
-        position: absolute;
-        top: 100vh;
-        left: 0;
-        bottom: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
         width: var(--spacing-horizontal);
         mix-blend-mode: difference;
         filter: invert(100%);
 
+        &.top {
+            position: absolute;
+            top: 100vh;
+            left: 0;
+            height: 100vh;
+        }
+
         &.flow {
             position: fixed;
             top: 0;
+            left: 0;
             height: 100%;
+        }
+
+        &.bottom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
         }
 
         #menuContent {
@@ -165,7 +175,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 50px;
-    
+
             #menuName {
                 position: absolute;
                 top: -10px;
@@ -178,7 +188,7 @@
                 align-items: center;
                 white-space: nowrap;
             }
-    
+
             .menuDot {
                 pointer-events: all;
                 box-sizing: border-box;
@@ -196,7 +206,7 @@
                         transform: scale(1.5);
                     }
                 }
-    
+
                 &::after {
                     content: '';
                     display: block;
@@ -205,7 +215,7 @@
                     border-radius: 50%;
                     background-color: transparentize($color-blue, 0.5);
                 }
-    
+
                 &.active::after {
                     background-color: $color-blue;
                 }

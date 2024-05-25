@@ -24,7 +24,7 @@ class Overview extends React.Component<Props, States> {
         // RETURN COMPONENT
         return (
             <div id='overview' className={[].filter(x => x).join(' ')}>
-                <Menu browser={this.props.browser} />
+                <Menu browser={this.props.browser} behaviour={'Dynamic'} />
                 <div id='welcome'>
                     <Information type='Scroll' />
                     <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>

@@ -4,6 +4,7 @@ import './Menu.scss';
 
 interface Props {
     browser: Browser;
+    behaviour: 'Dynamic' | 'Static';
 }
 
 interface States {
@@ -17,11 +18,11 @@ interface States {
         element: HTMLElement;
     }[];
     modus: 'Top' | 'Bottom' | 'Flow';
-    scroll: number | null;
+    position: number | null;
     transform: number | null;
 }
 
-export default class Cookies extends React.Component<Props, States> {
+export default class Menu extends React.Component<Props, States> {
     private boundary = 50;
     private menuLeft: React.RefObject<HTMLDivElement>;
     private menuContent: React.RefObject<HTMLDivElement>;
@@ -40,9 +41,9 @@ export default class Cookies extends React.Component<Props, States> {
             },
             items: [],
             modus: 'Top',
-            scroll: null,
+            position: null,
             transform: null
-        }
+        };
     }
 
     componentDidMount() {
@@ -51,7 +52,7 @@ export default class Cookies extends React.Component<Props, States> {
         // IF APPEARANCE IS NARROW ADD EVENT LISTENER
         if (this.state.appearance === 'Narrow') {
             setTimeout(() => {
-                this.menuContent.current?.addEventListener('scroll', this.narrowScrollContent)
+                this.menuContent.current?.addEventListener('scroll', this.narrowScrollContent);
                 this.narrowScrollContent();
             });
         }
@@ -61,14 +62,17 @@ export default class Cookies extends React.Component<Props, States> {
         // IF LANGUAGE CHANGED
         if (this.props.browser.language !== prevProps.browser.language) {
             this.handleLoad();
-        } 
-        // IF SCROLL CHANGED
-        else if (this.props.browser.scroll !== prevProps.browser.scroll && this.state.scroll === null) {
-            this.handleScroll();
         }
-        // IF SCROLL TO POSITION
-        else if (this.props.browser.scroll !== prevProps.browser.scroll && this.props.browser.scroll === this.state.scroll) {
-            this.setState({ scroll: null})
+        // IF SCROLL CHANGED
+        else if (this.props.browser.scroll !== prevProps.browser.scroll) {
+            // IF POSITION IS NULL
+            if (this.state.position === null) {
+                this.handleScroll();
+            }
+            // IF SCROLL IS POSITION
+            else if (this.props.browser.scroll === this.state.position) {
+                this.setState({ position: null });
+            }
         }
         // IF WIDTH CHANGED
         else if (this.props.browser.width !== prevProps.browser.width && this.props.browser.media === prevProps.browser.media) {
@@ -86,10 +90,10 @@ export default class Cookies extends React.Component<Props, States> {
             // SET TIMEOUT
             setTimeout(() => {
                 // HANDLE SCROLL
-                this.handleScroll()
+                this.handleScroll();
                 // IF NARROW APPEARANCE
-                if (this.state.appearance !== 'Narrow') {
-                    this.menuContent.current?.addEventListener('scroll', this.narrowScrollContent)
+                if (this.state.appearance === 'Narrow') {
+                    this.menuContent.current?.addEventListener('scroll', this.narrowScrollContent);
                     this.narrowScrollContent();
                 }
                 // IF WIDE APPEARANCE
@@ -129,7 +133,7 @@ export default class Cookies extends React.Component<Props, States> {
 
     handleScroll = () => {
         // IF NO ITEMS RETURN
-        if (this.state.items.length === 0) {
+        if (this.state.items.length === 0 || !this.menuContent.current) {
             return;
         }
         // DEFINE VARIABLES
@@ -142,9 +146,10 @@ export default class Cookies extends React.Component<Props, States> {
         let modus: States['modus'] = 'Flow';
         // IF FOCUS IS ITEM
         for (let i = 0; i < items.length; i++) {
-            const position = this.state.appearance === 'Narrow' 
-                ? Math.round(items[i].element.getBoundingClientRect().top) + scroll - padding
-                : Math.round(items[i].element.getBoundingClientRect().top) + scroll - padding - height / 4;
+            const position =
+                this.state.appearance === 'Narrow'
+                    ? Math.round(items[i].element.getBoundingClientRect().top) + scroll - padding
+                    : Math.round(items[i].element.getBoundingClientRect().top) + scroll - padding - height / 4;
             if (scroll >= position) {
                 focus = i;
             }
@@ -152,13 +157,26 @@ export default class Cookies extends React.Component<Props, States> {
         // DEFINE TOP AND BOTTOM
         const top = Math.round(items[0].element.getBoundingClientRect().top) + scroll - padding;
         const bottom = Math.round(items[items.length - 1].element.getBoundingClientRect().bottom) + scroll - height;
-        // IF MODUS IS TOP
+        // CHANGE MODUS
         if (this.state.appearance === 'Narrow' && scroll <= this.menuContent.current?.clientHeight) {
             modus = 'Top';
+            this.menuContent.current.style.top = 'auto';
         } else if (this.state.appearance === 'Narrow' && scroll >= bottom) {
             modus = 'Bottom';
+            this.menuContent.current.style.top = 'auto';
         } else if (this.state.appearance === 'Wide' && scroll <= top) {
             modus = 'Top';
+            this.menuContent.current.style.top = 'auto';
+        } else if (this.state.appearance === 'Wide' && scroll >= bottom) {
+            modus = 'Bottom';
+            this.menuContent.current.style.top = `${bottom}px`;
+        } else {
+            this.menuContent.current.style.top = 'auto';
+        }
+        // OVERWRITE MODUS
+        if (this.props.behaviour === 'Static' && this.state.appearance === 'Wide') {
+            modus = 'Flow';
+            this.menuContent.current.style.top = 'auto';
         }
         // UPDATE STATE
         this.setState({ focus: { ...this.state.focus, item: focus }, modus });
@@ -168,17 +186,17 @@ export default class Cookies extends React.Component<Props, States> {
         }
     };
 
-    handleClickItem = async (item: { name: string, element: HTMLElement }) => {
+    handleClickItem = async (item: { name: string; element: HTMLElement }) => {
         // DEFINE VARIABLES
         const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
-        const position = Math.round(item.element.getBoundingClientRect().top + this.props.browser.scroll - padding);
+        const position = Math.round(item.element.getBoundingClientRect().top) + this.props.browser.scroll - padding;
         const index = this.state.items.findIndex(element => element.name === item.name);
         // IF NO INDEX RETURN
         if (index < 0) {
             return;
         }
         // UPDATE STATE
-        this.setState({ scroll: position, focus: { ...this.state.focus, item: index } });
+        this.setState({ position, focus: { ...this.state.focus, item: index } });
         // SCROLL TO POSITION
         window.scrollTo({ top: position, behavior: 'smooth' });
     };
@@ -192,7 +210,7 @@ export default class Cookies extends React.Component<Props, States> {
         }
         // SCROLL TO POSITION
         this.menuContent.current.scrollTo({ left: position, behavior: 'smooth' });
-    }
+    };
 
     narrowClickRight = () => {
         // DEFINE WIDTH
@@ -205,7 +223,7 @@ export default class Cookies extends React.Component<Props, States> {
         }
         // SCROLL TO POSITION
         this.menuContent.current.scrollTo({ left: position, behavior: 'smooth' });
-    }
+    };
 
     narrowChangeContent = () => {
         // IF APPEARANCE IS NOT NARROW RETURN
@@ -216,7 +234,7 @@ export default class Cookies extends React.Component<Props, States> {
         const item = document.querySelector('#menu #menuContent .menuName.active');
         const content = document.querySelector('#menu #menuContent');
         const padding = Number(window.getComputedStyle(content).getPropertyValue('padding-left').split('px').shift());
-        // IF NO ITEM OR CONTENT OR PADDING RETURN  
+        // IF NO ITEM OR CONTENT OR PADDING RETURN
         if (!item || !content) {
             return;
         }
@@ -246,23 +264,27 @@ export default class Cookies extends React.Component<Props, States> {
         const width = this.menuContent.current.scrollWidth - this.menuContent.current.clientWidth;
         // IF SCROLL WIDTH IS LESS THAN CLIENT WIDTH
         if (this.menuContent.current.scrollWidth <= this.menuContent.current.clientWidth) {
+            this.menuContent.current.style.justifyContent = 'center';
             this.menuLeft.current.classList.remove('active');
             this.menuRight.current.classList.remove('active');
         }
         // IF SCROLL IS LESS THAN BOUNDARY
         else if (scroll <= this.boundary) {
+            this.menuContent.current.style.justifyContent = 'flex-start';
             this.menuLeft.current.classList.remove('active');
             this.menuRight.current.classList.add('active');
         }
         // IF SCROLL IS IN BETWEEN BOUNDARY
         else if (scroll > this.boundary && scroll < width - this.boundary) {
+            this.menuContent.current.style.justifyContent = 'flex-start';
             this.menuLeft.current.classList.add('active');
         }
         // IF SCROLL IS BIGGER THAN BOUNDARY
         else {
+            this.menuContent.current.style.justifyContent = 'flex-start';
             this.menuRight.current.classList.remove('active');
         }
-    }
+    };
 
     render() {
         // IF NO ITEMS RETURN NULL
@@ -279,7 +301,17 @@ export default class Cookies extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div id='menu' className={[this.state.appearance === 'Narrow' ? 'narrow' : 'wide', this.state.modus === 'Flow' && 'flow'].filter(x => x).join(' ')}>
+            <div
+                id='menu'
+                className={[
+                    this.state.appearance === 'Narrow' ? 'narrow' : 'wide',
+                    this.state.modus === 'Top' && 'top',
+                    this.state.modus === 'Flow' && 'flow',
+                    this.state.modus === 'Bottom' && 'bottom'
+                ]
+                    .filter(x => x)
+                    .join(' ')}
+            >
                 {this.state.appearance === 'Narrow' ? (
                     <>
                         <div ref={this.menuLeft} id='menuLeft' onClick={this.narrowClickLeft}>
@@ -305,7 +337,7 @@ export default class Cookies extends React.Component<Props, States> {
                         </div>
                     </>
                 ) : (
-                    <div id='menuContent'>
+                    <div ref={this.menuContent} id='menuContent'>
                         <div id='menuName'>{name}</div>
                         {this.state.items.map((item, index) => (
                             <span

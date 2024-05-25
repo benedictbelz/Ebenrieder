@@ -22,10 +22,10 @@ export default class Header extends React.Component<Props, States> {
         return (
             <div id='footer'>
                 <div id='information'>
-                    <a className='underline' href='mailto:hallo@ebenrieder.de'>
+                    <a className='underlineLink' href='mailto:hallo@ebenrieder.de'>
                         hallo@ebenrieder.de
                     </a>
-                    <a className='underline' href='tel:+491633938055'>
+                    <a className='underlineLink' href='tel:+491633938055'>
                         +49 163 3938055
                     </a>
                     <div id='address'>
@@ -36,19 +36,19 @@ export default class Header extends React.Component<Props, States> {
                 </div>
                 <div id='scrollToTop'>
                     <div onClick={this.handleScrollToTop}>
-                        <span className='underline'>{getLanguage(language, 'backToTop')}</span>
+                        <span className='underlineLink'>{getLanguage(language, 'backToTop')}</span>
                         <img src='assets/svg/arrow_small_top.svg' />
                     </div>
                 </div>
                 <div id='links'>
                     <span className='copyright'>© Ebenrieder</span>
-                    <Link to={'/imprint'} className='underline'>
+                    <Link to={'/imprint'} className='underlineLink'>
                         {getLanguage(language, 'imprint')}
                     </Link>
-                    <Link to={'/privacy'} className='underline'>
+                    <Link to={'/privacy'} className='underlineLink'>
                         {getLanguage(language, 'privacy')}
                     </Link>
-                    <Link to={'/conditions'} className='underline'>
+                    <Link to={'/conditions'} className='underlineLink'>
                         {getLanguage(language, 'conditions')}
                     </Link>
                 </div>

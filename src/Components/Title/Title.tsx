@@ -29,9 +29,8 @@ export default class Title extends React.Component<Props, States> {
 
     componentDidUpdate(prevProps: Props) {
         if (
-            this.props.browser.mouse.x !== prevProps.browser.mouse.x ||
-            this.props.browser.mouse.y !== prevProps.browser.mouse.y ||
-            this.props.browser.scroll !== prevProps.browser.scroll
+            this.props.browser.scroll !== prevProps.browser.scroll ||
+            this.props.browser.width !== prevProps.browser.width
         ) {
             this.handleTransform();
         }

@@ -27,16 +27,16 @@ export default class Cookies extends React.Component<Props> {
             <div id='cookies'>
                 <div id='cookiesText'>
                     {`${getLanguage(language, 'cookiesText')} `}
-                    <Link to={'/privacy'} className='underline'>
+                    <Link to={'/privacy'} className='underlineLink'>
                         {getLanguage(language, 'cookiesPrivacy')}
                     </Link>
                     {'.'}
                 </div>
                 <div id='cookiesButtons'>
-                    <div className='underline' onClick={this.handleAccept}>
+                    <div className='underlineLink' onClick={this.handleAccept}>
                         {getLanguage(language, 'cookiesAccept')}
                     </div>
-                    <div className='underline' onClick={this.handleDecline}>
+                    <div className='underlineLink' onClick={this.handleDecline}>
                         {getLanguage(language, 'cookiesDecline')}
                     </div>
                 </div>

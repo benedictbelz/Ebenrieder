@@ -59,23 +59,23 @@ export default class Events extends React.Component<Props, States> {
         // RESET PROJECTS
         events.forEach(event => {
             event.classList.add('opacity');
-            event.classList.remove('animate');
+            event.classList.remove('animation');
         });
         // RECURSIVE FUNCTION
-        let animate = () => {
+        let animation = () => {
             events[index].classList.remove('opacity');
             events[index].offsetWidth;
-            events[index].classList.add('animate');
+            events[index].classList.add('animation');
             events[index].style.animationPlayState = 'paused';
             events[index].style.animationPlayState = 'running';
             index++;
             if (index < events.length) {
-                this.timeout.push(setTimeout(() => animate(), 100));
+                this.timeout.push(setTimeout(() => animation(), 100));
             }
         };
         // ANIMATE EVENTS
         if (events.length !== 0) {
-            animate();
+            animation();
         }
     };
 
@@ -234,7 +234,7 @@ export default class Events extends React.Component<Props, States> {
                             </div>
                         </div>
                         <div className='modalDescription'>{description[language]}</div>
-                        <div className='modalButton underline'>
+                        <div className='modalButton underlineLink'>
                             <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
                         </div>
                     </div>
@@ -407,7 +407,7 @@ export default class Events extends React.Component<Props, States> {
                                             </div>
                                         </div>
                                         <div className='eventDescription'>{description[language]}</div>
-                                        <div className='eventButton underline' onClick={() => this.handleClickEvent(event)}>
+                                        <div className='eventButton underlineLink' onClick={() => this.handleClickEvent(event)}>
                                             {getLanguage(language, 'learnMore')}
                                         </div>
                                     </div>
@@ -428,7 +428,7 @@ export default class Events extends React.Component<Props, States> {
                                             upcompingEvents[0].date instanceof Date ? upcompingEvents[0].date : upcompingEvents[0].date.start;
                                         this.setState({ month: date.getMonth(), year: date.getFullYear() });
                                     }}
-                                    className='underline'
+                                    className='underlineLink'
                                 >
                                     {upcompingEvents[0].date instanceof Date
                                         ? upcompingEvents[0].date.toLocaleString(getLocal(language), { month: 'long' })

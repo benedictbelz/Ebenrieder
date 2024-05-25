@@ -110,7 +110,7 @@ a {
     text-decoration: none;
 }
 
-.underline {
+.underlineLink {
     cursor: pointer;
     position: relative;
     height: fit-content;
@@ -118,7 +118,7 @@ a {
 
     @media (hover: hover) {
         &:hover::after {
-            animation: underline 1s ease;
+            animation: underlineLink 1s ease;
         }
     }
 
@@ -134,7 +134,7 @@ a {
         background-color: $color-blue;
     }
 
-    @keyframes underline {
+    @keyframes underlineLink {
         0% {
             transform-origin: right;
             transform: scaleX(1);
@@ -144,6 +144,44 @@ a {
             transform: scaleX(0);
         }
         51% {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        100% {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+    }
+}
+
+.underlineMenu {
+    cursor: pointer;
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    
+    &::after {
+        content: '';
+        display: none;
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        height: $border-s;
+        width: 100%;
+        transform: scaleX(1);
+        border-radius: $border-s;
+        background-color: $color-blue;
+    }
+
+    &.active {
+        &::after {
+            display: block;
+            animation: underlineMenu 0.5s ease;
+        }
+    }
+
+    @keyframes underlineMenu {
+        0% {
             transform-origin: left;
             transform: scaleX(0);
         }

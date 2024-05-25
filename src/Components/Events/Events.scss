@@ -27,7 +27,7 @@
                     fill: none;
                     stroke: $color-blue;
                     stroke-miterlimit: 10;
-                    stroke-width: 2.5px;
+                    stroke-width: $border-m;
                     stroke-dashoffset: 0;
                 }
 
@@ -260,11 +260,11 @@
                 opacity: 0;
             }
 
-            &.animate {
-                animation: animate 0.5s ease forwards;
+            &.animation {
+                animation: event 0.5s ease forwards;
             }
 
-            @keyframes animate {
+            @keyframes event {
                 0% {
                     opacity: 0;
                     transform: translateY(200px);

@@ -27,13 +27,13 @@ export default class Imprint extends React.Component<Props, States> {
                         </article>
                         <article className='phone'>
                             <h4>{getLanguage(language, 'imprintPhone')}</h4>
-                            <a className='underline' href='tel:+491633938055'>
+                            <a className='underlineLink' href='tel:+491633938055'>
                                 +49 163 3938055
                             </a>
                         </article>
                         <article className='email'>
                             <h4>{getLanguage(language, 'imprintEmail')}</h4>
-                            <a className='underline' href='mailto:hallo@ebenrieder.de'>
+                            <a className='underlineLink' href='mailto:hallo@ebenrieder.de'>
                                 hallo@ebenrieder.de
                             </a>
                         </article>
@@ -62,6 +62,10 @@ export default class Imprint extends React.Component<Props, States> {
                         <article className='photography'>
                             <h4>{getLanguage(language, 'imprintPhotography')}</h4>
                             <span>Regina Recht</span>
+                        </article>
+                        <article className='text'>
+                            <h4>{getLanguage(language, 'imprintText')}</h4>
+                            <span>Katja Schwengler</span>
                         </article>
                     </div>
                     <div id='right'>

@@ -18,7 +18,7 @@
     .click {
         pointer-events: none;
         position: absolute;
-        z-index: 1000;
+        z-index: 750;
         height: 100%;
         width: 100%;
 
@@ -48,7 +48,7 @@
         top: 0%;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 750;
+        z-index: 500;
         height: 100%;
         width: 100%;
     }
@@ -60,7 +60,7 @@
         align-items: center;
         gap: $spacing-bullet * 2;
         position: absolute;
-        z-index: 500;
+        z-index: 250;
         height: 100px;
         width: 100%;
         bottom: 0;

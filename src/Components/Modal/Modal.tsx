@@ -64,7 +64,7 @@ export default class Modal extends React.Component<Props, States> {
                 <div ref={this.modal} className={['modalForeground', this.props.className && this.props.className].filter(x => x).join(' ')}>
                     <div className='button'>
                         <img src='assets/svg/arrow_small_left.svg' />
-                        <p className='close underline' onClick={this.handleClose}>
+                        <p className='close underlineLink' onClick={this.handleClose}>
                             {getLanguage(language, 'backToOverview')}
                         </p>
                     </div>

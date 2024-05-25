@@ -21,7 +21,7 @@
                 background-color: $color-blue;
             }
 
-            @keyframes underline {
+            @keyframes underlineLink {
                 0% {
                     transform-origin: right;
                     transform: scaleX(1);
@@ -43,15 +43,15 @@
             @media (max-width: $media-s) {
                 font-size: var(--font-size-h3);
 
-                // &::after {
-                //     height: $border-s;
-                // }
+                &::after {
+                    height: $border-s;
+                }
             }
         }
 
         @media (hover: hover) {
             &:hover p::after {
-                animation: underline 1s ease;
+                animation: underlineLink 1s ease;
             }
         }
 

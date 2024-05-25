@@ -1,0 +1,215 @@
+@import '../../App/Variables.scss';
+
+#menu {
+    position: fixed;
+    z-index: 1000;
+
+    &.narrow {
+        bottom: 0;
+        left: 0;
+        box-sizing: border-box;
+        pointer-events: all;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $spacing-header;
+        width: 100%;
+        background: $color-white;
+        overflow: hidden;
+        box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 0.75);
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+
+        &.flow {
+            transform: translateY(0);
+        }
+
+        #menuLeft,
+        #menuRight {
+            position: absolute;
+            z-index: 1250;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: $color-white;
+
+            svg {
+                height: 25px;
+                width: 18px;
+
+                polyline {
+                    fill: none;
+                    stroke: $color-blue;
+                    stroke-miterlimit: 10;
+                    stroke-dashoffset: 0;
+                    stroke-width: $border-xl;
+                    stroke-dasharray: 56.57 56.57;
+                }
+            }
+
+            &.active {
+                display: flex;
+            }
+        }
+
+        #menuLeft {
+            left: 0;
+            box-shadow: 0 0 25px 25px $color-white;
+            padding-left: 25px;
+
+            @media (hover: hover) {
+                &:hover polyline {
+                    animation: leftPolyline 1s linear forwards;
+                }
+            }
+
+            @keyframes left {
+                0% {
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dashoffset: 56.57;
+                }
+                50.00001% {
+                    stroke-dashoffset: -56.57;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+
+        #menuRight {
+            right: 0;
+            box-shadow: 0 0 25px 25px $color-white;
+            padding-right: 25px;
+
+            @media (hover: hover) {
+                &:hover polyline {
+                    animation: rightPolyline 1s linear forwards;
+                }
+            }
+
+            @keyframes right {
+                0% {
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dashoffset: -56.57;
+                }
+                50.00001% {
+                    stroke-dashoffset: 56.57;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+
+        #menuContent {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 25px;
+            height: 100%;
+            width: 100%;
+            overflow-x: auto;
+            padding: 0 25px;
+
+            .menuName {
+                cursor: pointer;
+                color: transparentize($color-blue, 0.5);
+                white-space: nowrap;
+
+                &.active {
+                    color: $color-blue;
+                }
+
+                @media (hover: hover) {
+                    &:hover {
+                        color: $color-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    &.wide {
+        pointer-events: none;
+        position: absolute;
+        top: 100vh;
+        left: 0;
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: var(--spacing-horizontal);
+        mix-blend-mode: difference;
+        filter: invert(100%);
+
+        &.flow {
+            position: fixed;
+            top: 0;
+            height: 100%;
+        }
+
+        #menuContent {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+    
+            #menuName {
+                position: absolute;
+                top: -10px;
+                left: 12px;
+                height: var(--spacing-horizontal);
+                transform-origin: left;
+                transform: translateY(-50%) rotate(-90deg);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+            }
+    
+            .menuDot {
+                pointer-events: all;
+                box-sizing: border-box;
+                cursor: pointer;
+                height: 25px;
+                width: 25px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.25s ease;
+
+                @media (hover: hover) {
+                    &:hover {
+                        transform: scale(1.5);
+                    }
+                }
+    
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 5px;
+                    width: 5px;
+                    border-radius: 50%;
+                    background-color: transparentize($color-blue, 0.5);
+                }
+    
+                &.active::after {
+                    background-color: $color-blue;
+                }
+            }
+        }
+    }
+}

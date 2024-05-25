@@ -7,6 +7,10 @@ const de = {
     backToOverview: 'Zurück zur Übersicht',
     backToTop: 'Zurück nach oben',
     learnMore: 'Mehr Erfahren',
+    titlePlace: 'Ort',
+    titleSleep: 'Schlafen',
+    titleDates: 'Termine',
+    titleUsage: 'Nutzung',
     cookiesText: 'Diese Website verwendet Cookies. Weitere Informationen finden Sie unter',
     cookiesPrivacy: 'Datenschutz',
     cookiesAccept: 'Akzeptieren',
@@ -63,13 +67,18 @@ const de = {
     imprintExecutiveBoard: 'Vorstand',
     imprintResponsibleForContent: 'Verantwortlich für den Inhalt',
     imprintConception: 'Konzeption & Web Design',
-    imprintPhotography: 'Fotografie'
+    imprintPhotography: 'Fotografie',
+    imprintText: 'Texte'
 };
 
 const en: Dictionary = {
     backToOverview: 'Back to overview',
     backToTop: 'Back to top',
     learnMore: 'Learn More',
+    titlePlace: 'Place',
+    titleSleep: 'Sleep',
+    titleDates: 'Dates',
+    titleUsage: 'Usage',
     cookiesText: 'This website uses cookies. Further information can be found under',
     cookiesPrivacy: 'data protection',
     cookiesAccept: 'Accept',
@@ -126,7 +135,8 @@ const en: Dictionary = {
     imprintExecutiveBoard: 'Executive Board',
     imprintResponsibleForContent: 'Responsible for Content',
     imprintConception: 'Conception & Design',
-    imprintPhotography: 'Photography'
+    imprintPhotography: 'Photography',
+    imprintText: 'Texts'
 };
 
 export const getLanguage = (language: Language, key: keyof Dictionary) => {

@@ -34,7 +34,7 @@
             width: 100%;
         }
 
-        .button {
+        .modalBack {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -73,7 +73,7 @@
         }
     }
 
-    .event {
+    .modalEvent {
         .gallery {
             height: 400px !important;
             min-height: 30vmax !important;
@@ -90,7 +90,7 @@
                 flex-direction: column;
             }
 
-            .left {
+            .modalLeft {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -120,7 +120,7 @@
                 }
             }
 
-            .right {
+            .modalRight {
                 .modalDetails {
                     display: flex;
                     flex-direction: column;

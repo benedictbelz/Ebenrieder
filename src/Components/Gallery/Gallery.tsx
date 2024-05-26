@@ -5,11 +5,16 @@ import './Gallery.scss';
 
 interface Props {
     autoPlay?: boolean;
+    lockControls?: boolean;
+    fullScreen?: boolean;
     browser: Browser;
     children: React.ReactNode;
-    fullScreen: boolean;
-    modal?: {
+    modus: 'Expansion' | 'Variable';
+    parallax?: {
+        deactivate?: boolean;
+        factor: number;
         height: number;
+        modus: 'Simple' | 'Complex';
         scroll: number;
     };
 }
@@ -30,15 +35,15 @@ interface States {
 
 export default class Gallery extends React.Component<Props, States> {
     private interval: NodeJS.Timer;
-    private bullets: React.RefObject<HTMLDivElement>;
-    private drag: React.RefObject<HTMLDivElement>;
+    private galleryBullets: React.RefObject<HTMLDivElement>;
+    private galleryDrag: React.RefObject<HTMLDivElement>;
     private galleryA: React.RefObject<HTMLDivElement>;
     private galleryB: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
-        this.bullets = React.createRef();
-        this.drag = React.createRef();
+        this.galleryBullets = React.createRef();
+        this.galleryDrag = React.createRef();
         this.galleryA = React.createRef();
         this.galleryB = React.createRef();
         this.state = {
@@ -54,8 +59,8 @@ export default class Gallery extends React.Component<Props, States> {
     }
 
     componentDidMount() {
-        this.initGallery();
-        this.initDrag();
+        this.mountGallery();
+        this.mountDrag();
         if (this.props.autoPlay) {
             this.interval = setInterval(() => this.handleChangeImage('Next'), 2500);
         }
@@ -63,157 +68,59 @@ export default class Gallery extends React.Component<Props, States> {
 
     componentDidUpdate(prevProps: Props) {
         if (this.props.browser.height !== prevProps.browser.height || this.props.browser.width !== prevProps.browser.width) {
-            this.handleChangeImage('Current');
+            this.handleResetImage();
         }
     }
 
     componentWillUnmount() {
+        this.unmountDrag();
         clearInterval(this.interval);
     }
 
-    private initGallery = async () => {
+    private mountGallery = async () => {
         const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
         const position = this.state.status === 'A' ? this.state.positionA : this.state.positionB;
         await this.waitForElement(gallery, this.getSource(position));
         this.handleBullets(position);
-        this.handleChangeImage('Current');
+        this.handleResetImage();
         this.setState({ isLoaded: true });
     };
 
-    private initDrag = () => {
-        // IF AUTOPLAY IS ENABLED RETURN
-        if (this.props.autoPlay) {
-            return;
-        }
-        // DEFINE START
-        const start = (position: number) => {
-            // IF TRANSITION RETURN
-            if (
-                this.state.drag ||
-                this.state.transition ||
-                this.props.browser.mouse.cursor === 'Left' ||
-                this.props.browser.mouse.cursor === 'Right'
-            ) {
-                return;
-            }
-            // UPDATE STATE
-            this.setState({
-                drag: {
-                    start: position,
-                    end: 0
-                },
-                transition: true
-            });
-        };
-        // DEFINE MOVE
-        const move = (position: number) => {
-            // IF FALSE RETURN
-            if (
-                !this.state.drag ||
-                !this.state.transition ||
-                this.props.browser.mouse.cursor === 'Left' ||
-                this.props.browser.mouse.cursor === 'Right'
-            ) {
-                return;
-            }
-            // DEFINE VARIABLES
-            const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
-            const end = position - this.state.drag.start;
-            // UPDATE GALLERY
-            gallery.style.transform = `translateX(${-this.getTranslate(this.state.status, 'Current', false).number + end}px)`;
-            // UPDATE STATE
-            this.setState({ drag: { ...this.state.drag, end } });
-        };
-        // DEFINE END
-        const end = () => {
-            // IF FALSE RETURN
-            if (
-                !this.state.drag ||
-                !this.state.transition ||
-                this.props.browser.mouse.cursor === 'Left' ||
-                this.props.browser.mouse.cursor === 'Right'
-            ) {
-                return;
-            }
-            // DEFINE VARIABLES
-            const statusActive = this.state.status === 'A' ? 'A' : 'B';
-            const statusInactive = this.state.status === 'B' ? 'A' : 'B';
-            const galleryActive = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
-            const galleryInactive = this.state.status === 'B' ? this.galleryA.current : this.galleryB.current;
-            // GET POSITION
-            let position = this.state.status === 'A' ? this.state.positionA : this.state.positionB;
-            let direction: 'Previous' | 'Current' | 'Next' = 'Current';
-            // IF PREVIOUS IMAGE
-            if (this.state.drag.end >= 100) {
-                direction = 'Previous';
-                position = this.getPosition(position - 1);
-            }
-            // IF NEXT IMAGE
-            else if (this.state.drag.end <= -100) {
-                direction = 'Next';
-                position = this.getPosition(position + 1);
-            }
-            // UPDATE STATE
-            this.setState({ drag: null });
-            // BEFORE TRANSITION
-            setTimeout(async () => {
-                // UPDATE ACTIVE GALLERY
-                galleryActive.classList.add('transition');
-                galleryActive.style.transform = this.getTranslate(statusActive, direction).string;
-                // IF CURRENT IMAGE
-                if (direction === 'Current') {
-                    return;
-                }
-                // UPDATE BULLETS
-                this.handleBullets(position);
-                // UPDATE POSITION
-                if (this.state.status === 'A') {
-                    this.setState({ positionB: position }, async () => {
-                        await this.waitForElement(galleryInactive, this.getSource(position));
-                        galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
-                    });
-                } else {
-                    this.setState({ positionA: position }, async () => {
-                        await this.waitForElement(galleryInactive, this.getSource(position));
-                        galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
-                    });
-                }
-            });
-            // AFTER TRANSITION
-            setTimeout(() => {
-                // UPDATE ACTIVE GALLERY
-                galleryActive.classList.remove('transition');
-                // UPDATE STATE
-                this.setState({ transition: false });
-                // IF CURRENT IMAGE
-                if (direction === 'Current') {
-                    return;
-                }
-                // UPDATE POSITION
-                if (this.state.status === 'A') {
-                    this.setState({ positionA: position, status: statusInactive });
-                } else {
-                    this.setState({ positionB: position, status: statusInactive });
-                }
-            }, 500);
-        };
+    private mountDrag = () => {
+        // IF LOCK CONTROLS RETURN
+        if (this.props.lockControls) return;
         // IF DESKTOP
-        if (this.props.browser.device === 'Desktop') {
-            this.drag.current.addEventListener('mousedown', event => start(event.clientX));
-            this.drag.current.addEventListener('mousemove', event => move(event.clientX));
-            this.drag.current.addEventListener('mouseup', () => end());
-            this.drag.current.addEventListener('mouseout', () => end());
+        else if (this.props.browser.device === 'Desktop') {
+            this.galleryDrag.current?.addEventListener('mousedown', this.handleDragStart);
+            this.galleryDrag.current?.addEventListener('mousemove', this.handleDragMove);
+            this.galleryDrag.current?.addEventListener('mouseup', this.handleDragEnd);
+            this.galleryDrag.current?.addEventListener('mouseout', this.handleDragEnd);
         }
         // IF MOBILE
-        if (this.props.browser.device === 'Mobile') {
-            this.drag.current.addEventListener('touchstart', event => start(event.touches[0].clientX));
-            this.drag.current.addEventListener('touchend', () => end());
-            this.drag.current.addEventListener('touchmove', event => {
-                if (this.state.drag) event.preventDefault();
-                move(event.touches[0].clientX);
-            });
+        else if (this.props.browser.device === 'Mobile') {
+            this.galleryDrag.current?.addEventListener('touchstart', this.handleDragStart);
+            this.galleryDrag.current?.addEventListener('touchmove', this.handleDragMove);
+            this.galleryDrag.current?.addEventListener('touchend', this.handleDragEnd);
         }
     };
+
+    private unmountDrag = () => {
+        // IF LOCK CONTROLS RETURN
+        if (this.props.lockControls) return;
+        // IF DESKTOP
+        else if (this.props.browser.device === 'Desktop') {
+            this.galleryDrag.current?.removeEventListener('mousedown', this.handleDragStart);
+            this.galleryDrag.current?.removeEventListener('mousemove', this.handleDragMove);
+            this.galleryDrag.current?.removeEventListener('mouseup', this.handleDragEnd);
+            this.galleryDrag.current?.removeEventListener('mouseout', this.handleDragEnd);
+        }
+        // IF MOBILE
+        else if (this.props.browser.device === 'Mobile') {
+            this.galleryDrag.current?.removeEventListener('touchstart', this.handleDragStart);
+            this.galleryDrag.current?.removeEventListener('touchmove', this.handleDragMove);
+            this.galleryDrag.current?.removeEventListener('touchend', this.handleDragEnd);
+        }
+    }
 
     private getSource = (position: number) => {
         return (this.props.children as any[])[this.getPosition(position)].props.src;
@@ -228,9 +135,7 @@ export default class Gallery extends React.Component<Props, States> {
         const gallery = status === 'A' ? this.galleryA.current : this.galleryB.current;
         const images = gallery.children;
         // IF NO GALLERY OR IMAGES RETURN
-        if (!gallery || !images || images.length === 0) {
-            return;
-        }
+        if (!gallery || !images || images.length === 0) return;
         // GET PADDING AND WIDTH
         const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
         const width = gallery.clientWidth - padding * 2;
@@ -249,49 +154,52 @@ export default class Gallery extends React.Component<Props, States> {
             .slice(0, position)
             .reduce((sum, image) => sum + image.clientWidth, 0);
         // IF CURRENT IMAGE IS SMALLER THAN CONTAINER
-        if (!this.props.fullScreen && width !== images[position].clientWidth) {
+        if (this.props.modus === 'Variable' && width !== images[position].clientWidth) {
             click = click + Math.round((width - images[position].clientWidth) / 2);
             translate = translate - Math.round((width - images[position].clientWidth) / 2);
         }
         // IF UPDATE IS TRUE
         if (updateClick) {
-            this.setState({ click: !this.props.fullScreen ? click : null });
+            this.setState({ click: this.props.modus === 'Variable' ? click : null });
         }
         // RETURN TRANSLATE
         return {
             number: translate,
-            string: !this.props.fullScreen ? `translateX(${-translate}px)` : `translateX(-${position * 100}%)`
+            string: this.props.modus === 'Variable' ? `translateX(${-translate}px)` : `translateX(-${position * 100}%)`
         };
     };
 
     private handleBullets = (position: number) => {
-        // IF AUTOPLAY IS ENABLED RETURN
-        if (this.props.autoPlay) {
-            return;
-        }
+        // GET BULLETS
+        const bullets = this.galleryBullets.current;
+        // IF LOCK CONTROLS RETURN
+        if (this.props.lockControls || !bullets) return;
         // DELETE CLASS NAME FOR ALL BULLETS
         for (let index = 0; index < this.state.length; index++) {
             if (index >= Math.floor(position / 10) * 10 && index < Math.floor(position / 10) * 10 + 10) {
-                this.bullets.current.children[index].className = 'active';
+                bullets.children[index].className = 'active';
             } else {
-                this.bullets.current.children[index].className = '';
+                bullets.children[index].className = '';
             }
         }
         // UPDATE BULLETS
-        this.bullets.current.children[position].classList.add('current');
+        bullets.children[position].classList.add('current');
     };
 
-    private handleChangeImage = (direction: 'Previous' | 'Current' | 'Next') => {
+    private handleResetImage = () => {
         // RETURN WHEN TRANSITION IS ACTIVE
-        if (this.state.transition) {
-            return;
-        }
-        // IF DIRECTION IS CURRENT
-        if (direction === 'Current') {
-            const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
-            gallery.style.transform = this.getTranslate(this.state.status, 'Current', true).string;
-            return;
-        }
+        if (this.state.transition) return;
+        // GET GALLERY
+        const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
+        // IF NO GALLERY RETURN
+        if (!gallery) return;
+        // TRANSFORM GALLERY
+        gallery.style.transform = this.getTranslate(this.state.status, 'Current', true).string;
+    }
+
+    private handleChangeImage = (direction: 'Previous' | 'Next') => {
+        // RETURN WHEN TRANSITION IS ACTIVE
+        if (this.state.transition) return;
         // UPDATE STATE
         this.setState({ transition: true });
         // DEFINE VARIABLES
@@ -302,6 +210,8 @@ export default class Gallery extends React.Component<Props, States> {
         const position = this.getPosition(
             (this.state.status === 'A' ? this.state.positionA : this.state.positionB) + (direction === 'Previous' ? -1 : 1)
         );
+        // IF NO GALLERY RETURN
+        if (!galleryActive || !galleryInactive) return;
         // BEFORE TRANSITION
         setTimeout(async () => {
             // UPDATE ACTIVE GALLERY
@@ -345,8 +255,130 @@ export default class Gallery extends React.Component<Props, States> {
         }
     };
 
+    private handleDragStart = (event: any) => {
+        // IF TRANSITION RETURN
+        if (
+            this.state.drag ||
+            this.state.transition ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
+            return;
+        }
+        // GET POSITION
+        const position = this.props.browser.device === 'Desktop' ? event.clientX : event.touches[0].clientX;
+        // UPDATE STATE
+        this.setState({
+            drag: {
+                start: position,
+                end: 0
+            },
+            transition: true
+        });
+    }
+
+    private handleDragMove = (event: any) => {
+        // PREVENT DEFAULT
+        if (this.state.drag && !this.props.fullScreen) {
+            event.preventDefault();
+        }
+        // IF FALSE RETURN
+        if (
+            !this.state.drag ||
+            !this.state.transition ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
+            return;
+        }
+        // DEFINE VARIABLES
+        const position = this.props.browser.device === 'Desktop' ? event.clientX : event.touches[0].clientX;
+        const gallery = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
+        const end = position - this.state.drag.start;
+        // IF NO GALLERY RETURN
+        if (!gallery) return;
+        // UPDATE GALLERY
+        gallery.style.transform = `translateX(${-this.getTranslate(this.state.status, 'Current', false).number + end}px)`;
+        // UPDATE STATE
+        this.setState({ drag: { ...this.state.drag, end } });
+    }
+
+    private handleDragEnd = (event: any) => {
+        // IF FALSE RETURN
+        if (
+            !this.state.drag ||
+            !this.state.transition ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
+            return;
+        }
+        // DEFINE VARIABLES
+        const statusActive = this.state.status === 'A' ? 'A' : 'B';
+        const statusInactive = this.state.status === 'B' ? 'A' : 'B';
+        const galleryActive = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
+        const galleryInactive = this.state.status === 'B' ? this.galleryA.current : this.galleryB.current;
+        // IF NO GALLERY RETURN
+        if (!galleryInactive || !galleryActive) return;
+        // GET POSITION
+        let position = this.state.status === 'A' ? this.state.positionA : this.state.positionB;
+        let direction: 'Previous' | 'Current' | 'Next' = 'Current';
+        // IF PREVIOUS IMAGE
+        if (this.state.drag.end >= 100) {
+            direction = 'Previous';
+            position = this.getPosition(position - 1);
+        }
+        // IF NEXT IMAGE
+        else if (this.state.drag.end <= -100) {
+            direction = 'Next';
+            position = this.getPosition(position + 1);
+        }
+        // UPDATE STATE
+        this.setState({ drag: null });
+        // BEFORE TRANSITION
+        setTimeout(async () => {
+            // UPDATE ACTIVE GALLERY
+            galleryActive.classList.add('transition');
+            galleryActive.style.transform = this.getTranslate(statusActive, direction).string;
+            // IF CURRENT IMAGE
+            if (direction === 'Current') return;
+            // UPDATE BULLETS
+            this.handleBullets(position);
+            // UPDATE POSITION
+            if (this.state.status === 'A') {
+                this.setState({ positionB: position }, async () => {
+                    await this.waitForElement(galleryInactive, this.getSource(position));
+                    galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                });
+            } else {
+                this.setState({ positionA: position }, async () => {
+                    await this.waitForElement(galleryInactive, this.getSource(position));
+                    galleryInactive.style.transform = this.getTranslate(statusInactive, 'Current', true).string;
+                });
+            }
+        });
+        // AFTER TRANSITION
+        setTimeout(() => {
+            // UPDATE ACTIVE GALLERY
+            galleryActive.classList.remove('transition');
+            // UPDATE STATE
+            this.setState({ transition: false });
+            // IF CURRENT IMAGE
+            if (direction === 'Current') return;
+            // UPDATE POSITION
+            if (this.state.status === 'A') {
+                this.setState({ positionA: position, status: statusInactive });
+            } else {
+                this.setState({ positionB: position, status: statusInactive });
+            }
+        }, 500);
+    }
+
     private waitForElement = (element: HTMLElement, srcUpdated: string) => {
-        return new Promise<void>((resolve, reject) => {
+        // IF NO ELEMENT RETURN
+        if (!element) return;
+        // RETURN PROMISE
+        return new Promise<void>(resolve => {
             // DEFINE VARIABELS
             let counter = 0;
             let images = Array.from(element.children);
@@ -414,36 +446,44 @@ export default class Gallery extends React.Component<Props, States> {
         // RETURN COMPONENT
         return (
             <div
-                className={['gallery', this.props.fullScreen && 'fullScreen', this.state.isLoaded && 'isLoaded'].filter(x => x).join(' ')}
+                className={[
+                    'gallery',
+                    this.props.modus === 'Expansion' && 'expansion',
+                    this.props.fullScreen && 'fullScreen',
+                    this.state.isLoaded && 'isLoaded'
+                ]
+                    .filter(x => x)
+                    .join(' ')}
                 onClick={this.handleClick}
             >
-                {!this.props.autoPlay && <div ref={this.drag} className='drag' />}
-                {!this.props.autoPlay && !this.state.drag && this.props.browser.device === 'Desktop' && (
-                    <div className='click'>
+                {!this.props.lockControls && <div ref={this.galleryDrag} className='galleryDrag' />}
+                {!this.props.lockControls && !this.state.drag && this.props.browser.device === 'Desktop' && (
+                    <div className='galleryClick'>
                         <div
-                            className='left cursorLeft'
+                            className='galleryLeft cursorLeft'
                             onClick={() => this.handleChangeImage('Previous')}
                             style={this.state.click ? { width: `${this.state.click}px` } : {}}
                         />
                         <div
-                            className='right cursorRight'
+                            className='galleryRight cursorRight'
                             onClick={() => this.handleChangeImage('Next')}
                             style={this.state.click ? { width: `${this.state.click}px` } : {}}
                         />
                     </div>
                 )}
-                {!this.props.autoPlay && (
-                    <div ref={this.bullets} className={'bullets'}>
+                {!this.props.lockControls && (
+                    <div ref={this.galleryBullets} className={'galleryBullets'}>
                         {Array.from(Array(this.state.length).keys(), index => {
-                            return <div key={`bullet_${index}`} data-index={index} className='bullet' />;
+                            return <div key={`galleryBullet_${index}`} data-index={index} />;
                         })}
                     </div>
                 )}
                 <Parallax
-                    height={this.props.modal ? this.props.modal.height : this.props.browser.height}
-                    scroll={this.props.modal ? this.props.modal.scroll : this.props.browser.scroll}
-                    factor={this.props.browser.media === 'Extra Small' ? 15 : 20}
-                    modus={this.props.modal ? 'Simple' : 'Complex'}
+                    deactivate={this.props.parallax ? this.props.parallax.deactivate : false}
+                    factor={this.props.parallax ? this.props.parallax.factor : this.props.browser.media === 'Extra Small' ? 15 : 20}
+                    modus={this.props.parallax ? this.props.parallax.modus : 'Complex'}
+                    height={this.props.parallax ? this.props.parallax.height : this.props.browser.height}
+                    scroll={this.props.parallax ? this.props.parallax.scroll : this.props.browser.scroll}
                 >
                     <div ref={this.galleryA} className={['galleryA', this.state.status === 'A' && 'active'].filter(x => x).join(' ')}>
                         <React.Fragment key='galleryA_01'>{children[this.getPosition(positionA - 3)]}</React.Fragment>

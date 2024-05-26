@@ -3,6 +3,7 @@ import './Parallax.scss';
 
 interface Props {
     children: React.ReactNode;
+    deactivate?: boolean;
     factor: number;
     height: number;
     scroll: number;
@@ -35,23 +36,25 @@ export default class Parallax extends React.Component<Props, States> {
     }
 
     private handleTransform = () => {
+        // IF PARALLAX IS DEACTIVATED RETURN
+        if (this.props.deactivate) return;
         // DEFINE VARIABLES
         const scroll = this.props.scroll;
-        const elementStart = this.parallax.current.getBoundingClientRect().top + scroll - this.props.height;
-        const elementEnd = this.parallax.current.getBoundingClientRect().top + scroll + this.parallax.current.clientHeight;
+        const start = this.parallax.current?.getBoundingClientRect().top + scroll - this.props.height;
+        const end = this.parallax.current?.getBoundingClientRect().top + scroll + this.parallax.current.clientHeight;
         // CALCULATE POSITION
         let transform;
         // IF MODUS IS SIMPLE
         if (this.props.modus === 'Simple') {
-            transform = Math.round((scroll / elementEnd) * 100) / 100;
+            transform = Math.round((scroll / end) * 100) / 100;
         }
         // IF MODUS IS COMPLEX
         else if (this.props.modus === 'Complex') {
-            if (scroll < elementStart) {
+            if (scroll < start) {
                 transform = -1;
-            } else if (scroll >= elementStart && scroll <= elementEnd) {
-                transform = Math.round(((scroll - elementStart - (elementEnd - elementStart) / 2) / ((elementEnd - elementStart) / 2)) * 100) / 100;
-            } else if (scroll >= elementEnd) {
+            } else if (scroll >= start && scroll <= end) {
+                transform = Math.round(((scroll - start - (end - start) / 2) / ((end - start) / 2)) * 100) / 100;
+            } else if (scroll >= end) {
                 transform = 1;
             }
         }
@@ -71,11 +74,14 @@ export default class Parallax extends React.Component<Props, States> {
             height = Math.abs(this.props.factor) * 2;
             transform = this.props.factor * this.state.transform - this.props.factor;
         }
+        // IF PARALLAX IS DEACTIVATED
+        if (this.props.deactivate) {
+            return this.props.children;
+        }
+        // RETURN COMPONENT
         return (
-            <div ref={this.parallax} className='parallaxContainer'>
-                <div className='parallaxContent' style={{ height: `calc(100% + ${height}px)`, transform: `translateY(${transform}px)` }}>
-                    {this.props.children}
-                </div>
+            <div ref={this.parallax} className='parallax'>
+                <div style={{ height: `calc(100% + ${height}px)`, transform: `translateY(${transform}px)` }}>{this.props.children}</div>
             </div>
         );
     }

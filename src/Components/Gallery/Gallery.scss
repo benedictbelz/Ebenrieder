@@ -15,15 +15,15 @@
         max-height: 50vmax;
     }
 
-    .click {
+    .galleryClick {
         pointer-events: none;
         position: absolute;
         z-index: 750;
         height: 100%;
         width: 100%;
 
-        .left,
-        .right {
+        .galleryLeft,
+        .galleryRight {
             pointer-events: all;
             position: absolute;
             height: 100%;
@@ -34,16 +34,16 @@
             }
         }
 
-        .left {
+        .galleryLeft {
             left: 0;
         }
 
-        .right {
+        .galleryRight {
             right: 0;
         }
     }
 
-    .drag {
+    .galleryDrag {
         position: absolute;
         top: 0%;
         left: 50%;
@@ -53,12 +53,12 @@
         width: 100%;
     }
 
-    .bullets {
+    .galleryBullets {
         pointer-events: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: $spacing-bullet * 2;
+        gap: $spacing-bullet * 3.5;
         position: absolute;
         z-index: 250;
         height: 100px;
@@ -117,7 +117,7 @@
         }
     }
 
-    &.fullScreen {
+    &.expansion {
         .galleryA,
         .galleryB {
             padding: 0;
@@ -127,6 +127,12 @@
                 min-width: 100%;
             }
         }
+    }
+
+    &.fullScreen {
+        width: 100%;
+        height: 100%;
+        max-height: 100% !important;
     }
 
     &.isLoaded {

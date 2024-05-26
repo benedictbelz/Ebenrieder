@@ -16,16 +16,14 @@ import './App.scss';
 
 interface States {
     browser: Browser;
-    status: 'Welcome' | 'None';
 }
 
 class App extends React.Component<{}, States> {
-    private timerInit: number = new Date().getTime();
+    private timerMount: number = new Date().getTime();
     private timerScroll: number;
 
     state: States = {
-        browser: this.initBrowser(),
-        status: 'Welcome'
+        browser: this.mountBrowser()
     };
 
     componentDidMount() {
@@ -40,7 +38,7 @@ class App extends React.Component<{}, States> {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
-    initBrowser() {
+    mountBrowser() {
         // DEFINE VARIABLES
         let cookies: Browser['cookies'],
             device: Browser['device'],
@@ -49,6 +47,7 @@ class App extends React.Component<{}, States> {
             media: Browser['media'],
             mouse: Browser['mouse'],
             scroll: Browser['scroll'],
+            status: Browser['status'],
             type: Browser['type'],
             width: Browser['width'];
         // INITIALIZE COOKIES
@@ -96,6 +95,8 @@ class App extends React.Component<{}, States> {
         };
         // INITIALIZE SCROLL
         scroll = 0;
+        // INITIALIZE STATUS
+        status = 'Welcome';
         // INITIALIZE TYPE
         if (navigator.userAgent.indexOf('Chrome') > -1) {
             type = 'Chrome';
@@ -111,7 +112,7 @@ class App extends React.Component<{}, States> {
             type = 'Unknown';
         }
         // RETURN VARIABLES
-        return { cookies, device, height, language, media, mouse, scroll, type, width };
+        return { cookies, device, height, language, media, mouse, scroll, status, type, width };
     }
 
     handleAcceptCookies = () => {
@@ -122,10 +123,6 @@ class App extends React.Component<{}, States> {
     handleDeclineCookies = () => {
         localStorage.setItem('ebenriederCookies', 'Decline');
         this.setState({ browser: { ...this.state.browser, cookies: 'Decline' } });
-    };
-
-    handleChangeStatus = (status: States['status']) => {
-        this.setState({ status });
     };
 
     handleLanguage = (language: Language) => {
@@ -139,9 +136,9 @@ class App extends React.Component<{}, States> {
             y: event.clientY
         };
         // UPDATE CURSOR
-        if (event.target.classList.contains('cursorLeft')) {
+        if (event.target?.classList.contains('cursorLeft')) {
             mouse.cursor = 'Left';
-        } else if (event.target.classList.contains('cursorRight')) {
+        } else if (event.target?.classList.contains('cursorRight')) {
             mouse.cursor = 'Right';
         }
         // UPDATE STATE
@@ -194,12 +191,12 @@ class App extends React.Component<{}, States> {
             direction = 'Up';
         }
         // CHANGE STATUS
-        if (this.state.status === 'Welcome' && direction === 'Down' && scroll > 0 && !this.timerScroll) {
+        if (this.state.browser.status === 'Welcome' && direction === 'Down' && scroll > 0 && !this.timerScroll) {
             this.timerScroll = new Date().getTime();
-            if (this.timerScroll - this.timerInit >= 1000) {
-                this.setState({ status: 'None' });
+            if (this.timerScroll - this.timerMount >= 1000) {
+                setTimeout(() => this.setState({ browser: { ...this.state.browser, status: 'None' } }));
             } else {
-                setTimeout(() => this.setState({ status: 'None' }), 1050 - (this.timerScroll - this.timerInit));
+                setTimeout(() => this.setState({ browser: { ...this.state.browser, status: 'None' } }), 1050 - (this.timerScroll - this.timerMount));
             }
         }
         // UPDATE STATE
@@ -210,11 +207,7 @@ class App extends React.Component<{}, States> {
         return (
             <div
                 id='app'
-                className={[
-                    this.state.browser.device === 'Desktop' && 'desktop',
-                    this.state.browser.device === 'Mobile' && 'mobile',
-                    this.state.status === 'Welcome' && 'welcome'
-                ]
+                className={[this.state.browser.device === 'Desktop' && 'desktop', this.state.browser.device === 'Mobile' && 'mobile']
                     .filter(x => x)
                     .join(' ')}
             >

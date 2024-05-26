@@ -25,9 +25,9 @@ interface States {
 }
 
 export default class Events extends React.Component<Props, States> {
+    private timeout: any = [];
     private month = new Date().getMonth();
     private year = new Date().getFullYear();
-    private timeout: any = [];
 
     state: States = {
         event: null,
@@ -197,7 +197,7 @@ export default class Events extends React.Component<Props, States> {
         // RETURN MODAL
         return (
             <Modal
-                className='event'
+                className='modalEvent'
                 browser={this.props.browser}
                 handleClose={() => this.setState({ event: null })}
                 handleScroll={(scroll: number) => {
@@ -209,15 +209,19 @@ export default class Events extends React.Component<Props, States> {
             >
                 <Gallery
                     browser={this.props.browser}
-                    fullScreen={media === 'Extra Small' || media === 'Small' || media === 'Medium'}
-                    modal={this.state.modal}
+                    modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                    parallax={{
+                        ...this.state.modal,
+                        factor: this.props.browser.media === 'Extra Small' ? 15 : 20,
+                        modus: 'Simple'
+                    }}
                 >
                     {event.gallery.map((item, index) => (
                         <img key={index} src={item} />
                     ))}
                 </Gallery>
                 <div className='modalContent'>
-                    <div className='left'>
+                    <div className='modalLeft'>
                         <div className='modalTitle'>
                             <h1>{title[language]}</h1>
                             <div className='modalSubtitle'>
@@ -238,7 +242,7 @@ export default class Events extends React.Component<Props, States> {
                             <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
                         </div>
                     </div>
-                    <div className='right'>
+                    <div className='modalRight'>
                         {details.length !== 0 && (
                             <div className='modalDetails'>
                                 {details.map((item, index) => (
@@ -309,9 +313,9 @@ export default class Events extends React.Component<Props, States> {
         return (
             <div id='events'>
                 {this.state.event && this.renderModal()}
-                <div id='selection'>
+                <div id='eventsSelection'>
                     <div
-                        id='left'
+                        id='eventsLeft'
                         className={[this.state.month === this.month && this.state.year === this.year && 'disabled'].filter(x => x).join(' ')}
                         onClick={() => this.handleClickPreviousMonth()}
                     >
@@ -326,7 +330,7 @@ export default class Events extends React.Component<Props, States> {
                             </svg>
                         )}
                     </div>
-                    <div id='center'>
+                    <div id='eventsCenter'>
                         <Input
                             handleChange={value => this.handleChangeDate(value as number)}
                             items={Array.from(Array(13).keys(), index => {
@@ -342,7 +346,7 @@ export default class Events extends React.Component<Props, States> {
                         />
                     </div>
                     <div
-                        id='right'
+                        id='eventsRight'
                         className={[this.state.month === this.month && this.state.year === this.year + 1 && 'disabled'].filter(x => x).join(' ')}
                         onClick={() => this.handleClickNextMonth()}
                     >
@@ -358,7 +362,7 @@ export default class Events extends React.Component<Props, States> {
                         )}
                     </div>
                 </div>
-                <div id='filters'>
+                <div id='eventsFilters'>
                     <img src='assets/svg/filter.svg' />
                     {filters.map((item, index) => (
                         <div
@@ -375,7 +379,7 @@ export default class Events extends React.Component<Props, States> {
                     ))}
                 </div>
                 {currentEvents.length !== 0 ? (
-                    <div id='grid'>
+                    <div id='eventsGrid'>
                         {currentEvents.map((event: Event, index: number) => {
                             const title = event.title;
                             const price = event.price;
@@ -416,7 +420,7 @@ export default class Events extends React.Component<Props, States> {
                         })}
                     </div>
                 ) : (
-                    <div id='message'>
+                    <div id='eventsMessage'>
                         {upcompingEvents.length === 0 ? (
                             <p>{`${getLanguage(language, 'eventUnavailable')} ...`}</p>
                         ) : (

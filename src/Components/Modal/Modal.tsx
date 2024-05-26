@@ -30,23 +30,25 @@ export default class Modal extends React.Component<Props, States> {
 
     componentDidMount() {
         this.props.handleScroll(this.modal.current.scrollTop);
-        this.modal.current.addEventListener('resize', this.handleResize);
-        this.modal.current.addEventListener('scroll', this.handleScroll);
+        this.modal.current?.addEventListener('resize', this.handleResize);
+        this.modal.current?.addEventListener('scroll', this.handleScroll);
         setTimeout(() => this.setState({ active: true }), 100);
     }
 
     handleClose = () => {
         this.setState({ active: false });
-        this.modal.current.removeEventListener('resize', this.handleScroll);
-        this.modal.current.removeEventListener('scroll', this.handleScroll);
+        this.modal.current?.removeEventListener('resize', this.handleScroll);
+        this.modal.current?.removeEventListener('scroll', this.handleScroll);
         setTimeout(() => this.props.handleClose(), 500);
     };
 
     handleResize = () => {
+        if (!this.modal.current) return;
         this.props.handleResize(this.modal.current.clientHeight);
     };
 
     handleScroll = () => {
+        if (!this.modal.current) return;
         this.props.handleScroll(this.modal.current.scrollTop);
     };
 
@@ -62,9 +64,9 @@ export default class Modal extends React.Component<Props, States> {
         return createPortal(
             <div className={['modal', this.state.active && 'active'].filter(x => x).join(' ')}>
                 <div ref={this.modal} className={['modalForeground', this.props.className && this.props.className].filter(x => x).join(' ')}>
-                    <div className='button'>
+                    <div className='modalBack'>
                         <img src='assets/svg/arrow_small_left.svg' />
-                        <p className='close underlineLink' onClick={this.handleClose}>
+                        <p className='underlineLink' onClick={this.handleClose}>
                             {getLanguage(language, 'backToOverview')}
                         </p>
                     </div>

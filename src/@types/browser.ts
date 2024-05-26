@@ -12,6 +12,7 @@ export type Browser = {
         cursor?: 'Left' | 'Right';
     };
     scroll: number;
+    status: 'Welcome' | 'None';
     type: 'Chrome' | 'Firefox' | 'Microsoft' | 'Opera' | 'Safari' | 'Unknown';
     width: number;
 };

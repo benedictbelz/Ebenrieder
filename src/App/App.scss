@@ -43,17 +43,6 @@ body {
     width: 100%;
     background-color: $color-white;
 
-    &.welcome {
-        #header {
-            transform: translateY(-100%);
-        }
-
-        #welcome .information {
-            animation: guide 1s ease;
-            opacity: 1;
-        }
-    }
-
     &.hideCursor {
         cursor: none !important;
     }

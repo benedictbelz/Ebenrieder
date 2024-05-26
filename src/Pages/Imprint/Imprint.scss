@@ -7,14 +7,14 @@
         margin-bottom: var(--spacing-vertical-m);
     }
 
-    #content {
+    #imprintContent {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
         gap: var(--spacing-vertical-m);
 
-        #left {
+        #imprintLeft {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-vertical-s);
@@ -39,7 +39,7 @@
             }
         }
 
-        #right {
+        #imprintRight {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-vertical-s);
@@ -56,10 +56,10 @@
     }
 
     @media (max-width: $media-m) {
-        #content {
+        #imprintContent {
             flex-direction: column;
 
-            #left {
+            #imprintLeft {
                 flex-direction: row;
                 flex-wrap: wrap;
                 width: 100%;

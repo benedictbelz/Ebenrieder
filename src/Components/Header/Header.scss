@@ -13,10 +13,15 @@ $paddingLanguage: 10px;
     height: $spacing-header;
     width: 100%;
     mix-blend-mode: difference;
+    transform: translateY(0%);
     transition: transform 1s ease;
     filter: invert(100%);
 
-    #left {
+    &.hide {
+        transform: translateY(-100%);
+    }
+
+    #headerLeft {
         display: flex;
         align-items: center;
         height: 100%;
@@ -29,43 +34,43 @@ $paddingLanguage: 10px;
             width: fit-content;
             margin: 0 auto;
 
-            #logo {
+            #headerLogo {
                 cursor: pointer;
                 pointer-events: all;
                 width: 40px;
                 padding: $paddingLogo;
 
-                #logo_01,
-                #logo_02,
-                #logo_03 {
+                #headerLogo_01,
+                #headerLogo_02,
+                #headerLogo_03 {
                     fill: none;
                     stroke: $color-blue;
                     stroke-width: 25;
                     stroke-dashoffset: 0;
                 }
 
-                #logo_01 {
+                #headerLogo_01 {
                     stroke-dasharray: 518 518;
                 }
 
-                #logo_02 {
+                #headerLogo_02 {
                     stroke-dasharray: 379 379;
                 }
 
-                #logo_03 {
+                #headerLogo_03 {
                     stroke-dasharray: 163 163;
                 }
 
                 @media (hover: hover) {
                     &:hover {
-                        #logo_01 {
+                        #headerLogo_01 {
                             animation-duration: 1.5s;
                             animation-fill-mode: forwards;
-                            animation-name: logo_01;
+                            animation-name: headerLogo_01;
                             animation-iteration-count: 1;
                             animation-timing-function: linear;
 
-                            @keyframes logo_01 {
+                            @keyframes headerLogo_01 {
                                 0% {
                                     stroke-dashoffset: 0;
                                 }
@@ -93,14 +98,14 @@ $paddingLanguage: 10px;
                             }
                         }
 
-                        #logo_02 {
+                        #headerLogo_02 {
                             animation-duration: 1.5s;
                             animation-fill-mode: forwards;
-                            animation-name: logo_02;
+                            animation-name: headerLogo_02;
                             animation-iteration-count: 1;
                             animation-timing-function: linear;
 
-                            @keyframes logo_02 {
+                            @keyframes headerLogo_02 {
                                 0% {
                                     stroke-dashoffset: 0;
                                 }
@@ -128,14 +133,14 @@ $paddingLanguage: 10px;
                             }
                         }
 
-                        #logo_03 {
+                        #headerLogo_03 {
                             animation-duration: 1.5s;
                             animation-fill-mode: forwards;
-                            animation-name: logo_03;
+                            animation-name: headerLogo_03;
                             animation-iteration-count: 1;
                             animation-timing-function: linear;
 
-                            @keyframes logo_03 {
+                            @keyframes headerLogo_03 {
                                 0% {
                                     stroke-dashoffset: 0;
                                 }
@@ -168,7 +173,7 @@ $paddingLanguage: 10px;
         }
     }
 
-    #right {
+    #headerRight {
         display: flex;
         align-items: center;
         height: 100%;
@@ -176,65 +181,65 @@ $paddingLanguage: 10px;
         margin: 0;
         transition: margin 0.5s ease;
 
-        #language {
+        #headerLanguage {
             cursor: pointer;
             pointer-events: all;
             margin: 0 auto;
             padding: $paddingLanguage;
             letter-spacing: 2.5px;
 
-            #english,
-            #german {
+            #headerEnglish,
+            #headerGerman {
                 height: 22.5px;
                 width: 30px;
             }
 
-            #english_01,
-            #english_02,
-            #english_03,
-            #german_01,
-            #german_02,
-            #german_03 {
+            #headerEnglish_01,
+            #headerEnglish_02,
+            #headerEnglish_03,
+            #headerGerman_01,
+            #headerGerman_02,
+            #headerGerman_03 {
                 fill: none;
                 stroke: $color-blue;
                 stroke-width: 1.75;
                 stroke-dashoffset: 0;
             }
 
-            #english_01 {
+            #headerEnglish_01 {
                 stroke-dasharray: 5.61 5.61;
             }
 
-            #english_02 {
+            #headerEnglish_02 {
                 stroke-dasharray: 21.88 21.88;
             }
 
-            #english_03 {
+            #headerEnglish_03 {
                 stroke-dasharray: 33.94 33.94;
             }
 
-            #german_01 {
+            #headerGerman_01 {
                 stroke-dasharray: 33.22 33.22;
             }
 
-            #german_02 {
+            #headerGerman_02 {
                 stroke-dasharray: 5.62 5.62;
             }
 
-            #german_03 {
+            #headerGerman_03 {
                 stroke-dasharray: 21.89 21.89;
             }
 
             @media (hover: hover) {
                 &:hover {
-                    #english_01 {
+                    #headerEnglish_01 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: english_01;
+                        animation-name: headerEnglish_01;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes english_01 {
+                        @keyframes headerEnglish_01 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -256,14 +261,14 @@ $paddingLanguage: 10px;
                         }
                     }
 
-                    #english_02 {
+                    #headerEnglish_02 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: english_02;
+                        animation-name: headerEnglish_02;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes english_02 {
+                        @keyframes headerEnglish_02 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -279,14 +284,14 @@ $paddingLanguage: 10px;
                         }
                     }
 
-                    #english_03 {
+                    #headerEnglish_03 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: english_03;
+                        animation-name: headerEnglish_03;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes english_03 {
+                        @keyframes headerEnglish_03 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -302,14 +307,14 @@ $paddingLanguage: 10px;
                         }
                     }
 
-                    #german_01 {
+                    #headerGerman_01 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: german_01;
+                        animation-name: headerGerman_01;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes german_01 {
+                        @keyframes headerGerman_01 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -325,14 +330,14 @@ $paddingLanguage: 10px;
                         }
                     }
 
-                    #german_02 {
+                    #headerGerman_02 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: german_02;
+                        animation-name: headerGerman_02;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes german_02 {
+                        @keyframes headerGerman_02 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -354,14 +359,14 @@ $paddingLanguage: 10px;
                         }
                     }
 
-                    #german_03 {
+                    #headerGerman_03 {
                         animation-duration: 1s;
                         animation-fill-mode: forwards;
-                        animation-name: german_03;
+                        animation-name: headerGerman_03;
                         animation-iteration-count: 1;
                         animation-timing-function: linear;
 
-                        @keyframes german_03 {
+                        @keyframes headerGerman_03 {
                             0% {
                                 stroke-dashoffset: 0;
                             }
@@ -386,17 +391,17 @@ $paddingLanguage: 10px;
     }
 
     @media (max-width: $media-s) {
-        #left,
-        #right {
+        #headerLeft,
+        #headerRight {
             width: fit-content;
         }
 
-        #left {
+        #headerLeft {
             margin-left: calc(var(--spacing-horizontal) - $paddingLogo);
             padding-left: 4px;
         }
 
-        #right {
+        #headerRight {
             margin-right: calc(var(--spacing-horizontal) - $paddingLanguage);
         }
     }

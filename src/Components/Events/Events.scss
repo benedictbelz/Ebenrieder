@@ -4,15 +4,15 @@
     padding: 0 var(--spacing-horizontal);
     overflow: hidden;
 
-    #selection {
+    #eventsSelection {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 25px;
         margin: var(--spacing-vertical-s) 0;
 
-        #left,
-        #right {
+        #eventsLeft,
+        #eventsRight {
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -47,7 +47,7 @@
         }
 
         @media (hover: hover) {
-            #left:hover {
+            #eventsLeft:hover {
                 line {
                     animation: line 1s linear forwards;
                 }
@@ -57,7 +57,7 @@
                 }
             }
 
-            #right:hover {
+            #eventsRight:hover {
                 line {
                     animation: line 1s linear forwards;
                 }
@@ -132,8 +132,8 @@
         }
 
         @media (max-width: $media-s) {
-            #left,
-            #right {
+            #eventsLeft,
+            #eventsRight {
                 svg {
                     height: 35px;
                     width: 18px;
@@ -176,7 +176,7 @@
             }
         }
 
-        #center {
+        #eventsCenter {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -197,7 +197,7 @@
         }
     }
 
-    #filters {
+    #eventsFilters {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -223,12 +223,12 @@
         }
     }
 
-    #message {
+    #eventsMessage {
         text-align: center;
         line-height: $line-height-l;
     }
 
-    #grid {
+    #eventsGrid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 50px;
@@ -287,7 +287,7 @@
                     object-fit: cover;
                 }
 
-                .parallaxContainer {
+                .parallax {
                     position: absolute;
                 }
             }

@@ -11,6 +11,14 @@
         max-width: 100%;
         overflow: hidden;
 
+        .gallery .galleryBullets {
+            opacity: 1;
+            transform: translateY(0%);
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
         .information {
             position: absolute;
             z-index: 250;
@@ -43,6 +51,18 @@
             object-position: center;
             opacity: 0;
             transition: opacity 1s ease;
+        }
+
+        &.active {
+            .information {
+                animation: information 1s ease;
+                opacity: 1;
+            }
+
+            .gallery .galleryBullets {
+                transform: translateY(100%);
+                opacity: 0;
+            }
         }
     }
 

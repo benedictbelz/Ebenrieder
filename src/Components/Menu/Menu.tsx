@@ -24,12 +24,14 @@ interface States {
 
 export default class Menu extends React.Component<Props, States> {
     private boundary = 50;
+    private menu: React.RefObject<HTMLDivElement>;
     private menuLeft: React.RefObject<HTMLDivElement>;
     private menuContent: React.RefObject<HTMLDivElement>;
     private menuRight: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
+        this.menu = React.createRef();
         this.menuLeft = React.createRef();
         this.menuContent = React.createRef();
         this.menuRight = React.createRef();
@@ -115,9 +117,7 @@ export default class Menu extends React.Component<Props, States> {
         // GET ARTICLES
         const articles = document.querySelectorAll('article');
         // IF NO ARTICLES RETURN
-        if (!articles) {
-            return;
-        }
+        if (!articles) return;
         // GET ITEMS
         const items = Array.from(articles).map(item => {
             return {
@@ -133,9 +133,7 @@ export default class Menu extends React.Component<Props, States> {
 
     handleScroll = () => {
         // IF NO ITEMS RETURN
-        if (this.state.items.length === 0 || !this.menuContent.current) {
-            return;
-        }
+        if (this.state.items.length === 0 || !this.menuContent.current) return;
         // DEFINE VARIABLES
         const items = this.state.items;
         const height = this.props.browser.height;
@@ -160,23 +158,14 @@ export default class Menu extends React.Component<Props, States> {
         // CHANGE MODUS
         if (this.state.appearance === 'Narrow' && scroll <= this.menuContent.current?.clientHeight) {
             modus = 'Top';
-            this.menuContent.current.style.top = 'auto';
-        } else if (this.state.appearance === 'Narrow' && scroll >= bottom) {
-            modus = 'Bottom';
-            this.menuContent.current.style.top = 'auto';
         } else if (this.state.appearance === 'Wide' && scroll <= top) {
             modus = 'Top';
-            this.menuContent.current.style.top = 'auto';
-        } else if (this.state.appearance === 'Wide' && scroll >= bottom) {
+        } else if (scroll >= bottom) {
             modus = 'Bottom';
-            this.menuContent.current.style.top = `${bottom}px`;
-        } else {
-            this.menuContent.current.style.top = 'auto';
         }
         // OVERWRITE MODUS
         if (this.props.behaviour === 'Static' && this.state.appearance === 'Wide') {
             modus = 'Flow';
-            this.menuContent.current.style.top = 'auto';
         }
         // UPDATE STATE
         this.setState({ focus: { ...this.state.focus, item: focus }, modus });
@@ -186,15 +175,13 @@ export default class Menu extends React.Component<Props, States> {
         }
     };
 
-    handleClickItem = async (item: { name: string; element: HTMLElement }) => {
+    handleClick = async (item: { name: string; element: HTMLElement }) => {
         // DEFINE VARIABLES
         const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
         const position = Math.round(item.element.getBoundingClientRect().top) + this.props.browser.scroll - padding;
         const index = this.state.items.findIndex(element => element.name === item.name);
         // IF NO INDEX RETURN
-        if (index < 0) {
-            return;
-        }
+        if (index < 0) return;
         // UPDATE STATE
         this.setState({ position, focus: { ...this.state.focus, item: index } });
         // SCROLL TO POSITION
@@ -203,41 +190,37 @@ export default class Menu extends React.Component<Props, States> {
 
     narrowClickLeft = () => {
         // DEFINE POSITION
-        let position = this.menuContent.current.scrollLeft - 250;
+        let position = this.menuContent.current?.scrollLeft - 250;
         // IF POSITION IS LESS THAN BOUNDARY
         if (position < this.boundary) {
             position = 0;
         }
         // SCROLL TO POSITION
-        this.menuContent.current.scrollTo({ left: position, behavior: 'smooth' });
+        this.menuContent.current?.scrollTo({ left: position, behavior: 'smooth' });
     };
 
     narrowClickRight = () => {
         // DEFINE WIDTH
-        const width = this.menuContent.current.scrollWidth - this.menuContent.current.clientWidth;
+        const width = this.menuContent.current?.scrollWidth - this.menuContent.current?.clientWidth;
         // DEFINE POSITION
-        let position = this.menuContent.current.scrollLeft + 250;
+        let position = this.menuContent.current?.scrollLeft + 250;
         // IF POSITION IS BIGGER THAN BOUNDARY
         if (position > width - this.boundary) {
             position = width;
         }
         // SCROLL TO POSITION
-        this.menuContent.current.scrollTo({ left: position, behavior: 'smooth' });
+        this.menuContent.current?.scrollTo({ left: position, behavior: 'smooth' });
     };
 
     narrowChangeContent = () => {
         // IF APPEARANCE IS NOT NARROW RETURN
-        if (this.state.appearance !== 'Narrow') {
-            return;
-        }
+        if (this.state.appearance !== 'Narrow') return;
         // DEFINE VARIABLES
         const item = document.querySelector('#menu #menuContent .menuName.active');
         const content = document.querySelector('#menu #menuContent');
         const padding = Number(window.getComputedStyle(content).getPropertyValue('padding-left').split('px').shift());
         // IF NO ITEM OR CONTENT OR PADDING RETURN
-        if (!item || !content) {
-            return;
-        }
+        if (!item || !content) return;
         // GET POSITION
         let position = Math.round(item.getBoundingClientRect().left) + content.scrollLeft - padding;
         // IF POSITION IS BIGGER THAN BOUNDARY
@@ -245,7 +228,7 @@ export default class Menu extends React.Component<Props, States> {
             position -= this.boundary;
         }
         // SCROLL TO POSITION WITH BOUNDARY
-        if (position >= 50) {
+        if (position >= this.boundary) {
             content.scrollTo({ left: position, behavior: 'smooth' });
         }
         // SCROLL TO POSITION WITHOUT BOUNDARY
@@ -256,9 +239,7 @@ export default class Menu extends React.Component<Props, States> {
 
     narrowScrollContent = () => {
         // IF NO ELEMENT RETURN
-        if (!this.menuContent.current || !this.menuLeft.current || !this.menuRight.current) {
-            return;
-        }
+        if (!this.menuContent.current || !this.menuLeft.current || !this.menuRight.current) return;
         // GET VARIABLES
         const scroll = this.menuContent.current.scrollLeft;
         const width = this.menuContent.current.scrollWidth - this.menuContent.current.clientWidth;
@@ -302,6 +283,7 @@ export default class Menu extends React.Component<Props, States> {
         // RETURN COMPONENT
         return (
             <div
+                ref={this.menu}
                 id='menu'
                 className={[
                     this.state.appearance === 'Narrow' ? 'narrow' : 'wide',
@@ -324,7 +306,7 @@ export default class Menu extends React.Component<Props, States> {
                                 <span
                                     key={item.name}
                                     className={['menuName', 'underlineMenu', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
-                                    onClick={() => this.handleClickItem(item)}
+                                    onClick={() => this.handleClick(item)}
                                 >
                                     {item.name}
                                 </span>
@@ -343,7 +325,7 @@ export default class Menu extends React.Component<Props, States> {
                             <span
                                 key={item.name}
                                 className={['menuDot', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
-                                onClick={() => this.handleClickItem(item)}
+                                onClick={() => this.handleClick(item)}
                                 onMouseEnter={() => this.setState({ focus: { ...this.state.focus, hover: index } })}
                                 onMouseLeave={() => this.setState({ focus: { ...this.state.focus, hover: null } })}
                             />

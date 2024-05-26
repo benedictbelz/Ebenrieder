@@ -8,40 +8,34 @@ interface Props {
     browser: Browser;
 }
 
-interface States {}
-
-export default class Header extends React.Component<Props, States> {
-    handleScrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
+export default class Header extends React.Component<Props> {
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
         // RETURN COMPONENT
         return (
             <div id='footer'>
-                <div id='information'>
+                <div id='footerInformation'>
                     <a className='underlineLink' href='mailto:hallo@ebenrieder.de'>
                         hallo@ebenrieder.de
                     </a>
                     <a className='underlineLink' href='tel:+491633938055'>
                         +49 163 3938055
                     </a>
-                    <div id='address'>
+                    <div id='footerAddress'>
                         <span>Remnatsried 2</span>
                         <span>87675 Stötten am Auerberg</span>
                         <span>Deutschland</span>
                     </div>
                 </div>
-                <div id='scrollToTop'>
-                    <div onClick={this.handleScrollToTop}>
+                <div id='footerScroll'>
+                    <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         <span className='underlineLink'>{getLanguage(language, 'backToTop')}</span>
                         <img src='assets/svg/arrow_small_top.svg' />
                     </div>
                 </div>
-                <div id='links'>
-                    <span className='copyright'>© Ebenrieder</span>
+                <div id='footerLinks'>
+                    <span id='footerCopyright'>© Ebenrieder</span>
                     <Link to={'/imprint'} className='underlineLink'>
                         {getLanguage(language, 'imprint')}
                     </Link>
@@ -52,7 +46,7 @@ export default class Header extends React.Component<Props, States> {
                         {getLanguage(language, 'conditions')}
                     </Link>
                 </div>
-                <div id='social'>
+                <div id='footerSocial'>
                     <a href='https://www.instagram.com/ebenrieder' target='_blank' rel='noopener noreferrer'>
                         <img src='assets/svg/instagram.svg' />
                         <svg viewBox='0 0 100 100'>

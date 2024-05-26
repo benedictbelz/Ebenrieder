@@ -17,11 +17,11 @@ interface States {
 }
 
 export default class Title extends React.Component<Props, States> {
-    private element: React.RefObject<HTMLDivElement>;
+    private title: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
-        this.element = React.createRef();
+        this.title = React.createRef();
         this.state = {
             position: 0
         };
@@ -34,17 +34,21 @@ export default class Title extends React.Component<Props, States> {
     }
 
     private handleTransform = () => {
+        // GET TITLE
+        const title = this.title.current;
+        // IF NO TITLE RETURN
+        if (!title) return;
         // DEFINE VARIABLES
         const scroll = this.props.browser.scroll;
-        const elementStart = this.element.current.getBoundingClientRect().top + scroll - this.props.browser.height;
-        const elementEnd = this.element.current.getBoundingClientRect().top + scroll + this.element.current.clientHeight;
+        const start = title.getBoundingClientRect().top + scroll - this.props.browser.height;
+        const end = title.getBoundingClientRect().top + scroll + title.clientHeight;
         // CALCULATE POSITION
         let position;
-        if (scroll < elementStart) {
+        if (scroll < start) {
             position = -1;
-        } else if (scroll >= elementStart && scroll <= elementEnd) {
-            position = Math.round(((scroll - elementStart - (elementEnd - elementStart) / 2) / ((elementEnd - elementStart) / 2)) * 100) / 100;
-        } else if (scroll >= elementEnd) {
+        } else if (scroll >= start && scroll <= end) {
+            position = Math.round(((scroll - start - (end - start) / 2) / ((end - start) / 2)) * 100) / 100;
+        } else if (scroll >= end) {
             position = 1;
         }
         // UPDATE STATE
@@ -71,15 +75,15 @@ export default class Title extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div className='title' ref={this.element}>
+            <div className='title' ref={this.title}>
                 <div
-                    className='foregroundImage'
+                    className='titleForeground'
                     style={{ transform: `perspective(250px) translateY(${translateForeground}px) scale(${scaleForeground})` }}
                 >
                     <img src={this.props.foregroundImage} />
                 </div>
                 <div
-                    className='backgroundImage'
+                    className='titleBackground'
                     style={{
                         left: this.props.backgroundX || 0,
                         top: this.props.backgroundY || 0,

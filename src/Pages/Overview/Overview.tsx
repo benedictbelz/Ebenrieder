@@ -23,11 +23,33 @@ class Overview extends React.Component<Props, States> {
         const media = this.props.browser.media;
         // RETURN COMPONENT
         return (
-            <div id='overview' className={[].filter(x => x).join(' ')}>
+            <div id='overview'>
                 <Menu browser={this.props.browser} behaviour={'Dynamic'} />
-                <div id='welcome'>
+                <div id='welcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
                     <Information type='Scroll' />
-                    <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
+                    <Gallery
+                        autoPlay={true}
+                        browser={this.props.browser}
+                        fullScreen={true}
+                        lockControls={this.props.browser.device === 'Mobile'}
+                        modus={'Expansion'}
+                        parallax={{
+                            deactivate:
+                                this.props.browser.device === 'Mobile' &&
+                                (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small'),
+                            factor: 200,
+                            modus: 'Simple',
+                            height: this.props.browser.height,
+                            scroll: this.props.browser.scroll
+                        }}
+                    >
+                        <img src='assets/media/gallery/ort_01.png' />
+                        <img src='assets/media/gallery/ort_02.png' />
+                        <img src='assets/media/gallery/ort_03.png' />
+                        <img src='assets/media/gallery/ort_04.png' />
+                        <img src='assets/media/gallery/ort_05.png' />
+                    </Gallery>
+                    {/* <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
                         <video
                             src='assets/media/gallery/montage.mov'
                             autoPlay
@@ -36,7 +58,7 @@ class Overview extends React.Component<Props, States> {
                             playsInline
                             onLoadedData={event => (event.currentTarget.style.opacity = '1')}
                         />
-                    </Parallax>
+                    </Parallax> */}
                 </div>
                 <div id='content'>
                     <article data-name={getLanguage(language, 'titlePlace')}>
@@ -58,7 +80,10 @@ class Overview extends React.Component<Props, States> {
                                 dolore magna aliquyam erat, sed diam voluptua.
                             </p>
                         </div>
-                        <Gallery browser={this.props.browser} fullScreen={media === 'Extra Small' || media === 'Small' || media === 'Medium'}>
+                        <Gallery
+                            browser={this.props.browser}
+                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                        >
                             <img src='assets/media/gallery/ort_01.png' />
                             <img src='assets/media/gallery/ort_02.png' />
                             <img src='assets/media/gallery/ort_03.png' />
@@ -91,7 +116,7 @@ class Overview extends React.Component<Props, States> {
                     <article data-name={getLanguage(language, 'titleUsage')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={media === 'Extra Small' || media === 'Small' ? 10 : 15}
+                            backgroundX={0}
                             backgroundY={0}
                             backgroundImage={'assets/media/watercolor/watercolor_03.jpg'}
                             foregroundImage={`assets/svg/usage_${language}.svg`}
@@ -108,7 +133,10 @@ class Overview extends React.Component<Props, States> {
                                 dolore magna aliquyam erat, sed diam voluptua.
                             </p>
                         </div>
-                        <Gallery browser={this.props.browser} fullScreen={media === 'Extra Small' || media === 'Small' || media === 'Medium'}>
+                        <Gallery
+                            browser={this.props.browser}
+                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                        >
                             <img src='assets/media/gallery/ort_01.png' />
                             <img src='assets/media/gallery/ort_02.png' />
                             <img src='assets/media/gallery/ort_03.png' />

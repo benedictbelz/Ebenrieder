@@ -28,6 +28,7 @@ export type Event = {
         };
     }[];
     gallery: string[];
+    link: string;
     previewImage: string;
     subtitle?: {
         de: string;

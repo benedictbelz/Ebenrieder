@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { Browser } from '../../@types/browser';
 import './Error.scss';
 
-interface Props {}
+interface Props {
+    browser: Browser;
+}
 
-interface States {}
-
-export default class Error extends React.Component<Props, States> {
+export default class Error extends React.Component<Props> {
     render() {
-        return <div id='error'></div>;
+        return <div id='error' className='page'></div>;
     }
 }

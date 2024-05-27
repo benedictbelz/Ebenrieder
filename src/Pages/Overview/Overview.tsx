@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Logo from './Logo/Logo';
 import Events from '../../Components/Events/Events';
+import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
 import Information from '../../Components/Information/Information';
 import Menu from '../../Components/Menu/Menu';
@@ -22,16 +23,16 @@ class Overview extends React.Component<Props> {
         const media = this.props.browser.media;
         // RETURN COMPONENT
         return (
-            <div id='overview'>
+            <div id='overview' className='page'>
                 <Menu browser={this.props.browser} behaviour={'Dynamic'} />
-                <div id='welcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
+                <div id='overviewWelcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
                     <Information type='Scroll' />
                     <Logo />
                     <Gallery
                         autoPlay={true}
                         browser={this.props.browser}
                         fullScreen={true}
-                        lockControls={this.props.browser.device === 'Mobile'}
+                        lockControls={true}
                         modus={'Expansion'}
                         parallax={{
                             deactivate:
@@ -60,7 +61,7 @@ class Overview extends React.Component<Props> {
                         />
                     </Parallax> */}
                 </div>
-                <div id='content'>
+                <div id='overviewContent'>
                     <article data-name={getLanguage(language, 'titlePlace')}>
                         <Title
                             browser={this.props.browser}
@@ -145,6 +146,7 @@ class Overview extends React.Component<Props> {
                         </Gallery>
                     </article>
                 </div>
+                <Footer browser={this.props.browser} />
             </div>
         );
     }

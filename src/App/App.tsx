@@ -69,6 +69,7 @@ class App extends React.Component<{}, States> {
         width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         // INITIALIZE LANGUAGE
         language = navigator.language.split('-').shift() === 'de' ? 'de' : 'en';
+        document.documentElement.lang = navigator.language;
         // INITIALIZE MEDIA
         const xs = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
         const s = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
@@ -220,13 +221,12 @@ class App extends React.Component<{}, States> {
                     <Wrapper>
                         <Routes>
                             <Route path='/' element={<Overview browser={this.state.browser} />} />
-                            <Route path='/conditions' element={<Conditions />} />
+                            <Route path='/conditions' element={<Conditions browser={this.state.browser} />} />
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
-                            <Route path='/privacy' element={<Privacy />} />
+                            <Route path='/privacy' element={<Privacy browser={this.state.browser} />} />
                             <Route path='*' element={<Overview browser={this.state.browser} />} />
                         </Routes>
                     </Wrapper>
-                    <Footer browser={this.state.browser} />
                 </Router>
             </div>
         );

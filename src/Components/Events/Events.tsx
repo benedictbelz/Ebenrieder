@@ -1,15 +1,17 @@
 import * as React from 'react';
+import queryString from 'query-string';
 import Gallery from '../Gallery/Gallery';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
 import Parallax from '../Parallax/Parallax';
+import { PropsWithRouter, withRouter } from '../../@functions/router';
 import { getEvents } from '../../@presets/event';
 import { getFilter, getLocal, getLanguage } from '../../@presets/language';
 import { Event, Filter, availableFilters } from '../../@types/event';
 import { Browser } from '../../@types/browser';
 import './Events.scss';
 
-interface Props {
+interface Props extends PropsWithRouter {
     browser: Browser;
 }
 
@@ -24,21 +26,38 @@ interface States {
     year: number;
 }
 
-export default class Events extends React.Component<Props, States> {
+class Events extends React.Component<Props, States> {
+    private events: React.RefObject<HTMLDivElement>;
     private timeout: any = [];
     private month = new Date().getMonth();
     private year = new Date().getFullYear();
 
-    state: States = {
-        event: null,
-        filters: [],
-        modal: {
-            height: 0,
-            scroll: 0
-        },
-        month: this.month,
-        year: this.year
-    };
+    constructor(props: Props) {
+        super(props);
+        this.events = React.createRef();
+        this.state = {
+            event: null,
+            filters: [],
+            modal: {
+                height: 0,
+                scroll: 0
+            },
+            month: this.month,
+            year: this.year
+        };
+    }
+
+    componentDidMount() {
+        // CHECK QUERY PARAMS
+        let params = queryString.parse(this.props.router.location.search);
+        let event = params.event ? getEvents().find(item => item.link === params.event) : null;
+        // IF EVENT
+        if (event && this.events.current) {
+            const scroll = Math.round(this.events.current.getBoundingClientRect().top) + this.props.browser.scroll;
+            setTimeout(() => (document.documentElement.scrollTop = scroll), 25);
+            setTimeout(() => this.setState({ event }), 50);
+        }
+    }
 
     componentDidUpdate(prevProps: Props, prevState: States) {
         if (this.state.month !== prevState.month || this.state.year !== prevState.year || this.props.browser.media !== prevProps.browser.media) {
@@ -311,7 +330,7 @@ export default class Events extends React.Component<Props, States> {
             }));
         // RETURN COMPONENT
         return (
-            <div id='events'>
+            <div ref={this.events} id='events'>
                 {this.state.event && this.renderModal()}
                 <div id='eventsSelection'>
                     <div
@@ -447,3 +466,5 @@ export default class Events extends React.Component<Props, States> {
         );
     }
 }
+
+export default withRouter(Events);

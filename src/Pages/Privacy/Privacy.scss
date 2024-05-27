@@ -1,1 +1,66 @@
 @import '../../App/Variables.scss';
+
+#privacy {
+    #privacyContent {
+        padding: calc($spacing-header + 50px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
+
+        h1 {
+            margin-bottom: var(--spacing-vertical-m);
+            overflow-wrap: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        #privacyWrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-vertical-s);
+
+            article {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 25px;
+
+                h2 {
+                    margin-bottom: 5px;
+                }
+
+                h4 {
+                    line-height: $line-height-m;
+                }
+
+                p {
+                    text-align: justify;
+                    line-height: $line-height-m;
+
+                    &.column {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        flex-direction: column;
+                    }
+                }
+
+                ul {
+                    list-style: disc;
+                    list-style-position: outside;
+                    line-height: $line-height-m;
+                    letter-spacing: 0.5px;
+                    margin-left: 50px;
+
+                    li:not(:first-child) {
+                        margin-top: 25px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: $media-s) {
+            padding: calc($spacing-header + 25px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
+        }
+    }
+}

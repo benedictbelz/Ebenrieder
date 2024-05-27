@@ -1,81 +1,87 @@
 @import '../../App/Variables.scss';
 
 #imprint {
-    padding: calc($spacing-header + 50px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
-
-    h1 {
-        margin-bottom: var(--spacing-vertical-m);
-    }
-
     #imprintContent {
         display: flex;
-        flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: var(--spacing-vertical-m);
+        flex-direction: column;
+        padding: calc($spacing-header + 50px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
 
-        #imprintLeft {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-vertical-s);
-            white-space: nowrap;
-
-            section {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                width: fit-content;
-
-                h4 {
-                    display: block;
-                    margin-bottom: 2.5px;
-                }
-
-                &.grid {
-                    display: grid;
-                    grid-template-columns: auto 1fr;
-                    gap: 5px 25px;
-                }
-            }
+        h1 {
+            margin-bottom: var(--spacing-vertical-m);
         }
 
-        #imprintRight {
+        #imprintWrapper {
             display: flex;
-            flex-direction: column;
-            gap: var(--spacing-vertical-s);
-
-            h2 {
-                margin-bottom: 30px;
-            }
-
-            p {
-                text-align: justify;
-                line-height: $line-height-m;
-            }
-        }
-    }
-
-    @media (max-width: $media-m) {
-        #imprintContent {
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: var(--spacing-vertical-m);
 
             #imprintLeft {
-                flex-direction: row;
-                flex-wrap: wrap;
-                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-vertical-s);
+                white-space: nowrap;
 
                 section {
-                    flex-basis: 45%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    width: fit-content;
 
-                    &.contact {
-                        flex-basis: 100%;
+                    h4 {
+                        display: block;
+                        margin-bottom: 2.5px;
+                    }
+
+                    &.grid {
+                        display: grid;
+                        grid-template-columns: auto 1fr;
+                        gap: 5px 25px;
+                    }
+                }
+            }
+
+            #imprintRight {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-vertical-s);
+
+                h2 {
+                    margin-bottom: 30px;
+                }
+
+                p {
+                    text-align: justify;
+                    line-height: $line-height-m;
+                }
+            }
+        }
+
+        @media (max-width: $media-m) {
+            #imprintWrapper {
+                flex-direction: column;
+
+                #imprintLeft {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    width: 100%;
+
+                    section {
+                        flex-basis: 45%;
+
+                        &.contact {
+                            flex-basis: 100%;
+                        }
                     }
                 }
             }
         }
-    }
 
-    @media (max-width: $media-s) {
-        padding: calc($spacing-header + 25px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
+        @media (max-width: $media-s) {
+            padding: calc($spacing-header + 25px) var(--spacing-horizontal) 0 var(--spacing-horizontal);
+        }
     }
 }

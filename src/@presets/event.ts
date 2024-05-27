@@ -87,6 +87,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/gin_gin_01.jpg', 'assets/media/events/gin_gin_02.jpg', 'assets/media/events/gin_gin_03.jpg'],
+            link: 'gin_gin_10_05_2024',
             previewImage: 'assets/media/events/gin_gin_01.jpg',
             subtitle: [
                 {
@@ -210,6 +211,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/chefs_table_09.jpg',
                 'assets/media/events/chefs_table_10.jpg'
             ],
+            link: 'chefs_table_15_05_2024',
             previewImage: 'assets/media/events/chefs_table_01.jpg',
             subtitle: [
                 {
@@ -332,6 +334,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/whiskey_dinner_03.jpg',
                 'assets/media/events/whiskey_dinner_04.jpg'
             ],
+            link: 'whiskey_tasting_20_05_2024',
             previewImage: 'assets/media/events/whiskey_dinner_01.jpg',
             subtitle: [
                 {
@@ -447,6 +450,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/truffel_soiree_06.jpg',
                 'assets/media/events/truffel_soiree_07.jpg'
             ],
+            link: 'truffel_soiree_28_05_2024',
             previewImage: 'assets/media/events/truffel_soiree_01.jpg',
             subtitle: [
                 {
@@ -536,6 +540,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
+            link: 'yoga_with_karina_wagner_30_05_2024',
             previewImage: 'assets/media/events/yoga_01.jpg',
             title: {
                 de: 'Yoga mit Karina Wagner',
@@ -653,6 +658,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/chefs_table_09.jpg',
                 'assets/media/events/chefs_table_10.jpg'
             ],
+            link: 'chefs_table_06_06_2024',
             previewImage: 'assets/media/events/chefs_table_01.jpg',
             subtitle: [
                 {
@@ -768,6 +774,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/truffel_soiree_06.jpg',
                 'assets/media/events/truffel_soiree_07.jpg'
             ],
+            link: 'truffel_soiree_12_06_2024',
             previewImage: 'assets/media/events/truffel_soiree_01.jpg',
             subtitle: [
                 {
@@ -857,6 +864,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
+            link: 'yoga_with_karina_wagner_16_06_2024',
             previewImage: 'assets/media/events/yoga_01.jpg',
             title: {
                 de: 'Yoga mit Karina Wagner',
@@ -940,6 +948,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
+            link: 'yoga_with_karina_wagner_10_07_2024',
             previewImage: 'assets/media/events/yoga_01.jpg',
             title: {
                 de: 'Yoga mit Karina Wagner',
@@ -1023,6 +1032,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
+            link: 'yoga_with_karina_wagner_10_09_2024',
             previewImage: 'assets/media/events/yoga_01.jpg',
             title: {
                 de: 'Yoga mit Karina Wagner',
@@ -1106,6 +1116,7 @@ export function getEvents(): Event[] {
                 }
             ],
             gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
+            link: 'yoga_with_karina_wagner_10_04_2024',
             previewImage: 'assets/media/events/yoga_01.jpg',
             title: {
                 de: 'Yoga mit Karina Wagner',
@@ -1211,6 +1222,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/truffel_soiree_06.jpg',
                 'assets/media/events/truffel_soiree_07.jpg'
             ],
+            link: 'truffel_soiree_12_11_2024',
             previewImage: 'assets/media/events/truffel_soiree_01.jpg',
             subtitle: [
                 {

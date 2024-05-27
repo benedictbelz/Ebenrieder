@@ -120,7 +120,7 @@ export default class Gallery extends React.Component<Props, States> {
             this.galleryDrag.current?.removeEventListener('touchmove', this.handleDragMove);
             this.galleryDrag.current?.removeEventListener('touchend', this.handleDragEnd);
         }
-    }
+    };
 
     private getSource = (position: number) => {
         return (this.props.children as any[])[this.getPosition(position)].props.src;
@@ -131,6 +131,8 @@ export default class Gallery extends React.Component<Props, States> {
     };
 
     private getTranslate = (status: States['status'], direction: 'Previous' | 'Current' | 'Next', updateClick?: boolean) => {
+        // IF NO GALLERY RETURN
+        if (!this.galleryA.current || !this.galleryB.current) return { number: 0, string: '' };
         // GET ELEMENTS
         const gallery = status === 'A' ? this.galleryA.current : this.galleryB.current;
         const images = gallery.children;
@@ -195,7 +197,7 @@ export default class Gallery extends React.Component<Props, States> {
         if (!gallery) return;
         // TRANSFORM GALLERY
         gallery.style.transform = this.getTranslate(this.state.status, 'Current', true).string;
-    }
+    };
 
     private handleChangeImage = (direction: 'Previous' | 'Next') => {
         // RETURN WHEN TRANSITION IS ACTIVE
@@ -257,12 +259,7 @@ export default class Gallery extends React.Component<Props, States> {
 
     private handleDragStart = (event: any) => {
         // IF TRANSITION RETURN
-        if (
-            this.state.drag ||
-            this.state.transition ||
-            this.props.browser.mouse.cursor === 'Left' ||
-            this.props.browser.mouse.cursor === 'Right'
-        ) {
+        if (this.state.drag || this.state.transition || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
             return;
         }
         // GET POSITION
@@ -275,7 +272,7 @@ export default class Gallery extends React.Component<Props, States> {
             },
             transition: true
         });
-    }
+    };
 
     private handleDragMove = (event: any) => {
         // PREVENT DEFAULT
@@ -283,12 +280,7 @@ export default class Gallery extends React.Component<Props, States> {
             event.preventDefault();
         }
         // IF FALSE RETURN
-        if (
-            !this.state.drag ||
-            !this.state.transition ||
-            this.props.browser.mouse.cursor === 'Left' ||
-            this.props.browser.mouse.cursor === 'Right'
-        ) {
+        if (!this.state.drag || !this.state.transition || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
             return;
         }
         // DEFINE VARIABLES
@@ -301,16 +293,11 @@ export default class Gallery extends React.Component<Props, States> {
         gallery.style.transform = `translateX(${-this.getTranslate(this.state.status, 'Current', false).number + end}px)`;
         // UPDATE STATE
         this.setState({ drag: { ...this.state.drag, end } });
-    }
+    };
 
     private handleDragEnd = (event: any) => {
         // IF FALSE RETURN
-        if (
-            !this.state.drag ||
-            !this.state.transition ||
-            this.props.browser.mouse.cursor === 'Left' ||
-            this.props.browser.mouse.cursor === 'Right'
-        ) {
+        if (!this.state.drag || !this.state.transition || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
             return;
         }
         // DEFINE VARIABLES
@@ -372,7 +359,7 @@ export default class Gallery extends React.Component<Props, States> {
                 this.setState({ positionB: position, status: statusInactive });
             }
         }, 500);
-    }
+    };
 
     private waitForElement = (element: HTMLElement, srcUpdated: string) => {
         // IF NO ELEMENT RETURN

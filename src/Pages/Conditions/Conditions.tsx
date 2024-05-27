@@ -1,12 +1,19 @@
 import * as React from 'react';
+import Footer from '../../Components/Footer/Footer';
+import { Browser } from '../../@types/browser';
 import './Conditions.scss';
 
-interface Props {}
+interface Props {
+    browser: Browser;
+}
 
-interface States {}
-
-export default class Conditions extends React.Component<Props, States> {
+export default class Conditions extends React.Component<Props> {
     render() {
-        return <div id='conditions'>Hello Conditions</div>;
+        return (
+            <div id='conditions' className='page'>
+                Hello Conditions
+                <Footer browser={this.props.browser} />
+            </div>
+        );
     }
 }

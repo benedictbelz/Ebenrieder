@@ -1,0 +1,703 @@
+@import '../../../App/Variables.scss';
+
+$pictureStart: 0s;
+$pictureDuration: 1.5s;
+
+$textStart_01: 0s;
+$textDuration_01_01: 0.3s;
+$textDuration_01_02: 0.2s;
+
+$textStart_02: 0.1s;
+$textDuration_02_01: 0.2s;
+$textDuration_02_02: 0.2s;
+$textDuration_02_03: 0.2s;
+
+$textStart_03: 0.2s;
+$textDuration_03_01: 0.3s;
+$textDuration_03_02: 0.2s;
+
+$textStart_04: 0.3s;
+$textDuration_04_01: 0.2s;
+$textDuration_04_02: 0.2s;
+$textDuration_04_03: 0.2s;
+
+$textStart_05: 0.4s;
+$textDuration_05_01: 0.2s;
+$textDuration_05_02: 0.2s;
+$textDuration_05_03: 0.2s;
+
+$textStart_06: 0.6s;
+$textDuration_06_01: 0.3s;
+$textDuration_06_02: 0.1s;
+
+$textStart_07: 0.6s;
+$textDuration_07_01: 0.3s;
+$textDuration_07_02: 0.2s;
+
+$textStart_08: 0.7s;
+$textDuration_08_01: 0.3s;
+$textDuration_08_02: 0.2s;
+
+$textStart_09: 0.8s;
+$textDuration_09_01: 0.2s;
+$textDuration_09_02: 0.2s;
+$textDuration_09_03: 0.2s;
+
+$textStart_10: 0.9s;
+$textDuration_10_01: 0.2s;
+$textDuration_10_02: 0.2s;
+$textDuration_10_03: 0.2s;
+
+#logo {
+    pointer-events: none;
+    position: absolute;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #logoContainer {
+        position: relative;
+        height: 200px;
+        width: 200px;
+
+        #logoPicture {
+            position: absolute;
+            top: -70%;
+            left: -30%;
+            height: 100%;
+
+            svg {
+                height: 100%;
+    
+                #logoPicture_01,
+                #logoPicture_02,
+                #logoPicture_03 {
+                    fill: none;
+                    stroke: $color-blue;
+                    stroke-width: 25;
+                }
+    
+                #logoPicture_01 {
+                    stroke-dasharray: 518 518;
+                    stroke-dashoffset: 518;
+                    animation-duration: $pictureDuration;
+                    animation-fill-mode: forwards;
+                    animation-name: logoPicture_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: $pictureStart;
+        
+                    @keyframes logoPicture_01 {
+                        0% {
+                            stroke-dashoffset: 518;
+                        }
+                        40% {
+                            stroke-dashoffset: 0;
+                        }
+                        80% {
+                            stroke-dashoffset: 0;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoPicture_02 {
+                    stroke-dasharray: 379 379;
+                    stroke-dashoffset: 379;
+                    animation-duration: $pictureDuration;
+                    animation-fill-mode: forwards;
+                    animation-name: logoPicture_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: $pictureStart;
+        
+                    @keyframes logoPicture_02 {
+                        0% {
+                            stroke-dashoffset: 379;
+                        }
+                        40% {
+                            stroke-dashoffset: 379;
+                        }
+                        80% {
+                            stroke-dashoffset: 0;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoPicture_03 {
+                    stroke-dasharray: 163 163;
+                    stroke-dashoffset: 163;
+                    animation-duration: $pictureDuration;
+                    animation-fill-mode: forwards;
+                    animation-name: logoPicture_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: $pictureStart;
+        
+                    @keyframes logoPicture_03 {
+                        0% {
+                            stroke-dashoffset: 163;
+                        }
+                        40% {
+                            stroke-dashoffset: 163;
+                        }
+                        80% {
+                            stroke-dashoffset: 163;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+            }
+        }
+        
+        #logoText {
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            svg {
+                width: 100%;
+    
+                #logoText_01_01,
+                #logoText_01_02,
+                #logoText_02_01,
+                #logoText_02_02,
+                #logoText_02_03,
+                #logoText_03_01,
+                #logoText_03_02,
+                #logoText_04_01,
+                #logoText_04_02,
+                #logoText_04_03,
+                #logoText_05_01,
+                #logoText_05_02,
+                #logoText_05_03,
+                #logoText_06_01,
+                #logoText_06_02,
+                #logoText_07_01,
+                #logoText_07_02,
+                #logoText_08_01,
+                #logoText_08_02,
+                #logoText_09_01,
+                #logoText_09_02,
+                #logoText_09_03,
+                #logoText_10_01,
+                #logoText_10_02,
+                #logoText_10_03 {
+                    fill: none;
+                    stroke: $color-blue;
+                    stroke-width: 100;
+                }
+    
+                #logoText_01_01 {
+                    stroke-dasharray: 502.79 502.79;
+                    stroke-dashoffset: 502.79;
+                    animation-duration: $textDuration_01_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_01_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_01);
+        
+                    @keyframes logoText_01_01 {
+                        0% {
+                            stroke-dashoffset: 502.79;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_01_02 {
+                    stroke-dasharray: 150.59 150.59;
+                    stroke-dashoffset: 150.59;
+                    animation-duration: $textDuration_01_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_01_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_01 + $textDuration_01_01);
+        
+                    @keyframes logoText_01_02 {
+                        0% {
+                            stroke-dashoffset: -150.59;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_02_01 {
+                    stroke-dasharray: 292.39 292.39;
+                    stroke-dashoffset: 292.39;
+                    animation-duration: $textDuration_02_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_02_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_02);
+        
+                    @keyframes logoText_02_01 {
+                        0% {
+                            stroke-dashoffset: 292.39;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_02_02 {
+                    stroke-dasharray: 330.26 330.26;
+                    stroke-dashoffset: 330.26;
+                    animation-duration: $textDuration_02_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_02_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_02 + $textDuration_02_01);
+        
+                    @keyframes logoText_02_02 {
+                        0% {
+                            stroke-dashoffset: 330.26;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_02_03 {
+                    stroke-dasharray: 245.69 245.69;
+                    stroke-dashoffset: 245.69;
+                    animation-duration: $textDuration_02_03;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_02_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_02 + $textDuration_02_01 + $textDuration_02_02);
+        
+                    @keyframes logoText_02_03 {
+                        0% {
+                            stroke-dashoffset: 245.69;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_03_01 {
+                    stroke-dasharray: 429.06 429.06;
+                    stroke-dashoffset: 429.06;
+                    animation-duration: $textDuration_03_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_03_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_03);
+        
+                    @keyframes logoText_03_01 {
+                        0% {
+                            stroke-dashoffset: 429.06;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_03_02 {
+                    stroke-dasharray: 96.74 96.74;
+                    stroke-dashoffset: 96.74;
+                    animation-duration: $textDuration_03_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_03_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_03 + $textDuration_03_01);
+        
+                    @keyframes logoText_03_02 {
+                        0% {
+                            stroke-dashoffset: -96.74;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_04_01 {
+                    stroke-dasharray: 266.33 266.33;
+                    stroke-dashoffset: 266.33;
+                    animation-duration: $textDuration_04_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_04_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_04);
+        
+                    @keyframes logoText_04_01 {
+                        0% {
+                            stroke-dashoffset: 266.33;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_04_02 {
+                    stroke-dasharray: 274.97 274.97;
+                    stroke-dashoffset: 274.97;
+                    animation-duration: $textDuration_04_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_04_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_04 + $textDuration_04_01);
+        
+                    @keyframes logoText_04_02 {
+                        0% {
+                            stroke-dashoffset: 274.97;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_04_03 {
+                    stroke-dasharray: 280.10 280.10;
+                    stroke-dashoffset: 280.10;
+                    animation-duration: $textDuration_04_03;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_04_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_04 + $textDuration_04_01 + $textDuration_04_02);
+        
+                    @keyframes logoText_04_03 {
+                        0% {
+                            stroke-dashoffset: 280.10;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_05_01 {
+                    stroke-dasharray: 204.14 204.14;
+                    stroke-dashoffset: 204.14;
+                    animation-duration: $textDuration_05_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_05_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_05);
+        
+                    @keyframes logoText_05_01 {
+                        0% {
+                            stroke-dashoffset: 204.14;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_05_02 {
+                    stroke-dasharray: 232.71 232.71;
+                    stroke-dashoffset: 232.71;
+                    animation-duration: $textDuration_05_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_05_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_05 + $textDuration_05_01);
+        
+                    @keyframes logoText_05_02 {
+                        0% {
+                            stroke-dashoffset: 232.71;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_05_03 {
+                    stroke-dasharray: 190.62 190.62;
+                    stroke-dashoffset: 190.62;
+                    animation-duration: $textDuration_05_03;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_05_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_05 + $textDuration_05_01 + $textDuration_05_02);
+        
+                    @keyframes logoText_05_03 {
+                        0% {
+                            stroke-dashoffset: 190.62;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_06_01 {
+                    stroke-dasharray: 261.45 261.45;
+                    stroke-dashoffset: 261.45;
+                    animation-duration: $textDuration_06_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_06_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_06);
+        
+                    @keyframes logoText_06_01 {
+                        0% {
+                            stroke-dashoffset: 261.45;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_06_02 {
+                    stroke-dasharray: 39.40 39.40;
+                    stroke-dashoffset: 39.40;
+                    animation-duration: $textDuration_06_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_06_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_06 + $textDuration_06_01);
+        
+                    @keyframes logoText_06_02 {
+                        0% {
+                            stroke-dashoffset: 39.40;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_07_01 {
+                    stroke-dasharray: 523.05 523.05;
+                    stroke-dashoffset: 523.05;
+                    animation-duration: $textDuration_07_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_07_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_07);
+        
+                    @keyframes logoText_07_01 {
+                        0% {
+                            stroke-dashoffset: 523.05;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_07_02 {
+                    stroke-dasharray: 119.37 119.37;
+                    stroke-dashoffset: 119.37;
+                    animation-duration: $textDuration_07_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_07_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_07 + $textDuration_07_01);
+        
+                    @keyframes logoText_07_02 {
+                        0% {
+                            stroke-dashoffset: -119.37;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_08_01 {
+                    stroke-dasharray: 389.57 389.57;
+                    stroke-dashoffset: 389.57;
+                    animation-duration: $textDuration_08_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_08_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_08);
+        
+                    @keyframes logoText_08_01 {
+                        0% {
+                            stroke-dashoffset: 389.57;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_08_02 {
+                    stroke-dasharray: 324.57 324.57;
+                    stroke-dashoffset: 324.57;
+                    animation-duration: $textDuration_08_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_08_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_08 + $textDuration_08_01);
+        
+                    @keyframes logoText_08_02 {
+                        0% {
+                            stroke-dashoffset: 324.57;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_09_01 {
+                    stroke-dasharray: 363.39 363.39;
+                    stroke-dashoffset: 363.39;
+                    animation-duration: $textDuration_09_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_09_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_09);
+        
+                    @keyframes logoText_09_01 {
+                        0% {
+                            stroke-dashoffset: 363.39;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_09_02 {
+                    stroke-dasharray: 136.36 136.36;
+                    stroke-dashoffset: 136.36;
+                    animation-duration: $textDuration_09_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_09_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_09 + $textDuration_09_01);
+        
+                    @keyframes logoText_09_02 {
+                        0% {
+                            stroke-dashoffset: 136.36;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_09_03 {
+                    stroke-dasharray: 190.82 190.82;
+                    stroke-dashoffset: 190.82;
+                    animation-duration: $textDuration_09_03;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_09_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_09 + $textDuration_09_01 + $textDuration_09_02);
+        
+                    @keyframes logoText_09_03 {
+                        0% {
+                            stroke-dashoffset: 190.82;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_10_01 {
+                    stroke-dasharray: 262.30 262.30;
+                    stroke-dashoffset: 262.30;
+                    animation-duration: $textDuration_10_01;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_10_01;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_10);
+        
+                    @keyframes logoText_10_01 {
+                        0% {
+                            stroke-dashoffset: 262.30;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_10_02 {
+                    stroke-dasharray: 389.06 389.06;
+                    stroke-dashoffset: 389.06;
+                    animation-duration: $textDuration_10_02;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_10_02;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_10 + $textDuration_10_01);
+        
+                    @keyframes logoText_10_02 {
+                        0% {
+                            stroke-dashoffset: 389.06;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+    
+                #logoText_10_03 {
+                    stroke-dasharray: 318.71 318.71;
+                    stroke-dashoffset: 318.71;
+                    animation-duration: $textDuration_10_03;
+                    animation-fill-mode: forwards;
+                    animation-name: logoText_10_03;
+                    animation-iteration-count: 1;
+                    animation-timing-function: linear;
+                    animation-delay: calc($textStart_10 + $textDuration_10_01 + $textDuration_10_02);
+        
+                    @keyframes logoText_10_03 {
+                        0% {
+                            stroke-dashoffset: 318.71;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

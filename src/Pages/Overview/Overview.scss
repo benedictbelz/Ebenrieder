@@ -25,9 +25,9 @@
             left: 50%;
             bottom: 50px;
             transform: translate(-50%, 0%);
-            mix-blend-mode: difference;
             opacity: 0;
             transition: opacity 1s ease;
+            mix-blend-mode: difference;
             filter: invert(100%);
 
             @keyframes information {
@@ -42,6 +42,13 @@
             }
         }
 
+        #logo {
+            opacity: 0;
+            transition: opacity 1s ease;
+            mix-blend-mode: difference;
+            filter: invert(100%);
+        }
+
         video {
             position: absolute;
             display: block;
@@ -54,6 +61,10 @@
         }
 
         &.active {
+            #logo {
+                opacity: 1;
+            }
+
             .information {
                 animation: information 1s ease;
                 opacity: 1;

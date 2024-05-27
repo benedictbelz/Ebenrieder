@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Logo from './Logo/Logo';
 import Events from '../../Components/Events/Events';
 import Gallery from '../../Components/Gallery/Gallery';
 import Information from '../../Components/Information/Information';
@@ -14,9 +15,7 @@ interface Props extends PropsWithRouter {
     browser: Browser;
 }
 
-interface States {}
-
-class Overview extends React.Component<Props, States> {
+class Overview extends React.Component<Props> {
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
@@ -27,6 +26,7 @@ class Overview extends React.Component<Props, States> {
                 <Menu browser={this.props.browser} behaviour={'Dynamic'} />
                 <div id='welcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
                     <Information type='Scroll' />
+                    <Logo />
                     <Gallery
                         autoPlay={true}
                         browser={this.props.browser}

@@ -228,6 +228,7 @@ class Events extends React.Component<Props, States> {
             >
                 <Gallery
                     browser={this.props.browser}
+                    loadingScreen={true}
                     modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
                     parallax={{
                         ...this.state.modal,

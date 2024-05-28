@@ -28,11 +28,11 @@ class Overview extends React.Component<Props> {
                 <div id='overviewWelcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
                     <Information type='Scroll' />
                     <Logo fullScreen={true} />
-                    <Gallery
+                    {/* <Gallery
                         autoPlay={true}
                         browser={this.props.browser}
                         fullScreen={true}
-                        lockControls={true}
+                        hideControls={true}
                         modus={'Expansion'}
                         parallax={{
                             deactivate:
@@ -49,8 +49,8 @@ class Overview extends React.Component<Props> {
                         <img src='assets/media/gallery/ort_03.png' />
                         <img src='assets/media/gallery/ort_04.png' />
                         <img src='assets/media/gallery/ort_05.png' />
-                    </Gallery>
-                    {/* <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
+                    </Gallery> */}
+                    <Parallax height={this.props.browser.height} scroll={this.props.browser.scroll} factor={200} modus={'Simple'}>
                         <video
                             src='assets/media/gallery/montage.mov'
                             autoPlay
@@ -59,7 +59,7 @@ class Overview extends React.Component<Props> {
                             playsInline
                             onLoadedData={event => (event.currentTarget.style.opacity = '1')}
                         />
-                    </Parallax> */}
+                    </Parallax>
                 </div>
                 <div id='overviewContent'>
                     <article data-name={getLanguage(language, 'titlePlace')}>
@@ -83,6 +83,7 @@ class Overview extends React.Component<Props> {
                         </div>
                         <Gallery
                             browser={this.props.browser}
+                            loadingScreen={true}
                             modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
                         >
                             <img src='assets/media/gallery/ort_01.png' />
@@ -136,6 +137,7 @@ class Overview extends React.Component<Props> {
                         </div>
                         <Gallery
                             browser={this.props.browser}
+                            loadingScreen={true}
                             modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
                         >
                             <img src='assets/media/gallery/ort_01.png' />

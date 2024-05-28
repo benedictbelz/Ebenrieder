@@ -11,7 +11,7 @@ export default class Conditions extends React.Component<Props> {
     render() {
         return (
             <div id='conditions' className='page'>
-                Hello Conditions
+                Conditions
                 <Footer browser={this.props.browser} />
             </div>
         );

@@ -24,7 +24,7 @@
 
         .galleryLeft,
         .galleryRight {
-            pointer-events: all;
+            display: none;
             position: absolute;
             height: 100%;
             width: $spacing-click;
@@ -64,6 +64,8 @@
         height: 100px;
         width: 100%;
         bottom: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
         mix-blend-mode: difference;
         filter: invert(100%);
 
@@ -117,6 +119,147 @@
         }
     }
 
+    .galleryMessage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        mix-blend-mode: difference;
+        filter: invert(100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+
+        p {
+            white-space: nowrap;
+        }
+
+        #galleryLogo {
+            height: 75px;
+            width: 75px;
+
+            #galleryLogo_01,
+            #galleryLogo_02,
+            #galleryLogo_03 {
+                fill: none;
+                stroke: $color-blue;
+                stroke-width: 25;
+                stroke-dashoffset: 0;
+            }
+
+            #galleryLogo_01 {
+                stroke-dasharray: 518 518;
+                animation-duration: 4s;
+                animation-fill-mode: forwards;
+                animation-name: galleryLogo_01;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+
+                @keyframes galleryLogo_01 {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    20% {
+                        stroke-dashoffset: -518;
+                    }
+                    40% {
+                        stroke-dashoffset: -518;
+                    }
+                    50% {
+                        stroke-dashoffset: -518;
+                    }
+                    50.00001% {
+                        stroke-dashoffset: 518;
+                    }
+                    70% {
+                        stroke-dashoffset: 0;
+                    }
+                    90% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+
+            #galleryLogo_02 {
+                stroke-dasharray: 379 379;
+                animation-duration: 4s;
+                animation-fill-mode: forwards;
+                animation-name: galleryLogo_02;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+
+                @keyframes galleryLogo_02 {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    20% {
+                        stroke-dashoffset: 0;
+                    }
+                    40% {
+                        stroke-dashoffset: -379;
+                    }
+                    50% {
+                        stroke-dashoffset: -379;
+                    }
+                    50.00001% {
+                        stroke-dashoffset: 379;
+                    }
+                    70% {
+                        stroke-dashoffset: 379;
+                    }
+                    90% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+
+            #galleryLogo_03 {
+                stroke-dasharray: 163 163;
+                animation-duration: 4s;
+                animation-fill-mode: forwards;
+                animation-name: galleryLogo_03;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+
+                @keyframes galleryLogo_03 {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    20% {
+                        stroke-dashoffset: 0;
+                    }
+                    40% {
+                        stroke-dashoffset: 0;
+                    }
+                    50% {
+                        stroke-dashoffset: -163;
+                    }
+                    50.00001% {
+                        stroke-dashoffset: 163;
+                    }
+                    70% {
+                        stroke-dashoffset: 163;
+                    }
+                    90% {
+                        stroke-dashoffset: 163;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+        }
+    }
+
     &.expansion {
         .galleryA,
         .galleryB {
@@ -135,10 +278,42 @@
         max-height: 100% !important;
     }
 
-    &.isLoaded {
+    &.loadingScreen {
+        background: $color-transparent;
+    }
+
+    &.hasLoaded {
+        .galleryBullets,
         .galleryA,
         .galleryB {
             opacity: 1;
+        }
+
+        .galleryClick .galleryLeft,
+        .galleryClick .galleryRight {
+            display: block;
+            pointer-events: all;
+        }
+    }
+
+    &.hasError {
+        .galleryBullets,
+        .galleryA,
+        .galleryB {
+            opacity: 0;
+        }
+
+        .galleryClick .galleryLeft,
+        .galleryClick .galleryRight {
+            display: none;
+            pointer-events: none;
+        }
+
+        .galleryMessage #galleryLogo_01,
+        .galleryMessage #galleryLogo_02,
+        .galleryMessage #galleryLogo_03 {
+            animation-iteration-count: 1 !important;
+            animation-duration: 0 !important;
         }
     }
 }

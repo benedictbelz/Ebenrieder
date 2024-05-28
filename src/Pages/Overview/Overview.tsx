@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Logo from './Logo/Logo';
+import Logo from '../../Components/Logo/Logo';
 import Events from '../../Components/Events/Events';
 import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
@@ -7,7 +7,7 @@ import Information from '../../Components/Information/Information';
 import Menu from '../../Components/Menu/Menu';
 import Parallax from '../../Components/Parallax/Parallax';
 import Title from '../../Components/Title/Title';
-import { PropsWithRouter, withRouter } from '../../@functions/router';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import './Overview.scss';
@@ -27,7 +27,7 @@ class Overview extends React.Component<Props> {
                 <Menu browser={this.props.browser} behaviour={'Dynamic'} />
                 <div id='overviewWelcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
                     <Information type='Scroll' />
-                    <Logo />
+                    <Logo fullScreen={true} />
                     <Gallery
                         autoPlay={true}
                         browser={this.props.browser}

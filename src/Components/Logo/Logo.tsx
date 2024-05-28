@@ -1,10 +1,15 @@
 import * as React from 'react';
 import './Logo.scss';
 
-export default class Logo extends React.Component {
+interface Props {
+    fullScreen?: boolean;
+    noAnimation?: boolean;
+}
+
+export default class Logo extends React.Component<Props> {
     render() {
         return (
-            <div id='logo'>
+            <div id='logo' className={[this.props.noAnimation && 'noAnimation', this.props.fullScreen && 'fullScreen'].filter(x => x).join(' ')}>
                 <div id='logoContainer'>
                     <div id='logoPicture'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'>

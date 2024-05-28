@@ -4,7 +4,7 @@ import Gallery from '../Gallery/Gallery';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
 import Parallax from '../Parallax/Parallax';
-import { PropsWithRouter, withRouter } from '../../@functions/router';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getEvents } from '../../@presets/event';
 import { getFilter, getLocal, getLanguage } from '../../@presets/language';
 import { Event, Filter, availableFilters } from '../../@types/event';

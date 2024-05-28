@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Footer from '../../Components/Footer/Footer';
 import Menu from '../../Components/Menu/Menu';
-import { PropsWithRouter, withRouter } from '../../@functions/router';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import './Privacy.scss';
@@ -108,10 +108,6 @@ class Privacy extends React.Component<Props> {
                                     <span>Remnatsried 2</span>
                                     <span>87675 Stötten am Auerberg</span>
                                     <span>Deutschland</span>
-                                </p>
-                                <p className='column'>
-                                    <span>+49 171 9014541</span>
-                                    <span>hallo@ebenrieder.de</span>
                                 </p>
                                 <h4>Wie erfassen wir Ihre Daten?</h4>
                                 <p>
@@ -389,8 +385,8 @@ class Privacy extends React.Component<Props> {
                                 <p>
                                     Your data is collected firstly when you provide it to us. This can be, for example, data that you enter into a
                                     contact form. Other data is collected automatically or with your consent when you visit the website by our IT
-                                    systems. This mainly includes technical data (e.g. internet browser, operating system, or time of the page
-                                    visit). The collection of this data happens automatically as soon as you enter this website.
+                                    systems. This mainly includes technical data (e.g. internet browser, operating system, or time of the page visit).
+                                    The collection of this data happens automatically as soon as you enter this website.
                                 </p>
                                 <h4>What do we use your data for?</h4>
                                 <p>
@@ -442,8 +438,8 @@ class Privacy extends React.Component<Props> {
                                     confidentially and in accordance with the statutory data protection regulations. When you use this website,
                                     various personal data are collected. Personal data are data with which you can be personally identified. This
                                     privacy policy explains which data we collect and what we use it for. It also explains how and for what purpose
-                                    this happens. We would like to point out that data transmission on the internet (e.g. when communicating by
-                                    email) can have security gaps. Complete protection of data against access by third parties is not possible.
+                                    this happens. We would like to point out that data transmission on the internet (e.g. when communicating by email)
+                                    can have security gaps. Complete protection of data against access by third parties is not possible.
                                 </p>
                                 <h4>Information on the responsible party</h4>
                                 <p>The responsible party for data processing on this website is:</p>
@@ -452,10 +448,6 @@ class Privacy extends React.Component<Props> {
                                     <span>Remnatsried 2</span>
                                     <span>87675 Stötten am Auerberg</span>
                                     <span>Germany</span>
-                                </p>
-                                <p className='column'>
-                                    <span>+49 171 9014541</span>
-                                    <span>hallo@ebenrieder.de</span>
                                 </p>
                                 <h4>How do we collect your data?</h4>
                                 <p>

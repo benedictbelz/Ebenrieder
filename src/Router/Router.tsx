@@ -1,5 +1,7 @@
 import React = require('react');
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Error from '../Pages/Error/Error';
+import { Browser } from '../@types/browser';
 
 export interface PropsWithRouter {
     router: {
@@ -18,10 +20,14 @@ export const withRouter = <T extends PropsWithRouter>(Component: React.Component
     };
 };
 
-export const Wrapper = ({ children }: { children: React.ReactNode }) => {
+export const Wrapper = ({ browser, children }: { browser: Browser; children: React.ReactNode }) => {
     const location = useLocation();
     React.useLayoutEffect(() => {
         document.documentElement.scrollTo(0, 0);
     }, [location.pathname]);
-    return children;
+    return (
+        <Error key={location.pathname} browser={browser}>
+            {children}
+        </Error>
+    );
 };

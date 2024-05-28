@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { PropsWithRouter, withRouter } from '../../@functions/router';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { Browser } from '../../@types/browser';
 import { Language } from '../../@types/language';
 import './Header.scss';

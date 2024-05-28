@@ -3,15 +3,14 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Conditions from '../Pages/Conditions/Conditions';
 import Cookies from '../Components/Cookies/Cookies';
-import Footer from '../Components/Footer/Footer';
 import Header from '../Components/Header/Header';
-import Imprint from '../Pages/Imprint/Imprint';
 import Mouse from '../Components/Mouse/Mouse';
+import Imprint from '../Pages/Imprint/Imprint';
 import Overview from '../Pages/Overview/Overview';
 import Privacy from '../Pages/Privacy/Privacy';
+import { Wrapper } from '../Router/Router';
 import { Browser } from '../@types/browser';
 import { Language } from '../@types/language';
-import { Wrapper } from '../@functions/router';
 import './App.scss';
 
 interface States {
@@ -218,7 +217,7 @@ class App extends React.Component<{}, States> {
                     )}
                     <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
-                    <Wrapper>
+                    <Wrapper browser={this.state.browser}>
                         <Routes>
                             <Route path='/' element={<Overview browser={this.state.browser} />} />
                             <Route path='/conditions' element={<Conditions browser={this.state.browser} />} />

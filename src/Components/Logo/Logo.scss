@@ -1,4 +1,4 @@
-@import '../../../App/Variables.scss';
+@import '../../App/Variables.scss';
 
 $pictureStart: 0s;
 $pictureDuration: 1.5s;
@@ -50,13 +50,23 @@ $textDuration_10_03: 0.2s;
 
 #logo {
     pointer-events: none;
-    position: absolute;
-    z-index: 500;
-    height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.fullScreen {
+        position: absolute;
+        z-index: 500;
+        height: 100%;
+        width: 100%;
+    }
+
+    &.noAnimation {
+        svg path {
+            animation: none !important;
+            stroke-dashoffset: 0 !important;
+        }
+    }
 
     #logoContainer {
         position: relative;

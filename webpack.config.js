@@ -6,7 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/App/App.tsx',
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        client: {
+            overlay: {
+                runtimeErrors: (error) => false,
+            },
+        },
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

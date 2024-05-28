@@ -136,7 +136,7 @@ class Overview extends React.Component<Props> {
                         <Title
                             browser={this.props.browser}
                             backgroundX={media === 'Extra Small' || media === 'Small' ? 10 : 15}
-                            backgroundY={0}
+                            backgroundY={media === 'Extra Small' || media === 'Small' ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_04.jpg'}
                             foregroundImage={`assets/svg/dates_${language}.svg`}
                             foregroundScale={0.9}
@@ -164,7 +164,7 @@ class Overview extends React.Component<Props> {
                         <Title
                             browser={this.props.browser}
                             backgroundX={0}
-                            backgroundY={0}
+                            backgroundY={media === 'Extra Small' || media === 'Small' ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_05.jpg'}
                             foregroundImage={`assets/svg/usage_${language}.svg`}
                             foregroundScale={0.9}

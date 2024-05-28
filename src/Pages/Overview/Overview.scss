@@ -5,19 +5,11 @@
 
     #overviewWelcome {
         position: relative;
-        height: 100vh;
+        height: calc(100vh + 2px);
         width: 100%;
-        max-height: -webkit-fill-available;
+        max-height: calc(100vh + 2px);
         max-width: 100%;
         overflow: hidden;
-
-        .gallery .galleryBullets {
-            opacity: 1;
-            transform: translateY(0%);
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
-        }
 
         .information {
             position: absolute;
@@ -47,17 +39,6 @@
             transition: opacity 1s ease;
             mix-blend-mode: difference;
             filter: invert(100%);
-        }
-
-        video {
-            position: absolute;
-            display: block;
-            height: calc(100% + 2px);
-            width: calc(100% + 2px);
-            object-fit: cover;
-            object-position: center;
-            opacity: 0;
-            transition: opacity 1s ease;
         }
 
         &.active {

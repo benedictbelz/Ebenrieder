@@ -24,7 +24,13 @@ class Overview extends React.Component<Props> {
         return (
             <div id='overview' className='page'>
                 <Menu browser={this.props.browser} behaviour={'Dynamic'} />
-                <div id='overviewWelcome' className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}>
+                <div
+                    id='overviewWelcome'
+                    className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}
+                    style={
+                        this.props.browser.type === 'Safari' && this.props.browser.device === 'Mobile' ? { maxHeight: '-webkit-fill-available' } : {}
+                    }
+                >
                     <Information type='Scroll' />
                     <Logo fullScreen={true} />
                     <Gallery
@@ -159,8 +165,7 @@ class Overview extends React.Component<Props> {
                             browser={this.props.browser}
                             backgroundX={0}
                             backgroundY={0}
-                            backgroundImage={'assets/media/watercolor/watercolor_03.jpg'}
-                            backgroundScale={0.9}
+                            backgroundImage={'assets/media/watercolor/watercolor_05.jpg'}
                             foregroundImage={`assets/svg/usage_${language}.svg`}
                             foregroundScale={0.9}
                         />

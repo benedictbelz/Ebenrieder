@@ -54,24 +54,11 @@ $textDuration_10_03: 0.2s;
     justify-content: center;
     align-items: center;
 
-    &.fullScreen {
-        position: absolute;
-        z-index: 500;
-        height: 100%;
-        width: 100%;
-    }
-
-    &.noAnimation {
-        svg path {
-            animation: none !important;
-            stroke-dashoffset: 0 !important;
-        }
-    }
-
     #logoContainer {
         position: relative;
         height: 200px;
         width: 200px;
+        margin-left: 50px;
 
         #logoPicture {
             position: absolute;
@@ -708,6 +695,32 @@ $textDuration_10_03: 0.2s;
                     }
                 }
             }
+        }
+    }
+
+    &.fullScreen {
+        position: absolute;
+        z-index: 500;
+        height: 100%;
+        width: 100%;
+
+        #logoContainer {
+            transition: height 0.5s ease, width 0.5s ease, margin 0.5s ease;
+        }
+
+        @media (max-width: $media-s) {
+            #logoContainer {
+                height: 150px;
+                width: 150px;
+                margin-left: 37.5px;
+            }
+        }
+    }
+
+    &.noAnimation {
+        svg path {
+            animation: none !important;
+            stroke-dashoffset: 0 !important;
         }
     }
 }

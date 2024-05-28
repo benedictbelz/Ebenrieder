@@ -61,7 +61,7 @@ class Overview extends React.Component<Props> {
                     <article data-name={getLanguage(language, 'titlePlace')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={0}
+                            backgroundX={media === 'Extra Small' || media === 'Small' ? -7.5 : -15}
                             backgroundY={0}
                             backgroundImage={'assets/media/watercolor/watercolor_01.jpg'}
                             foregroundImage={`assets/svg/place_${language}.svg`}

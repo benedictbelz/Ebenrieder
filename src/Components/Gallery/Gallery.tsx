@@ -263,7 +263,14 @@ export default class Gallery extends React.Component<Props, States> {
 
     private handleDragStart = (event: any) => {
         // IF TRANSITION RETURN
-        if (this.state.drag || this.state.transition || !this.state.hasLoaded || this.state.hasError || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
+        if (
+            this.state.drag ||
+            this.state.transition ||
+            !this.state.hasLoaded ||
+            this.state.hasError ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
             return;
         }
         // GET POSITION
@@ -284,7 +291,14 @@ export default class Gallery extends React.Component<Props, States> {
             event.preventDefault();
         }
         // IF FALSE RETURN
-        if (!this.state.drag || !this.state.transition || !this.state.hasLoaded || this.state.hasError || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
+        if (
+            !this.state.drag ||
+            !this.state.transition ||
+            !this.state.hasLoaded ||
+            this.state.hasError ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
             return;
         }
         // DEFINE VARIABLES
@@ -301,7 +315,14 @@ export default class Gallery extends React.Component<Props, States> {
 
     private handleDragEnd = (event: any) => {
         // IF FALSE RETURN
-        if (!this.state.drag || !this.state.transition || !this.state.hasLoaded || this.state.hasError || this.props.browser.mouse.cursor === 'Left' || this.props.browser.mouse.cursor === 'Right') {
+        if (
+            !this.state.drag ||
+            !this.state.transition ||
+            !this.state.hasLoaded ||
+            this.state.hasError ||
+            this.props.browser.mouse.cursor === 'Left' ||
+            this.props.browser.mouse.cursor === 'Right'
+        ) {
             return;
         }
         // DEFINE VARIABLES

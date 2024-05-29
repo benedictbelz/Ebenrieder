@@ -12,13 +12,29 @@ interface Props extends PropsWithRouter {
 
 class Header extends React.Component<Props> {
     render() {
+        // DEFINE VARIABELS
+        let hide = false;
+        // HIDE HEADER
+        if (this.props.browser.status === 'Welcome' && this.props.router.location.pathname === '/') {
+            hide = true;
+        } else if (
+            this.props.browser.direction === 'Down' &&
+            this.props.router.location.pathname === '/' &&
+            this.props.browser.scroll >= this.props.browser.height &&
+            (this.props.browser.media === 'Small' || this.props.browser.media === 'Extra Small')
+        ) {
+            hide = true;
+        } else if (
+            this.props.browser.direction === 'Down' &&
+            this.props.router.location.pathname !== '/' &&
+            this.props.browser.scroll >= 100 &&
+            (this.props.browser.media === 'Small' || this.props.browser.media === 'Extra Small')
+        ) {
+            hide = true;
+        }
+        // RETURN COMPONENT
         return (
-            <div
-                id='header'
-                className={[this.props.browser.status === 'Welcome' && this.props.router.location.pathname === '/' && 'hide']
-                    .filter(x => x)
-                    .join(' ')}
-            >
+            <div id='header' className={[hide && 'hide'].filter(x => x).join(' ')}>
                 <div id='headerLeft'>
                     <Link to='/'>
                         {this.props.browser.device === 'Desktop' ? (

@@ -206,11 +206,6 @@
         gap: 15px;
         margin-bottom: var(--spacing-vertical-s);
 
-        img {
-            display: none;
-            height: 25px;
-        }
-
         .filter {
             cursor: pointer;
             border: $border-s solid $color-blue;

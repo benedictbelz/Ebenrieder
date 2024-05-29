@@ -182,10 +182,9 @@
 
         &.top {
             position: absolute;
-            top: 100dvh;
+            top: 100svh;
             left: 0;
-            height: 100dvh;
-            min-height: 100vh;
+            height: 100svh;
         }
 
         &.flow,
@@ -193,8 +192,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 100dvh;
-            min-height: 100vh;
+            height: 100svh;
         }
 
         #menuContent {
@@ -211,11 +209,21 @@
                 left: 12px;
                 height: var(--spacing-horizontal);
                 transform-origin: left;
-                transform: scale(1) translateY(-50%) rotate(-90deg);
+                transform: translateY(-50%) rotate(-90deg);
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 white-space: nowrap;
+            }
+
+            @media (max-height: $media-s) {
+                #menuName {
+                    font-size: var(--font-size-detail);
+                }
+            }
+
+            @media (max-height: $media-xs) {
+                display: none;
             }
 
             .menuDot {

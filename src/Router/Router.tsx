@@ -20,10 +20,11 @@ export const withRouter = <T extends PropsWithRouter>(Component: React.Component
     };
 };
 
-export const Wrapper = ({ browser, children }: { browser: Browser; children: React.ReactNode }) => {
+export const Wrapper = ({ browser, children, handlePage }: { browser: Browser; children: React.ReactNode; handlePage: () => void }) => {
     const location = useLocation();
     React.useLayoutEffect(() => {
         document.documentElement.scrollTo(0, 0);
+        handlePage();
     }, [location.pathname]);
     return (
         <Error key={location.pathname} browser={browser}>

@@ -11,12 +11,12 @@ interface Props {
 }
 
 export default class Cookies extends React.Component<Props> {
-    handleAccept = () => {
+    private handleAccept = () => {
         this.setState({ active: false });
         this.props.handleAccept();
     };
 
-    handleDecline = () => {
+    private handleDecline = () => {
         this.setState({ active: false });
         this.props.handleDecline();
     };

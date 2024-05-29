@@ -37,6 +37,7 @@ interface States {
 }
 
 export default class Gallery extends React.Component<Props, States> {
+    private boundary = 25;
     private interval: NodeJS.Timer;
     private galleryBullets: React.RefObject<HTMLDivElement>;
     private galleryDrag: React.RefObject<HTMLDivElement>;
@@ -143,7 +144,7 @@ export default class Gallery extends React.Component<Props, States> {
         // IF NO GALLERY OR IMAGES RETURN
         if (!gallery || !images || images.length === 0) return;
         // GET PADDING AND WIDTH
-        const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
+        const padding = this.props.browser.variables.spacingHorizontal;
         const width = gallery.clientWidth - padding * 2;
         // GET POSITION
         let position;
@@ -213,9 +214,7 @@ export default class Gallery extends React.Component<Props, States> {
         const statusInactive = this.state.status === 'B' ? 'A' : 'B';
         const galleryActive = this.state.status === 'A' ? this.galleryA.current : this.galleryB.current;
         const galleryInactive = this.state.status === 'B' ? this.galleryA.current : this.galleryB.current;
-        const position = this.getPosition(
-            (this.state.status === 'A' ? this.state.positionA : this.state.positionB) + (direction === 'Previous' ? -1 : 1)
-        );
+        const position = this.getPosition((this.state.status === 'A' ? this.state.positionA : this.state.positionB) + (direction === 'Previous' ? -1 : 1));
         // IF NO GALLERY RETURN
         if (!galleryActive || !galleryInactive) return;
         // BEFORE TRANSITION
@@ -287,7 +286,7 @@ export default class Gallery extends React.Component<Props, States> {
 
     private handleDragMove = (event: any) => {
         // PREVENT DEFAULT
-        if (this.state.drag && !this.props.fullScreen) {
+        if (this.state.drag && !this.props.fullScreen && this.props.browser.height > this.props.browser.variables.mediaXS) {
             event.preventDefault();
         }
         // IF FALSE RETURN
@@ -336,12 +335,12 @@ export default class Gallery extends React.Component<Props, States> {
         let position = this.state.status === 'A' ? this.state.positionA : this.state.positionB;
         let direction: 'Previous' | 'Current' | 'Next' = 'Current';
         // IF PREVIOUS IMAGE
-        if (this.state.drag.end >= 100) {
+        if (this.state.drag.end >= this.boundary) {
             direction = 'Previous';
             position = this.getPosition(position - 1);
         }
         // IF NEXT IMAGE
-        else if (this.state.drag.end <= -100) {
+        else if (this.state.drag.end <= -this.boundary) {
             direction = 'Next';
             position = this.getPosition(position + 1);
         }

@@ -18,6 +18,7 @@ interface States {
 }
 
 export default class Modal extends React.Component<Props, States> {
+    private header: HTMLElement | null;
     private modal: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
@@ -29,25 +30,47 @@ export default class Modal extends React.Component<Props, States> {
     }
 
     componentDidMount() {
-        this.props.handleScroll(this.modal.current.scrollTop);
+        this.handleOpen();
+        this.header = document.getElementById('header');
         this.modal.current?.addEventListener('resize', this.handleResize);
         this.modal.current?.addEventListener('scroll', this.handleScroll);
-        setTimeout(() => this.setState({ active: true }), 100);
     }
 
-    handleClose = () => {
-        this.setState({ active: false });
+    componentWillUnmount() {
         this.modal.current?.removeEventListener('resize', this.handleScroll);
         this.modal.current?.removeEventListener('scroll', this.handleScroll);
-        setTimeout(() => this.props.handleClose(), 500);
+    }
+
+    private handleOpen = () => {
+        this.props.handleScroll(this.modal.current.scrollTop);
+        setTimeout(() => {
+            if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
+                this.header?.classList.add('hide');
+            }
+        });
+        setTimeout(() => {
+            this.setState({ active: true });
+        }, 100);
     };
 
-    handleResize = () => {
+    private handleClose = () => {
+        this.setState({ active: false });
+        setTimeout(() => {
+            if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
+                this.header?.classList.remove('hide');
+            }
+        });
+        setTimeout(() => {
+            this.props.handleClose();
+        }, 500);
+    };
+
+    private handleResize = () => {
         if (!this.modal.current) return;
         this.props.handleResize(this.modal.current.clientHeight);
     };
 
-    handleScroll = () => {
+    private handleScroll = () => {
         if (!this.modal.current) return;
         this.props.handleScroll(this.modal.current.scrollTop);
     };

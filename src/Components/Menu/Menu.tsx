@@ -113,7 +113,7 @@ export default class Menu extends React.Component<Props, States> {
         }
     }
 
-    handleLoad = () => {
+    private handleLoad = () => {
         // GET ARTICLES
         const articles = document.querySelectorAll('article');
         // IF NO ARTICLES RETURN
@@ -131,14 +131,14 @@ export default class Menu extends React.Component<Props, States> {
         setTimeout(() => this.handleScroll());
     };
 
-    handleScroll = () => {
+    private handleScroll = () => {
         // IF NO ITEMS RETURN
         if (this.state.items.length === 0 || !this.menuContent.current) return;
         // DEFINE VARIABLES
         const items = this.state.items;
         const height = this.props.browser.height;
         const scroll = this.props.browser.scroll;
-        const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
+        const padding = this.props.browser.variables.spacingVerticalL;
         // DEFINE FOCUS AND MODUS
         let focus = 0;
         let modus: States['modus'] = 'Flow';
@@ -175,9 +175,9 @@ export default class Menu extends React.Component<Props, States> {
         }
     };
 
-    handleClick = async (item: { name: string; element: HTMLElement }) => {
+    private handleClick = async (item: { name: string; element: HTMLElement }) => {
         // DEFINE VARIABLES
-        const padding = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
+        const padding = this.props.browser.variables.spacingVerticalL;
         const position = Math.round(item.element.getBoundingClientRect().top) + this.props.browser.scroll - padding;
         const index = this.state.items.findIndex(element => element.name === item.name);
         // IF NO INDEX RETURN
@@ -188,7 +188,7 @@ export default class Menu extends React.Component<Props, States> {
         window.scrollTo({ top: position, behavior: 'smooth' });
     };
 
-    narrowClickLeft = () => {
+    private narrowClickLeft = () => {
         // DEFINE POSITION
         let position = this.menuContent.current?.scrollLeft - 250;
         // IF POSITION IS LESS THAN BOUNDARY
@@ -199,7 +199,7 @@ export default class Menu extends React.Component<Props, States> {
         this.menuContent.current?.scrollTo({ left: position, behavior: 'smooth' });
     };
 
-    narrowClickRight = () => {
+    private narrowClickRight = () => {
         // DEFINE WIDTH
         const width = this.menuContent.current?.scrollWidth - this.menuContent.current?.clientWidth;
         // DEFINE POSITION
@@ -212,7 +212,7 @@ export default class Menu extends React.Component<Props, States> {
         this.menuContent.current?.scrollTo({ left: position, behavior: 'smooth' });
     };
 
-    narrowChangeContent = () => {
+    private narrowChangeContent = () => {
         // IF APPEARANCE IS NOT NARROW RETURN
         if (this.state.appearance !== 'Narrow') return;
         // DEFINE VARIABLES
@@ -237,7 +237,7 @@ export default class Menu extends React.Component<Props, States> {
         }
     };
 
-    narrowScrollContent = () => {
+    private narrowScrollContent = () => {
         // IF NO ELEMENT RETURN
         if (!this.menuContent.current || !this.menuLeft.current || !this.menuRight.current) return;
         // GET VARIABLES

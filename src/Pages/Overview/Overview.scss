@@ -56,6 +56,12 @@
                 opacity: 0;
             }
         }
+
+        @media (max-height: $media-xs) {
+            .information {
+                display: none;
+            }
+        }
     }
 
     #overviewContent {

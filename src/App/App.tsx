@@ -40,6 +40,7 @@ class App extends React.Component<{}, States> {
         // DEFINE VARIABLES
         let cookies: Browser['cookies'],
             device: Browser['device'],
+            direction: Browser['direction'],
             height: Browser['height'],
             language: Browser['language'],
             media: Browser['media'],
@@ -47,6 +48,7 @@ class App extends React.Component<{}, States> {
             scroll: Browser['scroll'],
             status: Browser['status'],
             type: Browser['type'],
+            variables: Browser['variables'],
             width: Browser['width'];
         // INITIALIZE COOKIES
         if (localStorage.getItem('ebenriederCookies') === 'Accept') {
@@ -62,27 +64,61 @@ class App extends React.Component<{}, States> {
         } else {
             device = 'Desktop';
         }
+        // INITIALIZE DIRECTION
+        direction = 'None';
         // INITIALIZE HEIGHT AND WIDTH
         height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         // INITIALIZE LANGUAGE
         language = navigator.language.split('-').shift() === 'de' ? 'de' : 'en';
         document.documentElement.lang = navigator.language;
+        // INITIALIZE VARIABLES
+        const spacingHorizontal = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
+        const spacingVerticalS = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-s').split('px').shift());
+        const spacingVerticalM = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-m').split('px').shift());
+        const spacingVerticalL = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
+        const spacingBoxBorizontal = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-box-horizontal').split('px').shift());
+        const spacingBoxVertical = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-box-vertical').split('px').shift());
+        const fontSizeText = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-text').split('px').shift());
+        const fontSizeDetail = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-detail').split('px').shift());
+        const fontSizeH1 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h1').split('px').shift());
+        const fontSizeH2 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h2').split('px').shift());
+        const fontSizeH3 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h3').split('px').shift());
+        const fontSizeH4 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h4').split('px').shift());
+        const mediaXS = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
+        const mediaS = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
+        const mediaM = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
+        const mediaL = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
+        const mediaXL = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
+        variables = {
+            spacingHorizontal,
+            spacingVerticalS,
+            spacingVerticalM,
+            spacingVerticalL,
+            spacingBoxBorizontal,
+            spacingBoxVertical,
+            fontSizeText,
+            fontSizeDetail,
+            fontSizeH1,
+            fontSizeH2,
+            fontSizeH3,
+            fontSizeH4,
+            mediaXS,
+            mediaS,
+            mediaM,
+            mediaL,
+            mediaXL
+        };
         // INITIALIZE MEDIA
-        const xs = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
-        const s = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
-        const m = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
-        const l = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
-        const xl = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
-        if (width <= xs) {
+        if (width <= mediaXS) {
             media = 'Extra Small';
-        } else if (width > xs && width <= s) {
+        } else if (width > mediaXS && width <= mediaS) {
             media = 'Small';
-        } else if (width > s && width <= m) {
+        } else if (width > mediaS && width <= mediaM) {
             media = 'Medium';
-        } else if (width > m && width <= l) {
+        } else if (width > mediaM && width <= mediaL) {
             media = 'Large';
-        } else if (width > l && width <= xl) {
+        } else if (width > mediaL && width <= mediaXL) {
             media = 'Extra Large';
         } else {
             media = 'Huge';
@@ -111,7 +147,7 @@ class App extends React.Component<{}, States> {
             type = 'Unknown';
         }
         // RETURN VARIABLES
-        return { cookies, device, height, language, media, mouse, scroll, status, type, width };
+        return { cookies, device, direction, height, language, media, mouse, scroll, status, type, variables, width };
     }
 
     handleAcceptCookies = () => {
@@ -144,40 +180,76 @@ class App extends React.Component<{}, States> {
         this.setState({ browser: { ...this.state.browser, mouse } });
     };
 
+    handlePage = () => {
+        this.setState({ browser: { ...this.state.browser, direction: 'None' } });
+    };
+
     handleResize = () => {
         // DEFINE VARIABLES
         let media = this.state.browser.media;
         let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        // INITIALIZE MEDIA
-        const xs = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
-        const s = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
-        const m = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
-        const l = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
-        const xl = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
+        // INITIALIZE VARIABLES
+        const spacingHorizontal = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-horizontal').split('px').shift());
+        const spacingVerticalS = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-s').split('px').shift());
+        const spacingVerticalM = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-m').split('px').shift());
+        const spacingVerticalL = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-vertical-l').split('px').shift());
+        const spacingBoxBorizontal = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-box-horizontal').split('px').shift());
+        const spacingBoxVertical = Number(getComputedStyle(document.documentElement).getPropertyValue('--spacing-box-vertical').split('px').shift());
+        const fontSizeText = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-text').split('px').shift());
+        const fontSizeDetail = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-detail').split('px').shift());
+        const fontSizeH1 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h1').split('px').shift());
+        const fontSizeH2 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h2').split('px').shift());
+        const fontSizeH3 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h3').split('px').shift());
+        const fontSizeH4 = Number(getComputedStyle(document.documentElement).getPropertyValue('--font-size-h4').split('px').shift());
+        const mediaXS = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xs').split('px').shift());
+        const mediaS = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-s').split('px').shift());
+        const mediaM = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-m').split('px').shift());
+        const mediaL = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-l').split('px').shift());
+        const mediaXL = Number(getComputedStyle(document.documentElement).getPropertyValue('--media-xl').split('px').shift());
+        // UPDATE VARIABELS
+        const variables = {
+            spacingHorizontal,
+            spacingVerticalS,
+            spacingVerticalM,
+            spacingVerticalL,
+            spacingBoxBorizontal,
+            spacingBoxVertical,
+            fontSizeText,
+            fontSizeDetail,
+            fontSizeH1,
+            fontSizeH2,
+            fontSizeH3,
+            fontSizeH4,
+            mediaXS,
+            mediaS,
+            mediaM,
+            mediaL,
+            mediaXL
+        };
         // UPDATE MEDIA
-        if (width <= xs) {
+        if (width <= mediaXS) {
             media = 'Extra Small';
-        } else if (width > xs && width <= s) {
+        } else if (width > mediaXS && width <= mediaS) {
             media = 'Small';
-        } else if (width > s && width <= m) {
+        } else if (width > mediaS && width <= mediaM) {
             media = 'Medium';
-        } else if (width > m && width <= l) {
+        } else if (width > mediaM && width <= mediaL) {
             media = 'Large';
-        } else if (width > l && width <= xl) {
+        } else if (width > mediaL && width <= mediaXL) {
             media = 'Extra Large';
         } else {
             media = 'Huge';
         }
         // UPDATE STATE
-        this.setState({ browser: { ...this.state.browser, media, height, width, mouse: { x: 0, y: 0 } } });
+        this.setState({ browser: { ...this.state.browser, mouse: { x: 0, y: 0 }, media, height, width, variables } });
     };
 
     handleScroll = (event: any) => {
         // DEFINE VARIABLES
         let modal = document.querySelector('.modal');
         let scroll = document.documentElement.scrollTop;
-        let direction: 'Up' | 'Down' = 'Down';
+        let direction: Browser['direction'] = 'Down';
         // IF MODAL
         if (modal) {
             event.preventDefault();
@@ -199,7 +271,7 @@ class App extends React.Component<{}, States> {
             }
         }
         // UPDATE STATE
-        this.setState({ browser: { ...this.state.browser, scroll } });
+        this.setState({ browser: { ...this.state.browser, direction, scroll } });
     };
 
     render() {
@@ -216,7 +288,7 @@ class App extends React.Component<{}, States> {
                     )}
                     <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
-                    <Wrapper browser={this.state.browser}>
+                    <Wrapper browser={this.state.browser} handlePage={this.handlePage}>
                         <Routes>
                             <Route path='/' element={<Overview browser={this.state.browser} />} />
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />

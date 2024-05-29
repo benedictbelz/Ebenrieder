@@ -69,7 +69,7 @@ class Events extends React.Component<Props, States> {
         }
     }
 
-    animateEvents = () => {
+    private animateEvents = () => {
         // DEFINE VARIABELS
         let index = 0;
         let events = document.querySelectorAll('.event') as unknown as HTMLElement[];
@@ -98,7 +98,7 @@ class Events extends React.Component<Props, States> {
         }
     };
 
-    handleChangeDate = (value: number) => {
+    private handleChangeDate = (value: number) => {
         // DEFINE VARIABLES
         let month, year;
         // IF VALUE IS OF CURRENT YEAR
@@ -115,7 +115,7 @@ class Events extends React.Component<Props, States> {
         this.setState({ month, year });
     };
 
-    handleChangeFilter = (filter: Filter) => {
+    private handleChangeFilter = (filter: Filter) => {
         // GET FILTERS
         let filters = this.state.filters;
         // IF FILTER IS AVAILABLE
@@ -150,7 +150,7 @@ class Events extends React.Component<Props, States> {
         }
     };
 
-    handleClickNextMonth = () => {
+    private handleClickNextMonth = () => {
         // IF MONTH IS NOT LAST MONTH
         if (this.state.month < 11) {
             this.setState({ month: this.state.month + 1 });
@@ -161,7 +161,7 @@ class Events extends React.Component<Props, States> {
         }
     };
 
-    handleClickPreviousMonth = () => {
+    private handleClickPreviousMonth = () => {
         // IF MONTH IS NOT FIRST MONTH
         if (this.state.month > 0) {
             this.setState({ month: this.state.month - 1 });
@@ -172,11 +172,11 @@ class Events extends React.Component<Props, States> {
         }
     };
 
-    handleClickEvent = (event: Event) => {
+    private handleClickEvent = (event: Event) => {
         this.setState({ event });
     };
 
-    renderModal = () => {
+    private renderModal = () => {
         // GET WRAPPER
         const wrapper = document.getElementById('app');
         // IF NO EVENT OR WRAPPER
@@ -383,7 +383,6 @@ class Events extends React.Component<Props, States> {
                     </div>
                 </div>
                 <div id='eventsFilters'>
-                    <img src='assets/svg/filter.svg' />
                     {filters.map((item, index) => (
                         <div
                             key={`filter_${index}`}
@@ -448,8 +447,7 @@ class Events extends React.Component<Props, States> {
                                 {`${getLanguage(language, 'eventUnavailable')}, ${getLanguage(language, 'eventUpcoming')} `}
                                 <span
                                     onClick={() => {
-                                        const date =
-                                            upcompingEvents[0].date instanceof Date ? upcompingEvents[0].date : upcompingEvents[0].date.start;
+                                        const date = upcompingEvents[0].date instanceof Date ? upcompingEvents[0].date : upcompingEvents[0].date.start;
                                         this.setState({ month: date.getMonth(), year: date.getFullYear() });
                                     }}
                                     className='underlineLink'

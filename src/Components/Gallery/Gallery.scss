@@ -87,9 +87,15 @@
         }
     }
 
+    .parallax {
+        position: relative;
+        z-index: 1;
+    }
+
     .galleryA,
     .galleryB {
         position: absolute;
+        z-index: 1;
         top: 0;
         left: 0;
         box-sizing: border-box;
@@ -121,6 +127,7 @@
 
     .galleryMessage {
         position: absolute;
+        z-index: 0;
         top: 0;
         left: 0;
         height: 100%;

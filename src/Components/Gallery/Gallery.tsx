@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Parallax from '../Parallax/Parallax';
+import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import './Gallery.scss';
-import { getLanguage } from '../../@presets/language';
 
 interface Props {
     autoPlay?: boolean;
@@ -32,6 +32,7 @@ interface States {
     length: number;
     positionA: number;
     positionB: number;
+    loadingScreen: boolean;
     status: 'A' | 'B';
     transition: boolean;
 }
@@ -58,6 +59,7 @@ export default class Gallery extends React.Component<Props, States> {
             length: React.Children.toArray(this.props.children).length,
             positionA: 0,
             positionB: 0,
+            loadingScreen: this.props.loadingScreen || false,
             status: 'A',
             transition: false
         };
@@ -71,9 +73,13 @@ export default class Gallery extends React.Component<Props, States> {
         }
     }
 
-    componentDidUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps: Props, prevState: States) {
         if (this.props.browser.height !== prevProps.browser.height || this.props.browser.width !== prevProps.browser.width) {
             this.handleResetImage();
+        } else if (this.props.loadingScreen && this.state.hasLoaded && !prevState.hasLoaded) {
+            setTimeout(() => this.setState({ loadingScreen: false }), 500);
+        } else if (this.state.hasError && !prevState.hasError) {
+            this.setState({ loadingScreen: true });
         }
     }
 
@@ -520,7 +526,7 @@ export default class Gallery extends React.Component<Props, States> {
                         <React.Fragment key='galleryB_07'>{children[this.getPosition(positionB + 3)]}</React.Fragment>
                     </div>
                 </Parallax>
-                {this.props.loadingScreen && (!this.state.hasLoaded || this.state.hasError) && (
+                {this.state.loadingScreen && (
                     <div className='galleryMessage'>
                         <svg id='galleryLogo' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'>
                             <defs>

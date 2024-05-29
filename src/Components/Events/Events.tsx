@@ -18,10 +18,6 @@ interface Props extends PropsWithRouter {
 interface States {
     event: Event | null;
     filters: Filter[];
-    modal: {
-        height: number;
-        scroll: number;
-    };
     month: number;
     year: number;
 }
@@ -38,10 +34,6 @@ class Events extends React.Component<Props, States> {
         this.state = {
             event: null,
             filters: [],
-            modal: {
-                height: 0,
-                scroll: 0
-            },
             month: this.month,
             year: this.year
         };
@@ -62,10 +54,6 @@ class Events extends React.Component<Props, States> {
     componentDidUpdate(prevProps: Props, prevState: States) {
         if (this.state.month !== prevState.month || this.state.year !== prevState.year || this.props.browser.media !== prevProps.browser.media) {
             this.animateEvents();
-        } else if (this.state.event && !prevState.event) {
-            document.documentElement.style.overflow = 'hidden';
-        } else if (!this.state.event && prevState.event) {
-            document.documentElement.style.overflow = 'visible';
         }
     }
 
@@ -219,66 +207,65 @@ class Events extends React.Component<Props, States> {
                 className='modalEvent'
                 browser={this.props.browser}
                 handleClose={() => this.setState({ event: null })}
-                handleScroll={(scroll: number) => {
-                    this.setState({ modal: { ...this.state.modal, scroll } });
-                }}
-                handleResize={(height: number) => {
-                    this.setState({ modal: { ...this.state.modal, height } });
-                }}
             >
-                <Gallery
-                    browser={this.props.browser}
-                    loadingScreen={true}
-                    modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
-                    parallax={{
-                        ...this.state.modal,
-                        factor: this.props.browser.media === 'Extra Small' ? 15 : 20,
-                        modus: 'Simple'
-                    }}
-                >
-                    {event.gallery.map((item, index) => (
-                        <img key={index} src={item} />
-                    ))}
-                </Gallery>
-                <div className='modalContent'>
-                    <div className='modalLeft'>
-                        <div className='modalTitle'>
-                            <h1>{title[language]}</h1>
-                            <div className='modalSubtitle'>
-                                <span>{date}</span>
-                                <span>•</span>
-                                {subtitle &&
-                                    subtitle.map((item, index) => (
-                                        <React.Fragment key={`subtitle_${index}`}>
-                                            <span>{item[language]}</span>
-                                            <span>•</span>
-                                        </React.Fragment>
-                                    ))}
-                                <span>{`${price} EUR`}</span>
+                {(height, scroll) => (
+                    <>
+                        <Gallery
+                            browser={this.props.browser}
+                            loadingScreen={true}
+                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                            parallax={{
+                                height,
+                                scroll,
+                                factor: this.props.browser.media === 'Extra Small' ? 15 : 20,
+                                modus: 'Simple'
+                            }}
+                        >
+                            {event.gallery.map((item, index) => (
+                                <img key={index} src={item} />
+                            ))}
+                        </Gallery>
+                        <div className='modalContent'>
+                            <div className='modalLeft'>
+                                <div className='modalTitle'>
+                                    <h1>{title[language]}</h1>
+                                    <div className='modalSubtitle'>
+                                        <span>{date}</span>
+                                        <span>•</span>
+                                        {subtitle &&
+                                            subtitle.map((item, index) => (
+                                                <React.Fragment key={`subtitle_${index}`}>
+                                                    <span>{item[language]}</span>
+                                                    <span>•</span>
+                                                </React.Fragment>
+                                            ))}
+                                        <span>{`${price} EUR`}</span>
+                                    </div>
+                                </div>
+                                <div className='modalDescription'>{description[language]}</div>
+                                <div className='modalButton underlineLink'>
+                                    <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
+                                </div>
                             </div>
-                        </div>
-                        <div className='modalDescription'>{description[language]}</div>
-                        <div className='modalButton underlineLink'>
-                            <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
-                        </div>
-                    </div>
-                    <div className='modalRight'>
-                        {details.length !== 0 && (
-                            <div className='modalDetails'>
-                                {details.map((item, index) => (
-                                    <React.Fragment key={`subtitle_${index}`}>
+                            <div className='modalRight'>
+                                {details.length !== 0 && (
+                                    <div className='modalDetails'>
+                                        {details.map((item, index) => (
+                                            <React.Fragment key={`subtitle_${index}`}>
+                                                <span className='line' />
+                                                <p>
+                                                    {item.title && <strong>{item.title[language]}</strong>}
+                                                    {item.content && item.content[language]}
+                                                </p>
+                                            </React.Fragment>
+                                        ))}
                                         <span className='line' />
-                                        <p>
-                                            {item.title && <strong>{item.title[language]}</strong>}
-                                            {item.content && item.content[language]}
-                                        </p>
-                                    </React.Fragment>
-                                ))}
-                                <span className='line' />
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                </div>
+                        </div>
+                    </>
+                )}
             </Modal>
         );
     };

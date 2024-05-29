@@ -267,6 +267,10 @@ export default class Gallery extends React.Component<Props, States> {
     };
 
     private handleDragStart = (event: any) => {
+        // PREVENT DEFAULT
+        if (!this.props.fullScreen && this.props.browser.height > this.props.browser.variables.mediaXS) {
+            event.preventDefault();
+        }
         // IF TRANSITION RETURN
         if (
             this.state.drag ||
@@ -319,6 +323,10 @@ export default class Gallery extends React.Component<Props, States> {
     };
 
     private handleDragEnd = (event: any) => {
+        // PREVENT DEFAULT
+        if (this.state.drag && !this.props.fullScreen && this.props.browser.height > this.props.browser.variables.mediaXS) {
+            event.preventDefault();
+        }
         // IF FALSE RETURN
         if (
             !this.state.drag ||

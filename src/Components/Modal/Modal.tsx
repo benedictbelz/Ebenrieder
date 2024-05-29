@@ -6,15 +6,15 @@ import './Modal.scss';
 
 interface Props {
     browser: Browser;
-    children: React.ReactNode;
     className?: string;
+    children(height: number, scroll: number): React.ReactNode;
     handleClose: () => void;
-    handleResize: (height: number) => void;
-    handleScroll: (scroll: number) => void;
 }
 
 interface States {
     active: boolean;
+    height: number;
+    scroll: number;
 }
 
 export default class Modal extends React.Component<Props, States> {
@@ -25,7 +25,9 @@ export default class Modal extends React.Component<Props, States> {
         super(props);
         this.modal = React.createRef();
         this.state = {
-            active: false
+            active: false,
+            height: this.modal.current?.clientHeight || 0,
+            scroll: this.modal.current?.scrollTop || 0
         };
     }
 
@@ -42,37 +44,43 @@ export default class Modal extends React.Component<Props, States> {
     }
 
     private handleOpen = () => {
-        this.props.handleScroll(this.modal.current.scrollTop);
+        // HIDE HEADER
         setTimeout(() => {
             if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
                 this.header?.classList.add('hide');
             }
         });
+        // OPEN MODAL
         setTimeout(() => {
             this.setState({ active: true });
+            document.documentElement.style.overflow = 'hidden';
         }, 100);
     };
 
     private handleClose = () => {
+        // UPDATE STATE
         this.setState({ active: false });
+        // SHOW HEADER
         setTimeout(() => {
             if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
                 this.header?.classList.remove('hide');
             }
         });
+        // CLOSE MODAL
         setTimeout(() => {
             this.props.handleClose();
+            document.documentElement.style.overflow = 'visible';
         }, 500);
     };
 
     private handleResize = () => {
         if (!this.modal.current) return;
-        this.props.handleResize(this.modal.current.clientHeight);
+        this.setState({ height: this.modal.current.clientHeight });
     };
 
     private handleScroll = () => {
         if (!this.modal.current) return;
-        this.props.handleScroll(this.modal.current.scrollTop);
+        this.setState({ scroll: this.modal.current.scrollTop });
     };
 
     render() {
@@ -93,7 +101,7 @@ export default class Modal extends React.Component<Props, States> {
                             {getLanguage(language, 'backToOverview')}
                         </p>
                     </div>
-                    {this.props.children}
+                    {this.props.children(this.state.height, this.state.scroll)}
                 </div>
                 <div className='modalBackground' onClick={this.handleClose} />
             </div>,

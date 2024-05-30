@@ -3,6 +3,23 @@ export const availableFilters = ['Accomodation', 'Concert', 'Food', 'Workshop', 
 export type FilterEvent = (typeof availableFilters)[number];
 
 export type Event = {
+    booking?: {
+        label: {
+            de: string;
+            en: string;
+        }
+        link?: string;
+        email?: {
+            subject: {
+                de: string;
+                en: string;
+            },
+            body: {
+                de: string;
+                en: string;
+            }
+        }
+    }[]
     date:
         | {
               start: Date;
@@ -27,9 +44,18 @@ export type Event = {
             en: string;
         };
     }[];
+    email?: {
+        accomodation: boolean;
+        date: boolean;
+        foodIntolerance: boolean;
+        name: boolean;
+        title: boolean;
+        quantity: boolean;
+    }
     gallery: string[];
     link: string;
     previewImage: string;
+    program?: string;
     subtitle?: {
         de: string;
         en: string;

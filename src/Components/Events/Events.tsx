@@ -34,7 +34,7 @@ class Events extends React.Component<Props, States> {
         this.state = {
             event: null,
             filters: [],
-            month: this.month,
+            month: this.findFirstEvent(),
             year: this.year
         };
     }
@@ -53,11 +53,22 @@ class Events extends React.Component<Props, States> {
 
     componentDidUpdate(prevProps: Props, prevState: States) {
         if (this.state.month !== prevState.month || this.state.year !== prevState.year || this.props.browser.media !== prevProps.browser.media) {
-            this.animateEvents();
+            this.handleAnimation();
         }
     }
 
-    private animateEvents = () => {
+    private findFirstEvent = () => {
+        const events = getEvents().sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime());
+        if (events && events.length !== 0) {
+            return events[0].date instanceof Date
+                ? events[0].date.getMonth()
+                : events[0].date.start.getMonth();
+        } else {
+            return this.month;
+        }
+    }
+
+    private handleAnimation = () => {
         // DEFINE VARIABELS
         let index = 0;
         let events = document.querySelectorAll('.event') as unknown as HTMLElement[];
@@ -134,7 +145,7 @@ class Events extends React.Component<Props, States> {
                     : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
             );
         if (previousEvents.length !== nextEvents.length || JSON.stringify(previousEvents) !== JSON.stringify(nextEvents)) {
-            setTimeout(() => this.animateEvents());
+            setTimeout(() => this.handleAnimation());
         }
     };
 
@@ -175,15 +186,19 @@ class Events extends React.Component<Props, States> {
         const language = this.props.browser.language;
         const media = this.props.browser.media;
         const event = this.state.event;
-        const description = event.descriptionLong;
-        const details = event.details;
-        const price = event.price;
-        const title = event.title;
-        const subtitle = event.subtitle;
+        // DEFINE EVENT
+        const booking = event.booking;
         const date =
             event.date instanceof Date
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
                 : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+        const description = event.descriptionLong;
+        const details = event.details;
+        const email = event.email;
+        const price = event.price;
+        const program = event.program;
+        const subtitle = event.subtitle;
+        const title = event.title;
         // DEFINE EMAIL
         const emailDate =
             event.date instanceof Date
@@ -193,14 +208,13 @@ class Events extends React.Component<Props, States> {
         const emailBody =
             `${getLanguage(language, 'emailGreeting')},${'%0D%0A'}${'%0D%0A'}` +
             `${getLanguage(language, 'emailText')}:${'%0D%0A'}${'%0D%0A'}` +
-            `${getLanguage(language, 'emailEvent')}: ${title[language]}${'%0D%0A'}` +
-            `${getLanguage(language, 'emailDate')}: ${emailDate}${'%0D%0A'}` +
-            `${getLanguage(language, 'emailName')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}` +
-            `${getLanguage(language, 'emailQuantity')}: (${getLanguage(language, 'emailPlaceholder')})${'%0D%0A'}` +
-            (event.type.includes('Accomodation')
-                ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}${'%0D%0A'}`
-                : `${'%0D%0A'}`) +
-            `${getLanguage(language, 'emailGoodbye')}`;
+            (email.title ? `${getLanguage(language, 'emailTitle')}: ${title[language]}${'%0D%0A'}` : '') +
+            (email.date ? `${getLanguage(language, 'emailDate')}: ${emailDate}${'%0D%0A'}` : '') +
+            (email.name ? `${getLanguage(language, 'emailName')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}` : '') +
+            (email.quantity ? `${getLanguage(language, 'emailQuantity')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}` : '') +
+            (email.foodIntolerance ? `${getLanguage(language, 'emailFoodIntolerance')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}` : '') +
+            (email.accomodation ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}` : '') +
+            `${'%0D%0A'}${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
             <Modal className='modalEvent' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>
@@ -239,10 +253,35 @@ class Events extends React.Component<Props, States> {
                                     </div>
                                 </div>
                                 <div className='modalDescription'>{description[language]}</div>
-                                <div className='modalButton underlineLink'>
-                                    <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>
-                                        {getLanguage(language, 'eventBook')}
-                                    </a>
+                                {program && (
+                                    <div className='modalProgram'>
+                                        {`${getLanguage(language, 'eventProgram')} `}
+                                        <a className='underlineLink' href={program} target='_blank' rel='noopener noreferrer'>{getLanguage(language, 'eventLink')}</a>
+                                        {'.'}
+                                    </div>
+                                )}
+                                <div className='modalButtons'>
+                                    {booking && booking.length !== 0 ? (
+                                        <>
+                                            {booking.map(item => {
+                                                let link = item.link ? item.link : 'mailto:hallo@ebenrieder.de';
+                                                if (item.email) {
+                                                    link = link + `?subject=${item.email.subject[language]}&body=${item.email.body[language]}`
+                                                } else if (email) {
+                                                    link = link + `?subject=${emailSubject}&body=${emailBody}`
+                                                }
+                                                return (
+                                                    <a className='underlineLink' href={link}>
+                                                        {item.label[language]}
+                                                    </a>
+                                                );
+                                            })}
+                                        </>
+                                    ) : (
+                                        <a className='underlineLink' href={email ? `mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}` : 'mailto:hallo@ebenrieder.de'}>
+                                            {getLanguage(language, 'eventBook')}
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                             <div className='modalRight'>

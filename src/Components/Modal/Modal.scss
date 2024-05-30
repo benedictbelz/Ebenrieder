@@ -113,6 +113,16 @@
                 .modalDescription {
                     text-align: justify;
                     line-height: $line-height-m;
+                    white-space: pre-wrap;
+                }
+
+                .modalButtons {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 25px;
                 }
             }
 
@@ -188,6 +198,7 @@
                 .modalDescription {
                     text-align: justify;
                     line-height: $line-height-m;
+                    white-space: pre-wrap;
                 }
             }
 

@@ -47,11 +47,11 @@ class Rooms extends React.Component<Props, States> {
 
     componentDidUpdate(prevProps: Props) {
         if (this.props.browser.media !== prevProps.browser.media && (this.props.browser.media === 'Medium' || prevProps.browser.media === 'Medium')) {
-            this.animateRooms();
+            this.handleAnimation();
         }
     }
 
-    private animateRooms = () => {
+    private handleAnimation = () => {
         // DEFINE VARIABELS
         let index = 0;
         let rooms = document.querySelectorAll('.room') as unknown as HTMLElement[];
@@ -82,7 +82,7 @@ class Rooms extends React.Component<Props, States> {
 
     private handleChangeFilter = (filter: FilterRoom) => {
         // UPDATE STATE
-        this.setState({ filter }, () => this.animateRooms());
+        this.setState({ filter }, () => this.handleAnimation());
     };
 
     private handleClickRoom = (room: Room) => {
@@ -100,8 +100,9 @@ class Rooms extends React.Component<Props, States> {
         const language = this.props.browser.language;
         const media = this.props.browser.media;
         const room = this.state.room;
-        const features = room.features;
+        // DEFINE ROOM
         const description = room.descriptionLong;
+        const features = room.features;
         const title = room.title;
         // RETURN MODAL
         return (

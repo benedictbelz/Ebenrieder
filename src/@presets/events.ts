@@ -3,20 +3,52 @@ import { Event } from '../@types/events';
 export function getEvents(): Event[] {
     return [
         {
-            date: new Date(2024, 4, 10, 19, 0),
+            booking: [
+                {
+                    label: {
+                        de: 'Anmeldung für Übernachtung',
+                        en: 'Booking for Accomodation'
+                    },
+                },
+                {
+                    label: {
+                        de: 'Anmeldung für Yoga',
+                        en: 'Booking for Yoga'
+                    },
+                    link: 'mailto:tatjana@raise-yoga.com',
+                    email: {
+                        subject: {
+                            de: 'Anmeldung für Yoga',
+                            en: 'Booking for Yoga'
+                        },
+                        body: {
+                            de: `Hallo,${'%0D%0A'}${'%0D%0A'}ich möchte mich für folgende Yogakurse für das Yoga Opening im Ebenrieder vom 08. bis 09.06.2024 anmelden.${'%0D%0A'}${'%0D%0A'}Name: (Bitte ausfüllen)${'%0D%0A'}Yogakurs: (Bitte Tag, Lehrer und Uhrzeit angeben)${'%0D%0A'}${'%0D%0A'}Viele Grüße!`,
+                            en: `Hello,${'%0D%0A'}${'%0D%0A'}I would like to book the following yoga classes for the Yoga Opening at Ebenrieder from 8th to 9th of June 2024.${'%0D%0A'}${'%0D%0A'}Name: (Please complete)${'%0D%0A'}Yoga course: (Please specify day, teacher and time)${'%0D%0A'}${'%0D%0A'}Many greetings!`
+                        }
+                    }
+                }
+            ],
+            date: {
+                start: new Date(2024, 5, 8, 10, 0),
+                end: new Date(2024, 5, 9, 18, 0)
+            },
             descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                de: 'Weg vom Alltag, hin zu Flow & Joy: sechs erfahrene Yoga-Lehrende begleiten dich ein Wochenende lang durch inspirierende Klassen. Wähle aus dem vielfältigen Angebot einen Kurs aus und gestalte deine ganz persönliche Yoga-Reise. Starte bereits frühmorgens beim Frühstück genussvoll in den Tag und erfahre beim Abendessen ein kulinarisches Highlight aus einer Vielzahl köstlicher Speisen und erfrischender Getränke aus unserem Garten und der Region. Am Samstagabend entführt dich das ELIAS PRINZ QUARTETT, eine herausragende Jazzband aus München, in eine ausgelassene Welt aus Gypsy Swing und Bebop-Ästhetik, die zu ausgelassenem Tanz einlädt – damit Körper, Geist und Seele wieder gestärkt der Welt trotzen können.',
+                en: 'Away from everyday life, towards flow & joy: six experienced yoga teachers will guide you through a weekend of inspiring classes. Choose a course from a wide range offer and create your own personal yoga journey. Start your enjoyable day early in the morning with breakfast and experience a culinary highlight at dinner with a variety of delicious dishes and refreshing drinks from our garden and the region. On Saturday evening, the ELIAS PRINZ QUARTETT, an outstanding jazz band from Munich, will whisk you away into an exuberant world of gypsy swing and bebop aesthetics, inviting you to dance the night away - so that body, mind and soul can once again defy the world with renewed vigor.'
             },
             descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                de: 'Erlebe ein Wochenende lang unterschiedliche Yoga Lehrende, Live Musik mit dem ELIAS PRINZ QUARTETT und leckeres Essen aus dem Garten und der Region.',
+                en: 'Experience a weekend of different yoga teachers, live music with the Elias Prinz Qurartet and delicious food from the garden and the region.'
             },
             details: [
                 {
                     title: {
-                        de: 'Tasting mit 6 verschiedenen Gins',
-                        en: 'Tasting with 6 different Gins'
+                        de: 'Yoga Wochenende',
+                        en: 'Yoga Weekend'
+                    },
+                    content: {
+                        de: 'Sechs unterschiedliche Yoga-Lehrende: Annett Münzinger, Tatjana Sanftenberg, Otana Mirza, Lilli Bochenafa, David Bouchenafa, Sandra Dettweiler',
+                        en: 'Six different yoga teachers: Annett Münzinger, Tatjana Sanftenberg, Otana Mirza, Lilli Bochenafa, David Bouchenafa, Sandra Dettweiler'
                     }
                 },
                 {
@@ -25,8 +57,8 @@ export function getEvents(): Event[] {
                         en: 'Places'
                     },
                     content: {
-                        de: '15-30',
-                        en: '15-30'
+                        de: '10-14',
+                        en: '10-14'
                     }
                 },
                 {
@@ -35,18 +67,8 @@ export function getEvents(): Event[] {
                         en: 'Duration'
                     },
                     content: {
-                        de: 'ca. 2,5 Stunden',
-                        en: 'approx. 2,5 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
+                        de: 'ca. 60 bis 90 Minuten für jede Yoga Session',
+                        en: 'approx. 60 to 90 minutes for each yoga session'
                     }
                 },
                 {
@@ -55,18 +77,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Teilnahme',
-                        en: 'Attendance'
-                    },
-                    content: {
-                        de: 'ab 18 Jahren',
-                        en: '18 years and older'
+                        de: 'Yoga am Samstag & Sonntag zwischen 09:30 bis 18:00 Uhr',
+                        en: 'Yoga on Saturday & Sunday between 09:30 and 18:00 o\'clock'
                     }
                 },
                 {
@@ -75,55 +87,92 @@ export function getEvents(): Event[] {
                         en: 'Price'
                     },
                     content: {
-                        de: '59 EUR pro Person',
-                        en: '59 EUR per person'
+                        de: '20 EUR pro Session',
+                        en: '20 EUR per session'
                     }
                 },
                 {
                     content: {
-                        de: 'inkl. Welcome Drink & Finger Food',
-                        en: 'incl. welcome drink & finger food'
+                        de: 'inkl. Welcome Drink & süße und salzige Köstlichkeiten am Nachmittag',
+                        en: 'incl. welcome drink & sweet and salty delicacies in the afternoon'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Abendessen & Jazzkonzert am 08.06.2024',
+                        en: 'incl. dinner & jazz concert on 08.06.2024'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Übernachtung',
+                        en: 'Accommodation'
+                    },
+                    content: {
+                        de: 'Doppelzimmer zu ＊＊ EUR inkl. Frühstück (optional)',
+                        en: 'Double room at ＊＊ EUR incl. breakfast (optional)'
                     }
                 }
             ],
-            gallery: ['assets/media/events/gin_gin_01.jpg', 'assets/media/events/gin_gin_02.jpg', 'assets/media/events/gin_gin_03.jpg'],
-            link: 'gin_gin_10_05_2024',
-            previewImage: 'assets/media/events/gin_gin_01.jpg',
+            email: {
+                accomodation: true,
+                date: true,
+                foodIntolerance: false,
+                name: true,
+                title: true,
+                quantity: true
+            },
+            gallery: [
+                'assets/media/events/yoga_opening_01.jpg',
+                'assets/media/events/yoga_opening_02.jpg',
+                'assets/media/events/yoga_opening_03.jpg'
+            ],
+            link: 'yoga_opening',
+            previewImage: 'assets/media/events/yoga_opening_01.jpg',
+            program: 'assets/media/events/yoga_opening.pdf',
             subtitle: [
                 {
-                    de: 'Gin Tasting',
-                    en: 'Gin Tasting'
+                    de: 'Unterschiedliche Yoga Lehrende',
+                    en: 'Various Yoga Teachers'
+                },
+                {
+                    de: 'Live Musik',
+                    en: 'Live Music'
+                },
+                {
+                    de: 'Feines Essen',
+                    en: 'Fine Dining'
                 }
             ],
             title: {
-                de: 'Gin Gin!',
-                en: 'Gin Gin!'
+                de: 'Yoga Opening',
+                en: 'Yoga Opening'
             },
-            type: ['Food'],
-            price: 59
+            type: ['Accomodation', 'Food', 'Yoga'],
+            price: 20
         },
         {
             date: {
-                start: new Date(2024, 4, 15, 19, 0),
-                end: new Date(2024, 4, 17, 19, 0)
+                start: new Date(2024, 6, 5, 14, 0),
+                end: new Date(2024, 6, 7, 14, 0)
             },
             descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                de: `Manche Menschen finden Entspannung nicht auf Knopfdruck. Sondern durchs Tun: Mit den Händen arbeiten, Kopf abschalten und sich auf die Sinne konzentrieren. So kommen oft die besten Ideen. Unser Keramik & Yoga Retreat vereint Töpfern und Yoga und bietet beruhigende Erlebnisse. Der Kontakt mit Ton verbindet dich mit der Natur und dir selbst.\n\nWir freuen uns sehr, dass die wundervolle Münchner Keramikkünstlerin Lena Harms den Workshop leitet. Ursprünglich aus dem Bereich des Produktdesigns kommend, arbeitet sie seit nunmehr 7 Jahren mit Ton. Mithilfe der Aufbau- und Plattentechnik lernst du selbstständig Gefäße zu formen und bekommst die Methode der Einlegearbeit mit verschiedenen Tonfarben, dem sogenannten Nerikomi, gezeigt. Der Workshop ist für alle Level geeignet und zielt darauf ab, die eigene Einzigartigkeit und Kreativität zu feiern.\n\nAm Abend führt dich Susi durch eine ausgewogene Yogastunde. Kraftvolle und sanfte Übungen geben dir neue Kraft und erden dich zugleich.\n\nKreativität, Hand-Arbeit, Entschleunigung und Ruhe vereint: Ergänze deine Auszeit mit allem, was dir gut tut – wir bieten den Raum dafür. Zwischen dem Keramik Workshop und den Yogastunden kannst du dich in die Sauna mit Außenpool zurückziehen, am Kamin lesen oder ein kleines Nickerchen in deinem Zimmer, der Terrasse oder deinem Lieblingsort im Ebenrieder machen.\nKulinarisch verwöhnen wir dich ebenfalls den ganzen Tag über: Von Frühstück über Mittagessen, Kaffee und Kuchen bis hin zum Abendessen kannst du dich auf köstliche Überraschungen aus unserem Garten und der Region freuen. Bitte gebe etwaige Unverträglichkeiten bei deiner Buchung gleich mit an, damit wir diese beim Vorbereiten berücksichtigen können.`,
+                en: `Some people don\'t find relaxation at the touch of a button. But by doing: working with your hands, switching off your head and concentrating on your senses. This is often how the best ideas come around. Our ceramics & yoga retreat combines pottery and yoga and offers calming experiences. Contact with clay connects you with nature and yourself.\n\nWe are delighted that the wonderful Munich ceramic artist Lena Harms will be leading the workshop. Originally from the field of product design, she has been working with clay for 7 years now. With the help of the body and slab technique, you will learn to shape vessels independently and be shown the method of inlay work with different clay colors, the so-called Nerikomi. The workshop is suitable for all levels and aims to celebrate your own uniqueness and creativity.\n\nIn the evening, Susi will guide you through a balanced yoga class. Powerful and gentle exercises will give you new strength and ground you at the same time.\n\nCreativity, handwork, slowing down and tranquillity combined: complement your time out with everything that does you good - we offer the space for this. Between the ceramics workshop and the yoga classes, you can retreat to the sauna with outdoor pool, read by the fireplace or take a little nap in your room, on the terrace or in your favorite place at Ebenrieder.\n\nWe also spoil you with culinary delights throughout the day: From breakfast to lunch, coffee and cake to dinner, you can look forward to delicious surprises from our garden and the region. Please let us know if you have any food intolerances when you book so that we can take these into account when preparing your meal.`
             },
             descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                de: 'In diesem besonderen Retreat verschmelzen die beruhigenden Welten von Töpfern und Yoga auf magische Weise miteinander. Der Workshop mit der Keramikkünstlerin Lena Harms widmet sich insbesondere der japanischen Nerikomi-Technik, bei der es sich um eine Aufbau- und Einlegetechnik handelt, und auch für Anfänger:innen geeignet ist.',
+                en: 'In this special retreat, the calming worlds of pottery and yoga merge together in a magical way. The workshop with ceramic artist Lena Harms focuses in particular on the Japanese Nerikomi technique, which is a build-up and inlay technique and is also suitable for beginners.'
             },
             details: [
                 {
                     title: {
-                        de: 'Exklusives 5-Gänge-Menü',
-                        en: 'Exclusive 5 course menu'
+                        de: 'Keramik & Yoga Wochenende',
+                        en: 'Ceramics & Yoga weekend'
                     },
                     content: {
-                        de: 'behind the scenes in unserer Event-Küche',
-                        en: 'behind the scenes in our event kitchen'
+                        de: 'Arbeiten mit Ton im Ebenrieder',
+                        en: 'Working with clay at Ebenrieder'
                     }
                 },
                 {
@@ -132,8 +181,8 @@ export function getEvents(): Event[] {
                         en: 'Places'
                     },
                     content: {
-                        de: '10-15',
-                        en: '10-15'
+                        de: '8-12',
+                        en: '8-12'
                     }
                 },
                 {
@@ -142,18 +191,8 @@ export function getEvents(): Event[] {
                         en: 'Duration'
                     },
                     content: {
-                        de: 'ca. 4 Stunden',
-                        en: 'approx. 4 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
+                        de: 'vier Keramik Einheiten mit insgesamt 12 Stunden',
+                        en: 'four ceramic units totalling 12 hours'
                     }
                 },
                 {
@@ -162,8 +201,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
+                        de: 'am 05.07.2024 um 14:00 Uhr',
+                        en: 'on 05.07.2024 at 14:00 o\'clock'
                     }
                 },
                 {
@@ -172,1070 +211,70 @@ export function getEvents(): Event[] {
                         en: 'Price'
                     },
                     content: {
-                        de: '199 EUR pro Person',
-                        en: '199 EUR per person'
+                        de: '730 EUR pro Person',
+                        en: '730 EUR per person'
                     }
                 },
                 {
                     content: {
-                        de: 'inkl. Wein, Bier, Softdrinks & Kaffee',
-                        en: 'incl. wine, beer, soft drinks & coffee'
+                        de: 'inkl. zwei Übernachtungen und leckere Verpflegung',
+                        en: 'incl. two overnight stays and delicious catering'
                     }
                 },
                 {
                     content: {
-                        de: 'inkl. Welcome Drink',
-                        en: 'incl. welcome drink'
+                        de: 'inkl. vier Keramik Einheiten mit insgesamt 12 Stunden nach Anleitung',
+                        en: 'incl. four ceramic units totalling 12 hours with instructions'
                     }
                 },
                 {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
                     content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
+                        de: 'inkl. eine Stunde Yoga',
+                        en: 'incl. one hour Yoga'
                     }
-                }
+                },
+                {
+                    content: {
+                        de: 'inkl. Sauna mit Außenpool',
+                        en: 'incl. Sauna with outdoor pool'
+                    }
+                },
             ],
+            email: {
+                accomodation: false,
+                date: true,
+                foodIntolerance: true,
+                name: true,
+                title: true,
+                quantity: true
+            },
             gallery: [
-                'assets/media/events/chefs_table_01.jpg',
-                'assets/media/events/chefs_table_02.jpg',
-                'assets/media/events/chefs_table_03.jpg',
-                'assets/media/events/chefs_table_04.jpg',
-                'assets/media/events/chefs_table_05.jpg',
-                'assets/media/events/chefs_table_06.jpg',
-                'assets/media/events/chefs_table_07.jpg',
-                'assets/media/events/chefs_table_08.jpg',
-                'assets/media/events/chefs_table_09.jpg',
-                'assets/media/events/chefs_table_10.jpg'
+                'assets/media/events/arbeiten_mit_ton_01.jpg',
+                'assets/media/events/arbeiten_mit_ton_02.jpg',
+                'assets/media/events/arbeiten_mit_ton_03.jpg',
+                'assets/media/events/arbeiten_mit_ton_04.jpg',
+                'assets/media/events/arbeiten_mit_ton_05.jpg',
+                'assets/media/events/arbeiten_mit_ton_06.jpg'
             ],
-            link: 'chefs_table_15_05_2024',
-            previewImage: 'assets/media/events/chefs_table_01.jpg',
+            link: 'arbeiten_mit_ton',
+            previewImage: 'assets/media/events/arbeiten_mit_ton_01.jpg',
+            program: 'assets/media/events/arbeiten_mit_ton.pdf',
             subtitle: [
                 {
-                    de: 'Exklusiver Dinner-Abend',
-                    en: 'Exclusive dinner evening'
+                    de: 'Keramik mit Lena Harms',
+                    en: 'Ceramics with Lena Harms'
                 },
                 {
-                    de: '5-Gänge-Menü',
-                    en: '5 course menu'
-                }
+                    de: 'Yoga mit Susi Dopfer',
+                    en: 'Yoga with Susi Dopfer'
+                },
             ],
             title: {
-                de: "Chef's Table",
-                en: "Chef's Table"
+                de: 'Arbeiten mit Ton',
+                en: 'Working with clay'
             },
-            type: ['Food', 'Accomodation'],
-            price: 199
+            type: ['Food', 'Workshop', 'Yoga'],
+            price: 730
         },
-        {
-            date: new Date(2024, 4, 20, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua et dolore magna aliquyam erat.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua et dolore magna aliquyam erat.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Whisky Tasting',
-                        en: 'Whisky Tasting'
-                    },
-                    content: {
-                        de: 'mit 6 verschiedenen Whiskys und begleitendem 4-Gänge-Menü',
-                        en: 'with 6 different whiskies and accompanying 4 course menu'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-30',
-                        en: '10-30'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 3 Stunden',
-                        en: 'approx. 3 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Teilnahme',
-                        en: 'Attendance'
-                    },
-                    content: {
-                        de: 'ab 18 Jahren',
-                        en: '18 years and older'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '125 EUR pro Person',
-                        en: '125 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Welcome Drink & Finger Food',
-                        en: 'incl. welcome drink & finger food'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
-                    content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
-                    }
-                }
-            ],
-            gallery: [
-                'assets/media/events/whiskey_dinner_01.jpg',
-                'assets/media/events/whiskey_dinner_02.jpg',
-                'assets/media/events/whiskey_dinner_03.jpg',
-                'assets/media/events/whiskey_dinner_04.jpg'
-            ],
-            link: 'whiskey_tasting_20_05_2024',
-            previewImage: 'assets/media/events/whiskey_dinner_01.jpg',
-            subtitle: [
-                {
-                    de: 'Whiskey Tasting',
-                    en: 'Whiskey Tasting'
-                },
-                {
-                    de: '4-Gänge-Menü',
-                    en: '4 course menu'
-                }
-            ],
-            title: {
-                de: 'Whisky Dinner',
-                en: 'Whisky Dinner'
-            },
-            type: ['Accomodation', 'Food'],
-            price: 199
-        },
-        {
-            date: new Date(2024, 4, 28, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.'
-            },
-            details: [
-                {
-                    title: {
-                        de: '4-Gänge-Menü',
-                        en: '4 course menu'
-                    },
-                    content: {
-                        de: 'rund um das Thema Trüffel',
-                        en: 'around the topic of truffles'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Welcome Drink, Wein & Wasser',
-                        en: 'incl. welcome drink, wine & water'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '15-30',
-                        en: '15-30'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 3,5 Stunden',
-                        en: 'approx. 3,5 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '135 EUR pro Person',
-                        en: '135 EUR per person'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
-                    content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
-                    }
-                }
-            ],
-            gallery: [
-                'assets/media/events/truffel_soiree_01.jpg',
-                'assets/media/events/truffel_soiree_02.jpg',
-                'assets/media/events/truffel_soiree_03.jpg',
-                'assets/media/events/truffel_soiree_04.jpg',
-                'assets/media/events/truffel_soiree_05.jpg',
-                'assets/media/events/truffel_soiree_06.jpg',
-                'assets/media/events/truffel_soiree_07.jpg'
-            ],
-            link: 'truffel_soiree_28_05_2024',
-            previewImage: 'assets/media/events/truffel_soiree_01.jpg',
-            subtitle: [
-                {
-                    de: '4-Gänge-Menü',
-                    en: '4 course menu'
-                }
-            ],
-            title: {
-                de: 'Trüffel Soiree',
-                en: 'Truffle Soiree'
-            },
-            type: ['Food', 'Accomodation'],
-            price: 135
-        },
-        {
-            date: new Date(2024, 4, 30, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Yoga Entspannung',
-                        en: 'Yoga relaxation'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-20',
-                        en: '10-20'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 1 Stunde',
-                        en: 'approx. 1 hour'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '15 Uhr',
-                        en: "15 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '15:30 Uhr',
-                        en: "15:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '50 EUR pro Person',
-                        en: '50 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Yoga Matte, Tee & Wasser',
-                        en: 'incl. yoga mat, tea & water'
-                    }
-                }
-            ],
-            gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
-            link: 'yoga_with_karina_wagner_30_05_2024',
-            previewImage: 'assets/media/events/yoga_01.jpg',
-            title: {
-                de: 'Yoga mit Karina Wagner',
-                en: 'Yoga with Karina Wagner'
-            },
-            type: ['Yoga'],
-            price: 50
-        },
-        {
-            date: {
-                start: new Date(2024, 5, 6, 19, 0),
-                end: new Date(2024, 5, 8, 19, 0)
-            },
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Exklusives 5-Gänge-Menü',
-                        en: 'Exclusive 5 course menu'
-                    },
-                    content: {
-                        de: 'behind the scenes in unserer Event-Küche',
-                        en: 'behind the scenes in our event kitchen'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-15',
-                        en: '10-15'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 4 Stunden',
-                        en: 'approx. 4 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '199 EUR pro Person',
-                        en: '199 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Wein, Bier, Softdrinks & Kaffee',
-                        en: 'incl. wine, beer, soft drinks & coffee'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Welcome Drink',
-                        en: 'incl. welcome drink'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
-                    content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
-                    }
-                }
-            ],
-            gallery: [
-                'assets/media/events/chefs_table_01.jpg',
-                'assets/media/events/chefs_table_02.jpg',
-                'assets/media/events/chefs_table_03.jpg',
-                'assets/media/events/chefs_table_04.jpg',
-                'assets/media/events/chefs_table_05.jpg',
-                'assets/media/events/chefs_table_06.jpg',
-                'assets/media/events/chefs_table_07.jpg',
-                'assets/media/events/chefs_table_08.jpg',
-                'assets/media/events/chefs_table_09.jpg',
-                'assets/media/events/chefs_table_10.jpg'
-            ],
-            link: 'chefs_table_06_06_2024',
-            previewImage: 'assets/media/events/chefs_table_01.jpg',
-            subtitle: [
-                {
-                    de: 'Exklusiver Dinner-Abend',
-                    en: 'Exclusive dinner evening'
-                },
-                {
-                    de: '5-Gänge-Menü',
-                    en: '5 course menu'
-                }
-            ],
-            title: {
-                de: "Chef's Table",
-                en: "Chef's Table"
-            },
-            type: ['Food', 'Accomodation'],
-            price: 199
-        },
-        {
-            date: new Date(2024, 5, 12, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.'
-            },
-            details: [
-                {
-                    title: {
-                        de: '4-Gänge-Menü',
-                        en: '4 course menu'
-                    },
-                    content: {
-                        de: 'rund um das Thema Trüffel',
-                        en: 'around the topic of truffles'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Welcome Drink, Wein & Wasser',
-                        en: 'incl. welcome drink, wine & water'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '15-30',
-                        en: '15-30'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 3,5 Stunden',
-                        en: 'approx. 3,5 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '135 EUR pro Person',
-                        en: '135 EUR per person'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
-                    content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
-                    }
-                }
-            ],
-            gallery: [
-                'assets/media/events/truffel_soiree_01.jpg',
-                'assets/media/events/truffel_soiree_02.jpg',
-                'assets/media/events/truffel_soiree_03.jpg',
-                'assets/media/events/truffel_soiree_04.jpg',
-                'assets/media/events/truffel_soiree_05.jpg',
-                'assets/media/events/truffel_soiree_06.jpg',
-                'assets/media/events/truffel_soiree_07.jpg'
-            ],
-            link: 'truffel_soiree_12_06_2024',
-            previewImage: 'assets/media/events/truffel_soiree_01.jpg',
-            subtitle: [
-                {
-                    de: '4-Gänge-Menü',
-                    en: '4 course menu'
-                }
-            ],
-            title: {
-                de: 'Trüffel Soiree',
-                en: 'Truffle Soiree'
-            },
-            type: ['Food', 'Accomodation'],
-            price: 135
-        },
-        {
-            date: new Date(2024, 5, 16, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Yoga Entspannung',
-                        en: 'Yoga relaxation'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-20',
-                        en: '10-20'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 1 Stunde',
-                        en: 'approx. 1 hour'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '15 Uhr',
-                        en: "15 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '15:30 Uhr',
-                        en: "15:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '50 EUR pro Person',
-                        en: '50 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Yoga Matte, Tee & Wasser',
-                        en: 'incl. yoga mat, tea & water'
-                    }
-                }
-            ],
-            gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
-            link: 'yoga_with_karina_wagner_16_06_2024',
-            previewImage: 'assets/media/events/yoga_01.jpg',
-            title: {
-                de: 'Yoga mit Karina Wagner',
-                en: 'Yoga with Karina Wagner'
-            },
-            type: ['Yoga'],
-            price: 50
-        },
-        {
-            date: new Date(2024, 6, 10, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Yoga Entspannung',
-                        en: 'Yoga relaxation'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-20',
-                        en: '10-20'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 1 Stunde',
-                        en: 'approx. 1 hour'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '15 Uhr',
-                        en: "15 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '15:30 Uhr',
-                        en: "15:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '50 EUR pro Person',
-                        en: '50 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Yoga Matte, Tee & Wasser',
-                        en: 'incl. yoga mat, tea & water'
-                    }
-                }
-            ],
-            gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
-            link: 'yoga_with_karina_wagner_10_07_2024',
-            previewImage: 'assets/media/events/yoga_01.jpg',
-            title: {
-                de: 'Yoga mit Karina Wagner',
-                en: 'Yoga with Karina Wagner'
-            },
-            type: ['Yoga'],
-            price: 50
-        },
-        {
-            date: new Date(2024, 8, 10, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Yoga Entspannung',
-                        en: 'Yoga relaxation'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-20',
-                        en: '10-20'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 1 Stunde',
-                        en: 'approx. 1 hour'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '15 Uhr',
-                        en: "15 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '15:30 Uhr',
-                        en: "15:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '50 EUR pro Person',
-                        en: '50 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Yoga Matte, Tee & Wasser',
-                        en: 'incl. yoga mat, tea & water'
-                    }
-                }
-            ],
-            gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
-            link: 'yoga_with_karina_wagner_10_09_2024',
-            previewImage: 'assets/media/events/yoga_01.jpg',
-            title: {
-                de: 'Yoga mit Karina Wagner',
-                en: 'Yoga with Karina Wagner'
-            },
-            type: ['Yoga'],
-            price: 50
-        },
-        {
-            date: new Date(2025, 3, 10, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            details: [
-                {
-                    title: {
-                        de: 'Yoga Entspannung',
-                        en: 'Yoga relaxation'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '10-20',
-                        en: '10-20'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 1 Stunde',
-                        en: 'approx. 1 hour'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '15 Uhr',
-                        en: "15 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '15:30 Uhr',
-                        en: "15:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '50 EUR pro Person',
-                        en: '50 EUR per person'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Yoga Matte, Tee & Wasser',
-                        en: 'incl. yoga mat, tea & water'
-                    }
-                }
-            ],
-            gallery: ['assets/media/events/yoga_01.jpg', 'assets/media/events/yoga_02.jpg', 'assets/media/events/yoga_03.jpg'],
-            link: 'yoga_with_karina_wagner_10_04_2024',
-            previewImage: 'assets/media/events/yoga_01.jpg',
-            title: {
-                de: 'Yoga mit Karina Wagner',
-                en: 'Yoga with Karina Wagner'
-            },
-            type: ['Yoga'],
-            price: 50
-        },
-        {
-            date: new Date(2025, 10, 12, 19, 0),
-            descriptionLong: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
-            },
-            descriptionShort: {
-                de: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
-                en: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.'
-            },
-            details: [
-                {
-                    title: {
-                        de: '4-Gänge-Menü',
-                        en: '4 course menu'
-                    },
-                    content: {
-                        de: 'rund um das Thema Trüffel',
-                        en: 'around the topic of truffles'
-                    }
-                },
-                {
-                    content: {
-                        de: 'inkl. Welcome Drink, Wein & Wasser',
-                        en: 'incl. welcome drink, wine & water'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Plätze',
-                        en: 'Places'
-                    },
-                    content: {
-                        de: '15-30',
-                        en: '15-30'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Dauer',
-                        en: 'Duration'
-                    },
-                    content: {
-                        de: 'ca. 3,5 Stunden',
-                        en: 'approx. 3,5 hours'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Einlass',
-                        en: 'Entrance'
-                    },
-                    content: {
-                        de: '19 Uhr',
-                        en: "19 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Start',
-                        en: 'Start'
-                    },
-                    content: {
-                        de: '19:30 Uhr',
-                        en: "19:30 o'clock"
-                    }
-                },
-                {
-                    title: {
-                        de: 'Preis',
-                        en: 'Price'
-                    },
-                    content: {
-                        de: '135 EUR pro Person',
-                        en: '135 EUR per person'
-                    }
-                },
-                {
-                    title: {
-                        de: 'Übernachtung',
-                        en: 'Accommodation'
-                    },
-                    content: {
-                        de: 'Doppelzimmer zu 100 EUR inkl. Frühstück (optional)',
-                        en: 'Double room at 100 EUR incl. breakfast (optional)'
-                    }
-                }
-            ],
-            gallery: [
-                'assets/media/events/truffel_soiree_01.jpg',
-                'assets/media/events/truffel_soiree_02.jpg',
-                'assets/media/events/truffel_soiree_03.jpg',
-                'assets/media/events/truffel_soiree_04.jpg',
-                'assets/media/events/truffel_soiree_05.jpg',
-                'assets/media/events/truffel_soiree_06.jpg',
-                'assets/media/events/truffel_soiree_07.jpg'
-            ],
-            link: 'truffel_soiree_12_11_2024',
-            previewImage: 'assets/media/events/truffel_soiree_01.jpg',
-            subtitle: [
-                {
-                    de: '4-Gänge-Menü',
-                    en: '4 course menu'
-                }
-            ],
-            title: {
-                de: 'Trüffel Soiree',
-                en: 'Truffle Soiree'
-            },
-            type: ['Food', 'Accomodation'],
-            price: 135
-        }
     ];
 }

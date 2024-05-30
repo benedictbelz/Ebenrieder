@@ -386,7 +386,7 @@ class Events extends React.Component<Props, States> {
                                     ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
                                     : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
                             return (
-                                <div className='event' key={`event_${index}`}>
+                                <div className='event' key={`event_${event.link}`}>
                                     <div className='eventImage'>
                                         <Parallax
                                             height={this.props.browser.height}
@@ -394,7 +394,7 @@ class Events extends React.Component<Props, States> {
                                             factor={media === 'Extra Small' ? 15 : 20}
                                             modus={'Complex'}
                                         >
-                                            <img src={previewImage} />
+                                            <img src={previewImage} onLoad={event => (event.currentTarget.style.opacity = '1')}/>
                                         </Parallax>
                                     </div>
                                     <div className='eventContent'>

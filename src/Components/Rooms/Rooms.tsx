@@ -81,9 +81,7 @@ class Rooms extends React.Component<Props, States> {
 
     private handleChangeFilter = (filter: FilterRoom) => {
         // UPDATE STATE
-        this.setState({ filter });
-        // ANIMATE EVENTS
-        setTimeout(() => this.animateRooms());
+        this.setState({ filter }, () => this.animateRooms());
     };
 
     private handleClickRoom = (room: Room) => {
@@ -181,14 +179,13 @@ class Rooms extends React.Component<Props, States> {
                         </div>
                     ))}
                 </div>
-
                 <div id='roomsGrid'>
                     {rooms.map((room: Room, index: number) => {
                         const title = room.title;
                         const description = room.descriptionShort;
                         const previewImage = room.previewImage;
                         return (
-                            <div className='room' key={`room_${index}`}>
+                            <div className='room' key={`room_${room.link}`}>
                                 <div className='roomImage'>
                                     <Parallax
                                         height={this.props.browser.height}
@@ -196,7 +193,7 @@ class Rooms extends React.Component<Props, States> {
                                         factor={media === 'Extra Small' ? 15 : 20}
                                         modus={'Complex'}
                                     >
-                                        <img src={previewImage} />
+                                        <img src={previewImage} onLoad={event => (event.currentTarget.style.opacity = '1')} />
                                     </Parallax>
                                 </div>
                                 <div className='roomContent'>

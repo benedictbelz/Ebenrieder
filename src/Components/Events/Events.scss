@@ -275,11 +275,14 @@
                 padding-bottom: 75%;
                 height: 0%;
                 width: 100%;
+                background: $color-transparent;
 
                 img {
                     height: 100%;
                     width: 100%;
                     object-fit: cover;
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
                 }
 
                 .parallax {

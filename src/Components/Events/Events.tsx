@@ -246,16 +246,18 @@ class Events extends React.Component<Props, States> {
                                 </div>
                             </div>
                             <div className='modalRight'>
-                                {details.map((item, index) => (
-                                    <React.Fragment key={`subtitle_${index}`}>
-                                        <span className='line' />
-                                        <p>
-                                            {item.title && <strong>{item.title[language]}</strong>}
-                                            {item.content && item.content[language]}
-                                        </p>
-                                    </React.Fragment>
-                                ))}
-                                <span className='line' />
+                                <div className='modalDetails'>
+                                    {details.map((item, index) => (
+                                        <React.Fragment key={`subtitle_${index}`}>
+                                            <span className='line' />
+                                            <p>
+                                                {item.title && <strong>{item.title[language]}</strong>}
+                                                {item.content && item.content[language]}
+                                            </p>
+                                        </React.Fragment>
+                                    ))}
+                                    <span className='line' />
+                                </div>
                             </div>
                         </div>
                     </>
@@ -394,7 +396,7 @@ class Events extends React.Component<Props, States> {
                                             factor={media === 'Extra Small' ? 15 : 20}
                                             modus={'Complex'}
                                         >
-                                            <img src={previewImage} onLoad={event => (event.currentTarget.style.opacity = '1')}/>
+                                            <img src={previewImage} onLoad={event => (event.currentTarget.style.opacity = '1')} />
                                         </Parallax>
                                     </div>
                                     <div className='eventContent'>

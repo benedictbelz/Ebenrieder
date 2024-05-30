@@ -117,26 +117,28 @@
             }
 
             .modalRight {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 6px;
-                font-size: var(--font-size-detail);
-                line-height: $line-height-m;
-                letter-spacing: 0.75px;
-
-                p {
+                .modalDetails {
                     display: flex;
-                    justify-content: flex-start;
-                    flex-wrap: wrap;
-                    line-height: $line-height-m;
-                    gap: 2px 5px;
-                }
-
-                .line {
-                    height: $border-s;
+                    flex-direction: column;
                     width: 100%;
-                    background: $color-blue;
+                    gap: 6px;
+                    font-size: var(--font-size-detail);
+                    line-height: $line-height-m;
+                    letter-spacing: 0.75px;
+
+                    p {
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        line-height: $line-height-m;
+                        gap: 2px 5px;
+                    }
+
+                    .line {
+                        height: $border-s;
+                        width: 100%;
+                        background: $color-blue;
+                    }
                 }
             }
         }
@@ -190,23 +192,29 @@
             }
 
             .modalRight {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 15px;
+                .modalFeatures {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                    gap: 25px;
+                    margin-left: 50px;
 
-                > div {
-                    // flex: 1;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    gap: 10px;
-
-                    p {
-                        white-space: nowrap;
+                    @media (max-width: $media-l) {
+                        margin: 0;
                     }
 
-                    img {
-                        height: 25px;
+                    > div {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 10px;
+
+                        p {
+                            white-space: nowrap;
+                        }
+
+                        img {
+                            height: 25px;
+                        }
                     }
                 }
             }

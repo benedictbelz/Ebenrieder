@@ -19,6 +19,7 @@ interface Props {
         modus: 'Simple' | 'Complex';
         scroll: number;
     };
+    style?: React.CSSProperties;
 }
 
 interface States {
@@ -69,7 +70,7 @@ export default class Gallery extends React.Component<Props, States> {
         this.mountGallery();
         this.mountDrag();
         if (this.props.autoPlay) {
-            this.interval = setInterval(() => this.handleChangeImage('Next'), 2500);
+            this.interval = setInterval(() => this.handleChangeImage('Next'), 5000);
         }
     }
 
@@ -485,6 +486,7 @@ export default class Gallery extends React.Component<Props, States> {
                     .filter(x => x)
                     .join(' ')}
                 onClick={this.handleClick}
+                style={this.props.style}
             >
                 {!this.props.hideControls && <div ref={this.galleryDrag} className='galleryDrag' />}
                 {!this.props.hideControls && !this.state.drag && this.props.browser.device === 'Desktop' && (

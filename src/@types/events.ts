@@ -1,4 +1,4 @@
-export const availableFilters = ['Accomodation', 'Concert', 'Craft', 'Drink', 'Food', 'Seminar', 'Wellbeing'] as const;
+export const availableFilters = ['Accomodation', 'Concert', 'Food', 'Workshop', 'Yoga'] as const;
 
 export type FilterEvent = (typeof availableFilters)[number];
 

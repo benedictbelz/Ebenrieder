@@ -12,6 +12,7 @@ import './Rooms.scss';
 
 interface Props extends PropsWithRouter {
     browser: Browser;
+    filters: FilterRoom[];
 }
 
 interface States {
@@ -28,7 +29,7 @@ class Rooms extends React.Component<Props, States> {
         this.rooms = React.createRef();
         this.state = {
             room: null,
-            filter: 'Apartment'
+            filter: this.props.filters[0]
         };
     }
 
@@ -130,21 +131,23 @@ class Rooms extends React.Component<Props, States> {
                                 <div className='modalDescription'>{description[language]}</div>
                             </div>
                             <div className='modalRight'>
-                                {Object.keys(features).map((key: keyof Room['features'], index) => (
-                                    <div className='modalFeature' key={`feature_${index}`}>
-                                        <img src={`assets/svg/${getFeatureImage(key)}.svg`} />
-                                        <p>
-                                            {key === 'squareMeter' ? (
-                                                <span>
-                                                    {`${features[key]} m`}
-                                                    <sup>2</sup>
-                                                </span>
-                                            ) : (
-                                                getFeature(language, key)
-                                            )}
-                                        </p>
-                                    </div>
-                                ))}
+                                <div className='modalFeatures'>
+                                    {Object.keys(features).map((key: keyof Room['features'], index) => (
+                                        <div className='modalFeature' key={`feature_${index}`}>
+                                            <img src={`assets/svg/${getFeatureImage(key)}.svg`} />
+                                            <p>
+                                                {key === 'squareMeter' ? (
+                                                    <span>
+                                                        {`${features[key]} m`}
+                                                        <sup>2</sup>
+                                                    </span>
+                                                ) : (
+                                                    getFeature(language, key)
+                                                )}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </>
@@ -160,10 +163,13 @@ class Rooms extends React.Component<Props, States> {
         // GET CURRENT EVENTS
         const rooms = getRooms().filter(item => item.type === this.state.filter);
         // GET FILTERS
-        const filters = availableFilters.map(item => ({
-            label: getFilter(language, item),
-            value: item
-        }));
+        const filters = availableFilters
+            .filter(item => this.props.filters.includes(item))
+            .sort((a, b) => this.props.filters.indexOf(a) - this.props.filters.indexOf(b))
+            .map(item => ({
+                label: getFilter(language, item),
+                value: item
+            }));
         // RETURN COMPONENT
         return (
             <div ref={this.rooms} id='rooms'>

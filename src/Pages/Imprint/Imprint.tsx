@@ -46,12 +46,7 @@ export default class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>Handelsregister</h4>
-                                    <span>München HRB ＊＊＊＊</span>
-                                </section>
-                                <section>
-                                    <h4>Vorstand</h4>
-                                    <span>Stefan Hahn</span>
-                                    <span>Jasmin Hahn</span>
+                                    <span>Kempten HRB 17493</span>
                                 </section>
                                 <section>
                                     <h4>Verantwortlich für den Inhalt</h4>
@@ -169,7 +164,7 @@ export default class Imprint extends React.Component<Props> {
                         </div>
                     )}
                     {language === 'en' && (
-                        <div id='imprintContent'>
+                        <div id='imprintWrapper'>
                             <div id='imprintLeft'>
                                 <section>
                                     <span>Ebenrieder Farmhaus GmbH</span>
@@ -195,12 +190,7 @@ export default class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>Commercial Register</h4>
-                                    <span>München HRB ＊＊＊＊</span>
-                                </section>
-                                <section>
-                                    <h4>Executive Board</h4>
-                                    <span>Stefan Hahn</span>
-                                    <span>Jasmin Hahn</span>
+                                    <span>Kempten HRB 17493</span>
                                 </section>
                                 <section>
                                     <h4>Responsible for Content</h4>

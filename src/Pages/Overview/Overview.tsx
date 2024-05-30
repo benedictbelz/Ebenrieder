@@ -54,16 +54,19 @@ class Overview extends React.Component<Props> {
                         <img src='assets/media/gallery/welcome_04.jpg' />
                         <img src='assets/media/gallery/welcome_05.jpg' />
                         <img src='assets/media/gallery/welcome_06.jpg' />
+                        <img src='assets/media/gallery/welcome_07.jpg' />
+                        <img src='assets/media/gallery/welcome_08.jpg' />
+                        <img src='assets/media/gallery/welcome_09.jpg' />
                     </Gallery>
                 </div>
                 <div id='overviewContent'>
-                    <article data-name={getLanguage(language, 'titlePlace')}>
+                    <article data-name={getLanguage(language, 'titleLocation')}>
                         <Title
                             browser={this.props.browser}
                             backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15}
                             backgroundY={0}
                             backgroundImage={'assets/media/watercolor/watercolor_01.jpg'}
-                            foregroundImage={`assets/svg/place_${language}.svg`}
+                            foregroundImage={`assets/svg/location_${language}.svg`}
                         />
                         <div>
                             {language === 'de' && (
@@ -128,16 +131,16 @@ class Overview extends React.Component<Props> {
                                     materials, and care products.
                                 </p>
                             )}
-                            <Rooms browser={this.props.browser} />
+                            <Rooms browser={this.props.browser} filters={['Room', 'Apartment']} />
                         </div>
                     </article>
-                    <article data-name={getLanguage(language, 'titleDates')}>
+                    <article data-name={getLanguage(language, 'titleCalendar')}>
                         <Title
                             browser={this.props.browser}
                             backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? 10 : 15}
                             backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_04.jpg'}
-                            foregroundImage={`assets/svg/dates_${language}.svg`}
+                            foregroundImage={`assets/svg/calendar_${language}.svg`}
                             foregroundScale={0.9}
                         />
                         <div>
@@ -159,13 +162,13 @@ class Overview extends React.Component<Props> {
                             <Events browser={this.props.browser} />
                         </div>
                     </article>
-                    <article data-name={getLanguage(language, 'titleUsage')}>
+                    <article data-name={getLanguage(language, 'titlePossibilities')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={0}
+                            backgroundX={language === 'en' ? (this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15) : 0}
                             backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_05.jpg'}
-                            foregroundImage={`assets/svg/usage_${language}.svg`}
+                            foregroundImage={`assets/svg/possibilities_${language}.svg`}
                             foregroundScale={0.9}
                         />
                         <div>
@@ -192,11 +195,13 @@ class Overview extends React.Component<Props> {
                                     develop a tailored concept.
                                 </p>
                             )}
+                            <Rooms browser={this.props.browser} filters={['Seminar Room', 'Wellness']} />
                         </div>
                         <Gallery
                             browser={this.props.browser}
                             loadingScreen={true}
                             modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
+                            style={this.props.browser.width >= this.props.browser.variables.mediaS ? { marginTop: 25 } : {}}
                         >
                             <img src='assets/media/gallery/usage_01.jpg' />
                             <img src='assets/media/gallery/usage_02.jpg' />

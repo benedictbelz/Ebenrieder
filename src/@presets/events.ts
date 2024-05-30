@@ -99,7 +99,7 @@ export function getEvents(): Event[] {
                 de: 'Gin Gin!',
                 en: 'Gin Gin!'
             },
-            type: ['Drink'],
+            type: ['Food'],
             price: 59
         },
         {
@@ -350,7 +350,7 @@ export function getEvents(): Event[] {
                 de: 'Whisky Dinner',
                 en: 'Whisky Dinner'
             },
-            type: ['Drink', 'Accomodation'],
+            type: ['Accomodation', 'Food'],
             price: 199
         },
         {
@@ -462,7 +462,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food', 'Accomodation'],
+            type: ['Food', 'Accomodation'],
             price: 135
         },
         {
@@ -546,7 +546,7 @@ export function getEvents(): Event[] {
                 de: 'Yoga mit Karina Wagner',
                 en: 'Yoga with Karina Wagner'
             },
-            type: ['Wellbeing'],
+            type: ['Yoga'],
             price: 50
         },
         {
@@ -786,7 +786,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food', 'Accomodation'],
+            type: ['Food', 'Accomodation'],
             price: 135
         },
         {
@@ -870,7 +870,7 @@ export function getEvents(): Event[] {
                 de: 'Yoga mit Karina Wagner',
                 en: 'Yoga with Karina Wagner'
             },
-            type: ['Wellbeing'],
+            type: ['Yoga'],
             price: 50
         },
         {
@@ -954,7 +954,7 @@ export function getEvents(): Event[] {
                 de: 'Yoga mit Karina Wagner',
                 en: 'Yoga with Karina Wagner'
             },
-            type: ['Wellbeing'],
+            type: ['Yoga'],
             price: 50
         },
         {
@@ -1038,7 +1038,7 @@ export function getEvents(): Event[] {
                 de: 'Yoga mit Karina Wagner',
                 en: 'Yoga with Karina Wagner'
             },
-            type: ['Wellbeing'],
+            type: ['Yoga'],
             price: 50
         },
         {
@@ -1122,7 +1122,7 @@ export function getEvents(): Event[] {
                 de: 'Yoga mit Karina Wagner',
                 en: 'Yoga with Karina Wagner'
             },
-            type: ['Wellbeing'],
+            type: ['Yoga'],
             price: 50
         },
         {
@@ -1234,7 +1234,7 @@ export function getEvents(): Event[] {
                 de: 'Trüffel Soiree',
                 en: 'Truffle Soiree'
             },
-            type: ['Drink', 'Food', 'Accomodation'],
+            type: ['Food', 'Accomodation'],
             price: 135
         }
     ];

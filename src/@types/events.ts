@@ -7,19 +7,19 @@ export type Event = {
         label: {
             de: string;
             en: string;
-        }
+        };
         link?: string;
         email?: {
             subject: {
                 de: string;
                 en: string;
-            },
+            };
             body: {
                 de: string;
                 en: string;
-            }
-        }
-    }[]
+            };
+        };
+    }[];
     date:
         | {
               start: Date;
@@ -51,7 +51,7 @@ export type Event = {
         name: boolean;
         title: boolean;
         quantity: boolean;
-    }
+    };
     gallery: string[];
     link: string;
     previewImage: string;

@@ -8,7 +8,7 @@ export function getEvents(): Event[] {
                     label: {
                         de: 'Anmeldung für Übernachtung',
                         en: 'Booking for Accomodation'
-                    },
+                    }
                 },
                 {
                     label: {
@@ -78,7 +78,7 @@ export function getEvents(): Event[] {
                     },
                     content: {
                         de: 'Yoga am Samstag & Sonntag zwischen 09:30 bis 18:00 Uhr',
-                        en: 'Yoga on Saturday & Sunday between 09:30 and 18:00 o\'clock'
+                        en: "Yoga on Saturday & Sunday between 09:30 and 18:00 o'clock"
                     }
                 },
                 {
@@ -122,11 +122,7 @@ export function getEvents(): Event[] {
                 title: true,
                 quantity: true
             },
-            gallery: [
-                'assets/media/events/yoga_opening_01.jpg',
-                'assets/media/events/yoga_opening_02.jpg',
-                'assets/media/events/yoga_opening_03.jpg'
-            ],
+            gallery: ['assets/media/events/yoga_opening_01.jpg', 'assets/media/events/yoga_opening_02.jpg', 'assets/media/events/yoga_opening_03.jpg'],
             link: 'yoga_opening',
             previewImage: 'assets/media/events/yoga_opening_01.jpg',
             program: 'assets/media/events/yoga_opening.pdf',
@@ -202,7 +198,7 @@ export function getEvents(): Event[] {
                     },
                     content: {
                         de: 'am 05.07.2024 um 14:00 Uhr',
-                        en: 'on 05.07.2024 at 14:00 o\'clock'
+                        en: "on 05.07.2024 at 14:00 o'clock"
                     }
                 },
                 {
@@ -238,7 +234,7 @@ export function getEvents(): Event[] {
                         de: 'inkl. Sauna mit Außenpool',
                         en: 'incl. Sauna with outdoor pool'
                     }
-                },
+                }
             ],
             email: {
                 accomodation: false,
@@ -267,7 +263,7 @@ export function getEvents(): Event[] {
                 {
                     de: 'Yoga mit Susi Dopfer',
                     en: 'Yoga with Susi Dopfer'
-                },
+                }
             ],
             title: {
                 de: 'Arbeiten mit Ton',
@@ -275,6 +271,6 @@ export function getEvents(): Event[] {
             },
             type: ['Food', 'Workshop', 'Yoga'],
             price: 730
-        },
+        }
     ];
 }

@@ -78,7 +78,7 @@ export default class Gallery extends React.Component<Props, States> {
             this.handleResetImage();
         } else if (this.props.loadingScreen && this.state.hasLoaded && !prevState.hasLoaded) {
             setTimeout(() => this.setState({ loadingScreen: false }), 500);
-        } else if (this.state.hasError && !prevState.hasError) {
+        } else if (this.props.loadingScreen && this.state.hasError && !prevState.hasError) {
             this.setState({ loadingScreen: true });
         }
     }

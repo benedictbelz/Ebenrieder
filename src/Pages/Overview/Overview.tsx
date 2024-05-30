@@ -5,6 +5,7 @@ import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
 import Information from '../../Components/Information/Information';
 import Menu from '../../Components/Menu/Menu';
+import Rooms from '../../Components/Rooms/Rooms';
 import Title from '../../Components/Title/Title';
 import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getLanguage } from '../../@presets/language';
@@ -19,7 +20,6 @@ class Overview extends React.Component<Props> {
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
-        const media = this.props.browser.media;
         // RETURN COMPONENT
         return (
             <div id='overview' className='page'>
@@ -40,8 +40,7 @@ class Overview extends React.Component<Props> {
                         parallax={{
                             deactivate:
                                 this.props.browser.device === 'Mobile' &&
-                                (this.props.browser.media === 'Extra Small' ||
-                                    this.props.browser.media === 'Small' ||
+                                (this.props.browser.width <= this.props.browser.variables.mediaS ||
                                     this.props.browser.height <= this.props.browser.variables.mediaS),
                             factor: 200,
                             modus: 'Simple',
@@ -61,7 +60,7 @@ class Overview extends React.Component<Props> {
                     <article data-name={getLanguage(language, 'titlePlace')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={media === 'Extra Small' || media === 'Small' ? -7.5 : -15}
+                            backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15}
                             backgroundY={0}
                             backgroundImage={'assets/media/watercolor/watercolor_01.jpg'}
                             foregroundImage={`assets/svg/place_${language}.svg`}
@@ -89,7 +88,7 @@ class Overview extends React.Component<Props> {
                         <Gallery
                             browser={this.props.browser}
                             loadingScreen={true}
-                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                            modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                         >
                             <img src='assets/media/gallery/place_01.jpg' />
                             <img src='assets/media/gallery/place_02.jpg' />
@@ -104,7 +103,7 @@ class Overview extends React.Component<Props> {
                     <article data-name={getLanguage(language, 'titleSleep')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={media === 'Extra Small' || media === 'Small' ? 10 : 15}
+                            backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? 10 : 15}
                             backgroundY={0}
                             backgroundImage={'assets/media/watercolor/watercolor_02.jpg'}
                             foregroundImage={`assets/svg/sleep_${language}.svg`}
@@ -129,13 +128,14 @@ class Overview extends React.Component<Props> {
                                     materials, and care products.
                                 </p>
                             )}
+                            <Rooms browser={this.props.browser} />
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titleDates')}>
                         <Title
                             browser={this.props.browser}
-                            backgroundX={media === 'Extra Small' || media === 'Small' ? 10 : 15}
-                            backgroundY={media === 'Extra Small' || media === 'Small' ? -10 : -20}
+                            backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? 10 : 15}
+                            backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_04.jpg'}
                             foregroundImage={`assets/svg/dates_${language}.svg`}
                             foregroundScale={0.9}
@@ -163,7 +163,7 @@ class Overview extends React.Component<Props> {
                         <Title
                             browser={this.props.browser}
                             backgroundX={0}
-                            backgroundY={media === 'Extra Small' || media === 'Small' ? -10 : -20}
+                            backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
                             backgroundImage={'assets/media/watercolor/watercolor_05.jpg'}
                             foregroundImage={`assets/svg/usage_${language}.svg`}
                             foregroundScale={0.9}
@@ -196,7 +196,7 @@ class Overview extends React.Component<Props> {
                         <Gallery
                             browser={this.props.browser}
                             loadingScreen={true}
-                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                            modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                         >
                             <img src='assets/media/gallery/usage_01.jpg' />
                             <img src='assets/media/gallery/usage_02.jpg' />

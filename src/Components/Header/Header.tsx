@@ -21,14 +21,14 @@ class Header extends React.Component<Props> {
             this.props.browser.direction === 'Down' &&
             this.props.router.location.pathname === '/' &&
             this.props.browser.scroll >= this.props.browser.height &&
-            (this.props.browser.media === 'Small' || this.props.browser.media === 'Extra Small')
+            this.props.browser.width <= this.props.browser.variables.mediaS
         ) {
             hide = true;
         } else if (
             this.props.browser.direction === 'Down' &&
             this.props.router.location.pathname !== '/' &&
             this.props.browser.scroll >= 100 &&
-            (this.props.browser.media === 'Small' || this.props.browser.media === 'Extra Small')
+            this.props.browser.width <= this.props.browser.variables.mediaS
         ) {
             hide = true;
         }

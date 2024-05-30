@@ -46,7 +46,7 @@ export default class Modal extends React.Component<Props, States> {
     private handleOpen = () => {
         // HIDE HEADER
         setTimeout(() => {
-            if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
+            if (this.props.browser.width <= this.props.browser.variables.mediaM) {
                 this.header?.classList.add('hide');
             }
         });
@@ -62,7 +62,7 @@ export default class Modal extends React.Component<Props, States> {
         this.setState({ active: false });
         // SHOW HEADER
         setTimeout(() => {
-            if (this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' || this.props.browser.media === 'Medium') {
+            if (this.props.browser.width <= this.props.browser.variables.mediaM) {
                 this.header?.classList.remove('hide');
             }
         });

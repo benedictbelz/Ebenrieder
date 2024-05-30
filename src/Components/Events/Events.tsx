@@ -5,9 +5,9 @@ import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
 import Parallax from '../Parallax/Parallax';
 import { PropsWithRouter, withRouter } from '../../Router/Router';
-import { getEvents } from '../../@presets/event';
+import { getEvents } from '../../@presets/events';
 import { getFilter, getLocal, getLanguage } from '../../@presets/language';
-import { Event, Filter, availableFilters } from '../../@types/event';
+import { Event, FilterEvent, availableFilters } from '../../@types/events';
 import { Browser } from '../../@types/browser';
 import './Events.scss';
 
@@ -17,7 +17,7 @@ interface Props extends PropsWithRouter {
 
 interface States {
     event: Event | null;
-    filters: Filter[];
+    filters: FilterEvent[];
     month: number;
     year: number;
 }
@@ -103,7 +103,7 @@ class Events extends React.Component<Props, States> {
         this.setState({ month, year });
     };
 
-    private handleChangeFilter = (filter: Filter) => {
+    private handleChangeFilter = (filter: FilterEvent) => {
         // GET FILTERS
         let filters = this.state.filters;
         // IF FILTER IS AVAILABLE
@@ -203,21 +203,17 @@ class Events extends React.Component<Props, States> {
             `${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
-            <Modal
-                className='modalEvent'
-                browser={this.props.browser}
-                handleClose={() => this.setState({ event: null })}
-            >
+            <Modal className='modalEvent' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>
                 {(height, scroll) => (
                     <>
                         <Gallery
                             browser={this.props.browser}
                             loadingScreen={true}
-                            modus={media === 'Extra Small' || media === 'Small' || media === 'Medium' ? 'Expansion' : 'Variable'}
+                            modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                             parallax={{
                                 height,
                                 scroll,
-                                factor: this.props.browser.media === 'Extra Small' ? 15 : 20,
+                                factor: media === 'Extra Small' ? 15 : 20,
                                 modus: 'Simple'
                             }}
                         >
@@ -244,24 +240,22 @@ class Events extends React.Component<Props, States> {
                                 </div>
                                 <div className='modalDescription'>{description[language]}</div>
                                 <div className='modalButton underlineLink'>
-                                    <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>{getLanguage(language, 'eventBook')}</a>
+                                    <a href={`mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`}>
+                                        {getLanguage(language, 'eventBook')}
+                                    </a>
                                 </div>
                             </div>
                             <div className='modalRight'>
-                                {details.length !== 0 && (
-                                    <div className='modalDetails'>
-                                        {details.map((item, index) => (
-                                            <React.Fragment key={`subtitle_${index}`}>
-                                                <span className='line' />
-                                                <p>
-                                                    {item.title && <strong>{item.title[language]}</strong>}
-                                                    {item.content && item.content[language]}
-                                                </p>
-                                            </React.Fragment>
-                                        ))}
+                                {details.map((item, index) => (
+                                    <React.Fragment key={`subtitle_${index}`}>
                                         <span className='line' />
-                                    </div>
-                                )}
+                                        <p>
+                                            {item.title && <strong>{item.title[language]}</strong>}
+                                            {item.content && item.content[language]}
+                                        </p>
+                                    </React.Fragment>
+                                ))}
+                                <span className='line' />
                             </div>
                         </div>
                     </>
@@ -326,7 +320,7 @@ class Events extends React.Component<Props, States> {
                         className={[this.state.month === this.month && this.state.year === this.year && 'disabled'].filter(x => x).join(' ')}
                         onClick={() => this.handleClickPreviousMonth()}
                     >
-                        {media === 'Extra Small' || media === 'Small' ? (
+                        {this.props.browser.width <= this.props.browser.variables.mediaS ? (
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
                                 <polyline points='22.5 45 2.5 25 22.5 5' />
                             </svg>
@@ -357,7 +351,7 @@ class Events extends React.Component<Props, States> {
                         className={[this.state.month === this.month && this.state.year === this.year + 1 && 'disabled'].filter(x => x).join(' ')}
                         onClick={() => this.handleClickNextMonth()}
                     >
-                        {media === 'Extra Small' || media === 'Small' ? (
+                        {this.props.browser.width <= this.props.browser.variables.mediaS ? (
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
                                 <polyline points='2.5 5 22.5 25 2.5 45' />
                             </svg>
@@ -377,10 +371,6 @@ class Events extends React.Component<Props, States> {
                             onClick={() => this.handleChangeFilter(item.value)}
                         >
                             {item.label}
-                            <span className='borderTop' />
-                            <span className='borderBottom' />
-                            <span className='borderLeft' />
-                            <span className='borderRight' />
                         </div>
                     ))}
                 </div>
@@ -401,7 +391,7 @@ class Events extends React.Component<Props, States> {
                                         <Parallax
                                             height={this.props.browser.height}
                                             scroll={this.props.browser.scroll}
-                                            factor={this.props.browser.media === 'Extra Small' ? 15 : 20}
+                                            factor={media === 'Extra Small' ? 15 : 20}
                                             modus={'Complex'}
                                         >
                                             <img src={previewImage} />

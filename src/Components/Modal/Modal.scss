@@ -117,26 +117,95 @@
             }
 
             .modalRight {
-                .modalDetails {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 6px;
+                font-size: var(--font-size-detail);
+                line-height: $line-height-m;
+                letter-spacing: 0.75px;
+
+                p {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    gap: 5px;
+                }
+
+                .line {
+                    height: $border-s;
+                    width: 100%;
+                    background: $color-blue;
+                }
+            }
+        }
+    }
+
+    .modalRoom {
+        .gallery {
+            height: 400px !important;
+            min-height: 30vmax !important;
+        }
+
+        .modalContent {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
+            gap: var(--spacing-box-vertical);
+
+            @media (max-width: $media-l) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .modalLeft {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: var(--spacing-box-vertical);
+
+                .modalTitle {
                     display: flex;
                     flex-direction: column;
+                    gap: 25px;
                     width: 100%;
-                    gap: 6px;
-                    font-size: var(--font-size-detail);
+
+                    > .modalSubtitle {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 10px 5px;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .modalDescription {
+                    text-align: justify;
                     line-height: $line-height-m;
-                    letter-spacing: 0.75px;
+                }
+            }
+
+            .modalRight {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 15px;
+
+                > div {
+                    // flex: 1;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 10px;
 
                     p {
-                        display: flex;
-                        justify-content: flex-start;
-                        flex-wrap: wrap;
-                        gap: 5px;
+                        white-space: nowrap;
                     }
 
-                    .line {
-                        height: $border-s;
-                        width: 100%;
-                        background: $color-blue;
+                    img {
+                        height: 25px;
                     }
                 }
             }

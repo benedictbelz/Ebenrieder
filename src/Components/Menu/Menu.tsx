@@ -36,7 +36,7 @@ export default class Menu extends React.Component<Props, States> {
         this.menuContent = React.createRef();
         this.menuRight = React.createRef();
         this.state = {
-            appearance: this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' ? 'Narrow' : 'Wide',
+            appearance: this.props.browser.width <= this.props.browser.variables.mediaS ? 'Narrow' : 'Wide',
             focus: {
                 item: null,
                 hover: null
@@ -88,7 +88,7 @@ export default class Menu extends React.Component<Props, States> {
         // IF MEDIA CHANGED
         else if (this.props.browser.media !== prevProps.browser.media) {
             // UPDATE APPEARANCE
-            this.setState({ appearance: this.props.browser.media === 'Extra Small' || this.props.browser.media === 'Small' ? 'Narrow' : 'Wide' });
+            this.setState({ appearance: this.props.browser.width <= this.props.browser.variables.mediaS ? 'Narrow' : 'Wide' });
             // SET TIMEOUT
             setTimeout(() => {
                 // HANDLE SCROLL

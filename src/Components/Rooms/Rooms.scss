@@ -60,6 +60,7 @@
                 position: relative;
                 height: 100%;
                 width: 100%;
+                max-width: 400px;
 
                 img {
                     height: 100%;
@@ -97,6 +98,7 @@
 
                 .roomImage {
                     padding-bottom: 75%;
+                    max-width: 100%;
                 }
 
                 .roomContent {

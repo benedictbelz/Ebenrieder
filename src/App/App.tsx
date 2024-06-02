@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Cookies from '../Components/Cookies/Cookies';
 import Header from '../Components/Header/Header';
 import Mouse from '../Components/Mouse/Mouse';
@@ -254,7 +254,7 @@ class App extends React.Component<{}, States> {
         if (modal) {
             event.preventDefault();
             event.stopPropagation();
-            document.documentElement.scrollTop = this.state.browser.scroll;
+            window.scrollTo(0, this.state.browser.scroll);
             return;
         }
         // GET DIRECTION
@@ -283,9 +283,9 @@ class App extends React.Component<{}, States> {
                     .join(' ')}
             >
                 <Router>
-                    {this.state.browser.cookies === 'Unknown' && (
+                    {/* {this.state.browser.cookies === 'Unknown' && (
                         <Cookies browser={this.state.browser} handleAccept={this.handleAcceptCookies} handleDecline={this.handleDeclineCookies} />
-                    )}
+                    )} */}
                     <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
                     <Wrapper browser={this.state.browser} handlePage={this.handlePage}>

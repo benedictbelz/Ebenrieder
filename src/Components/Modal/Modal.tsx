@@ -54,6 +54,7 @@ export default class Modal extends React.Component<Props, States> {
         setTimeout(() => {
             this.setState({ active: true });
             document.documentElement.style.overflow = 'hidden';
+            document.documentElement.style.touchAction = 'none';
         }, 100);
     };
 
@@ -70,6 +71,7 @@ export default class Modal extends React.Component<Props, States> {
         setTimeout(() => {
             this.props.handleClose();
             document.documentElement.style.overflow = 'visible';
+            document.documentElement.style.touchAction = 'auto';
         }, 500);
     };
 

@@ -275,7 +275,7 @@ class Events extends React.Component<Props, States> {
                                                     link = link + `?subject=${emailSubject}&body=${emailBody}`;
                                                 }
                                                 return (
-                                                    <a className='underlineLink' href={link}>
+                                                    <a className='underlineLink' key={link} href={link}>
                                                         {item.label[language]}
                                                     </a>
                                                 );

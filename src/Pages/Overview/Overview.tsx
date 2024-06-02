@@ -56,7 +56,6 @@ class Overview extends React.Component<Props> {
                         <img src='assets/media/gallery/welcome_06.jpg' />
                         <img src='assets/media/gallery/welcome_07.jpg' />
                         <img src='assets/media/gallery/welcome_08.jpg' />
-                        <img src='assets/media/gallery/welcome_09.jpg' />
                     </Gallery>
                 </div>
                 <div id='overviewContent'>
@@ -93,14 +92,14 @@ class Overview extends React.Component<Props> {
                             loadingScreen={true}
                             modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                         >
-                            <img src='assets/media/gallery/place_01.jpg' />
-                            <img src='assets/media/gallery/place_02.jpg' />
-                            <img src='assets/media/gallery/place_03.jpg' />
-                            <img src='assets/media/gallery/place_04.jpg' />
-                            <img src='assets/media/gallery/place_05.jpg' />
-                            <img src='assets/media/gallery/place_06.jpg' />
-                            <img src='assets/media/gallery/place_07.jpg' />
-                            <img src='assets/media/gallery/place_08.jpg' />
+                            <img src='assets/media/gallery/location_01.jpg' />
+                            <img src='assets/media/gallery/location_02.jpg' />
+                            <img src='assets/media/gallery/location_03.jpg' />
+                            <img src='assets/media/gallery/location_04.jpg' />
+                            <img src='assets/media/gallery/location_05.jpg' />
+                            <img src='assets/media/gallery/location_06.jpg' />
+                            <img src='assets/media/gallery/location_07.jpg' />
+                            <img src='assets/media/gallery/location_08.jpg' />
                         </Gallery>
                     </article>
                     <article data-name={getLanguage(language, 'titleSleep')}>
@@ -203,16 +202,16 @@ class Overview extends React.Component<Props> {
                             modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                             style={this.props.browser.width >= this.props.browser.variables.mediaS ? { marginTop: 25 } : {}}
                         >
-                            <img src='assets/media/gallery/usage_01.jpg' />
-                            <img src='assets/media/gallery/usage_02.jpg' />
-                            <img src='assets/media/gallery/usage_03.jpg' />
-                            <img src='assets/media/gallery/usage_04.jpg' />
-                            <img src='assets/media/gallery/usage_05.jpg' />
-                            <img src='assets/media/gallery/usage_06.jpg' />
-                            <img src='assets/media/gallery/usage_07.jpg' />
-                            <img src='assets/media/gallery/usage_08.jpg' />
-                            <img src='assets/media/gallery/usage_09.jpg' />
-                            <img src='assets/media/gallery/usage_10.jpg' />
+                            <img src='assets/media/gallery/possibilities_01.jpg' />
+                            <img src='assets/media/gallery/possibilities_02.jpg' />
+                            <img src='assets/media/gallery/possibilities_03.jpg' />
+                            <img src='assets/media/gallery/possibilities_04.jpg' />
+                            <img src='assets/media/gallery/possibilities_05.jpg' />
+                            <img src='assets/media/gallery/possibilities_06.jpg' />
+                            <img src='assets/media/gallery/possibilities_07.jpg' />
+                            <img src='assets/media/gallery/possibilities_08.jpg' />
+                            <img src='assets/media/gallery/possibilities_09.jpg' />
+                            <img src='assets/media/gallery/possibilities_10.jpg' />
                         </Gallery>
                     </article>
                 </div>

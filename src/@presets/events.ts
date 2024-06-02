@@ -87,20 +87,28 @@ export function getEvents(): Event[] {
                         en: 'Price'
                     },
                     content: {
-                        de: '20 EUR pro Session',
+                        de: '20 EUR pro Session ',
                         en: '20 EUR per session'
                     }
                 },
                 {
+                    title: {
+                        de: 'Jazzkonzert',
+                        en: 'Jazzkonzert'
+                    },
                     content: {
-                        de: 'inkl. Welcome Drink & süße und salzige Köstlichkeiten am Nachmittag',
-                        en: 'incl. welcome drink & sweet and salty delicacies in the afternoon'
+                        de: 'am 08.06.2024 (Eintritt frei)',
+                        en: 'on 08.06.2024 (free admission)'
                     }
                 },
                 {
+                    title: {
+                        de: 'BBQ',
+                        en: 'BBQ'
+                    },
                     content: {
-                        de: 'inkl. Abendessen & Jazzkonzert am 08.06.2024',
-                        en: 'incl. dinner & jazz concert on 08.06.2024'
+                        de: 'am 08.06.2024, 5 bis 15 EUR pro Gericht (optional)',
+                        en: 'on 08.06.2024, 5 to 15 EUR per dish (optional)'
                     }
                 },
                 {
@@ -109,8 +117,8 @@ export function getEvents(): Event[] {
                         en: 'Accommodation'
                     },
                     content: {
-                        de: 'Doppelzimmer zu ＊＊ EUR inkl. Frühstück (optional)',
-                        en: 'Double room at ＊＊ EUR incl. breakfast (optional)'
+                        de: 'Doppelzimmer 220 EUR inkl. Verpflegung (optional)',
+                        en: 'Double room at 220 EUR incl. catering (optional)'
                     }
                 }
             ],
@@ -203,12 +211,22 @@ export function getEvents(): Event[] {
                 },
                 {
                     title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 07.07.2024 um 14:00 Uhr',
+                        en: "on 07.07.2024 at 14:00 o'clock"
+                    }
+                },
+                {
+                    title: {
                         de: 'Preis',
                         en: 'Price'
                     },
                     content: {
-                        de: '730 EUR pro Person',
-                        en: '730 EUR per person'
+                        de: '930 EUR pro Person',
+                        en: '930 EUR per person'
                     }
                 },
                 {
@@ -253,7 +271,7 @@ export function getEvents(): Event[] {
                 'assets/media/events/arbeiten_mit_ton_06.jpg'
             ],
             link: 'arbeiten_mit_ton',
-            previewImage: 'assets/media/events/arbeiten_mit_ton_01.jpg',
+            previewImage: 'assets/media/events/arbeiten_mit_ton_07.jpg',
             program: 'assets/media/events/arbeiten_mit_ton.pdf',
             subtitle: [
                 {
@@ -270,7 +288,7 @@ export function getEvents(): Event[] {
                 en: 'Working with clay'
             },
             type: ['Food', 'Workshop', 'Yoga'],
-            price: 730
+            price: 930
         }
     ];
 }

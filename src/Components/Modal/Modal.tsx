@@ -50,11 +50,18 @@ export default class Modal extends React.Component<Props, States> {
                 this.header?.classList.add('hide');
             }
         });
+        // MANAGE SCROLLBAR
+        setTimeout(() => {
+            if (this.props.browser.device === 'Mobile') return;
+            const scrollbar = window.innerWidth - document.body.clientWidth;
+            if (this.header) this.header.style.paddingRight = `${scrollbar}px`;
+            document.documentElement.style.paddingRight = `${scrollbar}px`;
+            document.documentElement.style.overflow = 'hidden';
+            document.documentElement.style.touchAction = 'none';
+        }, 100);
         // OPEN MODAL
         setTimeout(() => {
             this.setState({ active: true });
-            document.documentElement.style.overflow = 'hidden';
-            document.documentElement.style.touchAction = 'none';
         }, 100);
     };
 
@@ -67,11 +74,17 @@ export default class Modal extends React.Component<Props, States> {
                 this.header?.classList.remove('hide');
             }
         });
+        // MANAGE SCROLLBAR
+        setTimeout(() => {
+            if (this.props.browser.device === 'Mobile') return;
+            if (this.header) this.header.style.paddingRight = '';
+            document.documentElement.style.paddingRight = '';
+            document.documentElement.style.overflow = 'visible';
+            document.documentElement.style.touchAction = 'auto';
+        });
         // CLOSE MODAL
         setTimeout(() => {
             this.props.handleClose();
-            document.documentElement.style.overflow = 'visible';
-            document.documentElement.style.touchAction = 'auto';
         }, 500);
     };
 

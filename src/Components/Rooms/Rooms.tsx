@@ -40,8 +40,8 @@ class Rooms extends React.Component<Props, States> {
         // IF EVENT
         if (room && this.rooms.current) {
             const scroll = Math.round(this.rooms.current.getBoundingClientRect().top) + this.props.browser.scroll;
-            setTimeout(() => (document.documentElement.scrollTop = scroll), 25);
-            setTimeout(() => this.setState({ room }), 50);
+            setTimeout(() => (document.documentElement.scrollTop = scroll));
+            setTimeout(() => this.setState({ room }), 500);
         }
     }
 

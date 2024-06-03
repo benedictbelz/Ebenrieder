@@ -13,6 +13,8 @@ interface Props {
 }
 
 interface States {
+    hasLoadedBackground: boolean;
+    hasLoadedForeground: boolean;
     position: number;
 }
 
@@ -23,6 +25,8 @@ export default class Title extends React.Component<Props, States> {
         super(props);
         this.title = React.createRef();
         this.state = {
+            hasLoadedBackground: false,
+            hasLoadedForeground: false,
             position: 0
         };
     }
@@ -75,10 +79,11 @@ export default class Title extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div className='title' ref={this.title}>
+            <div ref={this.title} className={['title', this.state.hasLoadedBackground && this.state.hasLoadedForeground && 'hasLoaded'].filter(x => x).join(' ')}>
                 <div
                     className='titleForeground'
                     style={{ transform: `perspective(250px) translateY(${translateForeground}px) scale(${scaleForeground})` }}
+                    onLoad={() => this.setState({ hasLoadedForeground: true })}
                 >
                     <img src={this.props.foregroundImage} />
                 </div>
@@ -89,6 +94,7 @@ export default class Title extends React.Component<Props, States> {
                         top: this.props.backgroundY || 0,
                         transform: `perspective(250px) translateY(${translateBackground}px) rotateX(${rotation}deg) scale(${scaleBackground})`
                     }}
+                    onLoad={() => this.setState({ hasLoadedBackground: true })}
                 >
                     <img src={this.props.backgroundImage} />
                 </div>

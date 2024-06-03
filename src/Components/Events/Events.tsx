@@ -46,8 +46,8 @@ class Events extends React.Component<Props, States> {
         // IF EVENT
         if (event && this.events.current) {
             const scroll = Math.round(this.events.current.getBoundingClientRect().top) + this.props.browser.scroll;
-            setTimeout(() => (document.documentElement.scrollTop = scroll), 25);
-            setTimeout(() => this.setState({ event }), 50);
+            setTimeout(() => (document.documentElement.scrollTop = scroll));
+            setTimeout(() => this.setState({ event }), 500);
         }
     }
 

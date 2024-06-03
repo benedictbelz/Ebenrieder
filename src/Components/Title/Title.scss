@@ -4,6 +4,12 @@
     position: relative;
     width: 100%;
     height: 350px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    &.hasLoaded {
+        opacity: 1;
+    }
 
     .titleForeground {
         position: absolute;

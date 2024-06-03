@@ -19,8 +19,8 @@ export default class Header extends React.Component<Props> {
                     <a className='underlineLink' href='mailto:hallo@ebenrieder.de'>
                         hallo@ebenrieder.de
                     </a>
-                    <a className='underlineLink' href='tel:+491719014541'>
-                        +49 171 9014541
+                    <a className='underlineLink' href='tel:+4983499763940'>
+                        +49 8349 9763940
                     </a>
                     <div id='footerAddress'>
                         <span>Remnatsried 2</span>

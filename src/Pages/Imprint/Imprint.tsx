@@ -30,8 +30,8 @@ export default class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>{getLanguage(language, 'phone')}</h4>
-                                    <a className='underlineLink' href='tel:+491719014541'>
-                                        +49 171 9014541
+                                    <a className='underlineLink' href='tel:+4983499763940'>
+                                        +49 8349 9763940
                                     </a>
                                 </section>
                                 <section>
@@ -174,8 +174,8 @@ export default class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>{getLanguage(language, 'phone')}</h4>
-                                    <a className='underlineLink' href='tel:+491719014541'>
-                                        +49 171 9014541
+                                    <a className='underlineLink' href='tel:+4983499763940'>
+                                        +49 8349 9763940
                                     </a>
                                 </section>
                                 <section>

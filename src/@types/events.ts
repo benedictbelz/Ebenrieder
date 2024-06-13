@@ -52,6 +52,7 @@ export type Event = {
         title: boolean;
         quantity: boolean;
     };
+    expired?: boolean;
     gallery: string[];
     link: string;
     previewImage: string;

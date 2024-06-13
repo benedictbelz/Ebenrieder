@@ -114,20 +114,27 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Mit viel Liebe zum Detail haben wir Alt und Neu respektvoll miteinander vereint, um ein außergewöhnliches Innendesign
-                                    zu schaffen. In unseren fünf individuell eingerichteten, geräumigen Studios mit je zwei Schlafzimmern und Küche sowie
-                                    unseren vier Gästezimmern kannst du zur Ruhe kommen und Behaglichkeit genießen. Alle Zimmer und Apartments sind mit
-                                    eigenem Badezimmer ausgestattet und bieten dir einen Blick in die Landschaft oder den Garten. Wir möchten, dass du dich
-                                    rundum wohl fühlst und haben großen Wert auf natürliche Stoffe, Materialien und Pflegeprodukte gelegt.
+                                    Ob für frisch Verliebte, für gute Freunde oder Alleinreisende, die Zeit & Ruhe finden wollen: Unsere Zimmer und
+                                    Wohnungen bieten Platz für jeden und so wie es behagt. Neben der individuellen Ausstattung verfügen alle Räumlichkeiten
+                                    über ein eigenes Bad mit Dusche oder Badewanne. Darin findest du auch die nachhaltigen Pflegeprodukte von Saint
+                                    Charles. Alle Produkte enthalten pflanzliche Waschsubstanzen, die sich dank der ätherische Bio-Öle ihr antivirales und
+                                    antibakterielles Potential bewahrt haben. Die außergewöhnliche Duftmischung erfrischt und belebt deine Sinne. Die
+                                    hochwertigen Matratzen von COCO-MAT unterstützen einen erholsamen, komfortablen Schlaf und bestehen aus natürlichen
+                                    Materialien, die sorgfältig ausgewählt wurden. Um den bäuerlichen Charme zu bewahren, haben wir in den Zimmern und
+                                    Wohnungen die Heizung in der Wand versteckt. Der Lehmputz wirkt feuchte- und wärmeregulierend für ganzjährig bestes
+                                    Raumklima.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    With great attention to detail, we have respectfully combined old and new to create an extraordinary interior design.
-                                    In our five individually furnished, spacious studios, each with two bedrooms and a kitchen, as well as our four guest
-                                    rooms, you can find peace and comfort. All rooms and apartments are equipped with private bathrooms and offer views of
-                                    the countryside or garden. We want you to feel completely at ease, and have placed great emphasis on natural fabrics,
-                                    materials, and care products.
+                                    Whether for newlyweds, close friends, or solo travelers seeking time and tranquility, our rooms and apartments
+                                    accommodate everyone according to their preferences. In addition to personalized furnishings, all accommodations
+                                    feature a private bathroom with a shower or bathtub. Inside, you'll find sustainable care products from Saint Charles.
+                                    All products contain plant-based substances that have retained their antiviral and antibacterial potential thanks to
+                                    organic essential oils. The unique blend of scents refreshes and invigorates your senses. The high-quality mattresses
+                                    from COCO-MAT support a restful, comfortable sleep and are made from natural materials that have been carefully
+                                    selected. To maintain the rustic charm, heating in the rooms and apartments is discreetly integrated into the walls.
+                                    The clay plaster has a moisture- and heat-regulating effect for the best indoor climate all year round.
                                 </p>
                             )}
                             <Rooms browser={this.props.browser} filters={['Room', 'Apartment']} />

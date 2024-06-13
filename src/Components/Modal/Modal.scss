@@ -115,6 +115,10 @@
                     text-align: justify;
                     line-height: $line-height-m;
                     white-space: pre-wrap;
+
+                    @media (max-width: $media-s) {
+                        text-align: left;
+                    }
                 }
 
                 .modalButtons {
@@ -200,6 +204,10 @@
                     text-align: justify;
                     line-height: $line-height-m;
                     white-space: pre-wrap;
+
+                    @media (max-width: $media-s) {
+                        text-align: left;
+                    }
                 }
             }
 

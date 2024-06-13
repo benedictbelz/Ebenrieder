@@ -37,6 +37,10 @@
                     text-align: justify;
                     line-height: $line-height-m;
 
+                    @media (max-width: $media-s) {
+                        text-align: left;
+                    }
+
                     &.column {
                         display: flex;
                         justify-content: flex-start;

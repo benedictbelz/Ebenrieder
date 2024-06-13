@@ -25,8 +25,9 @@ interface States {
 class Events extends React.Component<Props, States> {
     private events: React.RefObject<HTMLDivElement>;
     private timeout: any = [];
-    private month = new Date().getMonth();
-    private year = new Date().getFullYear();
+    private date = new Date();
+    private month = this.date.getMonth();
+    private year = this.date.getFullYear();
 
     constructor(props: Props) {
         super(props);
@@ -58,9 +59,9 @@ class Events extends React.Component<Props, States> {
     }
 
     private findFirstEvent = () => {
-        const events = getEvents().sort(
-            (a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime()
-        );
+        const events = getEvents()
+            .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
+            .filter(item => (item.date instanceof Date ? item.date : item.date.start).getTime() >= this.date.getTime());
         if (events && events.length !== 0) {
             return events[0].date instanceof Date ? events[0].date.getMonth() : events[0].date.start.getMonth();
         } else {
@@ -328,7 +329,8 @@ class Events extends React.Component<Props, States> {
                 item.date instanceof Date
                     ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
                     : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
-            );
+            )
+            .map(item => ({ ...item, expired: (item.date instanceof Date ? item.date : item.date.start).getTime() < this.date.getTime() }));
         // GET UPCOMING EVENTS
         const upcompingEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
@@ -440,6 +442,7 @@ class Events extends React.Component<Props, States> {
                             return (
                                 <div className='event' key={`event_${event.link}`}>
                                     <div className='eventImage'>
+                                        {event.expired && <span className='eventNotification'>{getLanguage(language, 'eventExpired')}</span>}
                                         <Parallax
                                             height={this.props.browser.height}
                                             scroll={this.props.browser.scroll}

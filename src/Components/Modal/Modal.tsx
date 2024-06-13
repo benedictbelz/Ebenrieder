@@ -34,13 +34,13 @@ export default class Modal extends React.Component<Props, States> {
     componentDidMount() {
         this.handleOpen();
         this.header = document.getElementById('header');
-        this.modal.current?.addEventListener('resize', this.handleResize);
         this.modal.current?.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
     }
 
     componentWillUnmount() {
-        this.modal.current?.removeEventListener('resize', this.handleScroll);
         this.modal.current?.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleScroll);
     }
 
     private handleOpen = () => {
@@ -90,6 +90,11 @@ export default class Modal extends React.Component<Props, States> {
 
     private handleResize = () => {
         if (!this.modal.current) return;
+        if (this.props.browser.width <= this.props.browser.variables.mediaM) {
+            this.header?.classList.add('hide');
+        } else {
+            this.header?.classList.remove('hide');
+        }
         this.setState({ height: this.modal.current.clientHeight });
     };
 

@@ -26,6 +26,8 @@ export type Room = {
         oven?: boolean;
         pets?: boolean;
         pool?: boolean;
+        quantityPeople?: string;
+        quantityYoga?: string;
         refrigerator?: boolean;
         sauna?: boolean;
         shower?: boolean;

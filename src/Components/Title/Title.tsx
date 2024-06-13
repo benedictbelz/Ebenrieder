@@ -79,7 +79,10 @@ export default class Title extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div ref={this.title} className={['title', this.state.hasLoadedBackground && this.state.hasLoadedForeground && 'hasLoaded'].filter(x => x).join(' ')}>
+            <div
+                ref={this.title}
+                className={['title', this.state.hasLoadedBackground && this.state.hasLoadedForeground && 'hasLoaded'].filter(x => x).join(' ')}
+            >
                 <div
                     className='titleForeground'
                     style={{ transform: `perspective(250px) translateY(${translateForeground}px) scale(${scaleForeground})` }}

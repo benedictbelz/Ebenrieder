@@ -137,14 +137,18 @@ class Rooms extends React.Component<Props, States> {
                                         <div className='modalFeature' key={`feature_${index}`}>
                                             <img src={`assets/svg/${getFeatureImage(key)}.svg`} />
                                             <p>
-                                                {key === 'squareMeter' ? (
+                                                {(key === 'quantityPeople' || key === 'quantityYoga') && (
+                                                    <span>
+                                                        {`${features[key].replace('-', language === 'de' ? ' bis ' : ' to ')} ${getFeature(language, key)}`}
+                                                    </span>
+                                                )}
+                                                {key === 'squareMeter' && (
                                                     <span>
                                                         {`${features[key]} m`}
                                                         <sup>2</sup>
                                                     </span>
-                                                ) : (
-                                                    getFeature(language, key)
                                                 )}
+                                                {key !== 'squareMeter' && key !== 'quantityPeople' && key !== 'quantityYoga' && getFeature(language, key)}
                                             </p>
                                         </div>
                                     ))}

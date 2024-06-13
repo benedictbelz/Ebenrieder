@@ -27,6 +27,7 @@ const de = {
     eventUpcoming: 'aber dafür wieder im kommenden',
     eventProgram: 'Das Programm für diese Veranstaltung findest du',
     eventLink: 'hier',
+    eventExpired: 'Abgelaufen',
     emailSubject: 'Buchungsanfrage für',
     emailGreeting: 'Hallo',
     emailText: 'ich würde gerne für folgende Veranstaltung eine Buchung anfragen',
@@ -62,6 +63,8 @@ const de = {
     featureOven: 'Ofen',
     featurePets: 'Haustiere erlaubt',
     featurePool: 'Schwimmbecken',
+    featureQuantityPeople: 'Personen',
+    featureQuantityYoga: 'Yogaplätze',
     featureRefrigerator: 'Kühlschrank',
     featureSauna: 'Sauna',
     featureShower: 'Dusche',
@@ -100,8 +103,9 @@ const en: Dictionary = {
     eventBook: 'Book',
     eventUnavailable: 'So far, we have no events planned for this month',
     eventUpcoming: 'but again in the upcoming',
-    eventProgram: 'You can find the program for this event here',
+    eventProgram: 'You can find the program for this event',
     eventLink: 'here',
+    eventExpired: 'Expired',
     emailSubject: 'Booking request for',
     emailGreeting: 'Hello',
     emailText: 'I would like to request a booking for the following event',
@@ -137,6 +141,8 @@ const en: Dictionary = {
     featureOven: 'Oven',
     featurePets: 'Pets allowed',
     featurePool: 'Swimming pool',
+    featureQuantityPeople: 'people',
+    featureQuantityYoga: 'yoga seats',
     featureRefrigerator: 'Refrigerator',
     featureSauna: 'Sauna',
     featureShower: 'Shower',
@@ -223,6 +229,10 @@ export const getFeature = (language: Language, feature: keyof Room['features']) 
         return getLanguage(language, 'featurePets');
     } else if (feature === 'pool') {
         return getLanguage(language, 'featurePool');
+    } else if (feature === 'quantityPeople') {
+        return getLanguage(language, 'featureQuantityPeople');
+    } else if (feature === 'quantityYoga') {
+        return getLanguage(language, 'featureQuantityYoga');
     } else if (feature === 'refrigerator') {
         return getLanguage(language, 'featureRefrigerator');
     } else if (feature === 'sauna') {

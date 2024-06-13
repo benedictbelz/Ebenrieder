@@ -250,6 +250,7 @@
             align-items: center;
             overflow: hidden;
             border: $border-m solid $color-blue;
+            will-change: transform;
 
             &.opacity {
                 opacity: 0;
@@ -283,6 +284,32 @@
                     object-fit: cover;
                     opacity: 0;
                     transition: opacity 0.5s ease;
+                }
+
+                .eventNotification {
+                    position: absolute;
+                    z-index: 1000;
+                    top: -45px;
+                    left: calc(100% - 150px);
+                    height: 40px;
+                    width: 250px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transform: rotate(45deg);
+                    transform-origin: left;
+                    color: $color-blue;
+                    background: $color-white;
+                    animation: notification 0.5s ease forwards;
+
+                    @keyframes notification {
+                        0% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 1;
+                        }
+                    }
                 }
 
                 .parallax {
@@ -319,7 +346,7 @@
 
                 .eventDescription {
                     line-height: $line-height-m;
-                    text-align: justify;
+                    text-align: left;
                 }
 
                 .eventButton {

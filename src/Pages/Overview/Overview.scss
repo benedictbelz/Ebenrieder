@@ -80,6 +80,10 @@
                 padding: 0 var(--spacing-horizontal);
                 text-align: justify;
                 line-height: $line-height-m;
+
+                @media (max-width: $media-s) {
+                    text-align: left;
+                }
             }
         }
     }

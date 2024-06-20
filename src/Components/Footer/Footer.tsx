@@ -44,13 +44,13 @@ export default class Header extends React.Component<Props> {
                 </div>
                 <div id='footerLinks'>
                     <span id='footerCopyright'>© Ebenrieder</span>
-                    <Link to={'/imprint'} className='underlineLink'>
+                    <Link to={language === 'de' ? '/impressum' : '/imprint'} className='underlineLink'>
                         {getLanguage(language, 'imprint')}
                     </Link>
-                    <Link to={'/privacy'} className='underlineLink'>
+                    <Link to={language === 'de' ? '/datenschutz' : '/privacy'} className='underlineLink'>
                         {getLanguage(language, 'privacy')}
                     </Link>
-                    {/* <Link to={'/conditions'} className='underlineLink'>
+                    {/* <Link to={language === 'de' ? 'agb' : '/conditions'} className='underlineLink'>
                         {getLanguage(language, 'conditions')}
                     </Link> */}
                 </div>

@@ -1,15 +1,28 @@
 import * as React from 'react';
 import Footer from '../../Components/Footer/Footer';
 import Menu from '../../Components/Menu/Menu';
+import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import './Imprint.scss';
 
-interface Props {
+interface Props extends PropsWithRouter {
     browser: Browser;
 }
 
-export default class Imprint extends React.Component<Props> {
+class Imprint extends React.Component<Props> {
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.browser.language !== prevProps.browser.language) {
+            this.props.router.navigate(
+                {
+                    ...location,
+                    pathname: `/${this.props.browser.language === 'de' ? 'impressum' : 'imprint'}`
+                },
+                { replace: true }
+            );
+        }
+    }
+
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
@@ -303,3 +316,5 @@ export default class Imprint extends React.Component<Props> {
         );
     }
 }
+
+export default withRouter(Imprint);

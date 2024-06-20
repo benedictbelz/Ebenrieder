@@ -11,6 +11,18 @@ interface Props extends PropsWithRouter {
 }
 
 class Privacy extends React.Component<Props> {
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.browser.language !== prevProps.browser.language) {
+            this.props.router.navigate(
+                {
+                    ...location,
+                    pathname: `/${this.props.browser.language === 'de' ? 'datenschutz' : 'privacy'}`
+                },
+                { replace: true }
+            );
+        }
+    }
+
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
@@ -302,6 +314,52 @@ class Privacy extends React.Component<Props> {
                             </article>
                             <article data-name='Plugins und Tools'>
                                 <h2>Plugins und Tools</h2>
+                                <h4>Google Analytics</h4>
+                                <p>
+                                    Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Ireland Limited, Gordon
+                                    House, Barrow Street, Dublin 4, Irland. Google Analytics ermöglicht es dem Websitebetreiber, das Verhalten der
+                                    Websitebesucher zu analysieren. Hierbei erhält der Websitebetreiber verschiedene Nutzungsdaten, wie z. B.
+                                    Seitenaufrufe, Verweildauer, verwendete Betriebssysteme und Herkunft des Nutzers. Diese Daten werden dem jeweiligen
+                                    Endgerät des Users zugeordnet. Eine Zuordnung zu einer User-ID erfolgt nicht. Des Weiteren können wir mit Google
+                                    Analytics u. a. Ihre Maus- und Scrollbewegungen und Klicks aufzeichnen. Ferner verwendet Google Analytics verschiedene
+                                    Modellierungsansätze, um die erfassten Datensätze zu ergänzen und setzt Machine-Learning-Technologien bei der
+                                    Datenanalyse ein.
+                                </p>
+                                <p>
+                                    Google Analytics verwendet Technologien, die die Wiedererkennung des Nutzers zum Zwecke der Analyse des
+                                    Nutzerverhaltens ermöglichen (z. B. Fingerabdruck). Die von Google erfassten Informationen über die Benutzung dieser
+                                    Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Die Nutzung dieses
+                                    Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG. Die
+                                    Einwilligung ist jederzeit widerrufbar.
+                                </p>
+                                <p>
+                                    Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie
+                                    unter folgendem{' '}
+                                    <a
+                                        className='underlineLink'
+                                        href='https://privacy.google.com/businesses/controllerterms/mccs/'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                    >
+                                        Link
+                                    </a>
+                                    .
+                                </p>
+                                <p>
+                                    Das Unternehmen verfügt über eine Zertifizierung nach dem ≫EU-US Data Privacy Framework≪ (DPF). Der DPF ist ein
+                                    Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei
+                                    Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich,
+                                    diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem{' '}
+                                    <a
+                                        className='underlineLink'
+                                        href='https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active/'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                    >
+                                        Link
+                                    </a>
+                                    .
+                                </p>
                                 <h4>Google Maps</h4>
                                 <p>
                                     Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street,
@@ -618,6 +676,50 @@ class Privacy extends React.Component<Props> {
                             </article>
                             <article data-name='Plugins and Tools'>
                                 <h2>Plugins and Tools</h2>
+                                <h4>Google Analytics</h4>
+                                <p>
+                                    This website uses functions of the web analysis service Google Analytics. The provider is Google Ireland Limited,
+                                    Gordon House, Barrow Street, Dublin 4, Ireland. Google Analytics enables the website operator to analyze the behavior
+                                    of website visitors. In doing so, the website operator receives various usage data, such as page views, length of
+                                    visit, operating systems used and origin of the user. This data is assigned to the user's end device. It is not
+                                    assigned to a user ID. Furthermore, we can use Google Analytics to record your mouse and scroll movements and clicks,
+                                    among other things. Google Analytics also uses various modeling approaches to supplement the collected data records and
+                                    uses machine learning technologies for data analysis.
+                                </p>
+                                <p>
+                                    Google Analytics uses technologies that enable the recognition of the user for the purpose of analyzing user behavior
+                                    (e.g. fingerprint). The information collected by Google about the use of this website is generally transmitted to a
+                                    Google server in the USA and stored there. The use of this service is based on your consent in accordance with Art. 6
+                                    Abs. 1 lit. a DSGVO and § 25 Abs. 1 TTDSG. Consent can be revoked at any time.
+                                </p>
+                                <p>
+                                    Data transfer to the USA is based on the EU Commission's standard contractual clauses. Details can be found at the
+                                    following{' '}
+                                    <a
+                                        className='underlineLink'
+                                        href='https://privacy.google.com/businesses/controllerterms/mccs/'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                    >
+                                        link
+                                    </a>
+                                    .
+                                </p>
+                                <p>
+                                    The company is certified under the ≫EU-US Data Privacy Framework≪ (DPF). The DPF is an agreement between the European
+                                    Union and the USA that aims to ensure compliance with European data protection standards for data processing in the
+                                    USA. Each company certified under the DPF is committed to complying with these data protection standards. Further
+                                    information can be obtained from the provider at the following{' '}
+                                    <a
+                                        className='underlineLink'
+                                        href='https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active/'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                    >
+                                        link
+                                    </a>
+                                    .
+                                </p>
                                 <h4>Google Maps</h4>
                                 <p>
                                     This site uses the Google Maps map service. The provider is Google Ireland Limited, Gordon House, Barrow Street, Dublin

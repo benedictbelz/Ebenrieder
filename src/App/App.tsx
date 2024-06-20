@@ -28,6 +28,11 @@ class App extends React.Component<{}, States> {
         window.addEventListener('mousemove', this.handleMouse);
         window.addEventListener('resize', this.handleResize);
         window.addEventListener('scroll', this.handleScroll);
+        if (this.state.browser.cookies === 'Accept') {
+            this.handleAcceptCookies();
+        } else if (this.state.browser.cookies === 'Decline') {
+            this.handleDeclineCookies();
+        }
     }
 
     componentWillUnmount() {
@@ -151,8 +156,18 @@ class App extends React.Component<{}, States> {
     }
 
     handleAcceptCookies = () => {
+        // UPDATE STATE
         localStorage.setItem('ebenriederCookies', 'Accept');
         this.setState({ browser: { ...this.state.browser, cookies: 'Accept' } });
+        // ADD GOOGLE TAG MANAGER
+        const scriptGoogleTagManager = document.createElement('script');
+        scriptGoogleTagManager.async = true;
+        scriptGoogleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=G-5MB35BGDVH';
+        document.head.appendChild(scriptGoogleTagManager);
+        // ADD DATA LAYER
+        const scriptDataLayer = document.createElement('script');
+        scriptDataLayer.textContent = `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-5MB35BGDVH');`;
+        document.head.appendChild(scriptDataLayer);
     };
 
     handleDeclineCookies = () => {
@@ -283,15 +298,17 @@ class App extends React.Component<{}, States> {
                     .join(' ')}
             >
                 <Router>
-                    {/* {this.state.browser.cookies === 'Unknown' && (
+                    {this.state.browser.cookies === 'Unknown' && (
                         <Cookies browser={this.state.browser} handleAccept={this.handleAcceptCookies} handleDecline={this.handleDeclineCookies} />
-                    )} */}
+                    )}
                     <Header browser={this.state.browser} handleLanguage={this.handleLanguage} />
                     <Mouse browser={this.state.browser} />
                     <Wrapper browser={this.state.browser} handlePage={this.handlePage}>
                         <Routes>
                             <Route path='/' element={<Overview browser={this.state.browser} />} />
+                            <Route path='/impressum' element={<Imprint browser={this.state.browser} />} />
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
+                            <Route path='/datenschutz' element={<Privacy browser={this.state.browser} />} />
                             <Route path='/privacy' element={<Privacy browser={this.state.browser} />} />
                             <Route path='*' element={<Overview browser={this.state.browser} />} />
                         </Routes>

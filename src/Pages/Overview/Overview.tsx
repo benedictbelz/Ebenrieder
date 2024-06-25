@@ -4,6 +4,7 @@ import Events from '../../Components/Events/Events';
 import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
 import Information from '../../Components/Information/Information';
+import Map from '../../Components/Map/Map';
 import Menu from '../../Components/Menu/Menu';
 import Rooms from '../../Components/Rooms/Rooms';
 import Title from '../../Components/Title/Title';
@@ -14,6 +15,8 @@ import './Overview.scss';
 
 interface Props extends PropsWithRouter {
     browser: Browser;
+    handleAccept: () => void;
+    handleDecline: () => void;
 }
 
 class Overview extends React.Component<Props> {
@@ -220,6 +223,52 @@ class Overview extends React.Component<Props> {
                             <img src='assets/media/gallery/possibilities_09.jpg' />
                             <img src='assets/media/gallery/possibilities_10.jpg' />
                         </Gallery>
+                    </article>
+                    <article data-name={getLanguage(language, 'titleArrival')}>
+                        <Title
+                            browser={this.props.browser}
+                            backgroundX={language === 'en' ? (this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15) : 0}
+                            backgroundY={0}
+                            backgroundImage={'assets/media/watercolor/watercolor_03.jpg'}
+                            backgroundScale={0.9}
+                            foregroundImage={`assets/svg/arrival_${language}.svg`}
+                            foregroundScale={0.9}
+                        />
+                        <div>
+                            {language === 'de' && (
+                                <p className='text'>
+                                    <strong>Von Osten</strong> kommend folgen Sie der A96 Richtung Lindau bis zur Abfahrt Landsberg West und fahren weiter
+                                    auf der B17 Richtung Garmisch bis zur Abfahrt Schongau Süd. Sie folgen der B472 Richtung Kaufbeuren bis es links
+                                    Richtung Rettenbach geht. Im Zentrum biegen Sie rechts nach Remnatried ab. <strong>Von Norden</strong> kommend gelangen
+                                    Sie entweder über die B17, wie oben beschrieben, oder über die B16 über Kaufbeuren auf die B472. Von Kaufbeuren fahren
+                                    Sie weiter bis Rettenbach und von dort aus nach Remnatsried. <strong>Von Westen</strong> kommend fahren Sie bis Kempten
+                                    und folgen dort der B12 bis Marktoberdorf. Dort nehmen Sie die Abfahrt auf die B472 Richtung Schongau. Bei Rettenbach
+                                    biegen Sie rechts ab und folgen der Ausschilderung Richtung Remnatsried. <strong>Von Süden</strong> kommend fahren Sie
+                                    über Füssen auf der B16 Richtung Marktoberdort. Bei Stötten biegen Sie rechts nach Remnatsried ab.
+                                    <br />
+                                    <br />
+                                    <strong>Mit dem Zug</strong> erreichen Sie uns am Besten über den Bahnhof in Marktoberdorf. Frage uns, wir vereinbaren
+                                    gerne eine Abholung.
+                                </p>
+                            )}
+                            {language === 'en' && (
+                                <p className='text'>
+                                    Coming from <strong>the east</strong>, follow the A96 towards Lindau until the exit Landsberg West and continue on the
+                                    B17 towards Garmisch until the exit Schongau Süd. Follow the B472 towards Kaufbeuren until you turn left towards
+                                    Rettenbach. In the center turn right to Remnatried. Coming from <strong>the north</strong>, you can either take the
+                                    B17, as described above, or the B16 via Kaufbeuren to the B472. From Kaufbeuren, continue to Rettenbach and from there
+                                    to Remnatsried. Coming from <strong>the west</strong>, drive to Kempten and follow the B12 to Marktoberdorf. There,
+                                    take the exit onto the B472 towards Schongau. Turn right at Rettenbach and follow the signs to Remnatsried. Coming from
+                                    <strong>the south</strong>, drive via Füssen on the B16 towards Marktoberdort. At Stötten, turn right towards
+                                    Remnatsried.
+                                    <br />
+                                    <br />
+                                    The best way to reach us <strong>by train</strong> is via the station Marktoberdorf. Ask us, we will be happy to
+                                    arrange a pick up.
+                                </p>
+                            )}
+                        </div>
+                        <Map browser={this.props.browser} handleAccept={this.props.handleAccept} handleDecline={this.props.handleDecline} />
                     </article>
                 </div>
                 <Footer browser={this.props.browser} />

@@ -1,0 +1,65 @@
+@import '../../App/Variables.scss';
+
+.map {
+    height: $spacing-gallery;
+    padding: 0 var(--spacing-horizontal);
+
+    @media (min-width: 2000px) {
+        min-height: 50vmax;
+    }
+
+    @media (max-height: calc($spacing-gallery + 200px)) {
+        max-height: 50vmax;
+    }
+
+    &.cookies {
+        min-height: $spacing-gallery;
+
+        .mapCookies {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: var(--spacing-horizontal);
+            background: $color-shadow;
+            height: 100%;
+            width: 100%;
+
+            .mapText {
+                color: $color-white;
+            }
+
+            .mapButtons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                color: $color-white;
+            }
+
+            .underlineLink {
+                color: $color-white;
+                &::after {
+                    background-color: $color-white;
+                }
+            }
+        }
+    }
+
+    > div {
+        border: 2px solid $color-blue;
+    }
+
+    .gm-style {
+        iframe + div {
+            border: none !important;
+        }
+
+        > div:nth-child(n + 3) {
+            display: none;
+        }
+    }
+}

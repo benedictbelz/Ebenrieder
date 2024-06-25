@@ -10,6 +10,7 @@
         "prettier": "prettier . --write"
     },
     "dependencies": {
+        "@vis.gl/react-google-maps": "^1.1.0",
         "query-string": "^9.0.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",

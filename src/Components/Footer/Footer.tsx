@@ -27,14 +27,6 @@ export default class Header extends React.Component<Props> {
                         <span>87675 Stötten am Auerberg</span>
                         <span>Deutschland</span>
                     </div>
-                    <a
-                        className='underlineLink'
-                        href='https://www.google.com/maps/place/Remnatsried+2,+87675+Stötten+am+Auerberg/@47.7539935,10.7318328,17z/data=!3m1!4b1!4m6!3m5!1s0x479c433d28fe3943:0x3f621e63b971648d!8m2!3d47.7539899!4d10.7344077!16s%2Fg%2F11h_f7q8gc?entry=ttu'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        Google Maps
-                    </a>
                 </div>
                 <div id='footerScroll'>
                     <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -50,9 +42,6 @@ export default class Header extends React.Component<Props> {
                     <Link to={language === 'de' ? '/datenschutz' : '/privacy'} className='underlineLink'>
                         {getLanguage(language, 'privacy')}
                     </Link>
-                    {/* <Link to={language === 'de' ? 'agb' : '/conditions'} className='underlineLink'>
-                        {getLanguage(language, 'conditions')}
-                    </Link> */}
                 </div>
                 <div id='footerSocial'>
                     <a href='https://www.instagram.com/ebenrieder' target='_blank' rel='noopener noreferrer'>

@@ -305,12 +305,30 @@ class App extends React.Component<{}, States> {
                     <Mouse browser={this.state.browser} />
                     <Wrapper browser={this.state.browser} handlePage={this.handlePage}>
                         <Routes>
-                            <Route path='/' element={<Overview browser={this.state.browser} />} />
+                            <Route
+                                path='/'
+                                element={
+                                    <Overview
+                                        browser={this.state.browser}
+                                        handleAccept={this.handleAcceptCookies}
+                                        handleDecline={this.handleDeclineCookies}
+                                    />
+                                }
+                            />
                             <Route path='/impressum' element={<Imprint browser={this.state.browser} />} />
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
                             <Route path='/datenschutz' element={<Privacy browser={this.state.browser} />} />
                             <Route path='/privacy' element={<Privacy browser={this.state.browser} />} />
-                            <Route path='*' element={<Overview browser={this.state.browser} />} />
+                            <Route
+                                path='*'
+                                element={
+                                    <Overview
+                                        browser={this.state.browser}
+                                        handleAccept={this.handleAcceptCookies}
+                                        handleDecline={this.handleDeclineCookies}
+                                    />
+                                }
+                            />
                         </Routes>
                     </Wrapper>
                 </Router>
@@ -319,8 +337,4 @@ class App extends React.Component<{}, States> {
     }
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);

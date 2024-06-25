@@ -222,7 +222,7 @@
                         margin: 0;
                     }
 
-                    > div {
+                    .modalFeature {
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
@@ -234,6 +234,14 @@
 
                         img {
                             height: 25px;
+                        }
+
+                        &.quantityYoga img {
+                            width: 35px;
+                        }
+
+                        &.quantityPeople img {
+                            height: 22.5px;
                         }
                     }
                 }

@@ -134,7 +134,7 @@ class Rooms extends React.Component<Props, States> {
                             <div className='modalRight'>
                                 <div className='modalFeatures'>
                                     {Object.keys(features).map((key: keyof Room['features'], index) => (
-                                        <div className='modalFeature' key={`feature_${index}`}>
+                                        <div className={`modalFeature ${key}`} key={`feature_${index}`}>
                                             <img src={`assets/svg/${getFeatureImage(key)}.svg`} />
                                             <p>
                                                 {(key === 'quantityPeople' || key === 'quantityYoga') && (

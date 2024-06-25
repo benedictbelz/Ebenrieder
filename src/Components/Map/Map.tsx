@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { APIProvider, Map as GoogleMap, AdvancedMarker, Pin, Marker, InfoWindow } from '@vis.gl/react-google-maps';
+import { Link } from 'react-router-dom';
+import { APIProvider, Map as GoogleMap, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { getLanguage } from '../../@presets/language';
+import { getSecrets } from '../../@presets/secrets';
 import { Browser } from '../../@types/browser';
 import './Map.scss';
-import { getLanguage } from '../../@presets/language';
-import { Link } from 'react-router-dom';
 
 interface Props {
     browser: Browser;
@@ -19,7 +20,7 @@ export default class Map extends React.Component<Props> {
         return (
             <div className={['map', this.props.browser.cookies !== 'Accept' && 'cookies'].filter(x => x).join(' ')}>
                 {this.props.browser.cookies === 'Accept' ? (
-                    <APIProvider apiKey={'AIzaSyCzHucli3z27tOQe8wP6lxttFGKXT9bLxc'} onLoad={() => console.log('Maps API has loaded.')}>
+                    <APIProvider apiKey={getSecrets().google} onLoad={() => console.log('Maps API has loaded.')}>
                         <GoogleMap
                             defaultZoom={18}
                             defaultCenter={{ lat: 47.753984021129355, lng: 10.73440969585985 }}

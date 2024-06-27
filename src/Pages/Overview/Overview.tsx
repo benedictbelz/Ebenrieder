@@ -237,34 +237,32 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    <strong>Von Osten</strong> kommend folgen Sie der A96 Richtung Lindau bis zur Abfahrt Landsberg West und fahren weiter
-                                    auf der B17 Richtung Garmisch bis zur Abfahrt Schongau Süd. Sie folgen der B472 Richtung Kaufbeuren bis es links
-                                    Richtung Rettenbach geht. Im Zentrum biegen Sie rechts nach Remnatried ab. <strong>Von Norden</strong> kommend gelangen
-                                    Sie entweder über die B17, wie oben beschrieben, oder über die B16 über Kaufbeuren auf die B472. Von Kaufbeuren fahren
-                                    Sie weiter bis Rettenbach und von dort aus nach Remnatsried. <strong>Von Westen</strong> kommend fahren Sie bis Kempten
-                                    und folgen dort der B12 bis Marktoberdorf. Dort nehmen Sie die Abfahrt auf die B472 Richtung Schongau. Bei Rettenbach
-                                    biegen Sie rechts ab und folgen der Ausschilderung Richtung Remnatsried. <strong>Von Süden</strong> kommend fahren Sie
-                                    über Füssen auf der B16 Richtung Marktoberdort. Bei Stötten biegen Sie rechts nach Remnatsried ab.
+                                    Wenn du aus <strong>östlicher Richtung</strong> oder München kommst, nimm die A96 Richtung Lindau, verlasse sie bei
+                                    Landsberg West und folge der B17 bis zur Abfahrt Schongau Süd. Danach nimmst du die B472 Richtung Kaufbeuren bis zur
+                                    Abzweigung Rettenbach und biegst im Zentrum von Remnatried rechts ab. Aus dem <strong>Norden</strong> erreichst du uns
+                                    entweder über die B17, wie beschrieben, oder über die B16 und die B472 über Kaufbeuren nach Rettenbach und weiter nach
+                                    Remnatsried. Von <strong>Westen</strong> fährst du bis Kempten, folgst der B12 bis Marktoberdorf und nimmst dort die
+                                    B472 Richtung Schongau. In Rettenbach biegst du rechts ab und folgst der Beschilderung nach Remnatsried. Von{' '}
+                                    <strong>Süden</strong> aus nimm die B16 über Füssen und Marktoberdorf, biege in Stötten rechts nach Remnatsried ab.
                                     <br />
                                     <br />
-                                    <strong>Mit dem Zug</strong> erreichen Sie uns am Besten über den Bahnhof in Marktoberdorf. Frage uns, wir vereinbaren
-                                    gerne eine Abholung.
+                                    <strong>Mit dem Zug</strong> kommst du am besten über den Bahnhof in Marktoberdorf zu uns. Melde dich, wir holen dich
+                                    gerne ab.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    Coming from <strong>the east</strong>, follow the A96 towards Lindau until the exit Landsberg West and continue on the
-                                    B17 towards Garmisch until the exit Schongau Süd. Follow the B472 towards Kaufbeuren until you turn left towards
-                                    Rettenbach. In the center turn right to Remnatried. Coming from <strong>the north</strong>, you can either take the
-                                    B17, as described above, or the B16 via Kaufbeuren to the B472. From Kaufbeuren, continue to Rettenbach and from there
-                                    to Remnatsried. Coming from <strong>the west</strong>, drive to Kempten and follow the B12 to Marktoberdorf. There,
-                                    take the exit onto the B472 towards Schongau. Turn right at Rettenbach and follow the signs to Remnatsried. Coming from
-                                    <strong>the south</strong>, drive via Füssen on the B16 towards Marktoberdort. At Stötten, turn right towards
-                                    Remnatsried.
+                                    If you are coming from <strong>the east</strong> or Munich, take the A96 towards Lindau, leave at the exit Landsberg
+                                    West and follow the B17 to the exit Schongau Süd. Then take the B472 towards Kaufbeuren until the junction Rettenbach
+                                    and turn right in the center of Remnatried. From <strong>the north</strong>, you can reach us either via the B17, as
+                                    described, or via the B16 and the B472 via Kaufbeuren to Rettenbach and further on to Remnatsried. From{' '}
+                                    <strong>the west</strong>, drive to Kempten, follow the B12 to Marktoberdorf and then take the B472 towards Schongau.
+                                    In Rettenbach, turn right and follow the signs to Remnatsried. From <strong>the south</strong>, take the B16 via Füssen
+                                    and Marktoberdorf and in Stötten turn right to Remnatsried.
                                     <br />
                                     <br />
-                                    The best way to reach us <strong>by train</strong> is via the station Marktoberdorf. Ask us, we will be happy to
-                                    arrange a pick up.
+                                    The best way to reach us <strong>by train</strong> is via Marktoberdorf station. Get in touch and we will be happy to
+                                    pick you up.
                                 </p>
                             )}
                         </div>

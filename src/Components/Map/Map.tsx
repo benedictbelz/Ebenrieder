@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { APIProvider, Map as GoogleMap, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map as GoogleMap, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
 import { getLanguage } from '../../@presets/language';
 import { getSecrets } from '../../@presets/secrets';
 import { Browser } from '../../@types/browser';
@@ -12,7 +12,15 @@ interface Props {
     handleDecline: () => void;
 }
 
-export default class Map extends React.Component<Props> {
+interface States {
+    showInfo: boolean;
+}
+
+export default class Map extends React.Component<Props, States> {
+    state = {
+        showInfo: false
+    };
+
     render() {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
@@ -29,9 +37,21 @@ export default class Map extends React.Component<Props> {
                             mapTypeId='roadmap'
                             disableDefaultUI
                         >
-                            <AdvancedMarker position={{ lat: 47.753984021129355, lng: 10.73440969585985 }} title={'Ebenrieder'}>
+                            <AdvancedMarker
+                                position={{ lat: 47.753984021129355, lng: 10.73440969585985 }}
+                                clickable={true}
+                                onClick={(event: any) => {
+                                    if (event.domEvent.target.className === 'mapCross') {
+                                        this.setState({ showInfo: false });
+                                    } else {
+                                        this.setState({ showInfo: true });
+                                    }
+                                }}
+                            >
                                 <div
+                                    className='mapPin'
                                     style={{
+                                        cursor: 'pointer',
                                         width: 16,
                                         height: 16,
                                         position: 'absolute',
@@ -42,11 +62,10 @@ export default class Map extends React.Component<Props> {
                                     }}
                                 >
                                     <h3
+                                        className='mapLabel'
                                         style={{
-                                            padding: 12,
                                             fontFamily: `'Futura' sans-serif`,
-                                            //fontWeight: 400,
-                                            transform: 'translate(-60px, -50px)',
+                                            transform: 'translate(-48px, -35px)',
                                             textShadow:
                                                 '-1px -1px 0 #fff, 0 -1px 0 #fff, 1px -1px 0 #fff, 1px 0 0 #fff, 1px 1px 0 #fff, 0 1px 0 #fff, -1px 1px 0 #fff, -1px 0 0 #fff'
                                         }}
@@ -54,6 +73,119 @@ export default class Map extends React.Component<Props> {
                                         Ebenrieder
                                     </h3>
                                 </div>
+                                {this.state.showInfo && (
+                                    <div
+                                        className='mapInfo'
+                                        style={{
+                                            cursor: 'auto',
+                                            boxSizing: 'border-box',
+                                            position: 'absolute',
+                                            width: '250px',
+                                            padding: '25px 45px 25px 25px',
+                                            background: '#fff',
+                                            borderRadius: '10px',
+                                            border: '2px solid #32468a',
+                                            transform: 'translate(-125px, 35px)'
+                                        }}
+                                    >
+                                        <div
+                                            className='mapArrow'
+                                            style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: '50%',
+                                                height: 0,
+                                                width: 0,
+                                                borderLeft: '20px solid transparent',
+                                                borderRight: '20px solid transparent',
+                                                borderBottom: '20px solid #32468a',
+                                                transform: 'translate(-50%, -20px)'
+                                            }}
+                                        >
+                                            <div
+                                                style={{
+                                                    height: 0,
+                                                    width: 0,
+                                                    borderLeft: '20px solid transparent',
+                                                    borderRight: '20px solid transparent',
+                                                    borderBottom: '20px solid #fff',
+                                                    transform: 'translate(-50%, 3px)'
+                                                }}
+                                            />
+                                        </div>
+                                        <div
+                                            className='mapCross'
+                                            style={{
+                                                cursor: 'pointer',
+                                                position: 'absolute',
+                                                top: '15px',
+                                                right: '15px',
+                                                height: '20px',
+                                                width: '20px',
+                                                background: '#fff'
+                                            }}
+                                        >
+                                            <div
+                                                className='mapCross'
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    height: '2px',
+                                                    width: '20px',
+                                                    transform: 'rotate(45deg)',
+                                                    background: '#32468a',
+                                                    marginTop: '9px'
+                                                }}
+                                            />
+                                            <div
+                                                className='mapCross'
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    height: '2px',
+                                                    width: '20px',
+                                                    transform: 'rotate(-45deg)',
+                                                    background: '#32468a',
+                                                    marginTop: '9px'
+                                                }}
+                                            />
+                                        </div>
+                                        <div
+                                            className='mapText'
+                                            style={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                gap: '20px',
+                                                fontFamily: `'Futura' sans-serif`,
+                                                fontSize: `${this.props.browser.variables.fontSizeText}px`
+                                            }}
+                                        >
+                                            <div
+                                                className='mapAddress'
+                                                style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    justifyContent: 'flex-start',
+                                                    alignItems: 'flex-start'
+                                                }}
+                                            >
+                                                <span>Ebenrieder</span>
+                                                <span>Remnatsried 2</span>
+                                                <span>87675 Stötten am Auerberg</span>
+                                            </div>
+                                            <a
+                                                className='underlineLink'
+                                                href='https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu'
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                            >
+                                                {getLanguage(language, 'mapDirections')}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )}
                             </AdvancedMarker>
                         </GoogleMap>
                     </APIProvider>
@@ -67,7 +199,7 @@ export default class Map extends React.Component<Props> {
                             {`${getLanguage(language, 'mapCookies').split('<%privacy%>')[1].split('<%link%>')[0]} `}
                             <a
                                 className='underlineLink'
-                                href='https://www.google.com/maps/place/Remnatsried+2,+87675+Stötten+am+Auerberg/@47.7539935,10.7318328,17z/data=!3m1!4b1!4m6!3m5!1s0x479c433d28fe3943:0x3f621e63b971648d!8m2!3d47.7539899!4d10.7344077!16s%2Fg%2F11h_f7q8gc?entry=ttu'
+                                href='https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >

@@ -391,13 +391,13 @@ export function getEvents(): Event[] {
                 quantity: true
             },
             gallery: [
+                'assets/media/events/zeit_des_loslassens_03.jpg',
+                'assets/media/events/zeit_des_loslassens_06.jpg',
+                'assets/media/events/zeit_des_loslassens_07.jpg',
                 'assets/media/events/zeit_des_loslassens_01.jpg',
                 'assets/media/events/zeit_des_loslassens_04.jpg',
                 'assets/media/events/zeit_des_loslassens_05.jpg',
                 'assets/media/events/zeit_des_loslassens_02.jpg',
-                'assets/media/events/zeit_des_loslassens_03.jpg',
-                'assets/media/events/zeit_des_loslassens_06.jpg',
-                'assets/media/events/zeit_des_loslassens_07.jpg',
                 'assets/media/events/zeit_des_loslassens_09.jpg',
                 'assets/media/events/zeit_des_loslassens_08.jpg',
                 'assets/media/events/zeit_des_loslassens_10.jpg',

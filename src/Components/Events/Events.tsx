@@ -217,6 +217,9 @@ class Events extends React.Component<Props, States> {
                 ? `${getLanguage(language, 'emailFoodIntolerance')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}`
                 : '') +
             (email.accomodation ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}` : '') +
+            (email.accomodationType
+                ? `${getLanguage(language, 'emailAccomodationType')}: (${getLanguage(language, 'emailSingleDoubleRoom')})${'%0D%0A'}`
+                : '') +
             `${'%0D%0A'}${getLanguage(language, 'emailGoodbye')}`;
         // RETURN MODAL
         return (
@@ -249,10 +252,15 @@ class Events extends React.Component<Props, States> {
                                             subtitle.map((item, index) => (
                                                 <React.Fragment key={`subtitle_${index}`}>
                                                     <span>{item[language]}</span>
-                                                    <span>•</span>
+                                                    {index !== subtitle.length - 1 ? <span>•</span> : null}
                                                 </React.Fragment>
                                             ))}
-                                        <span>{`${price} EUR`}</span>
+                                        {price && (
+                                            <>
+                                                <span>•</span>
+                                                <span>{`${price} EUR`}</span>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div className='modalDescription'>{description[language]}</div>
@@ -457,8 +465,12 @@ class Events extends React.Component<Props, States> {
                                             <h3>{title[language]}</h3>
                                             <div className='eventSubtitle'>
                                                 <span>{date}</span>
-                                                <span>•</span>
-                                                <span>{`${price} EUR`}</span>
+                                                {price && (
+                                                    <>
+                                                        <span>•</span>
+                                                        <span>{`${price} EUR`}</span>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
                                         <div className='eventDescription'>{description[language]}</div>

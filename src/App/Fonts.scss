@@ -1,27 +1,23 @@
 @font-face {
     font-family: 'Futura';
-    src:
-        local('Futura'),
-        url('fonts/Futura-Medium.woff2') format('woff2');
+    src: url('fonts/Futura-Medium.woff2') format('woff2');
     font-weight: 400;
+    font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Futura';
-    src:
-        local('Futura'),
-        url('fonts/Futura-Medium-Italic.woff2') format('woff2');
+    src: url('fonts/Futura-Bold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('fonts/Futura-Medium-Italic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Futura';
-    src:
-        local('Futura'),
-        url('fonts/Futura-Bold.woff2') format('woff2');
-    font-weight: 800;
     font-display: swap;
 }

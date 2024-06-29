@@ -46,6 +46,7 @@ export type Event = {
     }[];
     email?: {
         accomodation: boolean;
+        accomodationType: boolean;
         date: boolean;
         foodIntolerance: boolean;
         name: boolean;
@@ -66,5 +67,5 @@ export type Event = {
         en: string;
     };
     type: FilterEvent[];
-    price: number;
+    price: number | null;
 };

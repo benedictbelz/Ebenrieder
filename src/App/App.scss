@@ -38,27 +38,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-#app {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    min-width: 320px;
-    background-color: $color-white;
-
-    &.hideCursor {
-        cursor: none !important;
-    }
-
-    #overview #content section header,
-    #overview #content section main,
-    #imprint,
-    #footer {
-        transition:
-            margin 0.5s ease,
-            padding 0.5s ease;
-    }
-}
-
 h1,
 h2,
 h3,
@@ -95,6 +74,27 @@ ul {
 a {
     color: $color-blue;
     text-decoration: none;
+}
+
+#app {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-width: 320px;
+    background-color: $color-white;
+
+    &.hideCursor {
+        cursor: none !important;
+    }
+
+    #overview #content section header,
+    #overview #content section main,
+    #imprint,
+    #footer {
+        transition:
+            margin 0.5s ease,
+            padding 0.5s ease;
+    }
 }
 
 .underlineLink {

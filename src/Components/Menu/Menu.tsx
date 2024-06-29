@@ -183,9 +183,15 @@ export default class Menu extends React.Component<Props, States> {
         // IF NO INDEX RETURN
         if (index < 0) return;
         // UPDATE STATE
-        this.setState({ position, focus: { ...this.state.focus, item: index } });
+        this.setState({
+            position,
+            focus: { ...this.state.focus, item: index },
+            modus: this.state.modus === 'Top' && this.state.appearance === 'Wide' ? 'Flow' : this.state.modus
+        });
         // SCROLL TO POSITION
         window.scrollTo({ top: position, behavior: 'smooth' });
+        // RESET POSITION
+        setTimeout(() => this.setState({ position: null }), 500);
     };
 
     private narrowClickLeft = () => {

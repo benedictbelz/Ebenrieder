@@ -47,6 +47,13 @@ export default class Map extends React.Component<Props, States> {
                                         this.setState({ showInfo: true });
                                     }
                                 }}
+                                onTouchEnd={(event: any) => {
+                                    if (event.domEvent.target.className === 'mapCross') {
+                                        this.setState({ showInfo: false });
+                                    } else {
+                                        this.setState({ showInfo: true });
+                                    }
+                                }}
                             >
                                 <div
                                     className='mapPin'
@@ -175,14 +182,27 @@ export default class Map extends React.Component<Props, States> {
                                                 <span>Remnatsried 2</span>
                                                 <span>87675 Stötten am Auerberg</span>
                                             </div>
-                                            <a
+                                            <div
                                                 className='underlineLink'
-                                                href='https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu'
-                                                target='_blank'
-                                                rel='noopener noreferrer'
+                                                onClick={() =>
+                                                    window
+                                                        .open(
+                                                            'https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu',
+                                                            '_blank'
+                                                        )
+                                                        .focus()
+                                                }
+                                                onTouchEnd={() =>
+                                                    window
+                                                        .open(
+                                                            'https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu',
+                                                            '_blank'
+                                                        )
+                                                        .focus()
+                                                }
                                             >
                                                 {getLanguage(language, 'mapDirections')}
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

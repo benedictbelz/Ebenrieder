@@ -124,6 +124,7 @@ export function getEvents(): Event[] {
             ],
             email: {
                 accomodation: true,
+                accomodationType: false,
                 date: true,
                 foodIntolerance: false,
                 name: true,
@@ -256,6 +257,7 @@ export function getEvents(): Event[] {
             ],
             email: {
                 accomodation: false,
+                accomodationType: false,
                 date: true,
                 foodIntolerance: true,
                 name: true,
@@ -289,6 +291,140 @@ export function getEvents(): Event[] {
             },
             type: ['Food', 'Workshop', 'Yoga'],
             price: 930
+        },
+        {
+            date: {
+                start: new Date(2024, 9, 11, 14, 0),
+                end: new Date(2024, 9, 13, 14, 0)
+            },
+            descriptionLong: {
+                de: `Finde im Einklang mit der Natur zu dich selbst zurück, bei unserem Ayurveda und Yoga Retreat im goldenen Herbst. Wohl keine andere Jahreszeit eignet sich besser, um alten Ballast und ungewollte Gewohnheiten los zu lassen. Spielerisch erforschen wir unser Unterbewusstsein und laden dich ein in sanften und tiefen Yogaeinheiten Körper und Geist von allem Überflüssigen zu befreien. In den intensiven Atemeinheiten, die tiefgreifend transformieren, stimmen wir unsere Zellen auf neue Überzeugungen ein, beleben den Geist und öffnen den Raum für neues Selbstvertrauen. Sorgfältig zubereitete ayurvedische Speisen nähren und unterstützen deinen Körper im liebevollen Prozess der Akzeptanz und Selbstliebe. Erlebe die Kunst des Loslassens in einer Umgebung, die zur inneren Ruhe und Erneuerung einlädt.\n\nDurch das Seminar begleiten euch: Lilli Bouchenafa (Yoga und Meditationslehrerin) & David Bouchenafa (Ayurveda Therapeut, Yogalehrer, Ernährungsberater und Koch)`,
+                en: `Find your way back to yourself in harmony with nature at our Ayurveda and yoga retreat in the golden fall. There is probably no other time of year better suited to letting go of old baggage and unwanted habits. We playfully explore our subconscious and invite you to free your body and mind from all superfluous things in gentle and deep yoga sessions. In the intensive breathing sessions, which are profoundly transformative, we attune our cells to new beliefs, revitalize the mind and open the space for new self-confidence. Carefully prepared Ayurvedic food nourishes and supports your body in the loving process of acceptance and self-love. Experience the art of letting go in an environment that invites inner peace and renewal.\n\nLilli Bouchenafa (yoga and meditation teacher) & David Bouchenafa (Ayurveda therapist, yoga teacher, nutritionist and chef) will guide you through the seminar.`
+            },
+            descriptionShort: {
+                de: 'Im goldenen Herbst laden wir dich ein, bei unserem Ayurveda und Yoga Retreat im Einklang mit der Natur zu dir selbst zurückzufinden. Diese Jahreszeit bietet die ideale Kulisse, um alten Ballast loszulassen und ungewollte Gewohnheiten zu überwinden. Tauche ein in die Kunst des Loslassen in einer Umgebung, die zur inneren Ruhe und Erneuerung einlädt.',
+                en: 'In the golden autumn, we invite you to rediscover yourself in harmony with nature at our Ayurveda and yoga retreat. This time of year offers the ideal backdrop for letting go of old baggage and overcoming unwanted habits. Immerse yourself in the art of letting go in an environment that invites inner peace and renewal.'
+            },
+            details: [
+                {
+                    title: {
+                        de: 'Yoga- & Atemretreat',
+                        en: 'Yoga & breathing retreat'
+                    },
+                    content: {
+                        de: 'Transformatorische Übungen mit Lilli & David',
+                        en: 'Transformative exercises with Lilli & David'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Plätze',
+                        en: 'Places'
+                    },
+                    content: {
+                        de: '8-12',
+                        en: '8-12'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 11.10.2024 um 14:00 Uhr',
+                        en: "on 11.10.2024 at 14:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 13.10.2024 um 16:00 Uhr',
+                        en: "on 13.10.2024 at 16:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '750 EUR im Einzelzimmer, 650 EUR im Doppelzimmer',
+                        en: '750 EUR in a single room, 650 EUR in a double room'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. zwei Übernachtungen mit ayurvedischer Verpflegung',
+                        en: 'incl. two overnight stays and ayurvedic catering'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. sanfte und tiefe Yoga- und Atemeinheiten',
+                        en: 'incl. gentle and deep yoga and breathing sessions'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Meditationsübungen',
+                        en: 'incl. Meditation exercises'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Sauna mit Außenpool und Hot Tub',
+                        en: 'incl. Sauna with outdoor pool and hot tub'
+                    }
+                }
+            ],
+            email: {
+                accomodation: false,
+                accomodationType: true,
+                date: true,
+                foodIntolerance: true,
+                name: true,
+                title: true,
+                quantity: true
+            },
+            gallery: [
+                'assets/media/events/zeit_des_loslassens_01.jpg',
+                'assets/media/events/zeit_des_loslassens_04.jpg',
+                'assets/media/events/zeit_des_loslassens_05.jpg',
+                'assets/media/events/zeit_des_loslassens_02.jpg',
+                'assets/media/events/zeit_des_loslassens_03.jpg',
+                'assets/media/events/zeit_des_loslassens_06.jpg',
+                'assets/media/events/zeit_des_loslassens_07.jpg',
+                'assets/media/events/zeit_des_loslassens_09.jpg',
+                'assets/media/events/zeit_des_loslassens_08.jpg',
+                'assets/media/events/zeit_des_loslassens_10.jpg',
+                'assets/media/events/zeit_des_loslassens_11.jpg'
+            ],
+            link: 'zeit_des_loslassens',
+            previewImage: 'assets/media/events/zeit_des_loslassens_07.jpg',
+            subtitle: [
+                {
+                    de: 'Yoga- und Atemworkshop mit Lilli und David Bouchenafa',
+                    en: 'Yoga and breathing workshop with Lilli and David Bouchenafa'
+                },
+                {
+                    de: '750 EUR (Einzelzimmer)',
+                    en: '750 EUR (Single Room)'
+                },
+                {
+                    de: '650 EUR (Doppelzimmer)',
+                    en: '650 EUR (Double Room)'
+                }
+            ],
+            title: {
+                de: 'Zeit des Loslassens',
+                en: 'A Time of Letting Go'
+            },
+            type: ['Food', 'Yoga'],
+            price: null
         }
     ];
 }

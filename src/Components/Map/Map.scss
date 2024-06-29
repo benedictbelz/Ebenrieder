@@ -9,11 +9,15 @@
     }
 
     @media (max-height: calc($spacing-gallery + 200px)) {
-        max-height: 50vmax;
+        max-height: 75vmax;
     }
 
     &.cookies {
         min-height: $spacing-gallery;
+
+        @media (max-height: calc($spacing-gallery + 200px)) {
+            min-height: 75vmax;
+        }
 
         .mapCookies {
             box-sizing: border-box;

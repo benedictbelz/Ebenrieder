@@ -194,6 +194,7 @@ class Events extends React.Component<Props, States> {
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
                 : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
         const description = event.descriptionLong;
+        const procedure = event.descriptionProcedure;
         const details = event.details;
         const email = event.email;
         const price = event.price;
@@ -284,7 +285,7 @@ class Events extends React.Component<Props, States> {
                                                     link = link + `?subject=${emailSubject}&body=${emailBody}`;
                                                 }
                                                 return (
-                                                    <a className='underlineLink' key={link} href={link}>
+                                                    <a className='underlineLink' key={link} href={link} target='_blank' rel='noopener noreferrer'>
                                                         {item.label[language]}
                                                     </a>
                                                 );
@@ -317,6 +318,26 @@ class Events extends React.Component<Props, States> {
                                     ))}
                                     <span className='line' />
                                 </div>
+                                {procedure && (
+                                    <div className='modalProcedure'>
+                                        {procedure.map(item => {
+                                            const day = item.day;
+                                            return (
+                                                <div className='day'>
+                                                    <p>{day[language]}</p>
+                                                    {item.activities.map(activity => {
+                                                        return (
+                                                            <div className='activity'>
+                                                                <span className='time'>{activity.time}</span>
+                                                                <span className='description'>{activity.description[language]}</span>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </>

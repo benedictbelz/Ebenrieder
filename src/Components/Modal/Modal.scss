@@ -133,6 +133,12 @@
             }
 
             .modalRight {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: var(--spacing-box-vertical);
+
                 .modalDetails {
                     display: flex;
                     flex-direction: column;
@@ -154,6 +160,39 @@
                         height: $border-s;
                         width: 100%;
                         background: $color-blue;
+                    }
+                }
+
+                .modalProcedure {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+                    padding: 25px;
+                    font-size: var(--font-size-detail);
+                    border: $border-s solid $color-blue;
+
+                    .day {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+
+                        > p {
+                            font-weight: $font-weight-bold;
+                            margin-bottom: 5px;
+                        }
+
+                        .activity {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 5px;
+                            width: fit-content;
+
+                            .time {
+                                min-width: 150px;
+                            }
+                        }
                     }
                 }
             }

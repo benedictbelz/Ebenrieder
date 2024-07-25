@@ -26,6 +26,19 @@ export type Event = {
               end: Date;
           }
         | Date;
+    descriptionProcedure?: {
+        day: {
+            de: string;
+            en: string;
+        };
+        activities: {
+            time: string;
+            description: {
+                de: string;
+                en: string;
+            };
+        }[];
+    }[];
     descriptionLong: {
         de: string;
         en: string;

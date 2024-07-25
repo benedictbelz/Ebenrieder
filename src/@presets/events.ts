@@ -298,7 +298,7 @@ export function getEvents(): Event[] {
                 end: new Date(2024, 9, 13, 14, 0)
             },
             descriptionLong: {
-                de: `Finde im Einklang mit der Natur zu dich selbst zurück, bei unserem Ayurveda und Yoga Retreat im goldenen Herbst. Wohl keine andere Jahreszeit eignet sich besser, um alten Ballast und ungewollte Gewohnheiten los zu lassen. Spielerisch erforschen wir unser Unterbewusstsein und laden dich ein in sanften und tiefen Yogaeinheiten Körper und Geist von allem Überflüssigen zu befreien. In den intensiven Atemeinheiten, die tiefgreifend transformieren, stimmen wir unsere Zellen auf neue Überzeugungen ein, beleben den Geist und öffnen den Raum für neues Selbstvertrauen. Sorgfältig zubereitete ayurvedische Speisen nähren und unterstützen deinen Körper im liebevollen Prozess der Akzeptanz und Selbstliebe. Erlebe die Kunst des Loslassens in einer Umgebung, die zur inneren Ruhe und Erneuerung einlädt.\n\nDurch das Seminar begleiten euch: Lilli Bouchenafa (Yoga und Meditationslehrerin) & David Bouchenafa (Ayurveda Therapeut, Yogalehrer, Ernährungsberater und Koch)`,
+                de: `Finde im Einklang mit der Natur zu dich selbst zurück, bei unserem Ayurveda und Yoga Retreat im goldenen Herbst. Wohl keine andere Jahreszeit eignet sich besser, um alten Ballast und ungewollte Gewohnheiten los zu lassen. Spielerisch erforschen wir unser Unterbewusstsein und laden dich ein in sanften und tiefen Yogaeinheiten Körper und Geist von allem Überflüssigen zu befreien. In den intensiven Atemeinheiten, die tiefgreifend transformieren, stimmen wir unsere Zellen auf neue Überzeugungen ein, beleben den Geist und öffnen den Raum für neues Selbstvertrauen. Sorgfältig zubereitete ayurvedische Speisen nähren und unterstützen deinen Körper im liebevollen Prozess der Akzeptanz und Selbstliebe. Erlebe die Kunst des Loslassens in einer Umgebung, die zur inneren Ruhe und Erneuerung einlädt.\n\nDurch das Seminar begleiten euch: Lilli Bouchenafa (Yoga und Meditationslehrerin) & David Bouchenafa (Ayurveda Therapeut, Yogalehrer, Ernährungsberater und Koch).`,
                 en: `Find your way back to yourself in harmony with nature at our Ayurveda and yoga retreat in the golden fall. There is probably no other time of year better suited to letting go of old baggage and unwanted habits. We playfully explore our subconscious and invite you to free your body and mind from all superfluous things in gentle and deep yoga sessions. In the intensive breathing sessions, which are profoundly transformative, we attune our cells to new beliefs, revitalize the mind and open the space for new self-confidence. Carefully prepared Ayurvedic food nourishes and supports your body in the loving process of acceptance and self-love. Experience the art of letting go in an environment that invites inner peace and renewal.\n\nLilli Bouchenafa (yoga and meditation teacher) & David Bouchenafa (Ayurveda therapist, yoga teacher, nutritionist and chef) will guide you through the seminar.`
             },
             descriptionShort: {
@@ -422,6 +422,463 @@ export function getEvents(): Event[] {
             title: {
                 de: 'Zeit des Loslassens',
                 en: 'A Time of Letting Go'
+            },
+            type: ['Food', 'Yoga'],
+            price: null
+        },
+        {
+            booking: [
+                {
+                    label: {
+                        de: 'Buchen',
+                        en: 'Book'
+                    },
+                    link: 'https://www.anja-zeifang.de/events/'
+                }
+            ],
+            date: {
+                start: new Date(2024, 9, 31, 15, 0),
+                end: new Date(2024, 10, 3, 12, 0)
+            },
+            descriptionProcedure: [
+                {
+                    day: {
+                        de: 'Do',
+                        en: 'Thursday'
+                    },
+                    activities: [
+                        {
+                            time: '15:00',
+                            description: {
+                                de: 'Anreise',
+                                en: 'Arrival'
+                            }
+                        },
+                        {
+                            time: '17:00 - 18:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '19:30',
+                            description: {
+                                de: 'Abendessen',
+                                en: 'Dinner'
+                            }
+                        }
+                    ]
+                },
+                {
+                    day: {
+                        de: 'Fr',
+                        en: 'Friday'
+                    },
+                    activities: [
+                        {
+                            time: '08:00 - 09:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '10:00',
+                            description: {
+                                de: 'Brunch',
+                                en: 'Brunch'
+                            }
+                        },
+                        {
+                            time: '11:00',
+                            description: {
+                                de: 'Me-Time, Massage',
+                                en: 'Me-Time, Massage'
+                            }
+                        },
+                        {
+                            time: '17:00 - 18:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '19:30',
+                            description: {
+                                de: 'Abendessen',
+                                en: 'Dinner'
+                            }
+                        }
+                    ]
+                },
+                {
+                    day: {
+                        de: 'Sa',
+                        en: 'Saturday'
+                    },
+                    activities: [
+                        {
+                            time: '08:00 - 09:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '10:00',
+                            description: {
+                                de: 'Brunch',
+                                en: 'Brunch'
+                            }
+                        },
+                        {
+                            time: '11:00',
+                            description: {
+                                de: 'Me-Time, Massage',
+                                en: 'Me-Time, Massage'
+                            }
+                        },
+                        {
+                            time: '17:00 - 18:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '19:30',
+                            description: {
+                                de: 'Abendessen',
+                                en: 'Dinner'
+                            }
+                        }
+                    ]
+                },
+                {
+                    day: {
+                        de: 'So',
+                        en: 'Sunday'
+                    },
+                    activities: [
+                        {
+                            time: '08:00 - 09:30',
+                            description: {
+                                de: 'Yoga',
+                                en: 'Yoga'
+                            }
+                        },
+                        {
+                            time: '10:00',
+                            description: {
+                                de: 'Brunch',
+                                en: 'Brunch'
+                            }
+                        },
+                        {
+                            time: '11:00',
+                            description: {
+                                de: 'Checkout',
+                                en: 'Checkout'
+                            }
+                        }
+                    ]
+                }
+            ],
+            descriptionLong: {
+                de: `Ein Retreat bedeutet Rückzug in Ruhe und Stille. Mit Yoga, Meditation und Pranayama, sowie kulinarischen Köstlichkeiten aus der Umgebung und gemeinschaftlichem Austausch findest du hier innere Einkehr. Deine Seele darf baumeln, während du neue Kraft schöpfst und Energie fließen lässt. In diesem Retreat dreht sich alles nur um dich. Triff eine Vereinbarung mit dir selbst und nimm Herausforderungen an, um persönliche Fortschritte zu erzielen. Lerne, deine Yogapraxis achtsam an deine Bedürfnisse anzupassen, und übe Asanas im Einklang mit deinem Atem und anatomischer Präzision. So findest du die Balance zwischen Flexibilität und Stärke. Lass dich von der einzigartigen Atmosphäre des Retreat-Ortes Ebenrieder einfangen, einem wahren Kraftplatz, und entdecke dein wahres Ich.\n\nDurch das Seminar begleitet euch: Anja Zeifang (Heilpraktikerin mit Schwerpunkt Schmerztherapie, Körpertherapeutin & Yoga-Lehrerin).`,
+                en: `A retreat means withdrawal into peace and quiet. With yoga, meditation, and pranayama, along with culinary delights from the region and communal exchange, you will find inner reflection. Let your soul unwind as you gain new strength and let the energy flow. This retreat is all about you. Make a commitment to yourself and embrace challenges to achieve personal progress. Learn to mindfully adapt your yoga practice to your needs, and practice Asanas in harmony with your breath and anatomical precision. This way, you find the balance between flexibility and strength. Be captivated by the unique atmosphere of the Ebenrieder retreat location, a true power spot, and discover your true self.\n\nThe seminar is led by Anja Zeifang (Naturopath specializing in pain therapy, body therapist, and yoga teacher).`
+            },
+            descriptionShort: {
+                de: 'Innerlich zur Ruhe zu kommen, die Seele baumeln lassen und neue Energie schöpfen mit Yoga, Meditation und kulinarische Köstlichkeiten, begleitet von Anja Zeifang.',
+                en: 'Finding inner peace, letting your soul unwind, and recharging with yoga, meditation, and culinary delights, all guided by Anja Zeifang.'
+            },
+            details: [
+                {
+                    title: {
+                        de: 'Yoga Retrea',
+                        en: 'Yoga retreat'
+                    },
+                    content: {
+                        de: 'im Herbst mit Anja Zeifang',
+                        en: 'in autumn with Anja Zeifang'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Plätze',
+                        en: 'Places'
+                    },
+                    content: {
+                        de: '8-12',
+                        en: '8-12'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 31.10.2024 um 15:00 Uhr',
+                        en: "on 31.10.2024 at 15:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 03.11.2024 um 12:00 Uhr',
+                        en: "on 03.11.2024 at 12:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '1070 EUR im Einzelzimmer, 830 EUR im Doppelzimmer',
+                        en: '1070 EUR in a single room, 830 EUR in a double room'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Massagen',
+                        en: 'Massages'
+                    },
+                    content: {
+                        de: 'können auf Wunsch gerne vorab gebucht werden für 85 Euro pro 60 Minuten',
+                        en: 'can be booked in advance on request for 85 euros per 60 minutes'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. drei Übernachtungen',
+                        en: 'incl. three overnight stays'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. vegetarische Verpflegung in Bio-Qualität mit Brunch, Nachmittagssnack (süß & salzig), Abendessen',
+                        en: 'incl. vegetarian catering in organic quality with brunch, afternoon snack (sweet & savoury), dinner'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Obst, Nüsse, Wasser und Tee vor und nach den Yogastunden',
+                        en: 'incl. fruit, nuts, water and tea before and after the yoga classes'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. 9 Stunden Yogaeinheiten',
+                        en: 'incl. 9 hours of yoga sessions'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Sauna mit Außenpool und Hot Tub',
+                        en: 'incl. Sauna with outdoor pool and hot tub'
+                    }
+                },
+                {
+                    content: {
+                        de: 'exkl. alkoholische Getränke',
+                        en: 'excl. alcoholic beverages'
+                    }
+                }
+            ],
+            email: {
+                accomodation: false,
+                accomodationType: true,
+                date: true,
+                foodIntolerance: true,
+                name: true,
+                title: true,
+                quantity: true
+            },
+            gallery: [
+                'assets/media/events/slow_down_18.jpg',
+                'assets/media/events/slow_down_01.jpg',
+                'assets/media/events/slow_down_02.jpg',
+                'assets/media/events/slow_down_03.jpg',
+                'assets/media/events/slow_down_04.jpg',
+                'assets/media/events/slow_down_06.jpg',
+                'assets/media/events/slow_down_07.jpg',
+                'assets/media/events/slow_down_08.jpg',
+                'assets/media/events/slow_down_09.jpg',
+                'assets/media/events/slow_down_10.jpg',
+                'assets/media/events/slow_down_11.jpg',
+                'assets/media/events/slow_down_12.jpg',
+                'assets/media/events/slow_down_13.jpg',
+                'assets/media/events/slow_down_14.jpg',
+                'assets/media/events/slow_down_15.jpg',
+                'assets/media/events/slow_down_16.jpg',
+                'assets/media/events/slow_down_17.jpg',
+                'assets/media/events/slow_down_05.jpg'
+            ],
+            link: 'slow_down_and_warm_your_soul',
+            previewImage: 'assets/media/events/slow_down_15.jpg',
+            subtitle: [
+                {
+                    de: 'Yoga Retreat im Herbst mit Anja Zeifang',
+                    en: 'Yoga retreat in autumn with Anja Zeifang'
+                },
+                {
+                    de: '830 EUR (Doppelzimmer)',
+                    en: '830 EUR (Double Room)'
+                },
+                {
+                    de: '1070 EUR (Einzelzimmer)',
+                    en: '1070 EUR (Single Room)'
+                }
+            ],
+            title: {
+                de: 'Slow down & warm your soul',
+                en: 'Slow down & warm your soul'
+            },
+            type: ['Food', 'Yoga'],
+            price: null
+        },
+        {
+            booking: [
+                {
+                    label: {
+                        de: 'Buchen',
+                        en: 'Book'
+                    },
+                    link: 'https://www.raise-yoga.com/retreats-workshops-1/'
+                }
+            ],
+            date: {
+                start: new Date(2025, 0, 17, 14, 0),
+                end: new Date(2025, 0, 19, 12, 0)
+            },
+            descriptionLong: {
+                de: `Nutze die Zeit des Jahresstarts um Leichtigkeit und Kraft für Körper und Geist zu sammeln. Mit Breathwork, Yoga-Asanas, Meditation und viel Gelassenheit ins Jahr 2025 starten!\n\nRien ne va plus - neues Jahr - neues Glück! Bitte machen Sie ihre Einsätze!\n\nEin neues Jahr bedeutet so viel wie: Re-Start - alles wieder auf Anfang - entscheide dich wie du dein Jahr gestalten willst und wer du in diesem Jahr sein willst. Das Leben wie ein Spiel sehen, mit Niederlagen und Siegen, Herausforderungen und Routinen! Und es auf keinen Fall zu ernst nehmen. Das gelingt mal besser und mal gar nicht... mit Yoga geht's ganz gut :)\n\nTatjana Sanftenberg ist eine zertifizierte Yoga Lehrerin in Vinyasa/Restorative Yoga, Yoga-Therapie und Atemtechnik (Pranayama). Yoga, mal im Flow... fast tänzerisch mit treibenden Beats... dann mit Bedacht auf Alignment und Verbindung zu Deinem Körper. Fundiert und leidenschaftlich Yoga praktizieren. Dabei sind Ausrichtung, Atem und Gefühl im Fokus.\n\nUm's Lukullische kümmert sich David Bouchenafa... er kocht vegetarisch, mediterran, orientalisch, auf ayurvedische Art zubereitet. in Richtung Ottolenghi, nur noch besser!`,
+                en: `Use the start of the year to gather lightness and strength for body and mind. Begin 2025 with breathwork, yoga asanas, meditation, and lots of serenity!\n\nRien ne va plus - new year - new luck! Place your bets!\n\nA new year means: RE-START - everything from the beginning - decide how you want to shape your year and who you want to be this year. See life as a game with defeats and victories, challenges and routines! And don't take it too seriously. Sometimes it works better, sometimes not at all... with yoga, it goes quite well :)\n\nTatjana Sanftenberg is a certified yoga teacher in Vinyasa/Restorative Yoga, yoga therapy, and breathwork (Pranayama). Yoga, sometimes in flow... almost dance-like with driving beats... then with a focus on alignment and connection to your body. Practice yoga knowledgeably and passionately, with a focus on alignment, breath, and feeling.\n\nDavid Bouchenafa takes care of the culinary aspect... he cooks vegetarian, Mediterranean, oriental, prepared in an Ayurvedic way. In the style of Ottolenghi, but even better!`
+            },
+            descriptionShort: {
+                de: 'Beginne das neue Jahr mit Leichtigkeit und Kraft für Körper und Geist durch Atemarbeit, Yoga-Asanas und Meditation, angeleitet von Tatjana Sanftenberg und ergänzt durch David Bouchenafas exzellente vegetarische Küche.',
+                en: "Start the new year with lightness and strength for body and mind through breathwork, yoga asanas, and meditation, guided by Tatjana Sanftenberg and complemented by David Bouchenafa's exquisite vegetarian cuisine."
+            },
+            details: [
+                {
+                    title: {
+                        de: 'Yoga, Atem & Meditation',
+                        en: 'Yoga, breath & meditation'
+                    },
+                    content: {
+                        de: 'Flow, Beats & Alignment',
+                        en: 'Flow, beats & alignment'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Plätze',
+                        en: 'Places'
+                    },
+                    content: {
+                        de: '8-14',
+                        en: '8-14'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 17.01.2024 ab 14:00 Uhr',
+                        en: "on 17.01.2024 from 14:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 19.01.2024 bis Brunch',
+                        en: 'on 19.01.2024 until brunch'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '780 EUR im Einzelzimmer, 630 EUR im Doppelzimmer',
+                        en: '780 EUR in a single room, 630 EUR in a double room'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. zwei Nächte mit ayervedischer Verpflegung',
+                        en: 'incl. two nights with Ayervedic catering'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Yoga, Atem & Meditation (ca. 8h)',
+                        en: 'incl. yoga, breathing & meditation (approx. 8h)'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Sauna mit Außenpool und Hot Tub',
+                        en: 'incl. Sauna with outdoor pool and hot tub'
+                    }
+                }
+            ],
+            email: {
+                accomodation: false,
+                accomodationType: true,
+                date: true,
+                foodIntolerance: true,
+                name: true,
+                title: true,
+                quantity: true
+            },
+            gallery: [
+                'assets/media/events/restart_01.jpg',
+                'assets/media/events/restart_02.jpg',
+                'assets/media/events/restart_03.jpg',
+                'assets/media/events/restart_04.jpg',
+                'assets/media/events/restart_05.jpg',
+                'assets/media/events/restart_06.jpg',
+                'assets/media/events/restart_07.jpg',
+                'assets/media/events/restart_08.jpg',
+                'assets/media/events/restart_09.jpg'
+            ],
+            link: 'restart',
+            previewImage: 'assets/media/events/restart_03.jpg',
+            subtitle: [
+                {
+                    de: 'Yoga Retreat',
+                    en: 'Yoga retreat'
+                },
+                {
+                    de: 'Alles auf Anfang, bitte!',
+                    en: 'All back to square one, please!'
+                },
+                {
+                    de: '830 EUR (Doppelzimmer)',
+                    en: '830 EUR (Double Room)'
+                },
+                {
+                    de: '1070 EUR (Einzelzimmer)',
+                    en: '1070 EUR (Single Room)'
+                }
+            ],
+            title: {
+                de: 'Re-Start',
+                en: 'Re-Start'
             },
             type: ['Food', 'Yoga'],
             price: null

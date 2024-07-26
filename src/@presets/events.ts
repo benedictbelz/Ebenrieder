@@ -719,7 +719,9 @@ export function getEvents(): Event[] {
                 'assets/media/events/slow_down_15.jpg',
                 'assets/media/events/slow_down_16.jpg',
                 'assets/media/events/slow_down_17.jpg',
-                'assets/media/events/slow_down_05.jpg'
+                'assets/media/events/slow_down_05.jpg',
+                'assets/media/events/slow_down_19.jpg',
+                'assets/media/events/slow_down_20.jpg'
             ],
             link: 'slow_down_and_warm_your_soul',
             previewImage: 'assets/media/events/slow_down_15.jpg',
@@ -868,12 +870,12 @@ export function getEvents(): Event[] {
                     en: 'All back to square one, please!'
                 },
                 {
-                    de: '830 EUR (Doppelzimmer)',
-                    en: '830 EUR (Double Room)'
+                    de: '630 EUR (Doppelzimmer)',
+                    en: '630 EUR (Double Room)'
                 },
                 {
-                    de: '1070 EUR (Einzelzimmer)',
-                    en: '1070 EUR (Single Room)'
+                    de: '730 EUR (Einzelzimmer)',
+                    en: '730 EUR (Single Room)'
                 }
             ],
             title: {

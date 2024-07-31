@@ -2,20 +2,7 @@
 @import './Variables.scss';
 
 * {
-    -webkit-touch-callout: none;
-
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    -ms-user-drag: none;
+    -webkit-touch-callout: none;    
 }
 
 html,
@@ -74,6 +61,22 @@ ul {
 a {
     color: $color-blue;
     text-decoration: none;
+}
+
+img,
+svg {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    -ms-user-drag: none;
 }
 
 #app {

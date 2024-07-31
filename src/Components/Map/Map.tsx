@@ -36,6 +36,7 @@ export default class Map extends React.Component<Props, States> {
                             mapId={'7b5bbd099c306a03'}
                             mapTypeId='roadmap'
                             disableDefaultUI
+                            clickableIcons={false}
                         >
                             <AdvancedMarker
                                 position={{ lat: 47.753984021129355, lng: 10.73440969585985 }}

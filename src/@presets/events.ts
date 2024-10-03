@@ -815,8 +815,8 @@ export function getEvents(): Event[] {
                         en: 'Price'
                     },
                     content: {
-                        de: '780 EUR im Einzelzimmer, 630 EUR im Doppelzimmer',
-                        en: '780 EUR in a single room, 630 EUR in a double room'
+                        de: '730 EUR im Einzelzimmer, 630 EUR im Doppelzimmer',
+                        en: '730 EUR in a single room, 630 EUR in a double room'
                     }
                 },
                 {

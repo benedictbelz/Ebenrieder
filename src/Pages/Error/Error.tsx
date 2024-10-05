@@ -41,9 +41,9 @@ export default class Error extends React.Component<Props, States> {
                 <div id='error' className='page'>
                     <Logo noAnimation={true} />
                     <div id='errorMessage'>
-                        {`${getLanguage(language, 'errorMessage')} `}
+                        {`${getLanguage(language, 'error').split('<%a%>')[0]}`}
                         <Link to={'/'} className='underlineLink' onClick={() => this.setState({ error: false })}>
-                            {getLanguage(language, 'errorLink')}
+                            {`${getLanguage(language, 'error').split('<%a%>')[1].split('<%/a%>')[0]}`}
                         </Link>
                         {` ...`}
                     </div>

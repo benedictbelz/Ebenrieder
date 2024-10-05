@@ -213,20 +213,20 @@ export default class Map extends React.Component<Props, States> {
                 ) : (
                     <div className='mapCookies'>
                         <div className='mapText'>
-                            {`${getLanguage(language, 'mapCookies').split('<%privacy%>')[0]} `}
+                            {`${getLanguage(language, 'mapCookies').split('<%a%>')[0]}`}
                             <Link to={language === 'de' ? '/datenschutz' : '/privacy'} className='underlineLink'>
-                                {getLanguage(language, 'privacy')}
+                                {`${getLanguage(language, 'mapCookies').split('<%a%>')[1].split('<%/a%>')[0]}`}
                             </Link>
-                            {`${getLanguage(language, 'mapCookies').split('<%privacy%>')[1].split('<%link%>')[0]} `}
+                            {`${getLanguage(language, 'mapCookies').split('<%/a%>')[1].split('<%a%>')[0]}`}
                             <a
                                 className='underlineLink'
                                 href='https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >
-                                {getLanguage(language, 'mapLink')}
+                                {`${getLanguage(language, 'mapCookies').split('<%a%>')[2].split('<%/a%>')[0]}`}
                             </a>
-                            {`${getLanguage(language, 'mapCookies').split('<%privacy%>')[1].split('<%link%>')[1]}`}
+                            {`${getLanguage(language, 'mapCookies').split('<%/a%>')[2]}`}
                         </div>
                         <div className='mapButtons'>
                             <div className='underlineLink' onClick={this.props.handleAccept}>

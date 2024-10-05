@@ -148,7 +148,7 @@
                     line-height: $line-height-m;
                     letter-spacing: 0.75px;
 
-                    p {
+                    .detail {
                         display: flex;
                         justify-content: flex-start;
                         flex-wrap: wrap;
@@ -163,7 +163,7 @@
                     }
                 }
 
-                .modalProcedure {
+                .modalProgram {
                     box-sizing: border-box;
                     display: flex;
                     flex-direction: column;
@@ -191,6 +191,10 @@
 
                             .time {
                                 min-width: 150px;
+                            }
+
+                            .description {
+                                line-height: $line-height-m;
                             }
                         }
                     }
@@ -248,6 +252,15 @@
                     @media (max-width: $media-s) {
                         text-align: left;
                     }
+                }
+
+                .modalButtons {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 25px;
                 }
             }
 

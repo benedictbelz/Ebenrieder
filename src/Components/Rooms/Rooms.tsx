@@ -45,9 +45,18 @@ class Rooms extends React.Component<Props, States> {
         }
     }
 
-    componentDidUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps: Props, prevState: States) {
+        // IF MEDIA CHANGES
         if (this.props.browser.media !== prevProps.browser.media && (this.props.browser.media === 'Medium' || prevProps.browser.media === 'Medium')) {
             this.handleAnimation();
+        }
+        // IF ROOM IS ACTIVE AND CHANGES
+        if (this.state.room && this.state.room !== prevState.room) {
+            window.history.replaceState(null, null, `?room=${this.state.room.link}`);
+        }
+        // IF ROOM IS INACTIVE AND CHANGES
+        if (!this.state.room && this.state.room !== prevState.room) {
+            window.history.replaceState(null, null, '/');
         }
     }
 
@@ -104,6 +113,10 @@ class Rooms extends React.Component<Props, States> {
         const description = room.descriptionLong;
         const features = room.features;
         const title = room.title;
+        const link = room.link;
+        // DEFINE SHARE
+        const shareSubject = `Ebenrieder | ${title[language]}`;
+        const shareBody = `https://ebenrieder.de/event=${link}`;
         // RETURN MODAL
         return (
             <Modal className='modalRoom' browser={this.props.browser} handleClose={() => this.setState({ room: null })}>
@@ -130,6 +143,16 @@ class Rooms extends React.Component<Props, States> {
                                     <h1>{title[language]}</h1>
                                 </div>
                                 <div className='modalDescription'>{description[language]}</div>
+                                <div className='modalButtons'>
+                                    <a className='underlineLink' href={`mailto:?subject=${shareSubject}&body=${shareBody}`}>
+                                        {getLanguage(language, 'share')}
+                                    </a>
+                                    {room.booking && (
+                                        <a className='underlineLink' href={room.booking} target='_blank' rel='noopener noreferrer'>
+                                            {getLanguage(language, 'book')}
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                             <div className='modalRight'>
                                 <div className='modalFeatures'>

@@ -332,6 +332,7 @@
                     flex-direction: column;
                     text-align: center;
                     gap: 25px;
+                    line-height: $line-height-m;
 
                     > .eventSubtitle {
                         display: flex;

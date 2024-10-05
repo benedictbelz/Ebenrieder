@@ -140,7 +140,7 @@ class Overview extends React.Component<Props> {
                                     The clay plaster has a moisture- and heat-regulating effect for the best indoor climate all year round.
                                 </p>
                             )}
-                            <Rooms browser={this.props.browser} filters={['Room', 'Apartment']} />
+                            <Rooms browser={this.props.browser} filters={['Apartment', 'Room']} />
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titleCalendar')}>
@@ -168,7 +168,7 @@ class Overview extends React.Component<Props> {
                                     small and large events. Discover our upcoming events and let's experience great things together!
                                 </p>
                             )}
-                            <Events browser={this.props.browser} />
+                            <Events browser={this.props.browser} type='Preview' />
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titlePossibilities')}>

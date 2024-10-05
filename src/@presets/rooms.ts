@@ -37,6 +37,7 @@ export function getRooms(): Room[] {
                 'assets/media/rooms/austrag_07.jpg',
                 'assets/media/rooms/austrag_08.jpg'
             ],
+            booking: 'https://resavio.com/booking/de/2900/categories/9864',
             link: 'austrag',
             previewImage: 'assets/media/rooms/austrag_01.jpg',
             title: {
@@ -76,6 +77,7 @@ export function getRooms(): Room[] {
                 'assets/media/rooms/heustock_05.jpg',
                 'assets/media/rooms/heustock_06.jpg'
             ],
+            booking: 'https://resavio.com/booking/de/2900/categories/9853',
             link: 'heustock',
             previewImage: 'assets/media/rooms/heustock_01.jpg',
             title: {
@@ -114,6 +116,7 @@ export function getRooms(): Room[] {
                 'assets/media/rooms/obertenne_04.jpg',
                 'assets/media/rooms/obertenne_05.jpg'
             ],
+            booking: 'https://resavio.com/booking/de/2900/categories/9863',
             link: 'obertenne',
             previewImage: 'assets/media/rooms/obertenne_01.jpg',
             title: {
@@ -158,6 +161,7 @@ export function getRooms(): Room[] {
                 'assets/media/rooms/dachboden_09.jpg',
                 'assets/media/rooms/dachboden_10.jpg'
             ],
+            booking: 'https://resavio.com/booking/de/2900/categories/9854',
             link: 'dachboden',
             previewImage: 'assets/media/rooms/dachboden_01.jpg',
             title: {
@@ -203,6 +207,7 @@ export function getRooms(): Room[] {
                 'assets/media/rooms/atelier_08.jpg',
                 'assets/media/rooms/atelier_09.jpg'
             ],
+            booking: 'https://resavio.com/booking/de/2900/categories/9865',
             link: 'atelier',
             previewImage: 'assets/media/rooms/atelier_01.jpg',
             title: {

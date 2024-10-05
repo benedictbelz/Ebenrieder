@@ -41,6 +41,7 @@ export type Room = {
         wifi?: boolean;
         workplace?: boolean;
     };
+    booking?: string;
     gallery: string[];
     link: string;
     previewImage: string;

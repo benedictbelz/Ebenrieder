@@ -13,6 +13,7 @@ import './Events.scss';
 
 interface Props extends PropsWithRouter {
     browser: Browser;
+    type: 'Calendar' | 'Preview';
 }
 
 interface States {
@@ -53,8 +54,17 @@ class Events extends React.Component<Props, States> {
     }
 
     componentDidUpdate(prevProps: Props, prevState: States) {
+        // IF MONTH, YEAR OR MEDIA CHANGES
         if (this.state.month !== prevState.month || this.state.year !== prevState.year || this.props.browser.media !== prevProps.browser.media) {
             this.handleAnimation();
+        }
+        // IF EVENT IS ACTIVE AND CHANGES
+        if (this.state.event && this.state.event !== prevState.event) {
+            window.history.replaceState(null, null, `?event=${this.state.event.link}`);
+        }
+        // IF EVENT IS INACTIVE AND CHANGES
+        if (!this.state.event && this.state.event !== prevState.event) {
+            window.history.replaceState(null, null, '/');
         }
     }
 
@@ -188,40 +198,41 @@ class Events extends React.Component<Props, States> {
         const media = this.props.browser.media;
         const event = this.state.event;
         // DEFINE EVENT
+        const attachements = event.attachements;
         const booking = event.booking;
         const date =
             event.date instanceof Date
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
                 : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
         const description = event.descriptionLong;
-        const procedure = event.descriptionProcedure;
-        const details = event.details;
-        const email = event.email;
+        const details = event.descriptionDetails;
+        const link = event.link;
         const price = event.price;
-        const program = event.program;
+        const program = event.descriptionProgram;
         const subtitle = event.subtitle;
         const title = event.title;
-        // DEFINE EMAIL
-        const emailDate =
+        // DEFINE BOOKING
+        const bookingDate =
             event.date instanceof Date
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
                 : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
-        const emailSubject = `${getLanguage(language, 'emailSubject')} ${title[language]}`;
-        const emailBody =
-            `${getLanguage(language, 'emailGreeting')},${'%0D%0A'}${'%0D%0A'}` +
-            `${getLanguage(language, 'emailText')}:${'%0D%0A'}${'%0D%0A'}` +
-            (email.title ? `${getLanguage(language, 'emailTitle')}: ${title[language]}${'%0D%0A'}` : '') +
-            (email.date ? `${getLanguage(language, 'emailDate')}: ${emailDate}${'%0D%0A'}` : '') +
-            (email.name ? `${getLanguage(language, 'emailName')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}` : '') +
-            (email.quantity ? `${getLanguage(language, 'emailQuantity')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}` : '') +
-            (email.foodIntolerance
-                ? `${getLanguage(language, 'emailFoodIntolerance')}: (${getLanguage(language, 'emailPleaseComplete')})${'%0D%0A'}`
+        const bookingSubject = `${getLanguage(language, 'bookingSubject')} ${title[language]}`;
+        const bookingBody =
+            `${getLanguage(language, 'bookingGreeting')},${'%0D%0A'}${'%0D%0A'}` +
+            `${getLanguage(language, 'bookingText')}:${'%0D%0A'}${'%0D%0A'}` +
+            (booking.title ? `${getLanguage(language, 'bookingTitle')}: ${title[language]}${'%0D%0A'}` : '') +
+            (booking.date ? `${getLanguage(language, 'bookingDate')}: ${bookingDate}${'%0D%0A'}` : '') +
+            (booking.name ? `${getLanguage(language, 'bookingName')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}` : '') +
+            (booking.quantity ? `${getLanguage(language, 'bookingQuantity')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}` : '') +
+            (booking.foodIntolerance
+                ? `${getLanguage(language, 'bookingFoodIntolerance')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
                 : '') +
-            (email.accomodation ? `${getLanguage(language, 'emailAccomodation')}: (${getLanguage(language, 'emailYesNo')})${'%0D%0A'}` : '') +
-            (email.accomodationType
-                ? `${getLanguage(language, 'emailAccomodationType')}: (${getLanguage(language, 'emailSingleDoubleRoom')})${'%0D%0A'}`
-                : '') +
-            `${'%0D%0A'}${getLanguage(language, 'emailGoodbye')}`;
+            (booking.accomodation ? `${getLanguage(language, 'bookingAccomodation')}: (${getLanguage(language, 'bookingYesNo')})${'%0D%0A'}` : '') +
+            (booking.roomType ? `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingSingleDoubleRoom')})${'%0D%0A'}` : '') +
+            `${'%0D%0A'}${getLanguage(language, 'bookingGoodbye')}`;
+        // DEFINE SHARE
+        const shareSubject = `Ebenrieder | ${title[language]}`;
+        const shareBody = `https://ebenrieder.de/event=${link}`;
         // RETURN MODAL
         return (
             <Modal className='modalEvent' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>
@@ -238,7 +249,7 @@ class Events extends React.Component<Props, States> {
                                 modus: 'Simple'
                             }}
                         >
-                            {event.gallery.map((item, index) => (
+                            {event.imageGallery.map((item, index) => (
                                 <img key={index} src={item} />
                             ))}
                         </Gallery>
@@ -252,11 +263,18 @@ class Events extends React.Component<Props, States> {
                                         {subtitle &&
                                             subtitle.map((item, index) => (
                                                 <React.Fragment key={`subtitle_${index}`}>
-                                                    <span>{item[language]}</span>
-                                                    {index !== subtitle.length - 1 ? <span>•</span> : null}
+                                                    <span
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: item[language]
+                                                                .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                                .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
+                                                                .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
+                                                        }}
+                                                    />
+                                                    {index !== subtitle.length - 1 && <span>•</span>}
                                                 </React.Fragment>
                                             ))}
-                                        {price && (
+                                        {typeof price === 'number' && (
                                             <>
                                                 <span>•</span>
                                                 <span>{`${price} EUR`}</span>
@@ -264,43 +282,59 @@ class Events extends React.Component<Props, States> {
                                         )}
                                     </div>
                                 </div>
-                                <div className='modalDescription'>{description[language]}</div>
-                                {program && (
-                                    <div className='modalProgram'>
-                                        {`${getLanguage(language, 'eventProgram')} `}
-                                        <a className='underlineLink' href={program} target='_blank' rel='noopener noreferrer'>
-                                            {getLanguage(language, 'eventLink')}
-                                        </a>
-                                        {'.'}
+                                <div
+                                    className='modalDescription'
+                                    dangerouslySetInnerHTML={{
+                                        __html: description[language]
+                                            .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                            .replace(/<%b%>/g, '<strong>')
+                                            .replace(/<%\/b%>/g, '</strong>')
+                                    }}
+                                />
+                                {attachements && (
+                                    <div className='modalAttachements'>
+                                        {attachements.map((item, index) => (
+                                            <div
+                                                key={`attachement_${index}`}
+                                                className='attachement'
+                                                dangerouslySetInnerHTML={{
+                                                    __html: item.label[language]
+                                                        .replace(
+                                                            /<%a%>/g,
+                                                            `<a class='underlineLink' href='${item.link}' target='_blank' rel='noopener noreferrer'>`
+                                                        )
+                                                        .replace(/<%\/a%>/g, '</a>')
+                                                }}
+                                            />
+                                        ))}
                                     </div>
                                 )}
                                 <div className='modalButtons'>
-                                    {booking && booking.length !== 0 ? (
+                                    <a className='underlineLink' href={`mailto:?subject=${shareSubject}&body=${shareBody}`}>
+                                        {getLanguage(language, 'share')}
+                                    </a>
+                                    {booking.buttons && booking.buttons?.length !== 0 ? (
                                         <>
-                                            {booking.map(item => {
-                                                let link = item.link ? item.link : 'mailto:hallo@ebenrieder.de';
-                                                if (item.email) {
-                                                    link = link + `?subject=${item.email.subject[language]}&body=${item.email.body[language]}`;
-                                                } else if (email) {
-                                                    link = link + `?subject=${emailSubject}&body=${emailBody}`;
-                                                }
+                                            {booking.buttons?.map((item, index) => {
+                                                let link = item.link
+                                                    ? item.link
+                                                    : `mailto:hallo@ebenrieder.de${item.email ? `?subject=${item.email.subject[language]}&body=${item.email.body[language]}` : `?subject=${bookingSubject}&body=${bookingBody}`}`;
                                                 return (
-                                                    <a className='underlineLink' key={link} href={link} target='_blank' rel='noopener noreferrer'>
+                                                    <a
+                                                        className='underlineLink'
+                                                        key={`booking_${index}`}
+                                                        href={link}
+                                                        target='_blank'
+                                                        rel='noopener noreferrer'
+                                                    >
                                                         {item.label[language]}
                                                     </a>
                                                 );
                                             })}
                                         </>
                                     ) : (
-                                        <a
-                                            className='underlineLink'
-                                            href={
-                                                email
-                                                    ? `mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`
-                                                    : 'mailto:hallo@ebenrieder.de'
-                                            }
-                                        >
-                                            {getLanguage(language, 'eventBook')}
+                                        <a className='underlineLink' href={`mailto:hallo@ebenrieder.de?subject=${bookingSubject}&body=${bookingBody}`}>
+                                            {getLanguage(language, 'book')}
                                         </a>
                                     )}
                                 </div>
@@ -310,24 +344,31 @@ class Events extends React.Component<Props, States> {
                                     {details.map((item, index) => (
                                         <React.Fragment key={`subtitle_${index}`}>
                                             <span className='line' />
-                                            <p>
+                                            <span className='detail'>
                                                 {item.title && <strong>{item.title[language]}</strong>}
-                                                {item.content && item.content[language]}
-                                            </p>
+                                                <span
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: item.content[language]
+                                                            .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                            .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
+                                                            .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
+                                                    }}
+                                                />
+                                            </span>
                                         </React.Fragment>
                                     ))}
                                     <span className='line' />
                                 </div>
-                                {procedure && (
-                                    <div className='modalProcedure'>
-                                        {procedure.map(item => {
+                                {program && (
+                                    <div className='modalProgram'>
+                                        {program.map(item => {
                                             const day = item.day;
                                             return (
-                                                <div className='day'>
+                                                <div className='day' key={item.day[language]}>
                                                     <p>{day[language]}</p>
-                                                    {item.activities.map(activity => {
+                                                    {item.activities.map((activity, index) => {
                                                         return (
-                                                            <div className='activity'>
+                                                            <div className='activity' key={`${item.day[language]}_${index}`}>
                                                                 <span className='time'>{activity.time}</span>
                                                                 <span className='description'>{activity.description[language]}</span>
                                                             </div>
@@ -354,10 +395,16 @@ class Events extends React.Component<Props, States> {
         const currentEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
             .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
-            .filter(item =>
-                item.date instanceof Date
-                    ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
-                    : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
+            .filter((item, index) =>
+                this.props.type === 'Calendar'
+                    ? item.date instanceof Date
+                        ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
+                        : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
+                    : item.date instanceof Date
+                      ? (item.date.getMonth() >= this.month && item.date.getFullYear() === this.year) ||
+                        (item.date.getMonth() <= this.month && item.date.getFullYear() === this.year + 1)
+                      : (item.date.start.getMonth() >= this.month && item.date.start.getFullYear() === this.year) ||
+                        (item.date.start.getMonth() <= this.month && item.date.start.getFullYear() === this.year + 1)
             )
             .map(item => ({ ...item, expired: (item.date instanceof Date ? item.date : item.date.start).getTime() < this.date.getTime() }));
         // GET UPCOMING EVENTS
@@ -397,73 +444,77 @@ class Events extends React.Component<Props, States> {
         return (
             <div ref={this.events} id='events'>
                 {this.state.event && this.renderModal()}
-                <div id='eventsSelection'>
-                    <div
-                        id='eventsLeft'
-                        className={[this.state.month === this.month && this.state.year === this.year && 'disabled'].filter(x => x).join(' ')}
-                        onClick={() => this.handleClickPreviousMonth()}
-                    >
-                        {this.props.browser.width <= this.props.browser.variables.mediaS ? (
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                <polyline points='22.5 45 2.5 25 22.5 5' />
-                            </svg>
-                        ) : (
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 75 50'>
-                                <line x1='75' y1='25' x2='3' y2='25' />
-                                <polyline points='22.5 45 2.5 25 22.5 5' />
-                            </svg>
-                        )}
-                    </div>
-                    <div id='eventsCenter'>
-                        <Input
-                            handleChange={value => this.handleChangeDate(value as number)}
-                            items={Array.from(Array(13).keys(), index => {
-                                const month = index + this.month < 12 ? index + this.month : index + this.month - 12;
-                                const date = new Date(this.year, month).toLocaleString(getLocal(language), { month: 'long' });
-                                return {
-                                    label: `${date} ${index + this.month < 12 ? this.year : this.year + 1}`,
-                                    value: index
-                                };
-                            })}
-                            type='Select'
-                            value={this.state.year === this.year ? this.state.month - this.month : this.state.month - this.month + 12}
-                        />
-                    </div>
-                    <div
-                        id='eventsRight'
-                        className={[this.state.month === this.month && this.state.year === this.year + 1 && 'disabled'].filter(x => x).join(' ')}
-                        onClick={() => this.handleClickNextMonth()}
-                    >
-                        {this.props.browser.width <= this.props.browser.variables.mediaS ? (
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                <polyline points='2.5 5 22.5 25 2.5 45' />
-                            </svg>
-                        ) : (
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 75 50'>
-                                <line x1='0' y1='25' x2='72' y2='25' />
-                                <polyline points='52.5 5 72.5 25 52.5 45' />
-                            </svg>
-                        )}
-                    </div>
-                </div>
-                <div id='eventsFilters'>
-                    {filters.map((item, index) => (
+                {this.props.type === 'Calendar' && (
+                    <div id='eventsSelection'>
                         <div
-                            key={`filter_${index}`}
-                            className={['filter', this.state.filters.includes(item.value) && 'active'].filter(x => x).join(' ')}
-                            onClick={() => this.handleChangeFilter(item.value)}
+                            id='eventsLeft'
+                            className={[this.state.month === this.month && this.state.year === this.year && 'disabled'].filter(x => x).join(' ')}
+                            onClick={() => this.handleClickPreviousMonth()}
                         >
-                            {item.label}
+                            {this.props.browser.width <= this.props.browser.variables.mediaS ? (
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                    <polyline points='22.5 45 2.5 25 22.5 5' />
+                                </svg>
+                            ) : (
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 75 50'>
+                                    <line x1='75' y1='25' x2='3' y2='25' />
+                                    <polyline points='22.5 45 2.5 25 22.5 5' />
+                                </svg>
+                            )}
                         </div>
-                    ))}
-                </div>
+                        <div id='eventsCenter'>
+                            <Input
+                                handleChange={value => this.handleChangeDate(value as number)}
+                                items={Array.from(Array(13).keys(), index => {
+                                    const month = index + this.month < 12 ? index + this.month : index + this.month - 12;
+                                    const date = new Date(this.year, month).toLocaleString(getLocal(language), { month: 'long' });
+                                    return {
+                                        label: `${date} ${index + this.month < 12 ? this.year : this.year + 1}`,
+                                        value: index
+                                    };
+                                })}
+                                type='Select'
+                                value={this.state.year === this.year ? this.state.month - this.month : this.state.month - this.month + 12}
+                            />
+                        </div>
+                        <div
+                            id='eventsRight'
+                            className={[this.state.month === this.month && this.state.year === this.year + 1 && 'disabled'].filter(x => x).join(' ')}
+                            onClick={() => this.handleClickNextMonth()}
+                        >
+                            {this.props.browser.width <= this.props.browser.variables.mediaS ? (
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                    <polyline points='2.5 5 22.5 25 2.5 45' />
+                                </svg>
+                            ) : (
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 75 50'>
+                                    <line x1='0' y1='25' x2='72' y2='25' />
+                                    <polyline points='52.5 5 72.5 25 52.5 45' />
+                                </svg>
+                            )}
+                        </div>
+                    </div>
+                )}
+                {this.props.type === 'Calendar' && (
+                    <div id='eventsFilters'>
+                        {filters.map((item, index) => (
+                            <div
+                                key={`filter_${index}`}
+                                className={['filter', this.state.filters.includes(item.value) && 'active'].filter(x => x).join(' ')}
+                                onClick={() => this.handleChangeFilter(item.value)}
+                            >
+                                {item.label}
+                            </div>
+                        ))}
+                    </div>
+                )}
                 {currentEvents.length !== 0 ? (
-                    <div id='eventsGrid'>
+                    <div id='eventsGrid' style={{ marginTop: this.props.type === 'Preview' ? this.props.browser.variables.spacingVerticalS : 0 }}>
                         {currentEvents.map((event: Event, index: number) => {
                             const title = event.title;
                             const price = event.price;
                             const description = event.descriptionShort;
-                            const previewImage = event.previewImage;
+                            const previewImage = event.imagePreview;
                             const date =
                                 event.date instanceof Date
                                     ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
@@ -486,7 +537,7 @@ class Events extends React.Component<Props, States> {
                                             <h3>{title[language]}</h3>
                                             <div className='eventSubtitle'>
                                                 <span>{date}</span>
-                                                {price && (
+                                                {typeof price === 'number' && (
                                                     <>
                                                         <span>•</span>
                                                         <span>{`${price} EUR`}</span>
@@ -505,11 +556,11 @@ class Events extends React.Component<Props, States> {
                     </div>
                 ) : (
                     <div id='eventsMessage'>
-                        {upcompingEvents.length === 0 ? (
-                            <p>{`${getLanguage(language, 'eventUnavailable')} ...`}</p>
+                        {upcompingEvents.length === 0 || this.props.type === 'Preview' ? (
+                            <p>{`${getLanguage(language, 'eventUnavailable').split('<%split%>')[0]} ...`}</p>
                         ) : (
                             <p>
-                                {`${getLanguage(language, 'eventUnavailable')}, ${getLanguage(language, 'eventUpcoming')} `}
+                                {`${getLanguage(language, 'eventUnavailable').replace('<%split%>', '')} `}
                                 <span
                                     onClick={() => {
                                         const date = upcompingEvents[0].date instanceof Date ? upcompingEvents[0].date : upcompingEvents[0].date.start;

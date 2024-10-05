@@ -3,22 +3,14 @@ export const availableFilters = ['Accomodation', 'Concert', 'Food', 'Workshop', 
 export type FilterEvent = (typeof availableFilters)[number];
 
 export type Event = {
-    booking?: {
-        label: {
-            de: string;
-            en: string;
-        };
-        link?: string;
-        email?: {
-            subject: {
-                de: string;
-                en: string;
-            };
-            body: {
-                de: string;
-                en: string;
-            };
-        };
+    type: FilterEvent[];
+    title: {
+        de: string;
+        en: string;
+    };
+    subtitle: {
+        de: string;
+        en: string;
     }[];
     date:
         | {
@@ -26,7 +18,35 @@ export type Event = {
               end: Date;
           }
         | Date;
-    descriptionProcedure?: {
+    price:
+        | {
+              singleRoom: number;
+              doubleRoom: number;
+          }
+        | number;
+    expired?: boolean;
+    link: string;
+    imagePreview: string;
+    imageGallery: string[];
+    descriptionLong: {
+        de: string;
+        en: string;
+    };
+    descriptionShort: {
+        de: string;
+        en: string;
+    };
+    descriptionDetails: {
+        title?: {
+            de: string;
+            en: string;
+        };
+        content?: {
+            de: string;
+            en: string;
+        };
+    }[];
+    descriptionProgram?: {
         day: {
             de: string;
             en: string;
@@ -39,46 +59,37 @@ export type Event = {
             };
         }[];
     }[];
-    descriptionLong: {
-        de: string;
-        en: string;
-    };
-    descriptionShort: {
-        de: string;
-        en: string;
-    };
-    details: {
-        title?: {
+    attachements?: {
+        label: {
             de: string;
             en: string;
         };
-        content?: {
-            de: string;
-            en: string;
-        };
+        link: string;
     }[];
-    email?: {
+    booking: {
         accomodation: boolean;
-        accomodationType: boolean;
         date: boolean;
         foodIntolerance: boolean;
         name: boolean;
+        roomType: boolean;
         title: boolean;
         quantity: boolean;
+        buttons?: {
+            label: {
+                de: string;
+                en: string;
+            };
+            link?: string;
+            email?: {
+                subject: {
+                    de: string;
+                    en: string;
+                };
+                body: {
+                    de: string;
+                    en: string;
+                };
+            };
+        }[];
     };
-    expired?: boolean;
-    gallery: string[];
-    link: string;
-    previewImage: string;
-    program?: string;
-    subtitle?: {
-        de: string;
-        en: string;
-    }[];
-    title: {
-        de: string;
-        en: string;
-    };
-    type: FilterEvent[];
-    price: number | null;
 };

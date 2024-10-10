@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Logo from '../../Components/Logo/Logo';
 import Events from '../../Components/Events/Events';
 import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
 import Information from '../../Components/Information/Information';
+import Logo from '../../Components/Logo/Logo';
 import Map from '../../Components/Map/Map';
 import Menu from '../../Components/Menu/Menu';
 import Rooms from '../../Components/Rooms/Rooms';

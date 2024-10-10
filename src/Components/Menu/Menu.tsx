@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import './Menu.scss';
 
@@ -250,7 +251,7 @@ export default class Menu extends React.Component<Props, States> {
         const scroll = this.menuContent.current.scrollLeft;
         const width = this.menuContent.current.scrollWidth - this.menuContent.current.clientWidth;
         // IF SCROLL WIDTH IS LESS THAN CLIENT WIDTH
-        if (this.menuContent.current.scrollWidth <= this.menuContent.current.clientWidth) {
+        if (this.menuContent.current.scrollWidth <= this.menuContent.current.clientWidth + this.boundary) {
             this.menuContent.current.style.justifyContent = 'center';
             this.menuLeft.current.classList.remove('active');
             this.menuRight.current.classList.remove('active');
@@ -288,57 +289,67 @@ export default class Menu extends React.Component<Props, States> {
         }
         // RETURN COMPONENT
         return (
-            <div
-                ref={this.menu}
-                id='menu'
-                className={[
-                    this.state.appearance === 'Narrow' ? 'narrow' : 'wide',
-                    this.state.modus === 'Top' && 'top',
-                    this.state.modus === 'Flow' && 'flow',
-                    this.state.modus === 'Bottom' && 'bottom'
-                ]
-                    .filter(x => x)
-                    .join(' ')}
-            >
-                {this.state.appearance === 'Narrow' ? (
-                    <>
-                        <div ref={this.menuLeft} id='menuLeft' onClick={this.narrowClickLeft}>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                <polyline points='22.5 45 2.5 25 22.5 5' />
-                            </svg>
-                        </div>
+            <>
+                <div
+                    ref={this.menu}
+                    id='menu'
+                    className={[
+                        this.state.appearance === 'Narrow' ? 'narrow' : 'wide',
+                        this.state.modus === 'Top' && 'top',
+                        this.state.modus === 'Flow' && 'flow',
+                        this.state.modus === 'Bottom' && 'bottom'
+                    ]
+                        .filter(x => x)
+                        .join(' ')}
+                >
+                    {this.state.appearance === 'Narrow' ? (
+                        <>
+                            <div ref={this.menuLeft} id='menuLeft' onClick={this.narrowClickLeft}>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                    <polyline points='22.5 45 2.5 25 22.5 5' />
+                                </svg>
+                            </div>
+                            <div ref={this.menuContent} id='menuContent'>
+                                {this.state.items.map((item, index) => (
+                                    <span
+                                        key={item.name}
+                                        className={['menuName', 'underlineMenu', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
+                                        onClick={() => this.handleClick(item)}
+                                    >
+                                        {item.name}
+                                    </span>
+                                ))}
+                            </div>
+                            <div ref={this.menuRight} id='menuRight' onClick={this.narrowClickRight}>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                    <polyline points='2.5 5 22.5 25 2.5 45' />
+                                </svg>
+                            </div>
+                        </>
+                    ) : (
                         <div ref={this.menuContent} id='menuContent'>
+                            <div id='menuName'>{name}</div>
                             {this.state.items.map((item, index) => (
                                 <span
                                     key={item.name}
-                                    className={['menuName', 'underlineMenu', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
+                                    className={['menuDot', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
                                     onClick={() => this.handleClick(item)}
-                                >
-                                    {item.name}
-                                </span>
+                                    onMouseEnter={() => this.setState({ focus: { ...this.state.focus, hover: index } })}
+                                    onMouseLeave={() => this.setState({ focus: { ...this.state.focus, hover: null } })}
+                                />
                             ))}
                         </div>
-                        <div ref={this.menuRight} id='menuRight' onClick={this.narrowClickRight}>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                <polyline points='2.5 5 22.5 25 2.5 45' />
-                            </svg>
+                    )}
+                </div>
+                {this.state.appearance === 'Narrow' && (
+                    <div id='booking' className={this.state.modus === 'Flow' ? 'flow' : ''}>
+                        <div id='bookingText' onClick={() => window.open('https://resavio.com/booking/de/2900', '_blank')}>
+                            <span className='underlineLink'>{getLanguage(this.props.browser.language, 'book')}</span>
                         </div>
-                    </>
-                ) : (
-                    <div ref={this.menuContent} id='menuContent'>
-                        <div id='menuName'>{name}</div>
-                        {this.state.items.map((item, index) => (
-                            <span
-                                key={item.name}
-                                className={['menuDot', this.state.focus.item === index && 'active'].filter(x => x).join(' ')}
-                                onClick={() => this.handleClick(item)}
-                                onMouseEnter={() => this.setState({ focus: { ...this.state.focus, hover: index } })}
-                                onMouseLeave={() => this.setState({ focus: { ...this.state.focus, hover: null } })}
-                            />
-                        ))}
+                        <div id='bookingBackground' />
                     </div>
                 )}
-            </div>
+            </>
         );
     }
 }

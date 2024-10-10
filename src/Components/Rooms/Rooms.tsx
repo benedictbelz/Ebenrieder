@@ -56,7 +56,7 @@ class Rooms extends React.Component<Props, States> {
         }
         // IF ROOM IS INACTIVE AND CHANGES
         if (!this.state.room && this.state.room !== prevState.room) {
-            window.history.replaceState(null, null, '/');
+            window.history.replaceState(null, null, this.props.router.location.pathname);
         }
     }
 
@@ -149,7 +149,7 @@ class Rooms extends React.Component<Props, States> {
                                     </a>
                                     {room.booking && (
                                         <a className='underlineLink' href={room.booking} target='_blank' rel='noopener noreferrer'>
-                                            {getLanguage(language, 'book')}
+                                            {getLanguage(language, 'bookApartment')}
                                         </a>
                                     )}
                                 </div>

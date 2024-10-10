@@ -14,13 +14,13 @@
         align-items: center;
         height: $spacing-menu;
         width: 100%;
-        background: $color-white;
-        overflow: hidden;
         transition:
             box-shadow 0.5s ease,
             transform 0.5s ease;
         box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 1);
         transform: translateY(100%);
+        padding-right: $spacing-booking;
+        background: transparentize($color-white, 0.75);
 
         &.flow {
             box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 0.75);
@@ -43,6 +43,7 @@
             backface-visibility: hidden;
             -webkit-perspective: 1000;
             perspective: 1000;
+            overflow: hidden;
 
             svg {
                 height: 25px;
@@ -102,7 +103,7 @@
         }
 
         #menuRight {
-            right: 0;
+            right: $spacing-booking;
 
             &::before {
                 content: '';
@@ -151,6 +152,7 @@
             padding: 0 25px;
             -ms-overflow-style: none;
             scrollbar-width: none;
+            background: $color-white;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -262,5 +264,47 @@
                 }
             }
         }
+    }
+}
+
+#booking {
+    #bookingText,
+    #bookingBackground {
+        position: fixed;
+        z-index: 1000;
+        bottom: 0;
+        right: 0;
+        height: $spacing-menu;
+        width: $spacing-booking;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.5s ease;
+        transform: translateY(100%);
+    }
+
+    &.flow {
+        #bookingText,
+        #bookingBackground {
+            transform: translateY(0);   
+        }
+    }
+
+    #bookingText {
+        z-index: 2000;
+
+        .underlineLink {
+            color: $color-white;
+    
+            &::after {
+                background-color: $color-white;
+            }
+        }
+    }
+
+    #bookingBackground {
+        background: $color-blue;
+        mix-blend-mode: difference;
+        filter: invert(100%);
     }
 }

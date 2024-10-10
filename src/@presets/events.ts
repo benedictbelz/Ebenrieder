@@ -449,7 +449,7 @@ export function getEvents(): Event[] {
                 quantity: true
             }
         },
-        {
+        /* {
             type: ['Food', 'Yoga'],
             title: {
                 de: 'Slow down & warm your soul',
@@ -771,7 +771,7 @@ export function getEvents(): Event[] {
                     }
                 ]
             }
-        },
+        }, */
         {
             type: ['Food', 'Yoga'],
             title: {
@@ -906,8 +906,8 @@ export function getEvents(): Event[] {
                 buttons: [
                     {
                         label: {
-                            de: 'Buchen',
-                            en: 'Book'
+                            de: 'Veranstaltung buchen',
+                            en: 'Book event'
                         },
                         link: 'https://www.raise-yoga.com/retreats-workshops-1/'
                     }

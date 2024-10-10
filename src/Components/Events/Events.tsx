@@ -64,7 +64,7 @@ class Events extends React.Component<Props, States> {
         }
         // IF EVENT IS INACTIVE AND CHANGES
         if (!this.state.event && this.state.event !== prevState.event) {
-            window.history.replaceState(null, null, '/');
+            window.history.replaceState(null, null, this.props.router.location.pathname);
         }
     }
 
@@ -211,6 +211,7 @@ class Events extends React.Component<Props, States> {
         const program = event.descriptionProgram;
         const subtitle = event.subtitle;
         const title = event.title;
+        const small = program ? program.every(item => item.activities.every(activity => activity.time.length <= 5)) : false;
         // DEFINE BOOKING
         const bookingDate =
             event.date instanceof Date
@@ -334,7 +335,7 @@ class Events extends React.Component<Props, States> {
                                         </>
                                     ) : (
                                         <a className='underlineLink' href={`mailto:hallo@ebenrieder.de?subject=${bookingSubject}&body=${bookingBody}`}>
-                                            {getLanguage(language, 'book')}
+                                            {getLanguage(language, 'bookEvent')}
                                         </a>
                                     )}
                                 </div>
@@ -369,7 +370,7 @@ class Events extends React.Component<Props, States> {
                                                     {item.activities.map((activity, index) => {
                                                         return (
                                                             <div className='activity' key={`${item.day[language]}_${index}`}>
-                                                                <span className='time'>{activity.time}</span>
+                                                                <span className='time' style={{ minWidth: small ? 75 : 125 }}>{activity.time}</span>
                                                                 <span className='description'>{activity.description[language]}</span>
                                                             </div>
                                                         );

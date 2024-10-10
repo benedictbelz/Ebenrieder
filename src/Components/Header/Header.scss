@@ -2,6 +2,7 @@
 
 $paddingLogo: 10px;
 $paddingLanguage: 10px;
+$paddingMenu: 10px;
 
 #header {
     pointer-events: none;
@@ -25,7 +26,7 @@ $paddingLanguage: 10px;
         display: flex;
         align-items: center;
         height: 100%;
-        width: var(--spacing-horizontal);
+        min-width: var(--spacing-horizontal);
         margin: 0;
         transition: margin 0.5s ease;
 
@@ -173,11 +174,25 @@ $paddingLanguage: 10px;
         }
     }
 
+    #headerCenter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .headerMenu {
+            cursor: pointer;
+            pointer-events: all;
+            font-size: 18px;
+            text-transform: uppercase;
+            padding: $paddingMenu;
+        }
+    }
+
     #headerRight {
         display: flex;
         align-items: center;
         height: 100%;
-        width: var(--spacing-horizontal);
+        min-width: var(--spacing-horizontal);
         margin: 0;
         transition: margin 0.5s ease;
 

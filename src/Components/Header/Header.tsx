@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { PropsWithRouter, withRouter } from '../../Router/Router';
+import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
 import { Language } from '../../@types/language';
 import './Header.scss';
@@ -71,6 +72,13 @@ class Header extends React.Component<Props> {
                         )}
                     </Link>
                 </div>
+                {this.props.browser.width > this.props.browser.variables.mediaS && (
+                    <div id='headerCenter'>
+                        <a className='headerMenu' href='https://resavio.com/booking/de/2900' target='_blank' rel='noopener noreferrer'>
+                            <span className='underlineHidden'>{getLanguage(this.props.browser.language, 'book')}</span>
+                        </a>
+                    </div>
+                )}
                 <div id='headerRight'>
                     <div id='headerLanguage' onClick={() => this.props.handleLanguage(this.props.browser.language === 'de' ? 'en' : 'de')}>
                         {this.props.browser.device === 'Desktop' ? (

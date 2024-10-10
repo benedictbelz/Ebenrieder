@@ -46,9 +46,7 @@ export default class Modal extends React.Component<Props, States> {
     private handleOpen = () => {
         // HIDE HEADER
         setTimeout(() => {
-            if (this.props.browser.width <= this.props.browser.variables.mediaM) {
-                this.header?.classList.add('hide');
-            }
+            this.header?.classList.add('hide');
         });
         // MANAGE SCROLLBAR
         setTimeout(() => {
@@ -70,9 +68,7 @@ export default class Modal extends React.Component<Props, States> {
         this.setState({ active: false });
         // SHOW HEADER
         setTimeout(() => {
-            if (this.props.browser.width <= this.props.browser.variables.mediaM) {
-                this.header?.classList.remove('hide');
-            }
+            this.header?.classList.remove('hide');
         });
         // MANAGE SCROLLBAR
         setTimeout(() => {
@@ -90,11 +86,6 @@ export default class Modal extends React.Component<Props, States> {
 
     private handleResize = () => {
         if (!this.modal.current) return;
-        if (this.props.browser.width <= this.props.browser.variables.mediaM) {
-            this.header?.classList.add('hide');
-        } else {
-            this.header?.classList.remove('hide');
-        }
         this.setState({ height: this.modal.current.clientHeight });
     };
 

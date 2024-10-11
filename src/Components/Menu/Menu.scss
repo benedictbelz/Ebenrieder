@@ -286,7 +286,7 @@
     &.flow {
         #bookingText,
         #bookingBackground {
-            transform: translateY(0);   
+            transform: translateY(0);
         }
     }
 
@@ -295,7 +295,7 @@
 
         .underlineLink {
             color: $color-white;
-    
+
             &::after {
                 background-color: $color-white;
             }

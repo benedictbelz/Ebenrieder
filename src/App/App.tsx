@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Cookies from '../Components/Cookies/Cookies';
 import Header from '../Components/Header/Header';
 import Mouse from '../Components/Mouse/Mouse';
@@ -319,16 +319,7 @@ class App extends React.Component<{}, States> {
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
                             <Route path='/datenschutz' element={<Privacy browser={this.state.browser} />} />
                             <Route path='/privacy' element={<Privacy browser={this.state.browser} />} />
-                            <Route
-                                path='*'
-                                element={
-                                    <Overview
-                                        browser={this.state.browser}
-                                        handleAccept={this.handleAcceptCookies}
-                                        handleDecline={this.handleDeclineCookies}
-                                    />
-                                }
-                            />
+                            <Route path='*' element={<Navigate to='/' />} />
                         </Routes>
                     </Wrapper>
                 </Router>

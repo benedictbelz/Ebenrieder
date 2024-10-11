@@ -370,7 +370,9 @@ class Events extends React.Component<Props, States> {
                                                     {item.activities.map((activity, index) => {
                                                         return (
                                                             <div className='activity' key={`${item.day[language]}_${index}`}>
-                                                                <span className='time' style={{ minWidth: small ? 75 : 125 }}>{activity.time}</span>
+                                                                <span className='time' style={{ minWidth: small ? 75 : 125 }}>
+                                                                    {activity.time}
+                                                                </span>
                                                                 <span className='description'>{activity.description[language]}</span>
                                                             </div>
                                                         );

@@ -151,6 +151,10 @@ class App extends React.Component<{}, States> {
         } else {
             type = 'Unknown';
         }
+        // ADD OVERSCROLL BEHAVIOUR
+        if (!(device === 'Desktop' && type === 'Safari')) {
+            document.body.style.overscrollBehavior = 'none';
+        }
         // RETURN VARIABLES
         return { cookies, device, direction, height, language, media, mouse, scroll, status, type, variables, width };
     }

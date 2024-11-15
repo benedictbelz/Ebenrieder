@@ -7,6 +7,7 @@ import Mouse from '../Components/Mouse/Mouse';
 import Imprint from '../Pages/Imprint/Imprint';
 import Overview from '../Pages/Overview/Overview';
 import Privacy from '../Pages/Privacy/Privacy';
+import Terms from '../Pages/Terms/Terms';
 import { Wrapper } from '../Router/Router';
 import { Browser } from '../@types/browser';
 import { Language } from '../@types/language';
@@ -323,6 +324,8 @@ class App extends React.Component<{}, States> {
                             <Route path='/imprint' element={<Imprint browser={this.state.browser} />} />
                             <Route path='/datenschutz' element={<Privacy browser={this.state.browser} />} />
                             <Route path='/privacy' element={<Privacy browser={this.state.browser} />} />
+                            <Route path='/agb' element={<Terms browser={this.state.browser} />} />
+                            <Route path='/gtc' element={<Terms browser={this.state.browser} />} />
                             <Route path='*' element={<Navigate to='/' />} />
                         </Routes>
                     </Wrapper>

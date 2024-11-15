@@ -83,9 +83,10 @@ const de = {
     featureWhirlpool: 'Hot Tub',
     featureWifi: 'WLAN',
     featureWorkplace: 'Arbeitsplatz',
-    conditions: 'AGB',
     imprint: 'Impressum',
-    privacy: 'Datenschutzerklärung'
+    privacy: 'Datenschutzerklärung',
+    termsShort: 'AGB',
+    termsLong: 'Allgemeine Geschäftsbedingungen'
 };
 
 const en: Dictionary = {
@@ -166,9 +167,10 @@ const en: Dictionary = {
     featureWhirlpool: 'Hot Tub',
     featureWifi: 'WIFI',
     featureWorkplace: 'Workplace',
-    conditions: 'Terms & Conditions',
     imprint: 'Imprint',
-    privacy: 'Privacy Policy'
+    privacy: 'Privacy Policy',
+    termsShort: 'GTC',
+    termsLong: 'General Terms & Conditions'
 };
 
 export const getLanguage = (language: Language, key: keyof Dictionary) => {

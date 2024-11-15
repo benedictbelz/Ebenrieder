@@ -42,6 +42,9 @@ export default class Header extends React.Component<Props> {
                     <Link to={language === 'de' ? '/datenschutz' : '/privacy'} className='underlineLink'>
                         {getLanguage(language, 'privacy')}
                     </Link>
+                    <Link to={language === 'de' ? '/agb' : '/gtc'} className='underlineLink'>
+                        {getLanguage(language, 'termsShort')}
+                    </Link>
                 </div>
                 <div id='footerSocial'>
                     <a href='https://www.instagram.com/ebenrieder' target='_blank' rel='noopener noreferrer'>

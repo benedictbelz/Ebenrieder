@@ -162,7 +162,7 @@ class Terms extends React.Component<Props> {
                                 </p>
                             </article>
                             <article data-name='Berherbergungsstornierung'>
-                                <h2>7. Rücktritt, Stornierung seitens des Beherbergungsbetriebes</h2>
+                                <h2>7. Rücktritt, Stornierung seitens des Beherbergungs&shy;betriebes</h2>
                                 <p>
                                     <strong>7.1.</strong> Sofern vereinbart wurde, dass der Kunde innerhalb einer bestimmten Frist kostenfrei vom Vertrag zurücktreten kann, ist der Beherbergungsbetrieb in diesem Zeitraum seinerseits berechtigt, vom Vertrag zurückzutreten, wenn Anfragen anderer Kunden nach den vertraglich gebuchten Zimmern vorliegen und der Kunde auf Rückfrage des Hotels mit angemessener Fristsetzung auf sein Recht zum Rücktritt nicht verzichtet.
                                 </p>
@@ -191,7 +191,7 @@ class Terms extends React.Component<Props> {
                                 </p>
                             </article>
                             <article data-name='Nutzungsbedingungen'>
-                                <h2>8. Pflichten des Gastes, Nutzungsbedingungen im Einzelnen</h2>
+                                <h2>8. Pflichten des Gastes, Nutzungs&shy;bedingungen im Einzelnen</h2>
                                 <p>
                                     <strong>8.1.</strong> Der Gast verpflichtet sich, die Nutzungsbedingungen von des Beherbergungsbetriebes einzuhalten und das Mietobjekt nebst Inventar während seines Aufenthaltes mit größter Sorgfalt zu behandeln.
                                 </p>
@@ -224,19 +224,19 @@ class Terms extends React.Component<Props> {
                                 </p>
                             </article>
                             <article data-name='Kündigungsrecht'>
-                                <h2>9. Außerordentliches Kündigungsrecht</h2>
+                                <h2>9. Außer&shy;ordentliches Kündigungs&shy;recht</h2>
                                 <p>
                                     Der Beherbergungsbetrieb behält sich vor, bei einer schuldhaften Verletzung einer der vorstehend in Ziffer <strong>8</strong> genannten Pflichten durch den Gast oder durch mitreisende Personen das Vertragsverhältnis aus wichtigem Grund außerordentlich ohne Frist zu kündigen.
                                 </p>
                             </article>
                             <article data-name='Haftungsbeschränkung'>
-                                <h2>10. Haftungsbeschränkung</h2>
+                                <h2>10. Haftungs&shy;beschränkung</h2>
                                 <p>
                                     Die Haftung des Beherbergungsbetriebs  ist beschränkt auf die schuldhafte Verletzung des Lebens, des Körpers oder der Gesundheit sowie auf sonstige Schäden, die auf einer vorsätzlichen oder grob fahrlässigen Pflichtverletzung des Beherbergungsbetriebs beruhen. Die Haftungsbeschränkung gilt nicht bei der Verletzung von vertragstypischen Pflichten. Der Beherbergungsbetrieb haftet nicht für Schäden oder das Abhandenkommen von Fahrzeugen oder im Außenbereich abgestellten Fahrrädern.
                                 </p>
                             </article>
                             <article data-name='Schlussbestimmung'>
-                                <h2>11. Schlussbestimmung</h2>
+                                <h2>11. Schluss&shy;bestimmung</h2>
                                 <p>
                                     <strong>11.1.</strong> Änderungen und Ergänzungen des Vertrages, der Antragsannahme oder dieser Allgemeinen Geschäftsbedingungen sollen in Textform erfolgen. Einseitige Änderungen oder Ergänzungen durch den Kunden sind unwirksam.
                                 </p>

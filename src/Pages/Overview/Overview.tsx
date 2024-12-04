@@ -51,14 +51,12 @@ class Overview extends React.Component<Props> {
                             scroll: this.props.browser.scroll
                         }}
                     >
-                        <img src='assets/media/gallery/welcome_01.jpg' />
-                        <img src='assets/media/gallery/welcome_02.jpg' />
-                        <img src='assets/media/gallery/welcome_03.jpg' />
-                        <img src='assets/media/gallery/welcome_04.jpg' />
-                        <img src='assets/media/gallery/welcome_05.jpg' />
-                        <img src='assets/media/gallery/welcome_06.jpg' />
-                        <img src='assets/media/gallery/welcome_07.jpg' />
-                        <img src='assets/media/gallery/welcome_08.jpg' />
+                        <img src='assets/media/gallery/welcome_09.jpg' />
+                        <img src='assets/media/gallery/welcome_10.jpg' />
+                        <img src='assets/media/gallery/welcome_11.jpg' />
+                        <img src='assets/media/gallery/welcome_12.jpg' />
+                        <img src='assets/media/gallery/welcome_13.jpg' />
+                        <img src='assets/media/gallery/welcome_14.jpg' />
                     </Gallery>
                 </div>
                 <div id='overviewContent'>
@@ -95,14 +93,16 @@ class Overview extends React.Component<Props> {
                             loadingScreen={true}
                             modus={this.props.browser.width <= this.props.browser.variables.mediaM ? 'Expansion' : 'Variable'}
                         >
-                            <img src='assets/media/gallery/location_01.jpg' />
-                            <img src='assets/media/gallery/location_02.jpg' />
-                            <img src='assets/media/gallery/location_03.jpg' />
-                            <img src='assets/media/gallery/location_04.jpg' />
-                            <img src='assets/media/gallery/location_05.jpg' />
-                            <img src='assets/media/gallery/location_06.jpg' />
-                            <img src='assets/media/gallery/location_07.jpg' />
-                            <img src='assets/media/gallery/location_08.jpg' />
+                            <img src='assets/media/gallery/location_09.jpg' />
+                            <img src='assets/media/gallery/location_10.jpg' />
+                            <img src='assets/media/gallery/location_11.jpg' />
+                            <img src='assets/media/gallery/location_12.jpg' />
+                            <img src='assets/media/gallery/location_13.jpg' />
+                            <img src='assets/media/gallery/location_14.jpg' />
+                            <img src='assets/media/gallery/location_15.jpg' />
+                            <img src='assets/media/gallery/location_16.jpg' />
+                            <img src='assets/media/gallery/location_17.jpg' />
+                            <img src='assets/media/gallery/location_18.jpg' />
                         </Gallery>
                     </article>
                     <article data-name={getLanguage(language, 'titleSleep')}>
@@ -117,27 +117,35 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Ob für frisch Verliebte, für gute Freunde oder Alleinreisende, die Zeit & Ruhe finden wollen: Unsere Zimmer und
-                                    Wohnungen bieten Platz für jeden und so wie es behagt. Neben der individuellen Ausstattung verfügen alle Räumlichkeiten
-                                    über ein eigenes Bad mit Dusche oder Badewanne. Darin findest du auch die nachhaltigen Pflegeprodukte von Saint
-                                    Charles. Alle Produkte enthalten pflanzliche Waschsubstanzen, die sich dank der ätherische Bio-Öle ihr antivirales und
-                                    antibakterielles Potential bewahrt haben. Die außergewöhnliche Duftmischung erfrischt und belebt deine Sinne. Die
-                                    hochwertigen Matratzen von COCO-MAT unterstützen einen erholsamen, komfortablen Schlaf und bestehen aus natürlichen
-                                    Materialien, die sorgfältig ausgewählt wurden. Um den bäuerlichen Charme zu bewahren, haben wir in den Zimmern und
-                                    Wohnungen die Heizung in der Wand versteckt. Der Lehmputz wirkt feuchte- und wärmeregulierend für ganzjährig bestes
-                                    Raumklima.
+                                    Ob für frisch Verliebte, für gute Freunde oder Alleinreisende, die Zeit und Ruhe finden wollen: Unsere Zimmer und
+                                    Wohnungen bieten Platz für jeden – und so, wie es behagt. Neben der individuellen Ausstattung verfügen alle
+                                    Räumlichkeiten über ein eigenes Bad mit Dusche oder Badewanne. Darin findest du auch die nachhaltigen Pflegeprodukte
+                                    von Saint Charles. Alle Produkte enthalten pflanzliche Waschsubstanzen, die dank der ätherischen Bio-Öle ihr
+                                    antivirales und antibakterielles Potenzial bewahrt haben. Die außergewöhnliche Duftmischung erfrischt und belebt deine
+                                    Sinne. Die hochwertigen Matratzen von COCO-MAT unterstützen einen erholsamen, komfortablen Schlaf und bestehen aus
+                                    natürlichen Materialien, die sorgfältig ausgewählt wurden. Um den bäuerlichen Charme zu bewahren, haben wir in den
+                                    Zimmern und Wohnungen die Heizung in den Wänden oder im Boden versteckt. Der Lehmputz wirkt feuchte- und
+                                    wärmeregulierend für ein ganzjährig angenehmes Raumklima. Unsere Wohnungen können als Selbstversorger-Unterkünfte
+                                    gemietet werden und bieten dir die Freiheit, deinen Aufenthalt ganz individuell zu gestalten. Bitte beachte, dass die
+                                    Bauernzimmer nicht einzeln buchbar sind. Sie können nur in Kombination mit einer Ferienwohnung für zusätzliche Personen
+                                    hinzugebucht werden. Diese besondere Option ermöglicht es, mehr Platz für Familie oder Freunde zu schaffen, während der
+                                    Charme unserer traditionellen Zimmer erhalten bleibt.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    Whether for newlyweds, close friends, or solo travelers seeking time and tranquility, our rooms and apartments
-                                    accommodate everyone according to their preferences. In addition to personalized furnishings, all accommodations
-                                    feature a private bathroom with a shower or bathtub. Inside, you'll find sustainable care products from Saint Charles.
-                                    All products contain plant-based substances that have retained their antiviral and antibacterial potential thanks to
-                                    organic essential oils. The unique blend of scents refreshes and invigorates your senses. The high-quality mattresses
-                                    from COCO-MAT support a restful, comfortable sleep and are made from natural materials that have been carefully
-                                    selected. To maintain the rustic charm, heating in the rooms and apartments is discreetly integrated into the walls.
-                                    The clay plaster has a moisture- and heat-regulating effect for the best indoor climate all year round.
+                                    Whether for newlyweds, close friends, or solo travelers seeking time and tranquility: our rooms and apartments offer
+                                    space for everyone – just the way you like it. In addition to their individual features, all accommodations include a
+                                    private bathroom with a shower or bathtub. You'll also find sustainable care products from Saint Charles. These
+                                    products are made with plant-based washing agents that retain their antiviral and antibacterial potential thanks to
+                                    organic essential oils. The unique fragrance blend refreshes and invigorates your senses. The high-quality mattresses
+                                    from COCO-MAT ensure restful and comfortable sleep, crafted from carefully selected natural materials. To preserve the
+                                    rustic charm, the heating in our rooms and apartments has been discreetly integrated into the walls or floors. The clay
+                                    plaster regulates both humidity and temperature, providing a pleasant indoor climate all year round. Our apartments can
+                                    be rented as self-catering accommodations, offering you the freedom to plan your stay exactly as you wish. Please note
+                                    that the farmhouse rooms cannot be booked individually. They can only be added to a vacation apartment booking to
+                                    accommodate additional guests. This special option provides more space for family or friends while maintaining the
+                                    charm of our traditional rooms.
                                 </p>
                             )}
                             <Rooms browser={this.props.browser} filters={['Apartment', 'Room']} />

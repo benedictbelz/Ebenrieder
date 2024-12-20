@@ -12,30 +12,44 @@ interface Props extends PropsWithRouter {
 }
 
 class Header extends React.Component<Props> {
-    render() {
-        // DEFINE VARIABELS
-        let hide = false;
-        // HIDE HEADER
-        if (this.props.browser.status === 'Welcome' && this.props.router.location.pathname === '/') {
-            hide = true;
+    private header: React.RefObject<HTMLDivElement>;
+
+    constructor(props: Props) {
+        super(props);
+        this.header = React.createRef();
+    }
+
+    componentDidUpdate() {
+        this.handleScroll();
+    }
+
+    handleScroll() {
+        if (!this.header.current) {
+            return;
+        } else if (this.props.browser.status === 'Welcome' && this.props.router.location.pathname === '/') {
+            this.header.current?.classList.remove('hideScroll');
         } else if (
             this.props.browser.direction === 'Down' &&
             this.props.router.location.pathname === '/' &&
             this.props.browser.scroll >= this.props.browser.height &&
             this.props.browser.width <= this.props.browser.variables.mediaS
         ) {
-            hide = true;
+            this.header.current?.classList.add('hideScroll');
         } else if (
             this.props.browser.direction === 'Down' &&
             this.props.router.location.pathname !== '/' &&
             this.props.browser.scroll >= 100 &&
             this.props.browser.width <= this.props.browser.variables.mediaS
         ) {
-            hide = true;
+            this.header.current?.classList.add('hideScroll');
+        } else {
+            this.header.current?.classList.remove('hideScroll');
         }
-        // RETURN COMPONENT
+    }
+
+    render() {
         return (
-            <div id='header' className={[hide && 'hide'].filter(x => x).join(' ')}>
+            <div id='header' ref={this.header}>
                 <div id='headerLeft'>
                     <Link to='/'>
                         {this.props.browser.device === 'Desktop' ? (

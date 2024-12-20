@@ -268,6 +268,7 @@ class Events extends React.Component<Props, States> {
                                                         dangerouslySetInnerHTML={{
                                                             __html: item[language]
                                                                 .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                                .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
                                                                 .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                                 .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
                                                         }}
@@ -351,6 +352,7 @@ class Events extends React.Component<Props, States> {
                                                     dangerouslySetInnerHTML={{
                                                         __html: item.content[language]
                                                             .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                            .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
                                                             .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                             .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
                                                     }}
@@ -382,6 +384,20 @@ class Events extends React.Component<Props, States> {
                                         })}
                                     </div>
                                 )}
+                            </div>
+                        </div>
+                        <div className='modalFooter'>
+                            <div>
+                                <img id='headerLogo' src='assets/svg/logo_picture.svg' />
+                            </div>
+                            <div>
+                                <span>Ebenrieder</span>
+                                <span>Remnatsried 2</span>
+                                <span>87675 Stötten am Auerberg</span>
+                                <span>Deutschland</span>
+                                <a className='underlineLink' href='tel:+4983499763940'>
+                                    +49 8349 9763940
+                                </a>
                             </div>
                         </div>
                     </>

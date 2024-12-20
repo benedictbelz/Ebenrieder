@@ -18,7 +18,8 @@ $paddingMenu: 10px;
     transition: transform 1s ease;
     filter: invert(100%);
 
-    &.hide {
+    &.hideScroll,
+    &.hideModal {
         transform: translateY(-100%);
     }
 

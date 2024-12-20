@@ -1173,6 +1173,578 @@ export function getEvents(): Event[] {
                 title: true,
                 quantity: true
             }
+        },
+        {
+            type: ['Food', 'Workshop'],
+            title: {
+                de: 'Fermentationskurs',
+                en: 'Fermentation course'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Victoria Lorenz',
+                    en: 'With Victoria Lorenz'
+                }
+            ],
+            date: new Date(2025, 1, 15),
+            price: 109,
+            link: 'fermentationskurs_februar',
+            imagePreview: 'assets/media/events/fermentation_01.jpg',
+            imageGallery: [
+                'assets/media/events/fermentation_01.jpg',
+                'assets/media/events/fermentation_02.jpg',
+                'assets/media/events/fermentation_03.jpg',
+                'assets/media/events/fermentation_04.jpg',
+                'assets/media/events/fermentation_05.jpg'
+            ],
+            descriptionLong: {
+                de: `Entdecke die faszinierende Welt der Fermentation in der einzigartigen Atmosphäre des Ebenrieder. Dieser zauberhafte Ort, eingebettet in die malerische Landschaft des Voralpenlandes, bietet die perfekte Kulisse, um die Kunst der Fermentation in all ihren Facetten zu erleben. Die Verbindung von Tradition und Moderne, die das Ebenrieder ausstrahlt, macht diesen Kurs zu einem besonderen Erlebnis, das weit über einen gewöhnlichen Workshop hinausgeht. Lass dich inspirieren und tauche ein in die kulinarischen Möglichkeiten, die Fermente eröffnen!\n\nIm Workshop versorge ich euch mit fundiertem Wissen zur Fermentation, Milchsäuregärung, Darmgesundheit und den gesundheitlichen Vorteilen fermentierter Produkte. Nach einer theoretischen Einführung in die Kunst der Fermentation und das Thema Bakterien und Darmgesundheit geht es direkt an die Praxis: Gemeinsam schneiden, würzen und fermentieren wir saisonales Gemüse – kreativ, individuell und lecker. Je nach Jahreszeit bereiten wir unterschiedliche Kreationen zu.\n\nNeben dem intensiven Workshop erwartet euch ein Mittagessen, bei dem fermentierte Köstlichkeiten im Mittelpunkt stehen. Ihr habt die Möglichkeit, die Vielfalt der Fermente direkt zu schmecken und euch von neuen Geschmackserlebnissen überraschen zu lassen.`,
+                en: `Discover the fascinating world of fermentation in the unique atmosphere of Ebenrieder. This magical place, nestled in the picturesque landscape of the Alpine foothills, offers the perfect backdrop to experience the art of fermentation in all its facets. The combination of tradition and modernity that the Ebenrieder radiates makes this course a special experience that goes far beyond an ordinary workshop. Let yourself be inspired and immerse yourself in the culinary possibilities that ferments open up!\n\nIn this workshop, I will provide you with in-depth knowledge about fermentation, lactic acid fermentation, gut health and the health benefits of fermented products. After a theoretical introduction to the art of fermentation and the topic of bacteria and gut health, we will get straight down to practical work: together we will cut, season and ferment seasonal vegetables - creatively, individually and deliciously. We prepare different creations depending on the season.\n\nIn addition to the intensive workshop, a lunch awaits you where fermented delicacies take center stage. You will have the opportunity to taste the variety of ferments directly and be surprised by new taste sensations.`
+            },
+            descriptionShort: {
+                de: 'Entdecke die faszinierende Welt der Fermentation in der einzigartigen Atmosphäre des Ebenrieder.',
+                en: 'Discover the fascinating world of fermentation in the unique atmosphere of Ebenrieder.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 15.02.2024 um 11:00 Uhr',
+                        en: "on 15.02.2024 at 11:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 15.02.2024 um 14:30 Uhr',
+                        en: "on 15.02.2024 at 14:30 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%price%> EUR',
+                        en: '<%price%> EUR'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Eine inspirierende Einführung in die Kunst der Fermentation',
+                        en: 'An inspiring introduction to the art of fermentation'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Fundiertes Wissen zur Kunst der Fermentation und Darmgesundheit',
+                        en: 'In-depth knowledge about the art of fermentation and gut health'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Tasting verschiedener Fermente und ein leckeres Mittagessen',
+                        en: 'Tasting of various ferments and a delicious lunch'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Hands-On Praxisteil, bei dem ihr euer eigenes Ferment herstellt',
+                        en: 'Hands-on practical part where you make your own ferment'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Tipps, Tricks und Antworten auf all eure Fragen',
+                        en: 'Tips, tricks and answers to all your questions'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Kursmaterialien und Gläser/Flaschen für euer Ferment',
+                        en: 'Course materials and jars/bottles for your ferment'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Euer selbstgemachtes Ferment zum Mitnehmen',
+                        en: 'Your homemade ferment to take home'
+                    }
+                }
+            ],
+            booking: {
+                accomodation: false,
+                date: false,
+                foodIntolerance: false,
+                name: false,
+                roomType: false,
+                title: false,
+                quantity: false,
+                buttons: [
+                    {
+                        label: {
+                            de: 'Veranstaltung buchen',
+                            en: 'Book event'
+                        },
+                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
+                    }
+                ]
+            }
+        },
+        {
+            type: ['Food', 'Workshop'],
+            title: {
+                de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
+                en: 'Wild forest flavors - conifer cuisine workshop'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Victoria Lorenz',
+                    en: 'With Victoria Lorenz'
+                }
+            ],
+            date: new Date(2025, 1, 22),
+            price: 89,
+            link: 'nadelbaumkurs_februar',
+            imagePreview: 'assets/media/events/nadelbaumkueche_01.jpg',
+            imageGallery: [
+                'assets/media/events/nadelbaumkueche_01.jpg',
+                'assets/media/events/nadelbaumkueche_02.jpg',
+                'assets/media/events/nadelbaumkueche_03.jpg',
+                'assets/media/events/nadelbaumkueche_04.jpg',
+                'assets/media/events/nadelbaumkueche_05.jpg',
+                'assets/media/events/nadelbaumkueche_06.jpg',
+                'assets/media/events/nadelbaumkueche_07.jpg',
+                'assets/media/events/nadelbaumkueche_08.jpg',
+                'assets/media/events/nadelbaumkueche_09.jpg'
+            ],
+            descriptionLong: {
+                de: `Tauche ein in die faszinierende Welt der Nadelbaumküche und entdecke, wie vielseitig und überraschend die kulinarischen Möglichkeiten unserer heimischen Wälder sind. Ob Fichtenbutter, Tannenoxymel oder Douglasiengin – die Aromenpalette reicht von zitronig-intensiv über pfeffrig-würzig bis hin zu herb-mandarinig. Lass dich inspirieren und lerne, wie du diese besonderen Geschmacksnuancen in deine eigene Küche holen kannst.\n\nDer Kurs verbindet einzigartig Naturwissen mit kulinarischer Kreativität. Du lernst nicht nur die verschiedenen essbaren Nadelbäume sicher zu bestimmen, sondern entdeckst auch, wie du sie nachhaltig und aromatisch in köstliche Produkte verwandelst. Hier steht nicht nur das Wie, sondern auch das Warum im Fokus: Die sorgfältige Auswahl, schonende Verarbeitung und das tiefere Verständnis für die Natur machen diesen Workshop zu einem ganzheitlichen Erlebnis.`,
+                en: `Immerse yourself in the fascinating world of conifer cuisine and discover how varied and surprising the culinary possibilities of our local forests are. Whether spruce butter, fir oxymel or Douglas fir gin - the flavors range from lemony and intense to peppery and spicy to tart and mandarin. Let yourself be inspired and learn how you can bring these special flavors into your own kitchen.\n\nThe course uniquely combines knowledge of nature with culinary creativity. Not only will you learn how to identify the various edible conifers, but you will also discover how to transform them sustainably and aromatically into delicious products. The focus here is not only on the how, but also the why: careful selection, careful processing and a deeper understanding of nature make this workshop a holistic experience.`
+            },
+            descriptionShort: {
+                de: 'Tauche ein in die faszinierende Welt der Nadelbaumküche und entdecke, wie vielseitig und überraschend die kulinarischen Möglichkeiten unserer heimischen Wälder sind.',
+                en: 'Immerse yourself in the fascinating world of conifer cuisine and discover how varied and surprising the culinary possibilities of our local forests are.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 22.02.2024 um 11:00 Uhr',
+                        en: "on 22.02.2024 at 11:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 22.02.2024 um 14:00 Uhr',
+                        en: "on 22.02.2024 at 14:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%price%> EUR',
+                        en: '<%price%> EUR'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein waldiges Sensorik-Abenteuer',
+                        en: 'A forest sensory adventure'
+                    },
+                    content: {
+                        de: 'Erlebe Nadelbäume mit allen Sinnen und erkunde ihre außergewöhnlichen Aromen',
+                        en: 'Experience conifers with all your senses and explore their extraordinary aromas'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Praxisnahes Arbeiten',
+                        en: 'Practical work'
+                    },
+                    content: {
+                        de: 'Gemeinsam stellen wir nicht nur Produkte her, sondern du erfährst direkt, wie diese vielseitig eingesetzt werden können',
+                        en: 'Not only will we make products together, but you will also learn directly how they can be used in a variety of ways'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein Stück Wald für Zuhause',
+                        en: 'A piece of forest for your home'
+                    },
+                    content: {
+                        de: 'Mit dem digitalen Buch „Nadelbaumküche“ kannst du auch nach dem Kurs kreativ weiter experimentieren',
+                        en: 'You can continue to experiment creatively after the course with the digital book “Nadelbaumküche”'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Bestimmung der wichtigsten Nadelbaumarten',
+                        en: 'Identification of the most important conifer species'
+                    },
+                    content: {
+                        de: 'Mit Schwerpunkt auf essbaren Bäumen und dem Erkennen der giftigen Eibe',
+                        en: 'With a focus on edible trees and recognizing the poisonous yew'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Herstellung von 3 außergewöhnlichen Nadelbaumprodukten',
+                        en: 'Production of 3 unusual conifer products'
+                    },
+                    content: {
+                        de: 'Wie z. B. Waldkaviar, Tannensalz und Oxymel',
+                        en: 'Such as forest caviar, fir salt and oxymel'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Inklusive aller Materialien',
+                        en: 'Including all materials'
+                    },
+                    content: {
+                        de: 'Gläser, Zutaten und Werkzeuge',
+                        en: 'Jars, ingredients and tools'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein Stück Wald für Zuhause',
+                        en: 'Enjoyment and nature experience'
+                    },
+                    content: {
+                        de: 'Ein waldiger Begrüßungsdrink und ein wilder Snack runden den Workshop ab',
+                        en: 'A woodland welcome drink and a wild snack round off the workshop'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Teilnehmer erhalten im Anschluss die digitale Version meines Buchs "Nadelbaumküche"',
+                        en: 'Participants will receive the digital version of my book “Nadelbaumküche” afterwards'
+                    }
+                }
+            ],
+            booking: {
+                accomodation: false,
+                date: false,
+                foodIntolerance: false,
+                name: false,
+                roomType: false,
+                title: false,
+                quantity: false,
+                buttons: [
+                    {
+                        label: {
+                            de: 'Veranstaltung buchen',
+                            en: 'Book event'
+                        },
+                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
+                    }
+                ]
+            }
+        },
+        {
+            type: ['Food', 'Workshop'],
+            title: {
+                de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
+                en: 'Wild forest flavors - conifer cuisine workshop'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Victoria Lorenz',
+                    en: 'With Victoria Lorenz'
+                }
+            ],
+            date: new Date(2025, 2, 15),
+            price: 89,
+            link: 'nadelbaumkurs_maerz',
+            imagePreview: 'assets/media/events/nadelbaumkueche_01.jpg',
+            imageGallery: [
+                'assets/media/events/nadelbaumkueche_01.jpg',
+                'assets/media/events/nadelbaumkueche_02.jpg',
+                'assets/media/events/nadelbaumkueche_03.jpg',
+                'assets/media/events/nadelbaumkueche_04.jpg',
+                'assets/media/events/nadelbaumkueche_05.jpg',
+                'assets/media/events/nadelbaumkueche_06.jpg',
+                'assets/media/events/nadelbaumkueche_07.jpg',
+                'assets/media/events/nadelbaumkueche_08.jpg',
+                'assets/media/events/nadelbaumkueche_09.jpg'
+            ],
+            descriptionLong: {
+                de: `Tauche ein in die faszinierende Welt der Nadelbaumküche und entdecke, wie vielseitig und überraschend die kulinarischen Möglichkeiten unserer heimischen Wälder sind. Ob Fichtenbutter, Tannenoxymel oder Douglasiengin – die Aromenpalette reicht von zitronig-intensiv über pfeffrig-würzig bis hin zu herb-mandarinig. Lass dich inspirieren und lerne, wie du diese besonderen Geschmacksnuancen in deine eigene Küche holen kannst.\n\nDer Kurs verbindet einzigartig Naturwissen mit kulinarischer Kreativität. Du lernst nicht nur die verschiedenen essbaren Nadelbäume sicher zu bestimmen, sondern entdeckst auch, wie du sie nachhaltig und aromatisch in köstliche Produkte verwandelst. Hier steht nicht nur das Wie, sondern auch das Warum im Fokus: Die sorgfältige Auswahl, schonende Verarbeitung und das tiefere Verständnis für die Natur machen diesen Workshop zu einem ganzheitlichen Erlebnis.`,
+                en: `Immerse yourself in the fascinating world of conifer cuisine and discover how varied and surprising the culinary possibilities of our local forests are. Whether spruce butter, fir oxymel or Douglas fir gin - the flavors range from lemony and intense to peppery and spicy to tart and mandarin. Let yourself be inspired and learn how you can bring these special flavors into your own kitchen.\n\nThe course uniquely combines knowledge of nature with culinary creativity. Not only will you learn how to identify the various edible conifers, but you will also discover how to transform them sustainably and aromatically into delicious products. The focus here is not only on the how, but also the why: careful selection, careful processing and a deeper understanding of nature make this workshop a holistic experience.`
+            },
+            descriptionShort: {
+                de: 'Tauche ein in die faszinierende Welt der Nadelbaumküche und entdecke, wie vielseitig und überraschend die kulinarischen Möglichkeiten unserer heimischen Wälder sind.',
+                en: 'Immerse yourself in the fascinating world of conifer cuisine and discover how varied and surprising the culinary possibilities of our local forests are.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 15.03.2024 um 11:00 Uhr',
+                        en: "on 15.03.2024 at 11:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 15.03.2024 um 14:00 Uhr',
+                        en: "on 15.03.2024 at 14:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%price%> EUR',
+                        en: '<%price%> EUR'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein waldiges Sensorik-Abenteuer',
+                        en: 'A forest sensory adventure'
+                    },
+                    content: {
+                        de: 'Erlebe Nadelbäume mit allen Sinnen und erkunde ihre außergewöhnlichen Aromen',
+                        en: 'Experience conifers with all your senses and explore their extraordinary aromas'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Praxisnahes Arbeiten',
+                        en: 'Practical work'
+                    },
+                    content: {
+                        de: 'Gemeinsam stellen wir nicht nur Produkte her, sondern du erfährst direkt, wie diese vielseitig eingesetzt werden können',
+                        en: 'Not only will we make products together, but you will also learn directly how they can be used in a variety of ways'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein Stück Wald für Zuhause',
+                        en: 'A piece of forest for your home'
+                    },
+                    content: {
+                        de: 'Mit dem digitalen Buch „Nadelbaumküche“ kannst du auch nach dem Kurs kreativ weiter experimentieren',
+                        en: 'You can continue to experiment creatively after the course with the digital book “Nadelbaumküche”'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Bestimmung der wichtigsten Nadelbaumarten',
+                        en: 'Identification of the most important conifer species'
+                    },
+                    content: {
+                        de: 'Mit Schwerpunkt auf essbaren Bäumen und dem Erkennen der giftigen Eibe',
+                        en: 'With a focus on edible trees and recognizing the poisonous yew'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Herstellung von 3 außergewöhnlichen Nadelbaumprodukten',
+                        en: 'Production of 3 unusual conifer products'
+                    },
+                    content: {
+                        de: 'Wie z. B. Waldkaviar, Tannensalz und Oxymel',
+                        en: 'Such as forest caviar, fir salt and oxymel'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Inklusive aller Materialien',
+                        en: 'Including all materials'
+                    },
+                    content: {
+                        de: 'Gläser, Zutaten und Werkzeuge',
+                        en: 'Jars, ingredients and tools'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ein Stück Wald für Zuhause',
+                        en: 'Enjoyment and nature experience'
+                    },
+                    content: {
+                        de: 'Ein waldiger Begrüßungsdrink und ein wilder Snack runden den Workshop ab',
+                        en: 'A woodland welcome drink and a wild snack round off the workshop'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Teilnehmer erhalten im Anschluss die digitale Version meines Buchs "Nadelbaumküche"',
+                        en: 'Participants will receive the digital version of my book “Nadelbaumküche” afterwards'
+                    }
+                }
+            ],
+            booking: {
+                accomodation: false,
+                date: false,
+                foodIntolerance: false,
+                name: false,
+                roomType: false,
+                title: false,
+                quantity: false,
+                buttons: [
+                    {
+                        label: {
+                            de: 'Veranstaltung buchen',
+                            en: 'Book event'
+                        },
+                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
+                    }
+                ]
+            }
+        },
+        {
+            type: ['Food', 'Workshop'],
+            title: {
+                de: 'Fermentationskurs',
+                en: 'Fermentation course'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Victoria Lorenz',
+                    en: 'With Victoria Lorenz'
+                }
+            ],
+            date: new Date(2025, 2, 29),
+            price: 109,
+            link: 'fermentationskurs_maerz',
+            imagePreview: 'assets/media/events/fermentation_01.jpg',
+            imageGallery: [
+                'assets/media/events/fermentation_01.jpg',
+                'assets/media/events/fermentation_02.jpg',
+                'assets/media/events/fermentation_03.jpg',
+                'assets/media/events/fermentation_04.jpg',
+                'assets/media/events/fermentation_05.jpg'
+            ],
+            descriptionLong: {
+                de: `Entdecke die faszinierende Welt der Fermentation in der einzigartigen Atmosphäre des Ebenrieder. Dieser zauberhafte Ort, eingebettet in die malerische Landschaft des Voralpenlandes, bietet die perfekte Kulisse, um die Kunst der Fermentation in all ihren Facetten zu erleben. Die Verbindung von Tradition und Moderne, die das Ebenrieder ausstrahlt, macht diesen Kurs zu einem besonderen Erlebnis, das weit über einen gewöhnlichen Workshop hinausgeht. Lass dich inspirieren und tauche ein in die kulinarischen Möglichkeiten, die Fermente eröffnen!\n\nIm Workshop versorge ich euch mit fundiertem Wissen zur Fermentation, Milchsäuregärung, Darmgesundheit und den gesundheitlichen Vorteilen fermentierter Produkte. Nach einer theoretischen Einführung in die Kunst der Fermentation und das Thema Bakterien und Darmgesundheit geht es direkt an die Praxis: Gemeinsam schneiden, würzen und fermentieren wir saisonales Gemüse – kreativ, individuell und lecker. Je nach Jahreszeit bereiten wir unterschiedliche Kreationen zu.\n\nNeben dem intensiven Workshop erwartet euch ein Mittagessen, bei dem fermentierte Köstlichkeiten im Mittelpunkt stehen. Ihr habt die Möglichkeit, die Vielfalt der Fermente direkt zu schmecken und euch von neuen Geschmackserlebnissen überraschen zu lassen.`,
+                en: `Discover the fascinating world of fermentation in the unique atmosphere of Ebenrieder. This magical place, nestled in the picturesque landscape of the Alpine foothills, offers the perfect backdrop to experience the art of fermentation in all its facets. The combination of tradition and modernity that the Ebenrieder radiates makes this course a special experience that goes far beyond an ordinary workshop. Let yourself be inspired and immerse yourself in the culinary possibilities that ferments open up!\n\nIn this workshop, I will provide you with in-depth knowledge about fermentation, lactic acid fermentation, gut health and the health benefits of fermented products. After a theoretical introduction to the art of fermentation and the topic of bacteria and gut health, we will get straight down to practical work: together we will cut, season and ferment seasonal vegetables - creatively, individually and deliciously. We prepare different creations depending on the season.\n\nIn addition to the intensive workshop, a lunch awaits you where fermented delicacies take center stage. You will have the opportunity to taste the variety of ferments directly and be surprised by new taste sensations.`
+            },
+            descriptionShort: {
+                de: 'Entdecke die faszinierende Welt der Fermentation in der einzigartigen Atmosphäre des Ebenrieder.',
+                en: 'Discover the fascinating world of fermentation in the unique atmosphere of Ebenrieder.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 29.03.2024 um 11:00 Uhr',
+                        en: "on 29.03.2024 at 11:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 29.03.2024 um 14:30 Uhr',
+                        en: "on 29.03.2024 at 14:30 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%price%> EUR',
+                        en: '<%price%> EUR'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Eine inspirierende Einführung in die Kunst der Fermentation',
+                        en: 'An inspiring introduction to the art of fermentation'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Fundiertes Wissen zur Kunst der Fermentation und Darmgesundheit',
+                        en: 'In-depth knowledge about the art of fermentation and gut health'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Tasting verschiedener Fermente und ein leckeres Mittagessen',
+                        en: 'Tasting of various ferments and a delicious lunch'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Hands-On Praxisteil, bei dem ihr euer eigenes Ferment herstellt',
+                        en: 'Hands-on practical part where you make your own ferment'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Tipps, Tricks und Antworten auf all eure Fragen',
+                        en: 'Tips, tricks and answers to all your questions'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Kursmaterialien und Gläser/Flaschen für euer Ferment',
+                        en: 'Course materials and jars/bottles for your ferment'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Euer selbstgemachtes Ferment zum Mitnehmen',
+                        en: 'Your homemade ferment to take home'
+                    }
+                }
+            ],
+            booking: {
+                accomodation: false,
+                date: false,
+                foodIntolerance: false,
+                name: false,
+                roomType: false,
+                title: false,
+                quantity: false,
+                buttons: [
+                    {
+                        label: {
+                            de: 'Veranstaltung buchen',
+                            en: 'Book event'
+                        },
+                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
+                    }
+                ]
+            }
         }
     ];
 }

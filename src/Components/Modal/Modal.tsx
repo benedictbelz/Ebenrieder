@@ -46,8 +46,12 @@ export default class Modal extends React.Component<Props, States> {
     private handleOpen = () => {
         // HIDE HEADER
         setTimeout(() => {
-            this.header?.classList.add('hide');
+            this.header?.classList.add('hideModal');
         });
+        // HIDE HEADER SECOND TIME IN CASE OF URL PARAMS
+        setTimeout(() => {
+            this.header?.classList.add('hideModal');
+        }, 550);
         // MANAGE SCROLLBAR
         setTimeout(() => {
             if (this.props.browser.device === 'Mobile') return;
@@ -68,7 +72,7 @@ export default class Modal extends React.Component<Props, States> {
         this.setState({ active: false });
         // SHOW HEADER
         setTimeout(() => {
-            this.header?.classList.remove('hide');
+            this.header?.classList.remove('hideModal');
         });
         // MANAGE SCROLLBAR
         setTimeout(() => {

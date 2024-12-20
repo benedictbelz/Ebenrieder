@@ -204,6 +204,34 @@
                 }
             }
         }
+
+        .modalFooter {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 50px;
+            font-size: var(--font-size-detail);
+            line-height: $line-height-m;
+            letter-spacing: 0.75px;
+            padding: 0 var(--spacing-box-horizontal) var(--spacing-box-vertical) var(--spacing-box-horizontal);
+
+            @media (max-width: $media-l) {
+                padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
+            }
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 0px;
+
+                img {
+                    height: 50px;
+                }
+            }
+        }
     }
 
     .modalRoom {

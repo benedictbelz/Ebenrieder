@@ -2,5 +2,5 @@
 .DS_Store
 dist/
 node_modules/
-public/assets/media
+src/@assets/media
 src/@presets/secrets.ts

@@ -22,7 +22,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            General: path.resolve(__dirname, 'public')
+            General: path.resolve(__dirname, 'src/@assets')
         },
         extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
     },
@@ -68,8 +68,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'public/assets', to: 'assets' },
-                { from: 'public/fonts', to: 'fonts' }
+                { from: 'src/@assets', to: 'assets' }
             ]
         })
     ]

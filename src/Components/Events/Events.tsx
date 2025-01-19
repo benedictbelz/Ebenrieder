@@ -7,7 +7,7 @@ import Parallax from '../Parallax/Parallax';
 import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getEvents } from '../../@presets/events';
 import { getFilter, getLocal, getLanguage } from '../../@presets/language';
-import { Event, FilterEvent, availableFilters } from '../../@types/events';
+import { EmailCustom, EmailDefault, Event, FilterEvent, availableFilters } from '../../@types/events';
 import { Browser } from '../../@types/browser';
 import './Events.scss';
 
@@ -204,33 +204,13 @@ class Events extends React.Component<Props, States> {
             event.date instanceof Date
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
                 : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
-        const description = event.descriptionLong;
-        const details = event.descriptionDetails;
+        const descriptionLong = event.descriptionLong;
+        const descriptionDetails = event.descriptionDetails;
+        const descriptionProgram = event.descriptionProgram;
         const link = event.link;
         const price = event.price;
-        const program = event.descriptionProgram;
         const subtitle = event.subtitle;
         const title = event.title;
-        const small = program ? program.every(item => item.activities.every(activity => activity.time.length <= 5)) : false;
-        // DEFINE BOOKING
-        const bookingDate =
-            event.date instanceof Date
-                ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
-                : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
-        const bookingSubject = `${getLanguage(language, 'bookingSubject')} ${title[language]}`;
-        const bookingBody =
-            `${getLanguage(language, 'bookingGreeting')},${'%0D%0A'}${'%0D%0A'}` +
-            `${getLanguage(language, 'bookingText')}:${'%0D%0A'}${'%0D%0A'}` +
-            (booking.title ? `${getLanguage(language, 'bookingTitle')}: ${title[language]}${'%0D%0A'}` : '') +
-            (booking.date ? `${getLanguage(language, 'bookingDate')}: ${bookingDate}${'%0D%0A'}` : '') +
-            (booking.name ? `${getLanguage(language, 'bookingName')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}` : '') +
-            (booking.quantity ? `${getLanguage(language, 'bookingQuantity')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}` : '') +
-            (booking.foodIntolerance
-                ? `${getLanguage(language, 'bookingFoodIntolerance')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
-                : '') +
-            (booking.accomodation ? `${getLanguage(language, 'bookingAccomodation')}: (${getLanguage(language, 'bookingYesNo')})${'%0D%0A'}` : '') +
-            (booking.roomType ? `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingSingleDoubleRoom')})${'%0D%0A'}` : '') +
-            `${'%0D%0A'}${getLanguage(language, 'bookingGoodbye')}`;
         // DEFINE SHARE
         const shareSubject = `Ebenrieder | ${title[language]}`;
         const shareBody = `https://ebenrieder.de/event=${link}`;
@@ -269,6 +249,7 @@ class Events extends React.Component<Props, States> {
                                                             __html: item[language]
                                                                 .replace(/(\([^)]+\))/g, '<i>$1</i>')
                                                                 .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
+                                                                .replace('<%event%>', typeof price !== 'number' && price.event ? `${price.event}` : '')
                                                                 .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                                 .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
                                                         }}
@@ -287,7 +268,7 @@ class Events extends React.Component<Props, States> {
                                 <div
                                     className='modalDescription'
                                     dangerouslySetInnerHTML={{
-                                        __html: description[language]
+                                        __html: descriptionLong[language]
                                             .replace(/(\([^)]+\))/g, '<i>$1</i>')
                                             .replace(/<%b%>/g, '<strong>')
                                             .replace(/<%\/b%>/g, '</strong>')
@@ -315,12 +296,47 @@ class Events extends React.Component<Props, States> {
                                     <a className='underlineLink' href={`mailto:?subject=${shareSubject}&body=${shareBody}`}>
                                         {getLanguage(language, 'share')}
                                     </a>
-                                    {booking.buttons && booking.buttons?.length !== 0 ? (
+                                    {booking.length !== 0 && (
                                         <>
-                                            {booking.buttons?.map((item, index) => {
-                                                let link = item.link
+                                            {booking.map((item, index) => {
+                                                const emailType: 'Custom' | 'Default' =
+                                                    item.email &&
+                                                    (item.email as EmailCustom).subject !== undefined &&
+                                                    (item.email as EmailCustom).body !== undefined
+                                                        ? 'Custom'
+                                                        : 'Default';
+                                                const emailDate =
+                                                    event.date instanceof Date
+                                                        ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
+                                                        : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
+                                                const emailSubject = `${getLanguage(language, 'bookingSubject')} ${title[language]}`;
+                                                const emailBody =
+                                                    `${getLanguage(language, 'bookingGreeting')},${'%0D%0A'}${'%0D%0A'}` +
+                                                    `${getLanguage(language, 'bookingText')}:${'%0D%0A'}${'%0D%0A'}` +
+                                                    (emailType === 'Default'
+                                                        ? `${getLanguage(language, 'bookingTitle')}: ${title[language]}${'%0D%0A'}`
+                                                        : '') +
+                                                    (emailType === 'Default' ? `${getLanguage(language, 'bookingDate')}: ${emailDate}${'%0D%0A'}` : '') +
+                                                    (emailType === 'Default' && (item.email as EmailDefault)?.name
+                                                        ? `${getLanguage(language, 'bookingName')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
+                                                        : '') +
+                                                    (emailType === 'Default' && (item.email as EmailDefault)?.quantity
+                                                        ? `${getLanguage(language, 'bookingQuantity')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
+                                                        : '') +
+                                                    (emailType === 'Default' && (item.email as EmailDefault)?.foodIntolerance
+                                                        ? `${getLanguage(language, 'bookingFoodIntolerance')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
+                                                        : '') +
+                                                    (emailType === 'Default' && (item.email as EmailDefault)?.accomodation
+                                                        ? `${getLanguage(language, 'bookingAccomodation')}: (${getLanguage(language, 'bookingYesNo')})${'%0D%0A'}`
+                                                        : '') +
+                                                    (emailType === 'Default' && (item.email as EmailDefault)?.roomType
+                                                        ? `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingSingleDoubleRoom')})${'%0D%0A'}`
+                                                        : '') +
+                                                    `${'%0D%0A'}${getLanguage(language, 'bookingGoodbye')}`;
+                                                const label = item.label ? item.label[language] : getLanguage(language, 'bookEvent');
+                                                const link = item.link
                                                     ? item.link
-                                                    : `mailto:hallo@ebenrieder.de${item.email ? `?subject=${item.email.subject[language]}&body=${item.email.body[language]}` : `?subject=${bookingSubject}&body=${bookingBody}`}`;
+                                                    : `mailto:hallo@ebenrieder.de${emailType === 'Custom' ? `?subject=${(item.email as EmailCustom).subject[language]}&body=${(item.email as EmailCustom).body[language]}` : `?subject=${emailSubject}&body=${emailBody}`}`;
                                                 return (
                                                     <a
                                                         className='underlineLink'
@@ -329,21 +345,17 @@ class Events extends React.Component<Props, States> {
                                                         target='_blank'
                                                         rel='noopener noreferrer'
                                                     >
-                                                        {item.label[language]}
+                                                        {label}
                                                     </a>
                                                 );
                                             })}
                                         </>
-                                    ) : (
-                                        <a className='underlineLink' href={`mailto:hallo@ebenrieder.de?subject=${bookingSubject}&body=${bookingBody}`}>
-                                            {getLanguage(language, 'bookEvent')}
-                                        </a>
                                     )}
                                 </div>
                             </div>
                             <div className='modalRight'>
                                 <div className='modalDetails'>
-                                    {details.map((item, index) => (
+                                    {descriptionDetails.map((item, index) => (
                                         <React.Fragment key={`subtitle_${index}`}>
                                             <span className='line' />
                                             <span className='detail'>
@@ -353,6 +365,7 @@ class Events extends React.Component<Props, States> {
                                                         __html: item.content[language]
                                                             .replace(/(\([^)]+\))/g, '<i>$1</i>')
                                                             .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
+                                                            .replace('<%event%>', typeof price !== 'number' && price.event ? `${price.event}` : '')
                                                             .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                             .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
                                                     }}
@@ -362,16 +375,19 @@ class Events extends React.Component<Props, States> {
                                     ))}
                                     <span className='line' />
                                 </div>
-                                {program && (
+                                {descriptionProgram && (
                                     <div className='modalProgram'>
-                                        {program.map(item => {
+                                        {descriptionProgram.map((item, indexProgram) => {
                                             const day = item.day;
+                                            const small = descriptionProgram
+                                                ? descriptionProgram.every(item => item.activities.every(activity => activity.time.length <= 5))
+                                                : false;
                                             return (
-                                                <div className='day' key={item.day[language]}>
-                                                    <p>{day[language]}</p>
-                                                    {item.activities.map((activity, index) => {
+                                                <div className='day' key={`program_${indexProgram}`}>
+                                                    {day && <p>{day[language]}</p>}
+                                                    {item.activities.map((activity, indexActivity) => {
                                                         return (
-                                                            <div className='activity' key={`${item.day[language]}_${index}`}>
+                                                            <div className='activity' key={`program_${indexProgram}_${indexActivity}`}>
                                                                 <span className='time' style={{ minWidth: small ? 75 : 125 }}>
                                                                     {activity.time}
                                                                 </span>
@@ -425,7 +441,10 @@ class Events extends React.Component<Props, States> {
                       : (item.date.start.getMonth() >= this.month && item.date.start.getFullYear() === this.year) ||
                         (item.date.start.getMonth() <= this.month && item.date.start.getFullYear() === this.year + 1)
             )
-            .map(item => ({ ...item, expired: (item.date instanceof Date ? item.date : item.date.start).getTime() < this.date.getTime() }));
+            .map(item => ({
+                ...item,
+                status: (item.date instanceof Date ? item.date : item.date.start).getTime() < this.date.getTime() ? 'Expired' : item.status
+            }));
         // GET UPCOMING EVENTS
         const upcompingEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
@@ -541,7 +560,11 @@ class Events extends React.Component<Props, States> {
                             return (
                                 <div className='event' key={`event_${event.link}`}>
                                     <div className='eventImage'>
-                                        {event.expired && <span className='eventNotification'>{getLanguage(language, 'eventExpired')}</span>}
+                                        {event.status !== 'Available' && (
+                                            <span className='eventNotification'>
+                                                {event.status === 'Booked' ? getLanguage(language, 'eventBooked') : getLanguage(language, 'eventExpired')}
+                                            </span>
+                                        )}
                                         <Parallax
                                             height={this.props.browser.height}
                                             scroll={this.props.browser.scroll}

@@ -36,8 +36,8 @@ class Rooms extends React.Component<Props, States> {
     componentDidMount() {
         // CHECK QUERY PARAMS
         let params = queryString.parse(this.props.router.location.search);
-        let room = params.event ? getRooms().find(item => item.link === params.event) : null;
-        // IF EVENT
+        let room = params.room ? getRooms(this.props.filters).find(item => item.link === params.room) : null;
+        // IF ROOM
         if (room && this.rooms.current) {
             const scroll = Math.round(this.rooms.current.getBoundingClientRect().top) + this.props.browser.scroll;
             setTimeout(() => (document.documentElement.scrollTop = scroll));
@@ -83,7 +83,7 @@ class Rooms extends React.Component<Props, States> {
                 this.timeout.push(setTimeout(() => animation(), 100));
             }
         };
-        // ANIMATE EVENTS
+        // ANIMATE ROOMS
         if (rooms.length !== 0) {
             animation();
         }
@@ -101,7 +101,7 @@ class Rooms extends React.Component<Props, States> {
     private renderModal = () => {
         // GET WRAPPER
         const wrapper = document.getElementById('app');
-        // IF NO EVENT OR WRAPPER
+        // IF NO ROOM OR WRAPPER
         if (!this.state.room || !wrapper) {
             return null;
         }
@@ -116,7 +116,7 @@ class Rooms extends React.Component<Props, States> {
         const link = room.link;
         // DEFINE SHARE
         const shareSubject = `Ebenrieder | ${title[language]}`;
-        const shareBody = `https://ebenrieder.de/event=${link}`;
+        const shareBody = `https://ebenrieder.de/room=${link}`;
         // RETURN MODAL
         return (
             <Modal className='modalRoom' browser={this.props.browser} handleClose={() => this.setState({ room: null })}>
@@ -133,7 +133,7 @@ class Rooms extends React.Component<Props, States> {
                                 modus: 'Simple'
                             }}
                         >
-                            {room.gallery.map((item, index) => (
+                            {room.imageGallery.map((item, index) => (
                                 <img key={index} src={item} />
                             ))}
                         </Gallery>
@@ -149,7 +149,7 @@ class Rooms extends React.Component<Props, States> {
                                     </a>
                                     {room.booking && (
                                         <a className='underlineLink' href={room.booking} target='_blank' rel='noopener noreferrer'>
-                                            {getLanguage(language, 'bookApartment')}
+                                            {getLanguage(language, 'bookAccomodation')}
                                         </a>
                                     )}
                                 </div>
@@ -160,7 +160,7 @@ class Rooms extends React.Component<Props, States> {
                                         <div className={`modalFeature ${key}`} key={`feature_${index}`}>
                                             <img src={`assets/svg/${getFeatureImage(key)}.svg`} />
                                             <p>
-                                                {(key === 'quantityPeople' || key === 'quantityYoga') && (
+                                                {(key === 'quantityPeople' || key === 'quantitySeats' || key === 'quantityYoga') && (
                                                     <span>
                                                         {`${features[key].replace('-', language === 'de' ? ' bis ' : ' to ')} ${getFeature(language, key)}`}
                                                     </span>
@@ -171,7 +171,11 @@ class Rooms extends React.Component<Props, States> {
                                                         <sup>2</sup>
                                                     </span>
                                                 )}
-                                                {key !== 'squareMeter' && key !== 'quantityPeople' && key !== 'quantityYoga' && getFeature(language, key)}
+                                                {key !== 'squareMeter' &&
+                                                    key !== 'quantityPeople' &&
+                                                    key !== 'quantitySeats' &&
+                                                    key !== 'quantityYoga' &&
+                                                    getFeature(language, key)}
                                             </p>
                                         </div>
                                     ))}
@@ -188,8 +192,8 @@ class Rooms extends React.Component<Props, States> {
         // DEFINE VARIABLES
         const language = this.props.browser.language;
         const media = this.props.browser.media;
-        // GET CURRENT EVENTS
-        const rooms = getRooms().filter(item => item.type === this.state.filter);
+        // GET CURRENT ROOMS
+        const rooms = getRooms(this.props.filters).filter(item => item.type === this.state.filter);
         // GET FILTERS
         const filters = availableFilters
             .filter(item => this.props.filters.includes(item))
@@ -217,7 +221,7 @@ class Rooms extends React.Component<Props, States> {
                     {rooms.map((room: Room, index: number) => {
                         const title = room.title;
                         const description = room.descriptionShort;
-                        const previewImage = room.previewImage;
+                        const previewImage = room.imagePreview;
                         return (
                             <div className='room' key={`room_${room.link}`}>
                                 <div className='roomImage'>

@@ -1,8 +1,17 @@
-export const availableFilters = ['Apartment', 'Room', 'Seminar Room', 'Wellness'] as const;
+export const availableFilters = ['Apartment', 'Kitchen', 'Room', 'Seminar Room', 'Wellness'] as const;
 
 export type FilterRoom = (typeof availableFilters)[number];
 
 export type Room = {
+    type: FilterRoom;
+    title: {
+        de: string;
+        en: string;
+    };
+    link: string;
+    booking?: string;
+    imagePreview: string;
+    imageGallery: string[];
     descriptionLong: {
         de: string;
         en: string;
@@ -27,6 +36,7 @@ export type Room = {
         pets?: boolean;
         pool?: boolean;
         quantityPeople?: string;
+        quantitySeats?: string;
         quantityYoga?: string;
         refrigerator?: boolean;
         sauna?: boolean;
@@ -41,13 +51,4 @@ export type Room = {
         wifi?: boolean;
         workplace?: boolean;
     };
-    booking?: string;
-    gallery: string[];
-    link: string;
-    previewImage: string;
-    title: {
-        de: string;
-        en: string;
-    };
-    type: FilterRoom;
 };

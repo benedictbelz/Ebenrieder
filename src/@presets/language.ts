@@ -11,7 +11,7 @@ const de = {
     phone: 'Telefon',
     email: 'E-Mail',
     book: 'Buchen',
-    bookApartment: 'Wohnung buchen',
+    bookAccomodation: 'Unterkunft buchen',
     bookEvent: 'Veranstaltung buchen',
     share: 'Teilen',
     error: 'Leider ist etwas schiefgelaufen, hier kommst du wieder zurück auf die <%a%>Startseite<%/a%>',
@@ -31,6 +31,7 @@ const de = {
     cookiesAccept: 'Akzeptieren',
     cookiesDecline: 'Ablehnen',
     eventUnavailable: 'Bisher haben wir für diesen Monat keine Veranstaltungen geplant<%split%>, aber dafür wieder im kommenden',
+    eventBooked: 'Ausgebucht',
     eventExpired: 'Abgelaufen',
     bookingSubject: 'Buchungsanfrage für',
     bookingGreeting: 'Hallo',
@@ -46,12 +47,14 @@ const de = {
     bookingYesNo: 'Ja/Nein',
     bookingSingleDoubleRoom: 'Einzel- oder Doppelzimmer',
     bookingGoodbye: 'Viele Grüße!',
-    filterAccomodation: 'Übernachtung',
     filterConcert: 'Konzert',
     filterFood: 'Essen',
+    filterPottery: 'Keramik',
+    filterRetreat: 'Retreat',
     filterWorkshop: 'Workshop',
     filterYoga: 'Yoga',
     filterApartment: 'Wohnungen',
+    filterKitchen: 'Küchen',
     filterRoom: 'Zimmer',
     filterSeminarRoom: 'Seminarräume',
     filterWellness: 'Wellness',
@@ -70,6 +73,7 @@ const de = {
     featurePets: 'Haustiere erlaubt',
     featurePool: 'Schwimmbecken',
     featureQuantityPeople: 'Personen',
+    featureQuantitySeats: 'Sitzplätze',
     featureQuantityYoga: 'Yogaplätze',
     featureRefrigerator: 'Kühlschrank',
     featureSauna: 'Sauna',
@@ -96,7 +100,7 @@ const en: Dictionary = {
     phone: 'Phone',
     email: 'E-Mail',
     book: 'Book',
-    bookApartment: 'Book apartment',
+    bookAccomodation: 'Book accomodation',
     bookEvent: 'Book event',
     share: 'Share',
     error: 'Unfortunately something went wrong, please go back to the <%a%>homepage<%/a%>',
@@ -115,6 +119,7 @@ const en: Dictionary = {
     cookiesAccept: 'Accept',
     cookiesDecline: 'Decline',
     eventUnavailable: 'So far, we have no events planned for this month<%split%>, but again in the upcoming',
+    eventBooked: 'Fully Booked',
     eventExpired: 'Expired',
     bookingSubject: 'Booking request for',
     bookingGreeting: 'Hello',
@@ -130,12 +135,14 @@ const en: Dictionary = {
     bookingYesNo: 'Yes/No',
     bookingSingleDoubleRoom: 'Single or double room',
     bookingGoodbye: 'Many greetings!',
-    filterAccomodation: 'Accomodation',
     filterConcert: 'Concert',
     filterFood: 'Food',
+    filterPottery: 'Pottery',
+    filterRetreat: 'Retreat',
     filterWorkshop: 'Workshop',
     filterYoga: 'Yoga',
     filterApartment: 'Apartments',
+    filterKitchen: 'Kitchens',
     filterRoom: 'Rooms',
     filterSeminarRoom: 'Workshop Spaces',
     filterWellness: 'Wellness',
@@ -154,6 +161,7 @@ const en: Dictionary = {
     featurePets: 'Pets allowed',
     featurePool: 'Swimming pool',
     featureQuantityPeople: 'people',
+    featureQuantitySeats: 'seats',
     featureQuantityYoga: 'yoga seats',
     featureRefrigerator: 'Refrigerator',
     featureSauna: 'Sauna',
@@ -190,18 +198,22 @@ export const getLocal = (language: Language) => {
 };
 
 export const getFilter = (language: Language, filter: FilterEvent | FilterRoom) => {
-    if (filter === 'Accomodation') {
-        return getLanguage(language, 'filterAccomodation');
-    } else if (filter === 'Concert') {
+    if (filter === 'Concert') {
         return getLanguage(language, 'filterConcert');
     } else if (filter === 'Food') {
         return getLanguage(language, 'filterFood');
+    } else if (filter === 'Pottery') {
+        return getLanguage(language, 'filterPottery');
+    } else if (filter === 'Retreat') {
+        return getLanguage(language, 'filterRetreat');
     } else if (filter === 'Workshop') {
         return getLanguage(language, 'filterWorkshop');
     } else if (filter === 'Yoga') {
         return getLanguage(language, 'filterYoga');
     } else if (filter === 'Apartment') {
         return getLanguage(language, 'filterApartment');
+    } else if (filter === 'Kitchen') {
+        return getLanguage(language, 'filterKitchen');
     } else if (filter === 'Room') {
         return getLanguage(language, 'filterRoom');
     } else if (filter === 'Seminar Room') {
@@ -244,6 +256,8 @@ export const getFeature = (language: Language, feature: keyof Room['features']) 
         return getLanguage(language, 'featurePool');
     } else if (feature === 'quantityPeople') {
         return getLanguage(language, 'featureQuantityPeople');
+    } else if (feature === 'quantitySeats') {
+        return getLanguage(language, 'featureQuantitySeats');
     } else if (feature === 'quantityYoga') {
         return getLanguage(language, 'featureQuantityYoga');
     } else if (feature === 'refrigerator') {

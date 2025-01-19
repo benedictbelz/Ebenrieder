@@ -3,7 +3,7 @@ import { Event } from '../@types/events';
 export function getEvents(): Event[] {
     return [
         {
-            type: ['Accomodation', 'Food', 'Yoga'],
+            type: ['Retreat'],
             title: {
                 de: 'Yoga Opening',
                 en: 'Yoga Opening'
@@ -27,6 +27,7 @@ export function getEvents(): Event[] {
                 end: new Date(2024, 5, 9)
             },
             price: 20,
+            status: 'Available',
             link: 'yoga_opening',
             imagePreview: 'assets/media/events/yoga_opening_01.jpg',
             imageGallery: [
@@ -133,43 +134,34 @@ export function getEvents(): Event[] {
                     link: 'assets/media/events/yoga_opening.pdf'
                 }
             ],
-            booking: {
-                accomodation: true,
-                date: true,
-                foodIntolerance: false,
-                name: true,
-                roomType: false,
-                title: true,
-                quantity: true,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Anmeldung für Übernachtung',
-                            en: 'Booking for Accomodation'
-                        }
+            booking: [
+                {
+                    label: {
+                        de: 'Anmeldung für Übernachtung',
+                        en: 'Booking for Accomodation'
+                    }
+                },
+                {
+                    label: {
+                        de: 'Anmeldung für Yoga',
+                        en: 'Booking for Yoga'
                     },
-                    {
-                        label: {
+                    link: 'mailto:tatjana@raise-yoga.com',
+                    email: {
+                        subject: {
                             de: 'Anmeldung für Yoga',
                             en: 'Booking for Yoga'
                         },
-                        link: 'mailto:tatjana@raise-yoga.com',
-                        email: {
-                            subject: {
-                                de: 'Anmeldung für Yoga',
-                                en: 'Booking for Yoga'
-                            },
-                            body: {
-                                de: `Hallo,${'%0D%0A'}${'%0D%0A'}ich möchte mich für folgende Yogakurse für das Yoga Opening im Ebenrieder vom 08. bis 09.06.2024 anmelden.${'%0D%0A'}${'%0D%0A'}Name: (Bitte ausfüllen)${'%0D%0A'}Yogakurs: (Bitte Tag, Lehrer und Uhrzeit angeben)${'%0D%0A'}${'%0D%0A'}Viele Grüße!`,
-                                en: `Hello,${'%0D%0A'}${'%0D%0A'}I would like to book the following yoga classes for the Yoga Opening at Ebenrieder from 8th to 9th of June 2024.${'%0D%0A'}${'%0D%0A'}Name: (Please complete)${'%0D%0A'}Yoga course: (Please specify day, teacher and time)${'%0D%0A'}${'%0D%0A'}Many greetings!`
-                            }
+                        body: {
+                            de: `Hallo,${'%0D%0A'}${'%0D%0A'}ich möchte mich für folgende Yogakurse für das Yoga Opening im Ebenrieder vom 08. bis 09.06.2024 anmelden.${'%0D%0A'}${'%0D%0A'}Name: (Bitte ausfüllen)${'%0D%0A'}Yogakurs: (Bitte Tag, Lehrer und Uhrzeit angeben)${'%0D%0A'}${'%0D%0A'}Viele Grüße!`,
+                            en: `Hello,${'%0D%0A'}${'%0D%0A'}I would like to book the following yoga classes for the Yoga Opening at Ebenrieder from 8th to 9th of June 2024.${'%0D%0A'}${'%0D%0A'}Name: (Please complete)${'%0D%0A'}Yoga course: (Please specify day, teacher and time)${'%0D%0A'}${'%0D%0A'}Many greetings!`
                         }
                     }
-                ]
-            }
+                }
+            ]
         },
         {
-            type: ['Food', 'Workshop', 'Yoga'],
+            type: ['Pottery'],
             title: {
                 de: 'Arbeiten mit Ton',
                 en: 'Working with clay'
@@ -189,6 +181,7 @@ export function getEvents(): Event[] {
                 end: new Date(2024, 6, 7)
             },
             price: 930,
+            status: 'Available',
             link: 'arbeiten_mit_ton',
             imagePreview: 'assets/media/events/arbeiten_mit_ton_07.jpg',
             imageGallery: [
@@ -302,18 +295,20 @@ export function getEvents(): Event[] {
                     link: 'assets/media/events/arbeiten_mit_ton.pdf'
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: true,
-                foodIntolerance: true,
-                name: true,
-                roomType: false,
-                title: true,
-                quantity: true
-            }
+            booking: [
+                {
+                    email: {
+                        accomodation: false,
+                        foodIntolerance: true,
+                        name: true,
+                        roomType: false,
+                        quantity: true
+                    }
+                }
+            ]
         },
         {
-            type: ['Food', 'Yoga'],
+            type: ['Retreat'],
             title: {
                 de: 'Zeit des Loslassens',
                 en: 'A Time of Letting Go'
@@ -340,6 +335,7 @@ export function getEvents(): Event[] {
                 singleRoom: 750,
                 doubleRoom: 650
             },
+            status: 'Available',
             link: 'zeit_des_loslassens',
             imagePreview: 'assets/media/events/zeit_des_loslassens_07.jpg',
             imageGallery: [
@@ -439,18 +435,20 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: true,
-                foodIntolerance: true,
-                name: true,
-                roomType: true,
-                title: true,
-                quantity: true
-            }
+            booking: [
+                {
+                    email: {
+                        accomodation: false,
+                        foodIntolerance: true,
+                        name: true,
+                        roomType: true,
+                        quantity: true
+                    }
+                }
+            ]
         },
         /* {
-            type: ['Food', 'Yoga'],
+            type: ['Retreat'],
             title: {
                 de: 'Slow down & warm your soul',
                 en: 'Slow down & warm your soul'
@@ -477,6 +475,7 @@ export function getEvents(): Event[] {
                 singleRoom: 1070,
                 doubleRoom: 830
             },
+            status: 'Available',
             link: 'slow_down_and_warm_your_soul',
             imagePreview: 'assets/media/events/slow_down_15.jpg',
             imageGallery: [
@@ -753,27 +752,18 @@ export function getEvents(): Event[] {
                     ]
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: true,
-                foodIntolerance: true,
-                name: true,
-                roomType: true,
-                title: true,
-                quantity: true,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Buchen',
-                            en: 'Book'
-                        },
-                        link: 'https://www.anja-zeifang.de/events/'
-                    }
-                ]
-            }
+            booking: [
+                {
+                    label: {
+                        de: 'Buchen',
+                        en: 'Book'
+                    },
+                    link: 'https://www.anja-zeifang.de/events/'
+                }
+            ]
         }, */
-        {
-            type: ['Food', 'Yoga'],
+        /* {
+            type: ['Retreat'],
             title: {
                 de: 'Re-Start',
                 en: 'Re-Start'
@@ -804,6 +794,7 @@ export function getEvents(): Event[] {
                 singleRoom: 730,
                 doubleRoom: 630
             },
+            status: 'Available',
             link: 'restart',
             imagePreview: 'assets/media/events/restart_03.jpg',
             imageGallery: [
@@ -895,27 +886,18 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: true,
-                foodIntolerance: true,
-                name: true,
-                roomType: true,
-                title: true,
-                quantity: true,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Veranstaltung buchen',
-                            en: 'Book event'
-                        },
-                        link: 'https://www.raise-yoga.com/retreats-workshops-1/'
-                    }
-                ]
-            }
-        },
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://www.raise-yoga.com/retreats-workshops-1/'
+                }
+            ]
+        }, */
         {
-            type: ['Food', 'Workshop'],
+            type: ['Food'],
             title: {
                 de: 'Pilzgenuss - Von der Natur auf den Teller',
                 en: 'Mushroom delight - from nature to the plate'
@@ -942,6 +924,7 @@ export function getEvents(): Event[] {
                 singleRoom: 760,
                 doubleRoom: 710
             },
+            status: 'Available',
             link: 'pilzgenuss',
             imagePreview: 'assets/media/events/pilzgenuss_09.jpg',
             imageGallery: [
@@ -1164,18 +1147,20 @@ export function getEvents(): Event[] {
                     link: 'assets/media/events/pilzgenuss.pdf'
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: true,
-                foodIntolerance: true,
-                name: true,
-                roomType: true,
-                title: true,
-                quantity: true
-            }
+            booking: [
+                {
+                    email: {
+                        accomodation: false,
+                        foodIntolerance: true,
+                        name: true,
+                        roomType: true,
+                        quantity: true
+                    }
+                }
+            ]
         },
         {
-            type: ['Food', 'Workshop'],
+            type: ['Workshop'],
             title: {
                 de: 'Fermentationskurs',
                 en: 'Fermentation course'
@@ -1188,6 +1173,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 1, 15),
             price: 109,
+            status: 'Booked',
             link: 'fermentationskurs_februar',
             imagePreview: 'assets/media/events/fermentation_01.jpg',
             imageGallery: [
@@ -1279,27 +1265,18 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: false,
-                foodIntolerance: false,
-                name: false,
-                roomType: false,
-                title: false,
-                quantity: false,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Veranstaltung buchen',
-                            en: 'Book event'
-                        },
-                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
-                    }
-                ]
-            }
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
+                }
+            ]
         },
         {
-            type: ['Food', 'Workshop'],
+            type: ['Workshop'],
             title: {
                 de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
                 en: 'Wild forest flavors - conifer cuisine workshop'
@@ -1312,6 +1289,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 1, 22),
             price: 89,
+            status: 'Booked',
             link: 'nadelbaumkurs_februar',
             imagePreview: 'assets/media/events/nadelbaumkueche_01.jpg',
             imageGallery: [
@@ -1441,27 +1419,18 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: false,
-                foodIntolerance: false,
-                name: false,
-                roomType: false,
-                title: false,
-                quantity: false,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Veranstaltung buchen',
-                            en: 'Book event'
-                        },
-                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
-                    }
-                ]
-            }
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
+                }
+            ]
         },
         {
-            type: ['Food', 'Workshop'],
+            type: ['Workshop'],
             title: {
                 de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
                 en: 'Wild forest flavors - conifer cuisine workshop'
@@ -1474,6 +1443,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 2, 15),
             price: 89,
+            status: 'Booked',
             link: 'nadelbaumkurs_maerz',
             imagePreview: 'assets/media/events/nadelbaumkueche_01.jpg',
             imageGallery: [
@@ -1603,27 +1573,18 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: false,
-                foodIntolerance: false,
-                name: false,
-                roomType: false,
-                title: false,
-                quantity: false,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Veranstaltung buchen',
-                            en: 'Book event'
-                        },
-                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
-                    }
-                ]
-            }
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder-kopie'
+                }
+            ]
         },
         {
-            type: ['Food', 'Workshop'],
+            type: ['Workshop'],
             title: {
                 de: 'Fermentationskurs',
                 en: 'Fermentation course'
@@ -1636,6 +1597,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 2, 29),
             price: 109,
+            status: 'Booked',
             link: 'fermentationskurs_maerz',
             imagePreview: 'assets/media/events/fermentation_01.jpg',
             imageGallery: [
@@ -1727,24 +1689,195 @@ export function getEvents(): Event[] {
                     }
                 }
             ],
-            booking: {
-                accomodation: false,
-                date: false,
-                foodIntolerance: false,
-                name: false,
-                roomType: false,
-                title: false,
-                quantity: false,
-                buttons: [
-                    {
-                        label: {
-                            de: 'Veranstaltung buchen',
-                            en: 'Book event'
-                        },
-                        link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://vildvuchs.myshopify.com/products/fermentationskurs-im-ebenrieder'
+                }
+            ]
+        },
+        {
+            type: ['Workshop'],
+            title: {
+                de: 'Wild Dinner',
+                en: 'Wild Dinner'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Victoria Lorenz & Johannes Höcherl',
+                    en: 'With Victoria Lorenz & Johannes Höcherl'
+                },
+                {
+                    de: '<%singleRoom%> EUR (Einzelzimmer)',
+                    en: '<%singleRoom%> EUR (Single Room)'
+                },
+                {
+                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
+                    en: '<%doubleRoom%> EUR (Double Room)'
+                }
+            ],
+            date: new Date(2025, 3, 6),
+            price: {
+                event: 179,
+                singleRoom: 760,
+                doubleRoom: 710
+            },
+            status: 'Available',
+            link: 'wild_dinner',
+            imagePreview: 'assets/media/events/wild_dinner_11.jpg',
+            imageGallery: [
+                'assets/media/events/wild_dinner_01.jpg',
+                'assets/media/events/wild_dinner_02.jpg',
+                'assets/media/events/wild_dinner_03.jpg',
+                'assets/media/events/wild_dinner_04.jpg',
+                'assets/media/events/wild_dinner_05.jpg',
+                'assets/media/events/wild_dinner_06.jpg',
+                'assets/media/events/wild_dinner_07.jpg',
+                'assets/media/events/wild_dinner_08.jpg',
+                'assets/media/events/wild_dinner_09.jpg',
+                'assets/media/events/wild_dinner_10.jpg'
+            ],
+            descriptionLong: {
+                de: `Was kommt raus, wenn ein kreativer Spitzenkoch und eine leidenschaftliche Wildkräuterexpertin zusammen durch die Wälder streichen und Ideen austauschen?\n\nEin sehr besonderes und unvergleichliches Geschmackserlebnis für euch. Wir lassen unsere WILD DINNER Reihe wieder aufleben und diesmal zieht es uns aus der Stadt raus und ins schöne Ostallgäu. Erlebt einen ganzen Tag voller Aromen, Genuss, Natur und wilder Kulinarik. Gemeinsam mit Johannes Höcherl, dem kreativen Kopf hinter dem bekannten Münchner Restaurant ≫Das Kulinariat≪, und der Kräuterpädagogin Victoria von ≫vildvuchs≪, die die Aromen und Geheimnisse der heimischen Pflanzen meisterhaft beherrscht, erwartet euch ein unvergleichlicher Tag.\n\nDer Tag beginnt mit einer geführten, mehrstündigen Wildkräutertour vorbei an grünen Wiesen und duftenden Wälder. Victoria zeigt euch die saisonal wachsenden Wildpflanzen, führt euch in die Welt der essbaren Bäume ein und teilt ihre Leidenschaft über wilden, saisonale Aromen. Als Highlight und Stärkung für zwischendurch wird euch ein wilder Snack mitten in der Natur serviert.\n\nNach der Tour werdet ihr im schönsten Ambiente des ≫Ebenrieder≪ von Johannes mit einem Fine Dining Erlebnis der besonderen Art verwöhnt. Er kreiert ein exquisites 5-Gänge-Menü, inspiriert von Wildpflanzen, essbaren Bäumen sowie regionalen und saisonalen Zutaten. Lasst euch von den Kreationen überraschen.\n\nUnser ≫Wild Dinner≪ ist eine Hommage an unsere wunderbare Natur, an die Wälder und Bäume die uns umgeben und uns versorgen. Ein nachhaltiger Umgang mit den Wildpflanzen und der Natur ist uns sehr wichtig und mit dem vermittelten Wissen und der kulinarischen Heranführung an diesem Tag möchten wir die Verbindung von Mensch und Natur stärken und die Wichtigkeit der Pflanzenvielfalt hervorheben. Es wird ein Erlebnis für alle Sinne. Macht aus einem Tag ein entspanntes Wochenende. Wer möchte, kann direkt im wunderschönen Ebenrieder übernachten und die Ruhe der umliegenden Wälder genießen.`,
+                en: `What happens when a creative top chef and a passionate wild herb expert roam the woods together and exchange ideas?\n\nA very special and incomparable flavour experience for you. We are reviving our WILD DINNER series and this time we are travelling out of the city and into the beautiful Ostallgäu. Experience a whole day full of flavours, enjoyment, nature and wild cuisine. Together with Johannes Höcherl, the creative mind behind the well-known Munich restaurant ≫Das Kulinariat≪, and herbalist Victoria from ≫vildvuchs≪, who is a master of the flavours and secrets of local plants, an incomparable day awaits you.\n\nThe day begins with a guided wild herb tour lasting several hours past green meadows and fragrant forests. Victoria will show you the wild plants that grow seasonally, introduce you to the world of edible trees and share her passion for wild, seasonal flavours. As a highlight and refreshment in between, you will be served a wild snack in the middle of nature.\n\nAfter the tour, Johannes will treat you to a very special fine dining experience in the beautiful surroundings of the ≫Ebenrieder≪. He will create an exquisite 5-course menu inspired by wild plants, edible trees and regional and seasonal ingredients. Let yourself be surprised by the creations.\n\nOur ≫Wild Dinner≪ is a tribute to our wonderful nature, to the forests and trees that surround us and provide for us. A sustainable approach to wild plants and nature is very important to us and with the knowledge imparted and the culinary introduction on this day we would like to strengthen the connection between man and nature and emphasise the importance of plant diversity. It will be an experience for all the senses. Turn a day into a relaxing weekend. If you want, you can spend the night in beautiful Ebenrieder and enjoy the tranquillity of the surrounding forests.`
+            },
+            descriptionShort: {
+                de: 'Ein sehr besonderes und unvergleichliches Geschmackserlebnis für euch, erlebt einen ganzen Tag voller Aromen, Genuss, Natur und wilder Kulinarik.',
+                en: 'A very special and incomparable taste experience for you, experience a whole day full of flavours, enjoyment, nature and wild culinary delights.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 06.04.2024 um 12:00 Uhr',
+                        en: "on 06.04.2024 at 12:00 o'clock"
                     }
-                ]
-            }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 06.04.2024 um 22:00 Uhr',
+                        en: "on 06.04.2024 at 22:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%event%> EUR',
+                        en: '<%event%> EUR'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Mehrstündige Wildkräutertour',
+                        en: 'Wild herb tour lasting several hours'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Wilder Snack',
+                        en: 'Wild snack'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Wilder Begrüßungsdrink',
+                        en: 'Wild welcome drink'
+                    }
+                },
+                {
+                    content: {
+                        de: '5 Gänge Menü inspiriert von der Natur exkl. alkoholische Getränke',
+                        en: '5 course menu inspired by nature excl. alcoholic beverages'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Übernachtung',
+                        en: 'Accomodation'
+                    },
+                    content: {
+                        de: '<%singleRoom%> EUR im Einzelzimmer, <%doubleRoom%> EUR im Doppelzimmer',
+                        en: '<%singleRoom%> EUR in a single room, <%doubleRoom%> EUR in a double room'
+                    }
+                }
+            ],
+            descriptionProgram: [
+                {
+                    activities: [
+                        {
+                            time: '12:00',
+                            description: {
+                                de: 'Start am Ebenrieder',
+                                en: 'Start at the Ebenrieder'
+                            }
+                        },
+                        {
+                            time: '12:30',
+                            description: {
+                                de: 'Start der Kräuterwanderung',
+                                en: 'Start of the herbal walk'
+                            }
+                        },
+                        {
+                            time: '14:00',
+                            description: {
+                                de: 'Snack im Wald',
+                                en: 'Snack in the woods'
+                            }
+                        },
+                        {
+                            time: '17:00 - 17:30',
+                            description: {
+                                de: 'Ankunft beim Ebenrieder',
+                                en: 'Arrival at Ebenrieder'
+                            }
+                        },
+                        {
+                            time: '18:00',
+                            description: {
+                                de: 'Start des Dinners',
+                                en: 'Start of the Dinner'
+                            }
+                        },
+                        {
+                            time: '22:00',
+                            description: {
+                                de: 'Ende der Veranstaltung',
+                                en: 'End of the event'
+                            }
+                        }
+                    ]
+                }
+            ],
+            booking: [
+                {
+                    label: {
+                        de: 'Unterkunft buchen',
+                        en: 'Book accomodation'
+                    },
+                    link: 'https://resavio.com/booking/de/2900'
+                },
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://vildvuchs.myshopify.com/products/wild-dinner-allgau-edition'
+                }
+            ]
         }
     ];
 }

@@ -1,4 +1,4 @@
-export const availableFilters = ['Accomodation', 'Concert', 'Food', 'Workshop', 'Yoga'] as const;
+export const availableFilters = ['Concert', 'Food', 'Pottery', 'Retreat', 'Workshop', 'Yoga'] as const;
 
 export type FilterEvent = (typeof availableFilters)[number];
 
@@ -20,11 +20,12 @@ export type Event = {
         | Date;
     price:
         | {
+              event?: number;
               singleRoom: number;
               doubleRoom: number;
           }
         | number;
-    expired?: boolean;
+    status: 'Available' | 'Expired' | 'Booked';
     link: string;
     imagePreview: string;
     imageGallery: string[];
@@ -47,7 +48,7 @@ export type Event = {
         };
     }[];
     descriptionProgram?: {
-        day: {
+        day?: {
             de: string;
             en: string;
         };
@@ -67,29 +68,30 @@ export type Event = {
         link: string;
     }[];
     booking: {
-        accomodation: boolean;
-        date: boolean;
-        foodIntolerance: boolean;
-        name: boolean;
-        roomType: boolean;
-        title: boolean;
-        quantity: boolean;
-        buttons?: {
-            label: {
-                de: string;
-                en: string;
-            };
-            link?: string;
-            email?: {
-                subject: {
-                    de: string;
-                    en: string;
-                };
-                body: {
-                    de: string;
-                    en: string;
-                };
-            };
-        }[];
+        label?: {
+            de: string;
+            en: string;
+        };
+        link?: string;
+        email?: EmailCustom | EmailDefault;
+    }[];
+};
+
+export type EmailCustom = {
+    subject: {
+        de: string;
+        en: string;
     };
+    body: {
+        de: string;
+        en: string;
+    };
+};
+
+export type EmailDefault = {
+    accomodation: boolean;
+    foodIntolerance: boolean;
+    name: boolean;
+    roomType: boolean;
+    quantity: boolean;
 };

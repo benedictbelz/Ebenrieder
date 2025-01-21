@@ -55,7 +55,7 @@ class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>UST-ID</h4>
-                                    <span>DE36853529</span>
+                                    <span>DE368353529</span>
                                 </section>
                                 <section>
                                     <h4>Handelsregister</h4>
@@ -199,7 +199,7 @@ class Imprint extends React.Component<Props> {
                                 </section>
                                 <section>
                                     <h4>VAT-ID</h4>
-                                    <span>DE36853529</span>
+                                    <span>DE368353529</span>
                                 </section>
                                 <section>
                                     <h4>Commercial Register</h4>

@@ -212,7 +212,7 @@ class Overview extends React.Component<Props> {
                                     develop a tailored concept.
                                 </p>
                             )}
-                            <Rooms browser={this.props.browser} filters={['Seminar Room', 'Wellness']} />
+                            <Rooms browser={this.props.browser} filters={['Seminar Room', 'Wellness', 'Kitchen']} />
                         </div>
                         <Gallery
                             browser={this.props.browser}

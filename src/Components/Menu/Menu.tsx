@@ -105,6 +105,14 @@ export default class Menu extends React.Component<Props, States> {
                 }
             });
         }
+        // IF NARROW MODUS REMOVED FLOW
+        else if (this.state.appearance === 'Narrow' && this.state.modus !== 'Flow' && prevState.modus === 'Flow') {
+            setTimeout(() => this.menu.current.classList.add('hide'), 500);
+        }
+        // IF NARROW MODUS ADDED FLOW
+        else if (this.state.appearance === 'Narrow' && this.state.modus === 'Flow' && prevState.modus !== 'Flow') {
+            this.menu.current.classList.remove('hide');
+        }
     }
 
     componentWillUnmount() {
@@ -304,12 +312,12 @@ export default class Menu extends React.Component<Props, States> {
                 >
                     {this.state.appearance === 'Narrow' ? (
                         <>
-                            <div ref={this.menuLeft} id='menuLeft' onClick={this.narrowClickLeft}>
-                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                    <polyline points='22.5 45 2.5 25 22.5 5' />
-                                </svg>
-                            </div>
                             <div ref={this.menuContent} id='menuContent'>
+                                <div ref={this.menuLeft} id='menuLeft' onClick={this.narrowClickLeft}>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                        <polyline points='22.5 45 2.5 25 22.5 5' />
+                                    </svg>
+                                </div>
                                 {this.state.items.map((item, index) => (
                                     <span
                                         key={item.name}
@@ -319,11 +327,14 @@ export default class Menu extends React.Component<Props, States> {
                                         {item.name}
                                     </span>
                                 ))}
+                                <div ref={this.menuRight} id='menuRight' onClick={this.narrowClickRight}>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
+                                        <polyline points='2.5 5 22.5 25 2.5 45' />
+                                    </svg>
+                                </div>
                             </div>
-                            <div ref={this.menuRight} id='menuRight' onClick={this.narrowClickRight}>
-                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 50'>
-                                    <polyline points='2.5 5 22.5 25 2.5 45' />
-                                </svg>
+                            <div id='menuBooking' onClick={() => window.open('https://resavio.com/booking/de/2900', '_blank')}>
+                                <span className='underlineLink'>{getLanguage(this.props.browser.language, 'book')}</span>
                             </div>
                         </>
                     ) : (
@@ -341,14 +352,6 @@ export default class Menu extends React.Component<Props, States> {
                         </div>
                     )}
                 </div>
-                {this.state.appearance === 'Narrow' && (
-                    <div id='booking' className={this.state.modus === 'Flow' ? 'flow' : ''}>
-                        <div id='bookingText' onClick={() => window.open('https://resavio.com/booking/de/2900', '_blank')}>
-                            <span className='underlineLink'>{getLanguage(this.props.browser.language, 'book')}</span>
-                        </div>
-                        <div id='bookingBackground' />
-                    </div>
-                )}
             </>
         );
     }

@@ -19,27 +19,29 @@ interface States {
 
 export default class Modal extends React.Component<Props, States> {
     private header: HTMLElement | null;
-    private modal: React.RefObject<HTMLDivElement>;
+    private foreground: React.RefObject<HTMLDivElement>;
+    private background: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
-        this.modal = React.createRef();
+        this.foreground = React.createRef();
+        this.background = React.createRef();
         this.state = {
             active: false,
-            height: this.modal.current?.clientHeight || 0,
-            scroll: this.modal.current?.scrollTop || 0
+            height: this.foreground.current?.clientHeight || 0,
+            scroll: this.foreground.current?.scrollTop || 0
         };
     }
 
     componentDidMount() {
         this.handleOpen();
         this.header = document.getElementById('header');
-        this.modal.current?.addEventListener('scroll', this.handleScroll);
+        this.foreground.current?.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
     }
 
     componentWillUnmount() {
-        this.modal.current?.removeEventListener('scroll', this.handleScroll);
+        this.foreground.current?.removeEventListener('scroll', this.handleScroll);
         window.removeEventListener('resize', this.handleScroll);
     }
 
@@ -61,6 +63,8 @@ export default class Modal extends React.Component<Props, States> {
             document.documentElement.style.overflow = 'hidden';
             document.documentElement.style.touchAction = 'none';
         }, 100);
+        // ADD EVENT FOR TOUCH MOVE
+        this.background.current?.addEventListener('touchmove', this.handleTouch, { passive: false });
         // OPEN MODAL
         setTimeout(() => {
             this.setState({ active: true });
@@ -82,6 +86,8 @@ export default class Modal extends React.Component<Props, States> {
             document.documentElement.style.overflow = 'visible';
             document.documentElement.style.touchAction = 'auto';
         });
+        // REMOVE EVENT FOR TOUCH MOVE
+        this.background.current?.removeEventListener('touchmove', this.handleTouch);
         // CLOSE MODAL
         setTimeout(() => {
             this.props.handleClose();
@@ -89,13 +95,17 @@ export default class Modal extends React.Component<Props, States> {
     };
 
     private handleResize = () => {
-        if (!this.modal.current) return;
-        this.setState({ height: this.modal.current.clientHeight });
+        if (!this.foreground.current) return;
+        this.setState({ height: this.foreground.current.clientHeight });
     };
 
     private handleScroll = () => {
-        if (!this.modal.current) return;
-        this.setState({ scroll: this.modal.current.scrollTop });
+        if (!this.foreground.current) return;
+        this.setState({ scroll: this.foreground.current.scrollTop });
+    };
+
+    private handleTouch = (event: any) => {
+        event.preventDefault();
     };
 
     render() {
@@ -109,7 +119,7 @@ export default class Modal extends React.Component<Props, States> {
         // RETURN COMPONENT
         return createPortal(
             <div className={['modal', this.state.active && 'active'].filter(x => x).join(' ')}>
-                <div ref={this.modal} className={['modalForeground', this.props.className && this.props.className].filter(x => x).join(' ')}>
+                <div ref={this.foreground} className={['modalForeground', this.props.className && this.props.className].filter(x => x).join(' ')}>
                     <div className='modalBack'>
                         <img src='assets/svg/arrow_small_left.svg' />
                         <p className='underlineLink' onClick={this.handleClose}>
@@ -118,7 +128,7 @@ export default class Modal extends React.Component<Props, States> {
                     </div>
                     {this.props.children(this.state.height, this.state.scroll)}
                 </div>
-                <div className='modalBackground' onClick={this.handleClose} />
+                <div ref={this.background} className='modalBackground' onClick={this.handleClose} />
             </div>,
             wrapper
         ) as React.ReactNode;

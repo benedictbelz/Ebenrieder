@@ -313,20 +313,8 @@
                         align-items: center;
                         gap: 10px;
 
-                        p {
-                            white-space: nowrap;
-                        }
-
                         img {
-                            height: 25px;
-                        }
-
-                        &.quantityYoga img {
-                            width: 35px;
-                        }
-
-                        &.quantityPeople img {
-                            height: 22.5px;
+                            transform: scale(0.75);
                         }
                     }
                 }

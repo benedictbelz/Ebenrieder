@@ -18,126 +18,15 @@
             box-shadow 0.5s ease,
             transform 0.5s ease;
         box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 1);
-        transform: translateY(100%);
-        padding-right: $spacing-booking;
-        background: transparentize($color-white, 0.75);
+        transform: translateY(150%);
 
         &.flow {
             box-shadow: 0px 0px 25px 0px transparentize($color-shadow, 0.75);
             transform: translateY(0);
         }
 
-        #menuLeft,
-        #menuRight {
-            position: absolute;
-            z-index: 1250;
-            cursor: pointer;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 0 25px;
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -webkit-perspective: 1000;
-            perspective: 1000;
-            overflow: hidden;
-
-            svg {
-                height: 25px;
-                width: 18px;
-
-                polyline {
-                    fill: none;
-                    stroke: $color-blue;
-                    stroke-miterlimit: 10;
-                    stroke-dashoffset: 0;
-                    stroke-width: $border-xl;
-                    stroke-dasharray: 56.57 56.57;
-                }
-            }
-
-            &.active {
-                display: flex;
-            }
-        }
-
-        #menuLeft {
-            left: 0;
-
-            &::before {
-                content: '';
-                position: absolute;
-                z-index: -1;
-                top: 0;
-                left: 0;
-                display: block;
-                height: 100%;
-                width: 43px;
-                background: $color-white;
-                box-shadow: 0 0 25px 25px $color-white;
-            }
-
-            @media (hover: hover) {
-                &:hover polyline {
-                    animation: leftPolyline 1s linear forwards;
-                }
-            }
-
-            @keyframes left {
-                0% {
-                    stroke-dashoffset: 0;
-                }
-                50% {
-                    stroke-dashoffset: 56.57;
-                }
-                50.00001% {
-                    stroke-dashoffset: -56.57;
-                }
-                100% {
-                    stroke-dashoffset: 0;
-                }
-            }
-        }
-
-        #menuRight {
-            right: $spacing-booking;
-
-            &::before {
-                content: '';
-                position: absolute;
-                z-index: -1;
-                top: 0;
-                right: 0;
-                display: block;
-                height: 100%;
-                width: 43px;
-                background: $color-white;
-                box-shadow: 0 0 25px 25px $color-white;
-            }
-
-            @media (hover: hover) {
-                &:hover polyline {
-                    animation: rightPolyline 1s linear forwards;
-                }
-            }
-
-            @keyframes right {
-                0% {
-                    stroke-dashoffset: 0;
-                }
-                50% {
-                    stroke-dashoffset: -56.57;
-                }
-                50.00001% {
-                    stroke-dashoffset: 56.57;
-                }
-                100% {
-                    stroke-dashoffset: 0;
-                }
-            }
+        &.hide {
+            opacity: 0;
         }
 
         #menuContent {
@@ -158,6 +47,119 @@
                 display: none;
             }
 
+            #menuLeft,
+            #menuRight {
+                position: absolute;
+                z-index: 1250;
+                cursor: pointer;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                padding: 0 25px;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-perspective: 1000;
+                perspective: 1000;
+                overflow: hidden;
+
+                svg {
+                    height: 25px;
+                    width: 18px;
+
+                    polyline {
+                        fill: none;
+                        stroke: $color-blue;
+                        stroke-miterlimit: 10;
+                        stroke-dashoffset: 0;
+                        stroke-width: $border-xl;
+                        stroke-dasharray: 56.57 56.57;
+                    }
+                }
+
+                &.active {
+                    display: flex;
+                }
+            }
+
+            #menuLeft {
+                left: 0;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    display: block;
+                    height: 100%;
+                    width: 43px;
+                    background: $color-white;
+                    box-shadow: 0 0 25px 25px $color-white;
+                }
+
+                @media (hover: hover) {
+                    &:hover polyline {
+                        animation: leftPolyline 1s linear forwards;
+                    }
+                }
+
+                @keyframes left {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    50% {
+                        stroke-dashoffset: 56.57;
+                    }
+                    50.00001% {
+                        stroke-dashoffset: -56.57;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+
+            #menuRight {
+                right: $spacing-booking;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    right: 0;
+                    display: block;
+                    height: 100%;
+                    width: 43px;
+                    background: $color-white;
+                    box-shadow: 0 0 25px 25px $color-white;
+                }
+
+                @media (hover: hover) {
+                    &:hover polyline {
+                        animation: rightPolyline 1s linear forwards;
+                    }
+                }
+
+                @keyframes right {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    50% {
+                        stroke-dashoffset: -56.57;
+                    }
+                    50.00001% {
+                        stroke-dashoffset: 56.57;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+
             .menuName {
                 cursor: pointer;
                 color: transparentize($color-blue, 0.5);
@@ -171,6 +173,23 @@
                     &:hover {
                         color: $color-blue;
                     }
+                }
+            }
+        }
+
+        #menuBooking {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-width: $spacing-booking;
+            background: $color-blue;
+
+            .underlineLink {
+                color: $color-white;
+
+                &::after {
+                    background-color: $color-white;
                 }
             }
         }
@@ -264,47 +283,5 @@
                 }
             }
         }
-    }
-}
-
-#booking {
-    #bookingText,
-    #bookingBackground {
-        position: fixed;
-        z-index: 1000;
-        bottom: 0;
-        right: 0;
-        height: $spacing-menu;
-        width: $spacing-booking;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.5s ease;
-        transform: translateY(100%);
-    }
-
-    &.flow {
-        #bookingText,
-        #bookingBackground {
-            transform: translateY(0);
-        }
-    }
-
-    #bookingText {
-        z-index: 2000;
-
-        .underlineLink {
-            color: $color-white;
-
-            &::after {
-                background-color: $color-white;
-            }
-        }
-    }
-
-    #bookingBackground {
-        background: $color-blue;
-        mix-blend-mode: difference;
-        filter: invert(100%);
     }
 }

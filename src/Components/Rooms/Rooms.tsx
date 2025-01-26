@@ -165,16 +165,21 @@ class Rooms extends React.Component<Props, States> {
                                                         {`${features[key].replace('-', language === 'de' ? ' bis ' : ' to ')} ${getFeature(language, key)}`}
                                                     </span>
                                                 )}
+                                                {(key === 'quantityStoveGas' || key === 'quantityStoveInduction') && (
+                                                    <span>{`${features[key]} ${getFeature(language, key)}`}</span>
+                                                )}
                                                 {key === 'squareMeter' && (
                                                     <span>
                                                         {`${features[key]} m`}
                                                         <sup>2</sup>
                                                     </span>
                                                 )}
-                                                {key !== 'squareMeter' &&
-                                                    key !== 'quantityPeople' &&
+                                                {key !== 'quantityPeople' &&
                                                     key !== 'quantitySeats' &&
                                                     key !== 'quantityYoga' &&
+                                                    key !== 'quantityStoveGas' &&
+                                                    key !== 'quantityStoveInduction' &&
+                                                    key !== 'squareMeter' &&
                                                     getFeature(language, key)}
                                             </p>
                                         </div>

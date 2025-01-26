@@ -62,28 +62,52 @@ const de = {
     featureBathtub: 'Badewanne',
     featureBeamer: 'Beamer',
     featureChimney: 'Kamin',
+    featureCoolingDrawer: 'Kühlschubladen',
     featureDeckChairs: 'Liegestühle',
     featureDiningTable: 'Esstisch',
+    featureDishWasherWinterhalter: 'Winterhalter Spülmaschine',
     featureDishWasher: 'Geschirrspüler',
+    featureElectricity: 'Strom',
     featureFireplace: 'Feuerstelle',
-    featureGrill: 'Grill',
+    featureFreezer: 'Kühl- und Gefrierkombination',
+    featureFreezerWithIceMachine: 'Kühl- und Gefrierkombination mit Eisbereiter',
+    featureGrillGrate: 'Planchas und Grillroste',
+    featureGrill: 'Grill mit zwei Kammern und drei Einschubhöhen',
     featureHairDryer: 'Föhn',
     featureHammock: 'Hängematte',
-    featureOven: 'Ofen',
+    featureHeatLamp: 'Wärmelampen',
+    featureHeatingDrawer: 'Warmhalteschubladen',
+    featureKitchenMachine: 'Küchenmaschine',
+    featureOven: 'Backofen',
+    featurePacojet: 'Pacojet',
     featurePets: 'Haustiere erlaubt',
     featurePool: 'Schwimmbecken',
+    featurePressureCooker: 'Rational iVario',
     featureQuantityPeople: 'Personen',
     featureQuantitySeats: 'Sitzplätze',
     featureQuantityYoga: 'Yogaplätze',
+    featureQuantityStoveGas: 'Gaskochfelder',
+    featureQuantityStoveInduction: 'Induktionskochfelder',
+    featureRationalCombi: 'Rational iCombi',
+    featureRationalVario: 'Rational iVario',
     featureRefrigerator: 'Kühlschrank',
+    featureSalamander: 'Salamander',
     featureSauna: 'Sauna',
     featureShower: 'Dusche',
     featureSoundSystem: 'Soundsystem',
     featureSquareMeter: 'Quadratmeter',
+    featureSteamCooker: 'Dampfgarer',
+    featureStoveGas: 'Gaskochfelder',
+    featureStoveInduction: 'Induktionskochfelder',
     featureStove: 'Herd',
+    featureTelevision: 'Fernseher',
+    featureThermomix: 'Thermomix',
     featureViewGarden: 'Blick auf den Garten',
     featureViewNature: 'Blick in die Natur',
     featureViewVillage: 'Blick auf das Dorf',
+    featureVitamix: 'Vitamix',
+    featureWashBasinQuooker: 'Quooker Wasserhahn',
+    featureWashBasin: 'Waschbecken',
     featureWhirlpool: 'Hot Tub',
     featureWifi: 'WLAN',
     featureWorkplace: 'Arbeitsplatz',
@@ -150,30 +174,54 @@ const en: Dictionary = {
     featureBathtub: 'Bathtub',
     featureBeamer: 'Beamer',
     featureChimney: 'Chimney',
+    featureCoolingDrawer: 'Cooling Drawers',
     featureDeckChairs: 'Deck chairs',
     featureDiningTable: 'Dining table',
+    featureDishWasherWinterhalter: 'Winterhalter dish washer',
     featureDishWasher: 'Dish washer',
+    featureElectricity: 'Electricity',
     featureFireplace: 'Fireplace',
-    featureGrill: 'Grill',
+    featureFreezer: 'Fridge and freezer combination',
+    featureFreezerWithIceMachine: 'Fridge and freezer combination with ice maker',
+    featureGrillGrate: 'Planchas und grill grates',
+    featureGrill: 'Grill with two chambers and three insertion heights',
     featureHairDryer: 'Hair dryer',
     featureHammock: 'Hammock',
+    featureHeatLamp: 'Heating lamps',
+    featureHeatingDrawer: 'Warming drawers',
+    featureKitchenMachine: 'Kitchen machine',
     featureOven: 'Oven',
+    featurePacojet: 'Pacojet',
     featurePets: 'Pets allowed',
     featurePool: 'Swimming pool',
+    featurePressureCooker: 'Rational iVario',
     featureQuantityPeople: 'people',
     featureQuantitySeats: 'seats',
     featureQuantityYoga: 'yoga seats',
+    featureQuantityStoveGas: 'Gas cooktops',
+    featureQuantityStoveInduction: 'Induction cooktops',
+    featureRationalCombi: 'Rational iCombi',
+    featureRationalVario: 'Rational iVario',
     featureRefrigerator: 'Refrigerator',
+    featureSalamander: 'Salamander',
     featureSauna: 'Sauna',
     featureShower: 'Shower',
     featureSoundSystem: 'Sound system',
     featureSquareMeter: 'Square meter',
+    featureSteamCooker: 'Steam cooker',
+    featureStoveGas: 'Gas cooktops',
+    featureStoveInduction: 'Induction cooktops',
     featureStove: 'Stove',
+    featureTelevision: 'Television',
+    featureThermomix: 'Thermomix',
     featureViewGarden: 'View of the garden',
     featureViewNature: 'View into nature',
     featureViewVillage: 'View of the village',
+    featureVitamix: 'Vitamix',
     featureWhirlpool: 'Hot Tub',
     featureWifi: 'WIFI',
+    featureWashBasinQuooker: 'Quooker water tap',
+    featureWashBasin: 'Wash basin',
     featureWorkplace: 'Workplace',
     imprint: 'Imprint',
     privacy: 'Privacy Policy',
@@ -234,22 +282,42 @@ export const getFeature = (language: Language, feature: keyof Room['features']) 
         return getLanguage(language, 'featureBeamer');
     } else if (feature === 'chimney') {
         return getLanguage(language, 'featureChimney');
+    } else if (feature === 'coolingDrawer') {
+        return getLanguage(language, 'featureCoolingDrawer');
     } else if (feature === 'deckChairs') {
         return getLanguage(language, 'featureDeckChairs');
     } else if (feature === 'diningTable') {
         return getLanguage(language, 'featureDiningTable');
+    } else if (feature === 'dishWasherWinterhalter') {
+        return getLanguage(language, 'featureDishWasherWinterhalter');
     } else if (feature === 'dishWasher') {
         return getLanguage(language, 'featureDishWasher');
+    } else if (feature === 'electricity') {
+        return getLanguage(language, 'featureElectricity');
     } else if (feature === 'fireplace') {
         return getLanguage(language, 'featureFireplace');
+    } else if (feature === 'freezer') {
+        return getLanguage(language, 'featureFreezer');
+    } else if (feature === 'freezerWithIceMachine') {
+        return getLanguage(language, 'featureFreezerWithIceMachine');
+    } else if (feature === 'grillGrate') {
+        return getLanguage(language, 'featureGrillGrate');
     } else if (feature === 'grill') {
         return getLanguage(language, 'featureGrill');
     } else if (feature === 'hairDryer') {
         return getLanguage(language, 'featureHairDryer');
     } else if (feature === 'hammock') {
         return getLanguage(language, 'featureHammock');
+    } else if (feature === 'heatLamp') {
+        return getLanguage(language, 'featureHeatLamp');
+    } else if (feature === 'heatingDrawer') {
+        return getLanguage(language, 'featureHeatingDrawer');
+    } else if (feature === 'kitchenMachine') {
+        return getLanguage(language, 'featureKitchenMachine');
     } else if (feature === 'oven') {
         return getLanguage(language, 'featureOven');
+    } else if (feature === 'pacojet') {
+        return getLanguage(language, 'featurePacojet');
     } else if (feature === 'pets') {
         return getLanguage(language, 'featurePets');
     } else if (feature === 'pool') {
@@ -260,8 +328,18 @@ export const getFeature = (language: Language, feature: keyof Room['features']) 
         return getLanguage(language, 'featureQuantitySeats');
     } else if (feature === 'quantityYoga') {
         return getLanguage(language, 'featureQuantityYoga');
+    } else if (feature === 'quantityStoveGas') {
+        return getLanguage(language, 'featureStoveGas');
+    } else if (feature === 'quantityStoveInduction') {
+        return getLanguage(language, 'featureQuantityStoveInduction');
+    } else if (feature === 'rationalCombi') {
+        return getLanguage(language, 'featureRationalCombi');
+    } else if (feature === 'rationalVario') {
+        return getLanguage(language, 'featureRationalVario');
     } else if (feature === 'refrigerator') {
         return getLanguage(language, 'featureRefrigerator');
+    } else if (feature === 'salamander') {
+        return getLanguage(language, 'featureSalamander');
     } else if (feature === 'sauna') {
         return getLanguage(language, 'featureSauna');
     } else if (feature === 'shower') {
@@ -270,14 +348,30 @@ export const getFeature = (language: Language, feature: keyof Room['features']) 
         return getLanguage(language, 'featureSoundSystem');
     } else if (feature === 'squareMeter') {
         return getLanguage(language, 'featureSquareMeter');
+    } else if (feature === 'steamCooker') {
+        return getLanguage(language, 'featureSteamCooker');
+    } else if (feature === 'stoveGas') {
+        return getLanguage(language, 'featureStoveGas');
+    } else if (feature === 'stoveInduction') {
+        return getLanguage(language, 'featureStoveInduction');
     } else if (feature === 'stove') {
         return getLanguage(language, 'featureStove');
+    } else if (feature === 'television') {
+        return getLanguage(language, 'featureTelevision');
+    } else if (feature === 'thermomix') {
+        return getLanguage(language, 'featureThermomix');
     } else if (feature === 'viewGarden') {
         return getLanguage(language, 'featureViewGarden');
     } else if (feature === 'viewNature') {
         return getLanguage(language, 'featureViewNature');
     } else if (feature === 'viewVillage') {
         return getLanguage(language, 'featureViewVillage');
+    } else if (feature === 'vitamix') {
+        return getLanguage(language, 'featureVitamix');
+    } else if (feature === 'washBasinQuooker') {
+        return getLanguage(language, 'featureWashBasinQuooker');
+    } else if (feature === 'washBasin') {
+        return getLanguage(language, 'featureWashBasin');
     } else if (feature === 'whirlpool') {
         return getLanguage(language, 'featureWhirlpool');
     } else if (feature === 'wifi') {

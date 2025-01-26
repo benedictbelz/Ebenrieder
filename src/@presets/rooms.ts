@@ -44,7 +44,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 stove: true,
                 dishWasher: true,
                 refrigerator: true
-            },
+            }
         },
         {
             type: 'Apartment',
@@ -84,7 +84,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 oven: true,
                 stove: true,
                 refrigerator: true
-            },
+            }
         },
         {
             type: 'Apartment',
@@ -123,7 +123,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 stove: true,
                 dishWasher: true,
                 refrigerator: true
-            },            
+            }
         },
         {
             type: 'Apartment',
@@ -168,7 +168,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 oven: true,
                 stove: true,
                 refrigerator: true
-            },
+            }
         },
         {
             type: 'Apartment',
@@ -214,7 +214,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 oven: true,
                 stove: true,
                 refrigerator: true
-            },
+            }
         },
         {
             type: 'Room',
@@ -247,7 +247,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 viewNature: true,
                 hairDryer: true,
                 shower: true
-            },
+            }
         },
         {
             type: 'Room',
@@ -277,7 +277,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 wifi: true,
                 hairDryer: true,
                 shower: true
-            },
+            }
         },
         {
             type: 'Room',
@@ -303,7 +303,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 viewNature: true,
                 hairDryer: true,
                 shower: true
-            },
+            }
         },
         {
             type: 'Room',
@@ -333,7 +333,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 wifi: true,
                 hairDryer: true,
                 shower: true
-            },
+            }
         },
         {
             type: 'Seminar Room',
@@ -367,7 +367,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 beamer: true,
                 chimney: true,
                 soundSystem: true
-            },
+            }
         },
         {
             type: 'Seminar Room',
@@ -404,7 +404,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 wifi: true,
                 chimney: true,
                 soundSystem: true
-            },            
+            }
         },
         {
             type: 'Wellness',
@@ -440,9 +440,9 @@ export function getRooms(types: Room['type'][]): Room[] {
                 whirlpool: true,
                 deckChairs: true,
                 shower: true
-            },
+            }
         },
-        /* {
+        {
             type: 'Kitchen',
             title: {
                 de: 'Kochschule',
@@ -473,21 +473,23 @@ export function getRooms(types: Room['type'][]): Room[] {
             ],
             descriptionLong: {
                 de: 'Willkommen in der Ebenrieder Kochschule, wo Kochen nicht nur eine Kunst, sondern ein gemeinsames Erlebnis ist! In unserer gemütlichen Kochschule erwartet dich ein großer Holztisch mit traditionellen Wirtshausstühlen, an dem bis zu 12 Personen Platz finden – ideal für gesellige Runden voller Genuss und Inspiration.\n\nDas Herzstück der Kochschule ist unsere moderne Kochinsel, die mit allem ausgestattet ist, was das Herz eines Kochs höherschlagen lässt. Zwei Induktionsfelder und zwei Gaskochfelder bieten Dir reichlich Platz, um Dich kulinarisch auszutoben. Mit dem Gaggenau-Dampfgarer gelingen Dir perfekte Garstufen, während der großzügige Kühlschrank mit integriertem Eisfach an heißen Tagen für erfrischende Drinks sorgt. Und dank der Warmhalteschublade bleiben Deine Kreationen bis zum Servieren auf perfekter Temperatur.',
-                en: 'Welcome to the Ebenrieder cookery school, where cooking is not just an art, but a shared experience! In our cosy cookery school, a large wooden table with traditional pub chairs awaits you, seating up to 12 people - ideal for convivial get-togethers full of enjoyment and inspiration.\n\nThe centrepiece of the cookery school is our modern cooking island, which is equipped with everything a chef\'s heart desires. Two induction hobs and two gas hobs offer you plenty of space to let off steam in the kitchen. The Gaggenau steam oven allows you to achieve perfect cooking results, while the spacious fridge with integrated ice compartment ensures refreshing drinks on hot days. And thanks to the warming drawer, your creations will stay at the perfect temperature until you serve them.'
+                en: "Welcome to the Ebenrieder cookery school, where cooking is not just an art, but a shared experience! In our cosy cookery school, a large wooden table with traditional pub chairs awaits you, seating up to 12 people - ideal for convivial get-togethers full of enjoyment and inspiration.\n\nThe centrepiece of the cookery school is our modern cooking island, which is equipped with everything a chef's heart desires. Two induction hobs and two gas hobs offer you plenty of space to let off steam in the kitchen. The Gaggenau steam oven allows you to achieve perfect cooking results, while the spacious fridge with integrated ice compartment ensures refreshing drinks on hot days. And thanks to the warming drawer, your creations will stay at the perfect temperature until you serve them."
             },
             descriptionShort: {
                 de: 'Willkommen in der Ebenrieder Kochschule, wo Kochen nicht nur eine Kunst, sondern ein gemeinsames Erlebnis ist.',
                 en: 'Welcome to the Ebenrieder cookery school, where cooking is not just an art, but a shared experience.'
             },
             features: {
-                wifi: true,
-                viewGarden: true,
-                sauna: true,
-                pool: true,
-                whirlpool: true,
-                deckChairs: true,
-                shower: true
-            },
+                quantityStoveInduction: 2,
+                quantityStoveGas: 2,
+                steamCooker: true,
+                oven: true,
+                heatingDrawer: true,
+                freezerWithIceMachine: true,
+                pacojet: true,
+                kitchenMachine: true,
+                washBasinQuooker: true
+            }
         },
         {
             type: 'Kitchen',
@@ -508,7 +510,7 @@ export function getRooms(types: Room['type'][]): Room[] {
                 'assets/media/rooms/gastrokueche_08.jpg',
                 'assets/media/rooms/gastrokueche_09.jpg',
                 'assets/media/rooms/gastrokueche_10.jpg',
-                'assets/media/rooms/gastrokueche_11.jpg',
+                'assets/media/rooms/gastrokueche_11.jpg'
             ],
             descriptionLong: {
                 de: 'Direkt neben der Kochschule wartet unsere Gastroküche auf Dich. Durch die Fenster kannst Du jederzeit den Kontakt zu Deinen Gästen halten – das sorgt für eine offene und lebendige Atmosphäre. Die Gastroküche ist ein wahres Paradies für Profis: ausgestattet mit einem Rational-Dampfgarer, Rational-Multifunktionskocher, Kühlschränken und -schubladen mit viel Stauraum, einem Tiefkühlschrank und Warmhalteschubladen. Und wenn es um innovative Technik geht, erfüllen Thermomix, Pacojet und Vitamix selbst anspruchsvollste Wünsche.\n\nOb Du ein Teamevent planst, einen Kochkurs veranstalten möchtest oder die Räume für Deine eigenen kulinarischen Projekte anmieten willst – die Ebenrieder Kochschule und Gastroküche bieten Dir die perfekte Mischung aus Funktionalität, Charme und modernster Ausstattung.',
@@ -519,14 +521,18 @@ export function getRooms(types: Room['type'][]): Room[] {
                 en: 'The gastro kitchen provides an open and lively atmosphere and is a true paradise for professionals.'
             },
             features: {
-                wifi: true,
-                viewGarden: true,
-                sauna: true,
-                pool: true,
-                whirlpool: true,
-                deckChairs: true,
-                shower: true
-            },
+                stoveInduction: true,
+                heatLamp: true,
+                rationalCombi: true,
+                rationalVario: true,
+                coolingDrawer: true,
+                heatingDrawer: true,
+                freezer: true,
+                salamander: true,
+                thermomix: true,
+                vitamix: true,
+                dishWasherWinterhalter: true
+            }
         },
         {
             type: 'Kitchen',
@@ -536,11 +542,7 @@ export function getRooms(types: Room['type'][]): Room[] {
             },
             link: 'aussenkueche',
             imagePreview: 'assets/media/rooms/aussenkueche_01.jpg',
-            imageGallery: [
-                'assets/media/rooms/aussenkueche_01.jpg',
-                'assets/media/rooms/aussenkueche_02.jpg',
-                'assets/media/rooms/aussenkueche_03.jpg'
-            ],
+            imageGallery: ['assets/media/rooms/aussenkueche_01.jpg', 'assets/media/rooms/aussenkueche_02.jpg', 'assets/media/rooms/aussenkueche_03.jpg'],
             descriptionLong: {
                 de: 'Unsere Außenküche verbindet Funktionalität, Genuss und Naturerlebnis auf harmonische Weise. Ein Ort, der Kochen, Entspannen und Gemeinschaft mühelos miteinander vereint. Mit ihrer langen Arbeitsfläche und dem imposanten Grill ist sie der perfekte Ort für kulinarische Erlebnisse im Freien. Der Grill verfügt über zwei Kammern, verschiedene Roste und Planchas, sodass sich jedes Grillgut optimal zubereiten lässt.\n\nReichlich Platz zum Vorbereiten und Abstellen sorgt dafür, dass alles griffbereit ist, während die nahestehenden Tische zum gemütlichen Verweilen einladen. Für den nötigen Komfort gibt es Sonnenschirme, die angenehmen Schatten spenden, sowie einen Stromanschluss und ein praktisches Waschbecken, das die Arbeit erleichtert.\n\nVon der erhöhten Position der Terrasse aus bietet sich ein traumhafter Blick auf den Garten und die umliegende Landschaft. Hier wird das Grillen nicht nur zum kulinarischen, sondern auch zum visuellen Erlebnis. Für alle, die Frische lieben, ist der Weg zu den Kräuter- und Gemüsebeeten nur ein paar Schritte entfernt – für Zutaten, die direkt auf dem Grill landen können.',
                 en: 'Our outdoor kitchen harmoniously combines functionality, enjoyment and the experience of nature. A place that effortlessly combines cooking, relaxing and socialising. With its long work surface and impressive barbecue, it is the perfect place for outdoor culinary experiences. The barbecue has two chambers, various grates and planchas, so that any food can be cooked to perfection.\n\nPlenty of space for preparation and storage ensures that everything is ready to hand, while the nearby tables invite you to linger in comfort. For the necessary comfort, there are parasols that provide pleasant shade, as well as a power connection and a practical sink that makes work easier.\n\nThe elevated position of the terrace offers a fantastic view of the garden and the surrounding landscape. Here, barbecuing is not only a culinary experience, but also a visual one. For those who love freshness, the path to the herb and vegetable beds is just a few steps away - for ingredients that can end up directly on the barbecue.'
@@ -550,15 +552,12 @@ export function getRooms(types: Room['type'][]): Room[] {
                 en: 'A place that effortlessly combines cooking, relaxing and socialising. With its long work surface and impressive barbecue, it is the perfect place for outdoor culinary experiences.'
             },
             features: {
-                wifi: true,
-                viewGarden: true,
-                sauna: true,
-                pool: true,
-                whirlpool: true,
-                deckChairs: true,
-                shower: true,
-            },
-        } */
+                grill: true,
+                grillGrate: true,
+                electricity: true,
+                washBasin: true
+            }
+        }
     ].filter(item => types.includes(item.type as Room['type'])) as Room[];
 }
 
@@ -571,22 +570,42 @@ export function getFeatureImage(feature: keyof Room['features']): string {
         return 'feature_beamer';
     } else if (feature === 'chimney') {
         return 'feature_chimney';
+    } else if (feature === 'coolingDrawer') {
+        return 'feature_cooling_drawer';
     } else if (feature === 'deckChairs') {
         return 'feature_deck_chairs';
     } else if (feature === 'diningTable') {
         return 'feature_dining_table';
+    } else if (feature === 'dishWasherWinterhalter') {
+        return 'feature_dish_washer';
     } else if (feature === 'dishWasher') {
         return 'feature_dish_washer';
+    } else if (feature === 'electricity') {
+        return 'feature_electricity';
     } else if (feature === 'fireplace') {
         return 'feature_fireplace';
+    } else if (feature === 'freezer') {
+        return 'feature_freezer';
+    } else if (feature === 'freezerWithIceMachine') {
+        return 'feature_freezer';
+    } else if (feature === 'grillGrate') {
+        return 'feature_grill_grate';
     } else if (feature === 'grill') {
         return 'feature_grill';
     } else if (feature === 'hairDryer') {
         return 'feature_hair_dryer';
     } else if (feature === 'hammock') {
         return 'feature_hammock';
+    } else if (feature === 'heatLamp') {
+        return 'feature_heat_lamp';
+    } else if (feature === 'heatingDrawer') {
+        return 'feature_heating_drawer';
+    } else if (feature === 'kitchenMachine') {
+        return 'feature_kitchen_machine';
     } else if (feature === 'oven') {
         return 'feature_oven';
+    } else if (feature === 'pacojet') {
+        return 'feature_pacojet';
     } else if (feature === 'pets') {
         return 'feature_pets';
     } else if (feature === 'pool') {
@@ -597,8 +616,18 @@ export function getFeatureImage(feature: keyof Room['features']): string {
         return 'feature_quantity_seats';
     } else if (feature === 'quantityYoga') {
         return 'feature_quantity_yoga';
+    } else if (feature === 'quantityStoveGas') {
+        return 'feature_stove_gas';
+    } else if (feature === 'quantityStoveInduction') {
+        return 'feature_stove_induction';
+    } else if (feature === 'rationalCombi') {
+        return 'feature_rational_combi';
+    } else if (feature === 'rationalVario') {
+        return 'feature_rational_vario';
     } else if (feature === 'refrigerator') {
         return 'feature_refrigerator';
+    } else if (feature === 'salamander') {
+        return 'feature_salamander';
     } else if (feature === 'sauna') {
         return 'feature_sauna';
     } else if (feature === 'shower') {
@@ -607,14 +636,30 @@ export function getFeatureImage(feature: keyof Room['features']): string {
         return 'feature_sound_system';
     } else if (feature === 'squareMeter') {
         return 'feature_square_meter';
+    } else if (feature === 'steamCooker') {
+        return 'feature_steam_cooker';
+    } else if (feature === 'stoveGas') {
+        return 'feature_stove_gas';
+    } else if (feature === 'stoveInduction') {
+        return 'feature_stove_induction';
     } else if (feature === 'stove') {
         return 'feature_stove';
+    } else if (feature === 'television') {
+        return 'feature_television';
+    } else if (feature === 'thermomix') {
+        return 'feature_thermomix';
     } else if (feature === 'viewGarden') {
         return 'feature_view_garden';
     } else if (feature === 'viewNature') {
         return 'feature_view_nature';
     } else if (feature === 'viewVillage') {
         return 'feature_view_village';
+    } else if (feature === 'vitamix') {
+        return 'feature_vitamix';
+    } else if (feature === 'washBasinQuooker') {
+        return 'feature_wash_basin';
+    } else if (feature === 'washBasin') {
+        return 'feature_wash_basin';
     } else if (feature === 'whirlpool') {
         return 'feature_whirlpool';
     } else if (feature === 'wifi') {

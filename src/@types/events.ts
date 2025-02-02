@@ -3,7 +3,7 @@ export const availableFilters = ['Concert', 'Food', 'Pottery', 'Retreat', 'Works
 export type FilterEvent = (typeof availableFilters)[number];
 
 export type Event = {
-    type: FilterEvent[];
+    type: FilterEvent;
     title: {
         de: string;
         en: string;

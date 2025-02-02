@@ -11,7 +11,7 @@
         max-width: 100%;
         overflow: hidden;
 
-        .information {
+        .icon {
             position: absolute;
             z-index: 250;
             left: 50%;
@@ -46,7 +46,7 @@
                 opacity: 1;
             }
 
-            .information {
+            .icon {
                 animation: information 1s ease;
                 opacity: 1;
             }
@@ -58,7 +58,7 @@
         }
 
         @media (max-height: $media-xs) {
-            .information {
+            .icon {
                 display: none;
             }
         }

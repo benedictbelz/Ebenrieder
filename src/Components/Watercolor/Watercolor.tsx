@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Browser } from '../../@types/browser';
-import './Title.scss';
+import './Watercolor.scss';
 
 interface Props {
     browser: Browser;
@@ -18,12 +18,12 @@ interface States {
     position: number;
 }
 
-export default class Title extends React.Component<Props, States> {
-    private title: React.RefObject<HTMLDivElement>;
+export default class Watercolor extends React.Component<Props, States> {
+    private watercolor: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
-        this.title = React.createRef();
+        this.watercolor = React.createRef();
         this.state = {
             hasLoadedBackground: false,
             hasLoadedForeground: false,
@@ -38,14 +38,14 @@ export default class Title extends React.Component<Props, States> {
     }
 
     private handleTransform = () => {
-        // GET TITLE
-        const title = this.title.current;
-        // IF NO TITLE RETURN
-        if (!title) return;
+        // GET WATERCOLOR
+        const watercolor = this.watercolor.current;
+        // IF NO WATERCOLOR RETURN
+        if (!watercolor) return;
         // DEFINE VARIABLES
         const scroll = this.props.browser.scroll;
-        const start = title.getBoundingClientRect().top + scroll - this.props.browser.height;
-        const end = title.getBoundingClientRect().top + scroll + title.clientHeight;
+        const start = watercolor.getBoundingClientRect().top + scroll - this.props.browser.height;
+        const end = watercolor.getBoundingClientRect().top + scroll + watercolor.clientHeight;
         // CALCULATE POSITION
         let position;
         if (scroll < start) {
@@ -80,18 +80,18 @@ export default class Title extends React.Component<Props, States> {
         // RETURN COMPONENT
         return (
             <div
-                ref={this.title}
-                className={['title', this.state.hasLoadedBackground && this.state.hasLoadedForeground && 'hasLoaded'].filter(x => x).join(' ')}
+                ref={this.watercolor}
+                className={['watercolor', this.state.hasLoadedBackground && this.state.hasLoadedForeground && 'hasLoaded'].filter(x => x).join(' ')}
             >
                 <div
-                    className='titleForeground'
+                    className='watercolorForeground'
                     style={{ transform: `perspective(250px) translateY(${translateForeground}px) scale(${scaleForeground})` }}
                     onLoad={() => this.setState({ hasLoadedForeground: true })}
                 >
                     <img src={this.props.foregroundImage} />
                 </div>
                 <div
-                    className='titleBackground'
+                    className='watercolorBackground'
                     style={{
                         left: this.props.backgroundX || 0,
                         top: this.props.backgroundY || 0,

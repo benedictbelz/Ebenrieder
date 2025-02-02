@@ -2,12 +2,12 @@ import * as React from 'react';
 import Events from '../../Components/Events/Events';
 import Footer from '../../Components/Footer/Footer';
 import Gallery from '../../Components/Gallery/Gallery';
-import Information from '../../Components/Information/Information';
+import Icon from '../../Components/Icon/Icon';
 import Logo from '../../Components/Logo/Logo';
-import Map from '../../Components/Map/Map';
+import Maps from '../../Components/Maps/Maps';
 import Menu from '../../Components/Menu/Menu';
 import Rooms from '../../Components/Rooms/Rooms';
-import Title from '../../Components/Title/Title';
+import Watercolor from '../../Components/Watercolor/Watercolor';
 import { PropsWithRouter, withRouter } from '../../Router/Router';
 import { getLanguage } from '../../@presets/language';
 import { Browser } from '../../@types/browser';
@@ -32,7 +32,7 @@ class Overview extends React.Component<Props> {
                     className={[this.props.browser.status === 'Welcome' && 'active'].filter(x => x).join(' ')}
                     style={this.props.browser.type === 'Safari' && this.props.browser.device === 'Mobile' ? { maxHeight: '-webkit-fill-available' } : {}}
                 >
-                    <Information type='Scroll' />
+                    <Icon type='Scroll' />
                     <Logo fullScreen={true} />
                     <Gallery
                         autoPlay={true}
@@ -61,7 +61,7 @@ class Overview extends React.Component<Props> {
                 </div>
                 <div id='overviewContent'>
                     <article data-name={getLanguage(language, 'titleLocation')}>
-                        <Title
+                        <Watercolor
                             browser={this.props.browser}
                             backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15}
                             backgroundY={0}
@@ -106,7 +106,7 @@ class Overview extends React.Component<Props> {
                         </Gallery>
                     </article>
                     <article data-name={getLanguage(language, 'titleSleep')}>
-                        <Title
+                        <Watercolor
                             browser={this.props.browser}
                             backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? 10 : 15}
                             backgroundY={0}
@@ -150,7 +150,7 @@ class Overview extends React.Component<Props> {
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titleCalendar')}>
-                        <Title
+                        <Watercolor
                             browser={this.props.browser}
                             backgroundX={this.props.browser.width <= this.props.browser.variables.mediaS ? 10 : 15}
                             backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
@@ -177,7 +177,7 @@ class Overview extends React.Component<Props> {
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titlePossibilities')}>
-                        <Title
+                        <Watercolor
                             browser={this.props.browser}
                             backgroundX={language === 'en' ? (this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15) : 0}
                             backgroundY={this.props.browser.width <= this.props.browser.variables.mediaS ? -10 : -20}
@@ -228,7 +228,7 @@ class Overview extends React.Component<Props> {
                         </Gallery>
                     </article>
                     <article data-name={getLanguage(language, 'titleArrival')}>
-                        <Title
+                        <Watercolor
                             browser={this.props.browser}
                             backgroundX={language === 'en' ? (this.props.browser.width <= this.props.browser.variables.mediaS ? -7.5 : -15) : 0}
                             backgroundY={0}
@@ -269,7 +269,7 @@ class Overview extends React.Component<Props> {
                                 </p>
                             )}
                         </div>
-                        <Map browser={this.props.browser} handleAccept={this.props.handleAccept} handleDecline={this.props.handleDecline} />
+                        <Maps browser={this.props.browser} handleAccept={this.props.handleAccept} handleDecline={this.props.handleDecline} />
                     </article>
                 </div>
                 <Footer browser={this.props.browser} />

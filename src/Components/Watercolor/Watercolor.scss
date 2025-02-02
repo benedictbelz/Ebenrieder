@@ -1,6 +1,6 @@
 @import '../../App/Variables.scss';
 
-.title {
+.watercolor {
     position: relative;
     width: 100%;
     height: 350px;
@@ -11,7 +11,7 @@
         opacity: 1;
     }
 
-    .titleForeground {
+    .watercolorForeground {
         position: absolute;
         z-index: 250;
         height: 100%;
@@ -27,7 +27,7 @@
         }
     }
 
-    .titleBackground {
+    .watercolorBackground {
         position: absolute;
         z-index: 0;
         height: 100%;
@@ -47,7 +47,7 @@
     @media (max-width: $media-s) {
         height: 300px;
 
-        .titleForeground img {
+        .watercolorForeground img {
             height: 65px;
         }
     }
@@ -56,7 +56,7 @@
         height: 200px;
         margin-bottom: 25px;
 
-        .titleForeground img {
+        .watercolorForeground img {
             height: 45px;
         }
     }

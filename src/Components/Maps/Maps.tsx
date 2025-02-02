@@ -4,7 +4,7 @@ import { APIProvider, Map as GoogleMap, AdvancedMarker, InfoWindow } from '@vis.
 import { getLanguage } from '../../@presets/language';
 import { getSecrets } from '../../@presets/secrets';
 import { Browser } from '../../@types/browser';
-import './Map.scss';
+import './Maps.scss';
 
 interface Props {
     browser: Browser;
@@ -16,7 +16,7 @@ interface States {
     showInfo: boolean;
 }
 
-export default class Map extends React.Component<Props, States> {
+export default class Maps extends React.Component<Props, States> {
     state = {
         showInfo: false
     };
@@ -26,9 +26,9 @@ export default class Map extends React.Component<Props, States> {
         const language = this.props.browser.language;
         // RETURN COMPONENT
         return (
-            <div className={['map', this.props.browser.cookies !== 'Accept' && 'cookies'].filter(x => x).join(' ')}>
+            <div className={['maps', this.props.browser.cookies !== 'Accept' && 'cookies'].filter(x => x).join(' ')}>
                 {this.props.browser.cookies === 'Accept' ? (
-                    <APIProvider apiKey={getSecrets().google} onLoad={() => console.log('Maps API has loaded.')}>
+                    <APIProvider apiKey={getSecrets().google}>
                         <GoogleMap
                             defaultZoom={18}
                             defaultCenter={{ lat: 47.753984021129355, lng: 10.73440969585985 }}
@@ -42,14 +42,14 @@ export default class Map extends React.Component<Props, States> {
                                 position={{ lat: 47.753984021129355, lng: 10.73440969585985 }}
                                 clickable={true}
                                 onClick={(event: any) => {
-                                    if (event.domEvent.target.className === 'mapCross') {
+                                    if (event.domEvent.target.className === 'mapsCross') {
                                         this.setState({ showInfo: false });
                                     } else {
                                         this.setState({ showInfo: true });
                                     }
                                 }}
                                 onTouchEnd={(event: any) => {
-                                    if (event.domEvent.target.className === 'mapCross') {
+                                    if (event.domEvent.target.className === 'mapsCross') {
                                         this.setState({ showInfo: false });
                                     } else {
                                         this.setState({ showInfo: true });
@@ -57,7 +57,7 @@ export default class Map extends React.Component<Props, States> {
                                 }}
                             >
                                 <div
-                                    className='mapPin'
+                                    className='mapsPin'
                                     style={{
                                         cursor: 'pointer',
                                         width: 16,
@@ -70,7 +70,7 @@ export default class Map extends React.Component<Props, States> {
                                     }}
                                 >
                                     <h3
-                                        className='mapLabel'
+                                        className='mapsLabel'
                                         style={{
                                             fontFamily: `'Futura' sans-serif`,
                                             transform: 'translate(-48px, -35px)',
@@ -83,7 +83,7 @@ export default class Map extends React.Component<Props, States> {
                                 </div>
                                 {this.state.showInfo && (
                                     <div
-                                        className='mapInfo'
+                                        className='mapsInfo'
                                         style={{
                                             cursor: 'auto',
                                             boxSizing: 'border-box',
@@ -97,7 +97,7 @@ export default class Map extends React.Component<Props, States> {
                                         }}
                                     >
                                         <div
-                                            className='mapArrow'
+                                            className='mapsArrow'
                                             style={{
                                                 position: 'absolute',
                                                 top: 0,
@@ -122,7 +122,7 @@ export default class Map extends React.Component<Props, States> {
                                             />
                                         </div>
                                         <div
-                                            className='mapCross'
+                                            className='mapsCross'
                                             style={{
                                                 cursor: 'pointer',
                                                 position: 'absolute',
@@ -134,7 +134,6 @@ export default class Map extends React.Component<Props, States> {
                                             }}
                                         >
                                             <div
-                                                className='mapCross'
                                                 style={{
                                                     position: 'absolute',
                                                     top: 0,
@@ -147,7 +146,6 @@ export default class Map extends React.Component<Props, States> {
                                                 }}
                                             />
                                             <div
-                                                className='mapCross'
                                                 style={{
                                                     position: 'absolute',
                                                     top: 0,
@@ -161,7 +159,7 @@ export default class Map extends React.Component<Props, States> {
                                             />
                                         </div>
                                         <div
-                                            className='mapText'
+                                            className='mapsText'
                                             style={{
                                                 display: 'flex',
                                                 flexDirection: 'column',
@@ -171,7 +169,7 @@ export default class Map extends React.Component<Props, States> {
                                             }}
                                         >
                                             <div
-                                                className='mapAddress'
+                                                className='mapsAddress'
                                                 style={{
                                                     display: 'flex',
                                                     flexDirection: 'column',
@@ -202,7 +200,7 @@ export default class Map extends React.Component<Props, States> {
                                                         .focus()
                                                 }
                                             >
-                                                {getLanguage(language, 'mapDirections')}
+                                                {getLanguage(language, 'mapsDirections')}
                                             </div>
                                         </div>
                                     </div>
@@ -211,26 +209,26 @@ export default class Map extends React.Component<Props, States> {
                         </GoogleMap>
                     </APIProvider>
                 ) : (
-                    <div className='mapCookies'>
-                        <div className='mapText'>
-                            {`${getLanguage(language, 'mapCookies').split('<%a%>')[0]}`}
+                    <div className='mapsCookies'>
+                        <div className='mapsText'>
+                            {`${getLanguage(language, 'mapsCookies').split('<%a%>')[0]}`}
                             <Link to={language === 'de' ? '/datenschutz' : '/privacy'} className='underlineLink'>
-                                {`${getLanguage(language, 'mapCookies').split('<%a%>')[1].split('<%/a%>')[0]}`}
+                                {`${getLanguage(language, 'mapsCookies').split('<%a%>')[1].split('<%/a%>')[0]}`}
                             </Link>
-                            {`${getLanguage(language, 'mapCookies').split('<%/a%>')[1].split('<%a%>')[0]}`}
+                            {`${getLanguage(language, 'mapsCookies').split('<%/a%>')[1].split('<%a%>')[0]}`}
                             <a
                                 className='underlineLink'
                                 href='https://www.google.com/maps/place/Ebenrieder/@47.7539874,10.7318329,17z/data=!3m1!4b1!4m6!3m5!1s0x479c4366c8a2bb81:0x299af5a643d2c4f2!8m2!3d47.7539838!4d10.7344078!16s%2Fg%2F11w3tjjxty?entry=ttu'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >
-                                {`${getLanguage(language, 'mapCookies').split('<%a%>')[2].split('<%/a%>')[0]}`}
+                                {`${getLanguage(language, 'mapsCookies').split('<%a%>')[2].split('<%/a%>')[0]}`}
                             </a>
-                            {`${getLanguage(language, 'mapCookies').split('<%/a%>')[2]}`}
+                            {`${getLanguage(language, 'mapsCookies').split('<%/a%>')[2]}`}
                         </div>
-                        <div className='mapButtons'>
+                        <div className='mapsButtons'>
                             <div className='underlineLink' onClick={this.props.handleAccept}>
-                                {getLanguage(language, 'mapAccept')}
+                                {getLanguage(language, 'mapsAccept')}
                             </div>
                         </div>
                     </div>

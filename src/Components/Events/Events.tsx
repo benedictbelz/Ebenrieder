@@ -141,7 +141,7 @@ class Events extends React.Component<Props, States> {
         // ANIMATE EVENTS
         const previousEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
+            .filter(item => this.state.filters.length === 0 || this.state.filters.includes(item.type))
             .filter(item =>
                 item.date instanceof Date
                     ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
@@ -149,7 +149,7 @@ class Events extends React.Component<Props, States> {
             );
         const nextEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => filters.length === 0 || item.type.find(filter => filters.includes(filter)))
+            .filter(item => filters.length === 0 || this.state.filters.includes(item.type))
             .filter(item =>
                 item.date instanceof Date
                     ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
@@ -459,7 +459,7 @@ class Events extends React.Component<Props, States> {
         // GET CURRENT EVENTS
         const currentEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
+            .filter(item => this.state.filters.length === 0 || this.state.filters.includes(item.type))
             .filter(item =>
                 this.props.type === 'Calendar'
                     ? item.date instanceof Date
@@ -478,7 +478,7 @@ class Events extends React.Component<Props, States> {
         // GET UPCOMING EVENTS
         const upcompingEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
+            .filter(item => this.state.filters.length === 0 || this.state.filters.includes(item.type))
             .filter(item =>
                 item.date instanceof Date
                     ? (item.date.getMonth() >= this.month && item.date.getFullYear() === this.year) ||
@@ -563,19 +563,17 @@ class Events extends React.Component<Props, States> {
                         </div>
                     </div>
                 )}
-                {this.props.type === 'Calendar' && (
-                    <div id='eventsFilters'>
-                        {filters.map((item, index) => (
-                            <div
-                                key={`filter_${index}`}
-                                className={['filter', this.state.filters.includes(item.value) && 'active'].filter(x => x).join(' ')}
-                                onClick={() => this.handleChangeFilter(item.value)}
-                            >
-                                {item.label}
-                            </div>
-                        ))}
-                    </div>
-                )}
+                <div id='eventsFilters'>
+                    {filters.map((item, index) => (
+                        <div
+                            key={`filter_${index}`}
+                            className={['filter', this.state.filters.includes(item.value) && 'active'].filter(x => x).join(' ')}
+                            onClick={() => this.handleChangeFilter(item.value)}
+                        >
+                            {item.label}
+                        </div>
+                    ))}
+                </div>
                 {currentEvents.length !== 0 ? (
                     <div id='eventsGrid' style={{ marginTop: this.props.type === 'Preview' ? this.props.browser.variables.spacingVerticalS : 0 }}>
                         {currentEvents.map((event: Event, index: number) => {

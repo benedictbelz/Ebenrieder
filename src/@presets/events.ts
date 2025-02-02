@@ -3,7 +3,7 @@ import { Event } from '../@types/events';
 export function getEvents(): Event[] {
     const events: Event[] = [
         {
-            type: ['Retreat'],
+            type: 'Retreat',
             title: {
                 de: 'Yoga Opening',
                 en: 'Yoga Opening'
@@ -157,7 +157,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Pottery'],
+            type: 'Pottery',
             title: {
                 de: 'Arbeiten mit Ton',
                 en: 'Working with clay'
@@ -304,7 +304,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Retreat'],
+            type: 'Retreat',
             title: {
                 de: 'Zeit des Loslassens',
                 en: 'A Time of Letting Go'
@@ -445,7 +445,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Retreat'],
+            type: 'Retreat',
             title: {
                 de: 'Slow down & warm your soul',
                 en: 'Slow down & warm your soul'
@@ -760,7 +760,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Retreat'],
+            type: 'Retreat',
             title: {
                 de: 'Re-Start',
                 en: 'Re-Start'
@@ -894,7 +894,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Food'],
+            type: 'Food',
             title: {
                 de: 'Pilzgenuss - Von der Natur auf den Teller',
                 en: 'Mushroom delight - from nature to the plate'
@@ -1158,7 +1158,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Workshop'],
+            type: 'Workshop',
             title: {
                 de: 'Fermentationskurs',
                 en: 'Fermentation course'
@@ -1171,7 +1171,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 1, 15),
             price: 109,
-            status: 'Booked',
+            status: 'Cancelled',
             link: 'fermentationskurs_februar',
             imagePreview: 'assets/media/events/fermentation_01.jpg',
             imageGallery: [
@@ -1274,7 +1274,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Workshop'],
+            type: 'Workshop',
             title: {
                 de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
                 en: 'Wild forest flavors - conifer cuisine workshop'
@@ -1287,7 +1287,7 @@ export function getEvents(): Event[] {
             ],
             date: new Date(2025, 1, 22),
             price: 89,
-            status: 'Booked',
+            status: 'Cancelled',
             link: 'nadelbaumkurs_februar',
             imagePreview: 'assets/media/events/nadelbaumkueche_01.jpg',
             imageGallery: [
@@ -1428,7 +1428,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Workshop'],
+            type: 'Workshop',
             title: {
                 de: 'Wilde Waldaromen - Nadelbaumküche Workshop',
                 en: 'Wild forest flavors - conifer cuisine workshop'
@@ -1582,7 +1582,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Workshop'],
+            type: 'Workshop',
             title: {
                 de: 'Fermentationskurs',
                 en: 'Fermentation course'
@@ -1698,7 +1698,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Workshop'],
+            type: 'Workshop',
             title: {
                 de: 'Wild Dinner',
                 en: 'Wild Dinner'
@@ -1878,7 +1878,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Pottery'],
+            type: 'Pottery',
             title: {
                 de: 'Keramik Workshop mit Lena Harms',
                 en: 'Pottery workshop with Lena Harms'
@@ -2035,7 +2035,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: ['Retreat'],
+            type: 'Retreat',
             title: {
                 de: 'Daily Fusion Retreat',
                 en: 'Daily Fusion Retreat'

@@ -1866,7 +1866,7 @@ export function getEvents(): Event[] {
                         de: 'Unterkunft buchen',
                         en: 'Book accomodation'
                     },
-                    link: 'https://resavio.com/booking/de/2900'
+                    link: 'https://resavio.com/booking/de/2900/offers?checkin=2025-04-04&checkout=2025-04-07'
                 },
                 {
                     label: {

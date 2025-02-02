@@ -248,10 +248,15 @@ class Events extends React.Component<Props, States> {
                                                         dangerouslySetInnerHTML={{
                                                             __html: item[language]
                                                                 .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                                .replace(/<%br%>/g, '<br>')
                                                                 .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
                                                                 .replace('<%event%>', typeof price !== 'number' && price.event ? `${price.event}` : '')
                                                                 .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                                 .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
+                                                                .replace('<%singleRoomPrivate%>', typeof price !== 'number' ? `${price.singleRoomPrivate}` : '')
+                                                                .replace('<%doubleRoomPrivate%>', typeof price !== 'number' ? `${price.doubleRoomPrivate}` : '')
+                                                                .replace('<%singleRoomShared%>', typeof price !== 'number' ? `${price.singleRoomShared}` : '')
+                                                                .replace('<%doubleRoomShared%>', typeof price !== 'number' ? `${price.doubleRoomShared}` : '')
                                                         }}
                                                     />
                                                     {index !== subtitle.length - 1 && <span>•</span>}
@@ -270,6 +275,7 @@ class Events extends React.Component<Props, States> {
                                     dangerouslySetInnerHTML={{
                                         __html: descriptionLong[language]
                                             .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                            .replace(/<%br%>/g, '<br>')
                                             .replace(/<%b%>/g, '<strong>')
                                             .replace(/<%\/b%>/g, '</strong>')
                                     }}
@@ -309,42 +315,61 @@ class Events extends React.Component<Props, States> {
                                                     event.date instanceof Date
                                                         ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
                                                         : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
-                                                const emailSubject = `${getLanguage(language, 'bookingSubject')} ${title[language]}`;
+                                                const emailSubject =
+                                                    emailType === 'Custom'
+                                                        ? (item.email as EmailCustom).subject[language]
+                                                        : `${getLanguage(language, 'bookingSubject')} ${title[language]}`;
                                                 const emailBody =
-                                                    `${getLanguage(language, 'bookingGreeting')},${'%0D%0A'}${'%0D%0A'}` +
-                                                    `${getLanguage(language, 'bookingText')}:${'%0D%0A'}${'%0D%0A'}` +
-                                                    (emailType === 'Default'
-                                                        ? `${getLanguage(language, 'bookingTitle')}: ${title[language]}${'%0D%0A'}`
-                                                        : '') +
-                                                    (emailType === 'Default' ? `${getLanguage(language, 'bookingDate')}: ${emailDate}${'%0D%0A'}` : '') +
-                                                    (emailType === 'Default' && (item.email as EmailDefault)?.name
-                                                        ? `${getLanguage(language, 'bookingName')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
-                                                        : '') +
-                                                    (emailType === 'Default' && (item.email as EmailDefault)?.quantity
-                                                        ? `${getLanguage(language, 'bookingQuantity')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
-                                                        : '') +
-                                                    (emailType === 'Default' && (item.email as EmailDefault)?.foodIntolerance
-                                                        ? `${getLanguage(language, 'bookingFoodIntolerance')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`
-                                                        : '') +
-                                                    (emailType === 'Default' && (item.email as EmailDefault)?.accomodation
-                                                        ? `${getLanguage(language, 'bookingAccomodation')}: (${getLanguage(language, 'bookingYesNo')})${'%0D%0A'}`
-                                                        : '') +
-                                                    (emailType === 'Default' && (item.email as EmailDefault)?.roomType
-                                                        ? `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingSingleDoubleRoom')})${'%0D%0A'}`
-                                                        : '') +
-                                                    `${'%0D%0A'}${getLanguage(language, 'bookingGoodbye')}`;
+                                                    emailType === 'Custom'
+                                                        ? (item.email as EmailCustom).body[language]
+                                                        : `${getLanguage(language, 'bookingGreeting')},${'%0D%0A'}${'%0D%0A'}` +
+                                                          ((item.email as EmailDefault)?.text && (item.email as EmailDefault).text === 'Room'
+                                                              ? `${getLanguage(language, 'bookingTextRoom')}:${'%0D%0A'}${'%0D%0A'}`
+                                                              : `${getLanguage(language, 'bookingTextEvent')}:${'%0D%0A'}${'%0D%0A'}`) +
+                                                          `${Object.keys((item.email as EmailDefault) || [])
+                                                              .map((key: keyof EmailDefault) => {
+                                                                  if (key === 'accomodation') {
+                                                                      return `${getLanguage(language, 'bookingAccomodation')}: (${getLanguage(language, 'bookingYesNo')})${'%0D%0A'}`;
+                                                                  } else if (key === 'address') {
+                                                                      return `${getLanguage(language, 'bookingAddress')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'date' && (item.email as EmailDefault)[key] === 'Standard') {
+                                                                      return `${getLanguage(language, 'bookingDate')}: ${emailDate}${'%0D%0A'}`;
+                                                                  } else if (key === 'date' && (item.email as EmailDefault)[key] === 'Fill') {
+                                                                      return `${getLanguage(language, 'bookingDate')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'event') {
+                                                                      return `${getLanguage(language, 'bookingEvent')}: ${title[language]}${'%0D%0A'}`;
+                                                                  } else if (key === 'foodIntolerance') {
+                                                                      return `${getLanguage(language, 'bookingFoodIntolerance')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'name') {
+                                                                      return `${getLanguage(language, 'bookingName')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'quantityNights') {
+                                                                      return `${getLanguage(language, 'bookingQuantityNights')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'quantityPeople') {
+                                                                      return `${getLanguage(language, 'bookingQuantityPeople')}: (${getLanguage(language, 'bookingPleaseComplete')})${'%0D%0A'}`;
+                                                                  } else if (key === 'room' && (item.email as EmailDefault)[key] === 'Standard') {
+                                                                      return `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingSingleDoubleRoom')})${'%0D%0A'}`;
+                                                                  } else if (key === 'room' && (item.email as EmailDefault)[key] === 'Select') {
+                                                                      return (
+                                                                          `${getLanguage(language, 'bookingRoomType')}: (${getLanguage(language, 'bookingPleaseSelect')})${'%0D%0A'}` +
+                                                                          `  ( ) ${getLanguage(language, 'bookingSingleRoomPrivate')}` +
+                                                                          `${typeof price !== 'number' && price.singleRoomPrivate ? `: ${price.singleRoomPrivate}€/${getLanguage(language, 'bookingNight')}${'%0D%0A'}` : `${'%0D%0A'}`}` +
+                                                                          `  ( ) ${getLanguage(language, 'bookingDoubleRoomPrivate')}` +
+                                                                          `${typeof price !== 'number' && price.doubleRoomPrivate ? `: ${price.doubleRoomPrivate}€/${getLanguage(language, 'bookingNight')}${'%0D%0A'}` : `${'%0D%0A'}`}` +
+                                                                          `  ( ) ${getLanguage(language, 'bookingSingleRoomShared')}` +
+                                                                          `${typeof price !== 'number' && price.singleRoomShared ? `: ${price.singleRoomShared}€/${getLanguage(language, 'bookingNight')}${'%0D%0A'}` : `${'%0D%0A'}`}` +
+                                                                          `  ( ) ${getLanguage(language, 'bookingDoubleRoomShared')}` +
+                                                                          `${typeof price !== 'number' && price.doubleRoomShared ? `: ${price.doubleRoomShared}€/${getLanguage(language, 'bookingNight')}${'%0D%0A'}` : `${'%0D%0A'}`}`
+                                                                      );
+                                                                  } else {
+                                                                      return '';
+                                                                  }
+                                                              })
+                                                              .join('')}` +
+                                                          `${'%0D%0A'}${getLanguage(language, 'bookingGoodbye')}`;
                                                 const label = item.label ? item.label[language] : getLanguage(language, 'bookEvent');
-                                                const link = item.link
-                                                    ? item.link
-                                                    : `mailto:hallo@ebenrieder.de${emailType === 'Custom' ? `?subject=${(item.email as EmailCustom).subject[language]}&body=${(item.email as EmailCustom).body[language]}` : `?subject=${emailSubject}&body=${emailBody}`}`;
+                                                const link = item.link ? item.link : `mailto:hallo@ebenrieder.de?subject=${emailSubject}&body=${emailBody}`;
                                                 return (
-                                                    <a
-                                                        className='underlineLink'
-                                                        key={`booking_${index}`}
-                                                        href={link}
-                                                        target='_blank'
-                                                        rel='noopener noreferrer'
-                                                    >
+                                                    <a className='underlineLink' key={`booking_${index}`} href={link} target='_blank' rel='noopener noreferrer'>
                                                         {label}
                                                     </a>
                                                 );
@@ -364,10 +389,15 @@ class Events extends React.Component<Props, States> {
                                                     dangerouslySetInnerHTML={{
                                                         __html: item.content[language]
                                                             .replace(/(\([^)]+\))/g, '<i>$1</i>')
+                                                            .replace(/<%br%>/g, '<br>')
                                                             .replace('<%price%>', typeof price === 'number' ? `${price}` : '')
                                                             .replace('<%event%>', typeof price !== 'number' && price.event ? `${price.event}` : '')
                                                             .replace('<%singleRoom%>', typeof price !== 'number' ? `${price.singleRoom}` : '')
                                                             .replace('<%doubleRoom%>', typeof price !== 'number' ? `${price.doubleRoom}` : '')
+                                                            .replace('<%singleRoomPrivate%>', typeof price !== 'number' ? `${price.singleRoomPrivate}` : '')
+                                                            .replace('<%doubleRoomPrivate%>', typeof price !== 'number' ? `${price.doubleRoomPrivate}` : '')
+                                                            .replace('<%singleRoomShared%>', typeof price !== 'number' ? `${price.singleRoomShared}` : '')
+                                                            .replace('<%doubleRoomShared%>', typeof price !== 'number' ? `${price.doubleRoomShared}` : '')
                                                     }}
                                                 />
                                             </span>
@@ -430,7 +460,7 @@ class Events extends React.Component<Props, States> {
         const currentEvents = getEvents()
             .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
             .filter(item => this.state.filters.length === 0 || item.type.find(filter => this.state.filters.includes(filter)))
-            .filter((item, index) =>
+            .filter(item =>
                 this.props.type === 'Calendar'
                     ? item.date instanceof Date
                         ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year

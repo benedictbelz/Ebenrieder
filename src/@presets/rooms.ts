@@ -1,7 +1,7 @@
 import { Room } from '../@types/rooms';
 
 export function getRooms(types: Room['type'][]): Room[] {
-    return [
+    const rooms: Room[] = [
         {
             type: 'Apartment',
             title: {
@@ -558,7 +558,8 @@ export function getRooms(types: Room['type'][]): Room[] {
                 washBasin: true
             }
         }
-    ].filter(item => types.includes(item.type as Room['type'])) as Room[];
+    ];
+    return rooms.filter(item => types.includes(item.type as Room['type'])) as Room[];
 }
 
 export function getFeatureImage(feature: keyof Room['features']): string {

@@ -101,26 +101,43 @@
                     gap: 25px;
                     width: 100%;
 
+                    h1 {
+                        overflow-wrap: break-word;
+                        -webkit-hyphens: auto;
+                        -moz-hyphens: auto;
+                        -ms-hyphens: auto;
+                        hyphens: auto;
+                    }
+
                     > .modalSubtitle {
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
                         justify-content: flex-start;
                         align-items: center;
-                        gap: 10px 5px;
+                        gap: 5px;
                         letter-spacing: 1px;
                         line-height: $line-height-l;
                     }
                 }
 
                 .modalDescription {
-                    text-align: justify;
+                    text-align: left;
                     line-height: $line-height-m;
                     white-space: pre-wrap;
 
                     @media (max-width: $media-s) {
                         text-align: left;
                     }
+                }
+
+                .modalAttachements {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    gap: 25px;
+                    line-height: $line-height-m;
                 }
 
                 .modalButtons {
@@ -265,19 +282,27 @@
                     gap: 25px;
                     width: 100%;
 
+                    h1 {
+                        overflow-wrap: break-word;
+                        -webkit-hyphens: auto;
+                        -moz-hyphens: auto;
+                        -ms-hyphens: auto;
+                        hyphens: auto;
+                    }
+
                     > .modalSubtitle {
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
                         justify-content: flex-start;
                         align-items: center;
-                        gap: 10px 5px;
+                        gap: 5px;
                         letter-spacing: 1px;
                     }
                 }
 
                 .modalDescription {
-                    text-align: justify;
+                    text-align: left;
                     line-height: $line-height-m;
                     white-space: pre-wrap;
 

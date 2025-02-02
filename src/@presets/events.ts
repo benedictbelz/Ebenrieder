@@ -1,7 +1,7 @@
 import { Event } from '../@types/events';
 
 export function getEvents(): Event[] {
-    return [
+    const events: Event[] = [
         {
             type: ['Retreat'],
             title: {
@@ -30,11 +30,7 @@ export function getEvents(): Event[] {
             status: 'Available',
             link: 'yoga_opening',
             imagePreview: 'assets/media/events/yoga_opening_01.jpg',
-            imageGallery: [
-                'assets/media/events/yoga_opening_01.jpg',
-                'assets/media/events/yoga_opening_02.jpg',
-                'assets/media/events/yoga_opening_03.jpg'
-            ],
+            imageGallery: ['assets/media/events/yoga_opening_01.jpg', 'assets/media/events/yoga_opening_02.jpg', 'assets/media/events/yoga_opening_03.jpg'],
             descriptionLong: {
                 de: 'Weg vom Alltag, hin zu Flow & Joy: sechs erfahrene Yoga-Lehrende begleiten dich ein Wochenende lang durch inspirierende Klassen. Wähle aus dem vielfältigen Angebot einen Kurs aus und gestalte deine ganz persönliche Yoga-Reise. Starte bereits frühmorgens beim Frühstück genussvoll in den Tag und erfahre beim Abendessen ein kulinarisches Highlight aus einer Vielzahl köstlicher Speisen und erfrischender Getränke aus unserem Garten und der Region. Am Samstagabend entführt dich das ELIAS PRINZ QUARTETT, eine herausragende Jazzband aus München, in eine ausgelassene Welt aus Gypsy Swing und Bebop-Ästhetik, die zu ausgelassenem Tanz einlädt – damit Körper, Geist und Seele wieder gestärkt der Welt trotzen können.',
                 en: 'Away from everyday life, towards flow & joy: six experienced yoga teachers will guide you through a weekend of inspiring classes. Choose a course from a wide range offer and create your own personal yoga journey. Start your enjoyable day early in the morning with breakfast and experience a culinary highlight at dinner with a variety of delicious dishes and refreshing drinks from our garden and the region. On Saturday evening, the ELIAS PRINZ QUARTETT, an outstanding jazz band from Munich, will whisk you away into an exuberant world of gypsy swing and bebop aesthetics, inviting you to dance the night away - so that body, mind and soul can once again defy the world with renewed vigor.'
@@ -298,11 +294,11 @@ export function getEvents(): Event[] {
             booking: [
                 {
                     email: {
-                        accomodation: false,
-                        foodIntolerance: true,
+                        event: true,
+                        date: 'Standard',
                         name: true,
-                        roomType: false,
-                        quantity: true
+                        quantityPeople: true,
+                        foodIntolerance: true
                     }
                 }
             ]
@@ -319,12 +315,12 @@ export function getEvents(): Event[] {
                     en: 'Yoga and breathing workshop with Lilli and David Bouchenafa'
                 },
                 {
-                    de: '<%singleRoom%> EUR (Einzelzimmer)',
-                    en: '<%singleRoom%> EUR (Single Room)'
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
                 },
                 {
-                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
-                    en: '<%doubleRoom%> EUR (Double Room)'
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: {
@@ -438,16 +434,17 @@ export function getEvents(): Event[] {
             booking: [
                 {
                     email: {
-                        accomodation: false,
-                        foodIntolerance: true,
+                        event: true,
+                        date: 'Standard',
                         name: true,
-                        roomType: true,
-                        quantity: true
+                        quantityPeople: true,
+                        room: 'Standard',
+                        foodIntolerance: true
                     }
                 }
             ]
         },
-        /* {
+        {
             type: ['Retreat'],
             title: {
                 de: 'Slow down & warm your soul',
@@ -459,12 +456,12 @@ export function getEvents(): Event[] {
                     en: 'Yoga retreat in autumn with Anja Zeifang'
                 },
                 {
-                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
-                    en: '<%doubleRoom%> EUR (Double Room)'
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
                 },
                 {
-                    de: '<%singleRoom%> EUR (Einzelzimmer)',
-                    en: '<%singleRoom%> EUR (Single Room)'
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: {
@@ -475,7 +472,7 @@ export function getEvents(): Event[] {
                 singleRoom: 1070,
                 doubleRoom: 830
             },
-            status: 'Available',
+            status: 'Cancelled',
             link: 'slow_down_and_warm_your_soul',
             imagePreview: 'assets/media/events/slow_down_15.jpg',
             imageGallery: [
@@ -761,8 +758,8 @@ export function getEvents(): Event[] {
                     link: 'https://www.anja-zeifang.de/events/'
                 }
             ]
-        }, */
-        /* {
+        },
+        {
             type: ['Retreat'],
             title: {
                 de: 'Re-Start',
@@ -778,12 +775,12 @@ export function getEvents(): Event[] {
                     en: 'All back to square one, please!'
                 },
                 {
-                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
-                    en: '<%doubleRoom%> EUR (Double Room)'
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
                 },
                 {
-                    de: '<%singleRoom%> EUR (Einzelzimmer)',
-                    en: '<%singleRoom%> EUR (Single Room)'
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: {
@@ -794,7 +791,7 @@ export function getEvents(): Event[] {
                 singleRoom: 730,
                 doubleRoom: 630
             },
-            status: 'Available',
+            status: 'Cancelled',
             link: 'restart',
             imagePreview: 'assets/media/events/restart_03.jpg',
             imageGallery: [
@@ -843,8 +840,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 17.01.2024 ab 14:00 Uhr',
-                        en: "on 17.01.2024 from 14:00 o'clock"
+                        de: 'am 17.01.2025 ab 14:00 Uhr',
+                        en: "on 17.01.2025 from 14:00 o'clock"
                     }
                 },
                 {
@@ -853,8 +850,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 19.01.2024 bis Brunch',
-                        en: 'on 19.01.2024 until brunch'
+                        de: 'am 19.01.2025 bis Brunch',
+                        en: 'on 19.01.2025 until brunch'
                     }
                 },
                 {
@@ -895,7 +892,7 @@ export function getEvents(): Event[] {
                     link: 'https://www.raise-yoga.com/retreats-workshops-1/'
                 }
             ]
-        }, */
+        },
         {
             type: ['Food'],
             title: {
@@ -908,12 +905,12 @@ export function getEvents(): Event[] {
                     en: 'With Peter Karasch and Victoria Lorenz'
                 },
                 {
-                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
-                    en: '<%doubleRoom%> EUR (Double Room)'
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
                 },
                 {
-                    de: '<%singleRoom%> EUR (Einzelzimmer)',
-                    en: '<%singleRoom%> EUR (Single Room)'
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: {
@@ -1150,11 +1147,12 @@ export function getEvents(): Event[] {
             booking: [
                 {
                     email: {
-                        accomodation: false,
-                        foodIntolerance: true,
+                        event: true,
+                        date: 'Standard',
                         name: true,
-                        roomType: true,
-                        quantity: true
+                        quantityPeople: true,
+                        room: 'Standard',
+                        foodIntolerance: true
                     }
                 }
             ]
@@ -1198,8 +1196,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 15.02.2024 um 11:00 Uhr',
-                        en: "on 15.02.2024 at 11:00 o'clock"
+                        de: 'am 15.02.2025 um 11:00 Uhr',
+                        en: "on 15.02.2025 at 11:00 o'clock"
                     }
                 },
                 {
@@ -1208,8 +1206,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 15.02.2024 um 14:30 Uhr',
-                        en: "on 15.02.2024 at 14:30 o'clock"
+                        de: 'am 15.02.2025 um 14:30 Uhr',
+                        en: "on 15.02.2025 at 14:30 o'clock"
                     }
                 },
                 {
@@ -1318,8 +1316,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 22.02.2024 um 11:00 Uhr',
-                        en: "on 22.02.2024 at 11:00 o'clock"
+                        de: 'am 22.02.2025 um 11:00 Uhr',
+                        en: "on 22.02.2025 at 11:00 o'clock"
                     }
                 },
                 {
@@ -1328,8 +1326,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 22.02.2024 um 14:00 Uhr',
-                        en: "on 22.02.2024 at 14:00 o'clock"
+                        de: 'am 22.02.2025 um 14:00 Uhr',
+                        en: "on 22.02.2025 at 14:00 o'clock"
                     }
                 },
                 {
@@ -1472,8 +1470,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 15.03.2024 um 11:00 Uhr',
-                        en: "on 15.03.2024 at 11:00 o'clock"
+                        de: 'am 15.03.2025 um 11:00 Uhr',
+                        en: "on 15.03.2025 at 11:00 o'clock"
                     }
                 },
                 {
@@ -1482,8 +1480,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 15.03.2024 um 14:00 Uhr',
-                        en: "on 15.03.2024 at 14:00 o'clock"
+                        de: 'am 15.03.2025 um 14:00 Uhr',
+                        en: "on 15.03.2025 at 14:00 o'clock"
                     }
                 },
                 {
@@ -1622,8 +1620,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 29.03.2024 um 11:00 Uhr',
-                        en: "on 29.03.2024 at 11:00 o'clock"
+                        de: 'am 29.03.2025 um 11:00 Uhr',
+                        en: "on 29.03.2025 at 11:00 o'clock"
                     }
                 },
                 {
@@ -1632,8 +1630,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 29.03.2024 um 14:30 Uhr',
-                        en: "on 29.03.2024 at 14:30 o'clock"
+                        de: 'am 29.03.2025 um 14:30 Uhr',
+                        en: "on 29.03.2025 at 14:30 o'clock"
                     }
                 },
                 {
@@ -1711,12 +1709,12 @@ export function getEvents(): Event[] {
                     en: 'With Victoria Lorenz & Johannes Höcherl'
                 },
                 {
-                    de: '<%singleRoom%> EUR (Einzelzimmer)',
-                    en: '<%singleRoom%> EUR (Single Room)'
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
                 },
                 {
-                    de: '<%doubleRoom%> EUR (Doppelzimmer)',
-                    en: '<%doubleRoom%> EUR (Double Room)'
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: new Date(2025, 3, 6),
@@ -1755,8 +1753,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 06.04.2024 um 12:00 Uhr',
-                        en: "on 06.04.2024 at 12:00 o'clock"
+                        de: 'am 06.04.2025 um 12:00 Uhr',
+                        en: "on 06.04.2025 at 12:00 o'clock"
                     }
                 },
                 {
@@ -1765,8 +1763,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 06.04.2024 um 22:00 Uhr',
-                        en: "on 06.04.2024 at 22:00 o'clock"
+                        de: 'am 06.04.2025 um 22:00 Uhr',
+                        en: "on 06.04.2025 at 22:00 o'clock"
                     }
                 },
                 {
@@ -1878,6 +1876,305 @@ export function getEvents(): Event[] {
                     link: 'https://vildvuchs.myshopify.com/products/wild-dinner-allgau-edition'
                 }
             ]
+        },
+        {
+            type: ['Pottery'],
+            title: {
+                de: 'Keramik Workshop mit Lena Harms',
+                en: 'Pottery workshop with Lena Harms'
+            },
+            subtitle: [
+                {
+                    de: 'Keramikkurs <%event%> EUR pro Person',
+                    en: 'Pottery workshop <%event%> EUR per person'
+                },
+                {
+                    de: 'Einzelzimmer <%singleRoomShared%> bis <%singleRoomPrivate%> EUR',
+                    en: 'Single room <%singleRoomShared%> to <%singleRoomPrivate%> EUR'
+                },
+                {
+                    de: 'Doppelzimmer <%doubleRoomShared%> bis <%doubleRoomPrivate%> EUR',
+                    en: 'Double room <%doubleRoomShared%> to <%doubleRoomPrivate%> EUR'
+                }
+            ],
+            date: {
+                start: new Date(2025, 4, 3),
+                end: new Date(2025, 4, 4)
+            },
+            price: {
+                event: 240,
+                singleRoomPrivate: 120,
+                doubleRoomPrivate: 170,
+                singleRoomShared: 110,
+                doubleRoomShared: 160
+            },
+            status: 'Available',
+            link: 'keramik_workshop',
+            imagePreview: 'assets/media/events/keramik_workshop_08.jpg',
+            imageGallery: [
+                'assets/media/events/keramik_workshop_01.jpg',
+                'assets/media/events/keramik_workshop_02.jpg',
+                'assets/media/events/keramik_workshop_03.jpg',
+                'assets/media/events/keramik_workshop_04.jpg',
+                'assets/media/events/keramik_workshop_05.jpg',
+                'assets/media/events/keramik_workshop_06.jpg',
+                'assets/media/events/keramik_workshop_07.jpg'
+            ],
+            descriptionLong: {
+                de: `Erlebe die faszinierende Welt der Keramik in einem besonderen Workshop mit der erfahrenen Künstlerin Lena Harms. In diesem zweitägigen Kurs lernst du die Wulsttechnik kennen – eine der ältesten Methoden des Töpferns, mit der du individuelle Gefäße formen kannst.\n\nAußerdem erfährst du, wie du mit flüssigem Ton farbliche Akzente setzt und deine Werke mit kreativen Gestaltungstechniken ganz nach deinem Geschmack veredelst.\n\n<%b%>Für wen ist der Kurs geeignet?<%/b%>\n\nOb du Anfänger bist oder bereits erste Erfahrungen gesammelt hast – dieser Kurs gibt dir die Möglichkeit, dein handwerkliches Können weiterzuentwickeln und deine eigene Formensprache zu entdecken.\n\n<%b%>Ein Wochenende voller Kreativität und Entspannung<%/b%>\n\nTöpfern ist nicht nur ein kreativer, sondern auch ein meditativer Prozess, bei dem du zur Ruhe kommen und den Alltag hinter dir lassen kannst. Freu dich auf zwei inspirierende Tage in einer entspannten und kreativen Atmosphäre, in der du dich ganz dem Gestalten mit Ton widmen kannst.\n\n<%b%>Individuelle Begleitung durch Lena Harms<%/b%>\n\nMit viel Geduld, Fachwissen und einem feinen Gespür für Gestaltung begleitet dich Lena durch den gesamten Prozess – von der ersten Idee bis zum fertigen Werk. Sie unterstützt euch dabei, eure ganz eigene Formensprache in Ton zu entdecken.`,
+                en: `Experience the fascinating world of ceramics in a special workshop with experienced artist Lena Harms. In this two-day course, you will learn about the beading technique - one of the oldest methods of pottery, which you can use to create individualised vessels.\n\nYou will also learn how to add colour accents with liquid clay and how to refine your works with creative design techniques to suit your taste.\n\n<%b%>Who is the course suitable for?<%/b%>\n\nWhether you are a beginner or already have some experience - this course gives you the opportunity to develop your craftsmanship and discover your own design language.\n\n<%b%>A weekend full of creativity and relaxation<%/b%>\n\nPottery is not only a creative but also a meditative process that allows you to calm down and leave everyday life behind. Look forward to two inspiring days in a relaxed and creative atmosphere in which you can devote yourself entirely to modelling with clay.\n\n<%b%>Individual support from Lena Harms<%/b%>\n\nMit viel Geduld, Fachwissen und einem feinen Gespür für Gestaltung begleitet dich Lena durch den gesamten Prozess – von der ersten Idee bis zum fertigen Werk. Sie unterstützt euch dabei, eure ganz eigene Formensprache in Ton zu entdecken.`
+            },
+            descriptionShort: {
+                de: 'Erlebe die faszinierende Welt der Keramik in einem besonderen Workshop mit der erfahrenen Künstlerin Lena Harms.',
+                en: 'Experience the fascinating world of ceramics in a special workshop with experienced artist Lena Harms.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Samstag',
+                        en: 'Saturday'
+                    },
+                    content: {
+                        de: 'am 03.05.2025 von 10:00 bis 17:00 Uhr',
+                        en: "on 03.05.2025 from 10:00 to 17:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Sonntag',
+                        en: 'Sunday'
+                    },
+                    content: {
+                        de: 'am 04.05.2025 von 09:00 bis 12:00 Uhr',
+                        en: "on 04.05.2025 from 09:00 to 12:00 o'clock"
+                    }
+                },
+                {
+                    title: {
+                        de: 'Plätze',
+                        en: 'Places'
+                    },
+                    content: {
+                        de: '8-12',
+                        en: '8-12'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Keramikkurs',
+                        en: 'Pottery course'
+                    },
+                    content: {
+                        de: '<%event%> EUR pro Person',
+                        en: '<%event%> EUR per Person'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Zimmer mit geteiltem Bad',
+                        en: 'Accomodation with shared bathroom'
+                    },
+                    content: {
+                        de: '<%singleRoomShared%> EUR im Einzelzimmer, <%doubleRoomShared%> EUR im Doppelzimmer',
+                        en: '<%singleRoomShared%> EUR in a single room, <%doubleRoomShared%> EUR in a double room'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Zimmer mit eigenem Bad',
+                        en: 'Accomodation with private bathroom'
+                    },
+                    content: {
+                        de: '<%singleRoomPrivate%> EUR im Einzelzimmer, <%doubleRoomPrivate%> EUR im Doppelzimmer',
+                        en: '<%singleRoomPrivate%> EUR in a single room, <%doubleRoomPrivate%> EUR in a double room'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Optionales Frühstück für 20 EUR pro Person',
+                        en: 'Optional breakfast for 20 EUR per Person'
+                    }
+                },
+                {
+                    content: {
+                        de: 'Optionales Mittag- und Abendessen können separat dazugebucht werden',
+                        en: 'Optional lunch and dinner can be booked separately'
+                    }
+                }
+            ],
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    email: {
+                        event: true,
+                        date: 'Standard',
+                        name: true,
+                        address: true,
+                        quantityPeople: true
+                    }
+                },
+                {
+                    label: {
+                        de: 'Unterkunft buchen',
+                        en: 'Book accomodation'
+                    },
+                    email: {
+                        event: true,
+                        date: 'Fill',
+                        quantityNights: true,
+                        quantityPeople: true,
+                        name: true,
+                        address: true,
+                        room: 'Select',
+                        text: 'Room'
+                    }
+                }
+            ]
+        },
+        {
+            type: ['Retreat'],
+            title: {
+                de: 'Daily Fusion Retreat',
+                en: 'Daily Fusion Retreat'
+            },
+            subtitle: [
+                {
+                    de: 'Mit Jennifer Sengspiel & Franziska Trebuth',
+                    en: 'With Jennifer Sengspiel & Franziska Trebuth'
+                },
+                {
+                    de: 'Special mit Stefanie Kohles',
+                    en: 'Special with Stefanie Kohles'
+                },
+                {
+                    de: 'Einzelzimmer <%singleRoom%> EUR',
+                    en: 'Single room <%singleRoom%> EUR'
+                },
+                {
+                    de: 'Doppelzimmer <%doubleRoom%> EUR',
+                    en: 'Double room <%doubleRoom%> EUR'
+                }
+            ],
+            date: {
+                start: new Date(2025, 4, 29),
+                end: new Date(2025, 5, 1)
+            },
+            price: {
+                singleRoom: 1680,
+                doubleRoom: 1800
+            },
+            status: 'Available',
+            link: 'daily_fusion',
+            imagePreview: 'assets/media/events/daily_fusion_08.jpg',
+            imageGallery: [
+                'assets/media/events/daily_fusion_01.jpg',
+                'assets/media/events/daily_fusion_02.jpg',
+                'assets/media/events/daily_fusion_03.jpg',
+                'assets/media/events/daily_fusion_04.jpg',
+                'assets/media/events/daily_fusion_05.jpg',
+                'assets/media/events/daily_fusion_06.jpg',
+                'assets/media/events/daily_fusion_07.jpg'
+            ],
+            descriptionLong: {
+                de: `Die Mitte stärken, Kraft tanken und das eigene Potenzial entfalten – mit Tools und täglichen Routinen aus der Traditionellen Chinesischen Medizin (TCM), der Angewandten und Positiven Psychologie und Osteopathie. Dich erwarten 4 Tage voller Inspiration, Ruhe und tiefgreifender Transformation im wunderschönen Farmhouse Retreat im Allgäuer Voralpenland. Tauche ein in die Welt der TCM mit praktischen Tipps aus der Küche und Rezepten, wie Du in Deine Mitte findest. Freude und Genuss beim Dinner an der langen Tafel stehen dabei im Vordergrund.`,
+                en: `Strengthen your centre, recharge your batteries and develop your own potential - with tools and daily routines from traditional Chinese medicine (TCM), applied and positive psychology and osteopathy. Four days full of inspiration, tranquillity and profound transformation await you at the beautiful Farmhouse Retreat in the Allgäu foothills of the Alps. Immerse yourself in the world of TCM with practical tips from the kitchen and recipes on how to find your centre. Enjoyment and pleasure over dinner at the long table take centre stage.`
+            },
+            descriptionShort: {
+                de: 'Die Mitte stärken, Kraft tanken und das eigene Potenzial entfalten.',
+                en: 'Strengthen your centre, recharge your batteries and develop your own potential.'
+            },
+            descriptionDetails: [
+                {
+                    title: {
+                        de: 'Start',
+                        en: 'Start'
+                    },
+                    content: {
+                        de: 'am 29.05.2025',
+                        en: 'on 29.05.2025'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Ende',
+                        en: 'End'
+                    },
+                    content: {
+                        de: 'am 01.06.2025',
+                        en: 'on 01.06.2025'
+                    }
+                },
+                {
+                    title: {
+                        de: 'Preis',
+                        en: 'Price'
+                    },
+                    content: {
+                        de: '<%singleRoom%> EUR im Einzelzimmer mit geteiltem Bad, <%doubleRoom%> EUR im Doppelzimmer mit eigenem Bad',
+                        en: '<%singleRoom%> EUR in a single room with shared bathroom, <%doubleRoom%> EUR in a double room with own bathroom'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. drei Übernachtungen, Sauna & Außenpool',
+                        en: 'incl. three nights, sauna & outdoor pool'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. Traditionelle Chinesische Medizin, Yoga, Coaching & Workshops',
+                        en: 'incl. traditional chinese medicine, yoga, coaching & workshops'
+                    }
+                },
+                {
+                    content: {
+                        de: 'inkl. 24k Ear Seeds Akkupressur & 60 Minuten Osteopathie Behandlung',
+                        en: 'incl. 24k ear seeds accupressure & 60 minutes osteopathy treatment'
+                    }
+                },
+                {
+                    content: {
+                        de: 'exkl. An- und Abreise',
+                        en: 'excl. arrival and departure'
+                    }
+                }
+            ],
+            attachements: [
+                {
+                    label: {
+                        de: '<%a%>Jennifer Sengpiel<%/a%> – Life Coaching B.Sc., CAS Positive Psychologie, Yoga-Lehrerin 500h, Führungskraft',
+                        en: '<%a%>Jennifer Sengpiel<%/a%> – Life Coaching B.Sc., CAS Positive Psychology, Yoga Teacher 500h, Manager'
+                    },
+                    link: 'https://www.jennifersengpiel.de'
+                },
+                {
+                    label: {
+                        de: '<%a%>Franziska Trebuth<%/a%> – Komplementärmedizin M.Sc., Heilpraktikerin, Praxis für Traditionelle Chinesische Medizin, Autorin',
+                        en: '<%a%>Franziska Trebuth<%/a%> – Complementary Medicine M.Sc., alternative practitioner, practicioner for traditional chinese medicine, author'
+                    },
+                    link: 'https://franziska-trebuth.de'
+                },
+                {
+                    label: {
+                        de: '<%a%>Stefanie Kohles<%/a%> – Osteopathin, Heilpraktikerin, Yogatherapeutin, Spezialisierung',
+                        en: '<%a%>Stefanie Kohles<%/a%> – Osteopath, alternative practitioner, yoga therapist, specialisation'
+                    },
+                    link: 'https://osteopathie-kohles.de'
+                }
+            ],
+            booking: [
+                {
+                    label: {
+                        de: 'Veranstaltung buchen',
+                        en: 'Book event'
+                    },
+                    link: 'https://franziska-trebuth.de/aktuelles/'
+                }
+            ]
         }
     ];
+    return events.filter(item => item.status !== 'Cancelled') as Event[];
 }

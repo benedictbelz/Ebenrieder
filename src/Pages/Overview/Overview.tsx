@@ -71,11 +71,11 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Der Ebenrieder ist ein Ort wie kein anderer. Mit Liebe und Fleiß restauriert und erbaut, liegt unser Gästehaus
-                                    eingebettet in der malerischen Landschaft des Allgäus. Mit seinen lichtdurchfluteten Räumen und der idyllischen
-                                    Dorfatmosphäre am Fuße des Auerbergs bietet der Ebenrieder Zurückgezogenheit und Inspiration. Hier lassen sich die
-                                    Gedanken frei entfalten, während der unverstellte Blick ins weite Land zur Ruhe einlädt. Bei uns finden Visionen ihren
-                                    Platz, kehrt Entspannung ein, wird Genuss gelebt. Willkommen in unserem Refugium.
+                                    Der Ebenrieder ist ein Ort wie kein anderer. Mit Liebe und Fleiß restauriert und erbaut, liegt unser Gästehaus eingebettet
+                                    in der malerischen Landschaft des Allgäus. Mit seinen lichtdurchfluteten Räumen und der idyllischen Dorfatmosphäre am Fuße
+                                    des Auerbergs bietet der Ebenrieder Zurückgezogenheit und Inspiration. Hier lassen sich die Gedanken frei entfalten, während
+                                    der unverstellte Blick ins weite Land zur Ruhe einlädt. Bei uns finden Visionen ihren Platz, kehrt Entspannung ein, wird
+                                    Genuss gelebt. Willkommen in unserem Refugium.
                                 </p>
                             )}
                             {language === 'en' && (
@@ -83,8 +83,8 @@ class Overview extends React.Component<Props> {
                                     The Ebenrieder is a place like no other. Restored and built with love and diligence, our guesthouse is nestled in the
                                     picturesque landscape of the Allgäu. With its light-flooded rooms and idyllic village atmosphere at the foot of the
                                     Auerberg, the Ebenrieder offers seclusion and inspiration. Here you can let your thoughts unfold freely, while the
-                                    unobstructed view of the countryside invites you to rest. Here, visions find their place, relaxation returns, enjoyment
-                                    is lived. Welcome to our refuge.
+                                    unobstructed view of the countryside invites you to rest. Here, visions find their place, relaxation returns, enjoyment is
+                                    lived. Welcome to our refuge.
                                 </p>
                             )}
                         </div>
@@ -117,35 +117,33 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Ob für frisch Verliebte, für gute Freunde oder Alleinreisende, die Zeit und Ruhe finden wollen: Unsere Zimmer und
-                                    Wohnungen bieten Platz für jeden – und so, wie es behagt. Neben der individuellen Ausstattung verfügen alle
-                                    Räumlichkeiten über ein eigenes Bad mit Dusche oder Badewanne. Darin findest du auch die nachhaltigen Pflegeprodukte
-                                    von Saint Charles. Alle Produkte enthalten pflanzliche Waschsubstanzen, die dank der ätherischen Bio-Öle ihr
-                                    antivirales und antibakterielles Potenzial bewahrt haben. Die außergewöhnliche Duftmischung erfrischt und belebt deine
-                                    Sinne. Die hochwertigen Matratzen von COCO-MAT unterstützen einen erholsamen, komfortablen Schlaf und bestehen aus
-                                    natürlichen Materialien, die sorgfältig ausgewählt wurden. Um den bäuerlichen Charme zu bewahren, haben wir in den
-                                    Zimmern und Wohnungen die Heizung in den Wänden oder im Boden versteckt. Der Lehmputz wirkt feuchte- und
-                                    wärmeregulierend für ein ganzjährig angenehmes Raumklima. Unsere Wohnungen können als Selbstversorger-Unterkünfte
-                                    gemietet werden und bieten dir die Freiheit, deinen Aufenthalt ganz individuell zu gestalten. Bitte beachte, dass die
-                                    Bauernzimmer nicht einzeln buchbar sind. Sie können nur in Kombination mit einer Ferienwohnung für zusätzliche Personen
-                                    hinzugebucht werden. Diese besondere Option ermöglicht es, mehr Platz für Familie oder Freunde zu schaffen, während der
-                                    Charme unserer traditionellen Zimmer erhalten bleibt.
+                                    Ob für frisch Verliebte, für gute Freunde oder Alleinreisende, die Zeit und Ruhe finden wollen: Unsere Zimmer und Wohnungen
+                                    bieten Platz für jeden – und so, wie es behagt. Neben der individuellen Ausstattung verfügen alle Räumlichkeiten über ein
+                                    eigenes Bad mit Dusche oder Badewanne. Darin findest du auch die nachhaltigen Pflegeprodukte von Saint Charles. Alle
+                                    Produkte enthalten pflanzliche Waschsubstanzen, die dank der ätherischen Bio-Öle ihr antivirales und antibakterielles
+                                    Potenzial bewahrt haben. Die außergewöhnliche Duftmischung erfrischt und belebt deine Sinne. Die hochwertigen Matratzen von
+                                    COCO-MAT unterstützen einen erholsamen, komfortablen Schlaf und bestehen aus natürlichen Materialien, die sorgfältig
+                                    ausgewählt wurden. Um den bäuerlichen Charme zu bewahren, haben wir in den Zimmern und Wohnungen die Heizung in den Wänden
+                                    oder im Boden versteckt. Der Lehmputz wirkt feuchte- und wärmeregulierend für ein ganzjährig angenehmes Raumklima. Unsere
+                                    Wohnungen können als Selbstversorger-Unterkünfte gemietet werden und bieten dir die Freiheit, deinen Aufenthalt ganz
+                                    individuell zu gestalten. Bitte beachte, dass die Bauernzimmer nicht einzeln buchbar sind. Sie können nur in Kombination mit
+                                    einer Ferienwohnung für zusätzliche Personen hinzugebucht werden. Diese besondere Option ermöglicht es, mehr Platz für
+                                    Familie oder Freunde zu schaffen, während der Charme unserer traditionellen Zimmer erhalten bleibt.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    Whether for newlyweds, close friends, or solo travelers seeking time and tranquility: our rooms and apartments offer
-                                    space for everyone – just the way you like it. In addition to their individual features, all accommodations include a
-                                    private bathroom with a shower or bathtub. You'll also find sustainable care products from Saint Charles. These
-                                    products are made with plant-based washing agents that retain their antiviral and antibacterial potential thanks to
-                                    organic essential oils. The unique fragrance blend refreshes and invigorates your senses. The high-quality mattresses
-                                    from COCO-MAT ensure restful and comfortable sleep, crafted from carefully selected natural materials. To preserve the
-                                    rustic charm, the heating in our rooms and apartments has been discreetly integrated into the walls or floors. The clay
-                                    plaster regulates both humidity and temperature, providing a pleasant indoor climate all year round. Our apartments can
-                                    be rented as self-catering accommodations, offering you the freedom to plan your stay exactly as you wish. Please note
-                                    that the farmhouse rooms cannot be booked individually. They can only be added to a vacation apartment booking to
-                                    accommodate additional guests. This special option provides more space for family or friends while maintaining the
-                                    charm of our traditional rooms.
+                                    Whether for newlyweds, close friends, or solo travelers seeking time and tranquility: our rooms and apartments offer space
+                                    for everyone – just the way you like it. In addition to their individual features, all accommodations include a private
+                                    bathroom with a shower or bathtub. You'll also find sustainable care products from Saint Charles. These products are made
+                                    with plant-based washing agents that retain their antiviral and antibacterial potential thanks to organic essential oils.
+                                    The unique fragrance blend refreshes and invigorates your senses. The high-quality mattresses from COCO-MAT ensure restful
+                                    and comfortable sleep, crafted from carefully selected natural materials. To preserve the rustic charm, the heating in our
+                                    rooms and apartments has been discreetly integrated into the walls or floors. The clay plaster regulates both humidity and
+                                    temperature, providing a pleasant indoor climate all year round. Our apartments can be rented as self-catering
+                                    accommodations, offering you the freedom to plan your stay exactly as you wish. Please note that the farmhouse rooms cannot
+                                    be booked individually. They can only be added to a vacation apartment booking to accommodate additional guests. This
+                                    special option provides more space for family or friends while maintaining the charm of our traditional rooms.
                                 </p>
                             )}
                             <Rooms browser={this.props.browser} filters={['Apartment', 'Room']} />
@@ -163,17 +161,16 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Licht, Duft, Klang, Geschmack, Bewegung: Unsere Yoga-Retreats, Fermentations- und Koch-Workshops, Wildkräuter-Führungen
-                                    oder Keramik-Kurse bieten dir für alle Sinne genau das Richtige. Mit unseren Partnerinnen und Partnern entwicklen und
-                                    realisieren wir kleine und große Events. Entdecke unsere bevorstehenden Veranstaltungen und lass uns zusammen
-                                    großartige Dinge erleben!
+                                    Licht, Duft, Klang, Geschmack, Bewegung: Unsere Yoga-Retreats, Fermentations- und Koch-Workshops, Wildkräuter-Führungen oder
+                                    Keramik-Kurse bieten dir für alle Sinne genau das Richtige. Mit unseren Partnerinnen und Partnern entwicklen und realisieren
+                                    wir kleine und große Events. Entdecke unsere bevorstehenden Veranstaltungen und lass uns zusammen großartige Dinge erleben!
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    Light, scent, sound, taste, movement: Our yoga retreats, fermentation and cooking workshops, wild herb tours, and
-                                    pottery classes offer just the right thing for all your senses. Together with our partners, we develop and host both
-                                    small and large events. Discover our upcoming events and let's experience great things together!
+                                    Light, scent, sound, taste, movement: Our yoga retreats, fermentation and cooking workshops, wild herb tours, and pottery
+                                    classes offer just the right thing for all your senses. Together with our partners, we develop and host both small and large
+                                    events. Discover our upcoming events and let's experience great things together!
                                 </p>
                             )}
                             <Events browser={this.props.browser} type='Preview' />
@@ -191,25 +188,23 @@ class Overview extends React.Component<Props> {
                         <div>
                             {language === 'de' && (
                                 <p className='text'>
-                                    Ein Aufenthalt im Ebenrieder ist mehr als nur Frieden für deine Seele und ein Schmaus für deinen Gaumen. Du kannst
-                                    Retreats, Workshops und Seminare ausrichten und buchen, Natur,- Kunst- und Kulturangebote genießen oder deiner
-                                    Schöpferkraft im Atelier freien Lauf lassen. Unser Spa mit Sauna und Außenpool ist Selbstfürsorge pur, was sowohl die
-                                    Architektur und Ausstattung als auch die Qualität der Produkte einschließt. Hier darf die Zeit still stehen. Du
-                                    möchtest mit deinem Team mal genussvoll aus dem alten Workflow ausbrechen und etwas Außergewöhnliches erleben? Dann
-                                    bist du bei uns an der richtigen Adresse. Ein Incentive oder die nächste Weihnachtsfeier im Ebenrieder weckt
-                                    schlummernde Potentiale und stärkt den Zusammenhalt. Schreib uns einfach an und gemeinsam entwickeln wir ein
-                                    maßgeschneidertes Konzept.
+                                    Ein Aufenthalt im Ebenrieder ist mehr als nur Frieden für deine Seele und ein Schmaus für deinen Gaumen. Du kannst Retreats,
+                                    Workshops und Seminare ausrichten und buchen, Natur,- Kunst- und Kulturangebote genießen oder deiner Schöpferkraft im
+                                    Atelier freien Lauf lassen. Unser Spa mit Sauna und Außenpool ist Selbstfürsorge pur, was sowohl die Architektur und
+                                    Ausstattung als auch die Qualität der Produkte einschließt. Hier darf die Zeit still stehen. Du möchtest mit deinem Team mal
+                                    genussvoll aus dem alten Workflow ausbrechen und etwas Außergewöhnliches erleben? Dann bist du bei uns an der richtigen
+                                    Adresse. Ein Incentive oder die nächste Weihnachtsfeier im Ebenrieder weckt schlummernde Potentiale und stärkt den
+                                    Zusammenhalt. Schreib uns einfach an und gemeinsam entwickeln wir ein maßgeschneidertes Konzept.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    A stay at Ebenrieder is more than just peace for your soul and a feast for your taste buds. You can host and book
-                                    retreats, workshops, and seminars, enjoy nature, art, and cultural offerings, or unleash your creativity in the studio.
-                                    Our spa, complete with a sauna and outdoor pool, epitomizes self-care, from the architecture and furnishings to the
-                                    quality of the products. Here, time can stand still. Do you want to break away from the old workflow with your team and
-                                    experience something extraordinary? Then you've come to the right place. An incentive event or your next Christmas
-                                    party at Ebenrieder awakens dormant potential and strengthens team cohesion. Just contact us, and together we will
-                                    develop a tailored concept.
+                                    A stay at Ebenrieder is more than just peace for your soul and a feast for your taste buds. You can host and book retreats,
+                                    workshops, and seminars, enjoy nature, art, and cultural offerings, or unleash your creativity in the studio. Our spa,
+                                    complete with a sauna and outdoor pool, epitomizes self-care, from the architecture and furnishings to the quality of the
+                                    products. Here, time can stand still. Do you want to break away from the old workflow with your team and experience
+                                    something extraordinary? Then you've come to the right place. An incentive event or your next Christmas party at Ebenrieder
+                                    awakens dormant potential and strengthens team cohesion. Just contact us, and together we will develop a tailored concept.
                                 </p>
                             )}
                             <Rooms browser={this.props.browser} filters={['Seminar Room', 'Wellness', 'Kitchen']} />
@@ -249,28 +244,28 @@ class Overview extends React.Component<Props> {
                                     Landsberg West und folge der B17 bis zur Abfahrt Schongau Süd. Danach nimmst du die B472 Richtung Kaufbeuren bis zur
                                     Abzweigung Rettenbach und biegst im Zentrum von Remnatried rechts ab. Aus dem <strong>Norden</strong> erreichst du uns
                                     entweder über die B17, wie beschrieben, oder über die B16 und die B472 über Kaufbeuren nach Rettenbach und weiter nach
-                                    Remnatsried. Von <strong>Westen</strong> fährst du bis Kempten, folgst der B12 bis Marktoberdorf und nimmst dort die
-                                    B472 Richtung Schongau. In Rettenbach biegst du rechts ab und folgst der Beschilderung nach Remnatsried. Von{' '}
+                                    Remnatsried. Von <strong>Westen</strong> fährst du bis Kempten, folgst der B12 bis Marktoberdorf und nimmst dort die B472
+                                    Richtung Schongau. In Rettenbach biegst du rechts ab und folgst der Beschilderung nach Remnatsried. Von{' '}
                                     <strong>Süden</strong> aus nimm die B16 über Füssen und Marktoberdorf, biege in Stötten rechts nach Remnatsried ab.
                                     <br />
                                     <br />
-                                    <strong>Mit dem Zug</strong> kommst du am besten über den Bahnhof in Marktoberdorf zu uns. Melde dich, wir holen dich
-                                    gerne ab.
+                                    <strong>Mit dem Zug</strong> kommst du am besten über den Bahnhof in Marktoberdorf zu uns. Melde dich, wir holen dich gerne
+                                    ab.
                                 </p>
                             )}
                             {language === 'en' && (
                                 <p className='text'>
-                                    If you are coming from <strong>the east</strong> or Munich, take the A96 towards Lindau, leave at the exit Landsberg
-                                    West and follow the B17 to the exit Schongau Süd. Then take the B472 towards Kaufbeuren until the junction Rettenbach
-                                    and turn right in the center of Remnatried. From <strong>the north</strong>, you can reach us either via the B17, as
-                                    described, or via the B16 and the B472 via Kaufbeuren to Rettenbach and further on to Remnatsried. From{' '}
-                                    <strong>the west</strong>, drive to Kempten, follow the B12 to Marktoberdorf and then take the B472 towards Schongau.
-                                    In Rettenbach, turn right and follow the signs to Remnatsried. From <strong>the south</strong>, take the B16 via Füssen
-                                    and Marktoberdorf and in Stötten turn right to Remnatsried.
+                                    If you are coming from <strong>the east</strong> or Munich, take the A96 towards Lindau, leave at the exit Landsberg West
+                                    and follow the B17 to the exit Schongau Süd. Then take the B472 towards Kaufbeuren until the junction Rettenbach and turn
+                                    right in the center of Remnatried. From <strong>the north</strong>, you can reach us either via the B17, as described, or
+                                    via the B16 and the B472 via Kaufbeuren to Rettenbach and further on to Remnatsried. From <strong>the west</strong>, drive
+                                    to Kempten, follow the B12 to Marktoberdorf and then take the B472 towards Schongau. In Rettenbach, turn right and follow
+                                    the signs to Remnatsried. From <strong>the south</strong>, take the B16 via Füssen and Marktoberdorf and in Stötten turn
+                                    right to Remnatsried.
                                     <br />
                                     <br />
-                                    The best way to reach us <strong>by train</strong> is via Marktoberdorf station. Get in touch and we will be happy to
-                                    pick you up.
+                                    The best way to reach us <strong>by train</strong> is via Marktoberdorf station. Get in touch and we will be happy to pick
+                                    you up.
                                 </p>
                             )}
                         </div>

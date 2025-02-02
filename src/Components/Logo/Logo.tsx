@@ -188,11 +188,7 @@ export default class Logo extends React.Component<Props> {
                                 clipPath='url(#clipPath_07_01)'
                                 d='m716.14,422.84c-52.33,1.47-108.63-20.94-119.15,7.25s-53.16,130.81-46.66,159,20.23,43.36,41.56,44.09,163.91-21.54,163.91-21.54'
                             />
-                            <path
-                                id='logoText_07_02'
-                                clipPath='url(#clipPath_07_02)'
-                                d='m663.03,538.69c31.13.54-35.98,2.36-55.91,0s-44.77-14.2-44.77-14.2'
-                            />
+                            <path id='logoText_07_02' clipPath='url(#clipPath_07_02)' d='m663.03,538.69c31.13.54-35.98,2.36-55.91,0s-44.77-14.2-44.77-14.2' />
                             <path
                                 id='logoText_08_01'
                                 clipPath='url(#clipPath_08_01)'

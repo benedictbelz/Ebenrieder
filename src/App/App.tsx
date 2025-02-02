@@ -298,9 +298,7 @@ class App extends React.Component<{}, States> {
         return (
             <div
                 id='app'
-                className={[this.state.browser.device === 'Desktop' && 'desktop', this.state.browser.device === 'Mobile' && 'mobile']
-                    .filter(x => x)
-                    .join(' ')}
+                className={[this.state.browser.device === 'Desktop' && 'desktop', this.state.browser.device === 'Mobile' && 'mobile'].filter(x => x).join(' ')}
             >
                 <Router>
                     {this.state.browser.cookies === 'Unknown' && (
@@ -313,11 +311,7 @@ class App extends React.Component<{}, States> {
                             <Route
                                 path='/'
                                 element={
-                                    <Overview
-                                        browser={this.state.browser}
-                                        handleAccept={this.handleAcceptCookies}
-                                        handleDecline={this.handleDeclineCookies}
-                                    />
+                                    <Overview browser={this.state.browser} handleAccept={this.handleAcceptCookies} handleDecline={this.handleDeclineCookies} />
                                 }
                             />
                             <Route path='/impressum' element={<Imprint browser={this.state.browser} />} />

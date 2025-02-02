@@ -21,11 +21,15 @@ export type Event = {
     price:
         | {
               event?: number;
-              singleRoom: number;
-              doubleRoom: number;
+              singleRoom?: number;
+              doubleRoom?: number;
+              singleRoomPrivate?: number;
+              doubleRoomPrivate?: number;
+              singleRoomShared?: number;
+              doubleRoomShared?: number;
           }
         | number;
-    status: 'Available' | 'Expired' | 'Booked';
+    status: 'Available' | 'Expired' | 'Booked' | 'Cancelled';
     link: string;
     imagePreview: string;
     imageGallery: string[];
@@ -89,9 +93,14 @@ export type EmailCustom = {
 };
 
 export type EmailDefault = {
-    accomodation: boolean;
-    foodIntolerance: boolean;
-    name: boolean;
-    roomType: boolean;
-    quantity: boolean;
+    accomodation?: boolean;
+    address?: boolean;
+    date?: 'Standard' | 'Fill';
+    event?: boolean;
+    foodIntolerance?: boolean;
+    name?: boolean;
+    quantityPeople?: boolean;
+    quantityNights?: boolean;
+    room?: 'Standard' | 'Select';
+    text?: 'Event' | 'Room';
 };

@@ -9,7 +9,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 25px;
-        margin: var(--spacing-vertical-s) 0;
+        margin-top: var(--spacing-vertical-s);
 
         #eventsLeft,
         #eventsRight {
@@ -204,7 +204,7 @@
         justify-content: flex-start;
         align-items: center;
         gap: 15px;
-        margin-bottom: var(--spacing-vertical-s);
+        margin: var(--spacing-vertical-s) 0;
 
         .filter {
             cursor: pointer;
@@ -223,136 +223,95 @@
         line-height: $line-height-l;
     }
 
-    #eventsGrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 50px;
+    .container .event {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        border: $border-m solid $color-blue;
+        will-change: transform;
 
-        @media (max-width: $media-xl) {
-            grid-template-columns: 1fr 1fr 1fr;
+        .eventImage {
+            position: relative;
+            padding-bottom: 75%;
+            height: 0%;
+            width: 100%;
+            background: $color-transparent;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+
+            .eventNotification {
+                position: absolute;
+                z-index: 1000;
+                top: -45px;
+                left: calc(100% - 150px);
+                height: 40px;
+                width: 250px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: rotate(45deg);
+                transform-origin: left;
+                color: $color-blue;
+                background: $color-white;
+                animation: notification 0.5s ease forwards;
+
+                @keyframes notification {
+                    0% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .parallax {
+                position: absolute;
+            }
         }
 
-        @media (max-width: $media-l) {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        @media (max-width: $media-m) {
-            grid-template-columns: 1fr;
-        }
-
-        @media (max-width: $media-s) {
-            gap: var(--spacing-horizontal);
-        }
-
-        .event {
+        .eventContent {
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden;
-            border: $border-m solid $color-blue;
-            will-change: transform;
+            gap: var(--spacing-box-vertical);
+            padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
+            height: 100%;
+            width: 100%;
 
-            &.opacity {
-                opacity: 0;
-            }
-
-            &.animation {
-                animation: event 0.5s ease forwards;
-            }
-
-            @keyframes event {
-                0% {
-                    opacity: 0;
-                    transform: translateY(200px);
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0px);
-                }
-            }
-
-            .eventImage {
-                position: relative;
-                padding-bottom: 75%;
-                height: 0%;
-                width: 100%;
-                background: $color-transparent;
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
-                    opacity: 0;
-                    transition: opacity 0.5s ease;
-                }
-
-                .eventNotification {
-                    position: absolute;
-                    z-index: 1000;
-                    top: -45px;
-                    left: calc(100% - 150px);
-                    height: 40px;
-                    width: 250px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    transform: rotate(45deg);
-                    transform-origin: left;
-                    color: $color-blue;
-                    background: $color-white;
-                    animation: notification 0.5s ease forwards;
-
-                    @keyframes notification {
-                        0% {
-                            opacity: 1;
-                        }
-                        100% {
-                            opacity: 1;
-                        }
-                    }
-                }
-
-                .parallax {
-                    position: absolute;
-                }
-            }
-
-            .eventContent {
-                box-sizing: border-box;
+            .eventTitle {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                gap: var(--spacing-box-vertical);
-                padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
-                height: 100%;
-                width: 100%;
+                text-align: center;
+                gap: 25px;
+                line-height: $line-height-m;
 
-                .eventTitle {
+                > .eventSubtitle {
                     display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                    gap: 25px;
-                    line-height: $line-height-m;
-
-                    > .eventSubtitle {
-                        display: flex;
-                        flex-direction: row;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px 5px;
-                        letter-spacing: 1px;
-                    }
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px 5px;
+                    letter-spacing: 1px;
                 }
+            }
 
-                .eventDescription {
-                    line-height: $line-height-m;
-                    text-align: left;
-                }
+            .eventDescription {
+                line-height: $line-height-m;
+                text-align: left;
+            }
 
-                .eventButton {
-                    margin-top: auto;
-                }
+            .eventButton {
+                margin-top: auto;
             }
         }
     }

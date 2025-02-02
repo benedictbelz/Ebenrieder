@@ -1,0 +1,183 @@
+@import '../../App/Variables.scss';
+
+.container {
+    position: relative;
+
+    .containerContent {
+        &.column {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+
+        &.grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 50px;
+
+            @media (max-width: $media-xl) {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            @media (max-width: $media-l) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media (max-width: $media-m) {
+                grid-template-columns: 1fr;
+            }
+
+            @media (max-width: $media-s) {
+                gap: var(--spacing-horizontal);
+            }
+        }
+
+        &.row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 50px;
+            overflow: scroll;
+
+            > div {
+                min-width: 300px;
+            }
+        }
+    }
+
+    .containerLeft,
+    .containerRight {
+        position: absolute;
+        z-index: 1250;
+        cursor: pointer;
+        display: flex; // display: none;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        overflow: hidden;
+
+        svg {
+            height: 50px;
+            width: 36px;
+
+            polyline {
+                fill: none;
+                stroke: $color-blue;
+                stroke-miterlimit: 10;
+                stroke-dashoffset: 0;
+                stroke-width: $border-m;
+                stroke-dasharray: 56.57 56.57;
+            }
+        }
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    .containerLeft {
+        left: 0;
+        padding-right: 50px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            display: block;
+            height: 100%;
+            width: 20px;
+            background: $color-white;
+            box-shadow: 0 0 25px 40px $color-white;
+        }
+
+        @media (hover: hover) {
+            &:hover polyline {
+                animation: leftPolyline 1s linear forwards;
+            }
+        }
+
+        @keyframes left {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dashoffset: 56.57;
+            }
+            50.00001% {
+                stroke-dashoffset: -56.57;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+
+    .containerRight {
+        right: 0;
+        padding-left: 50px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            display: block;
+            height: 100%;
+            width: 20px;
+            background: $color-white;
+            box-shadow: 0 0 25px 40px $color-white;
+        }
+
+        @media (hover: hover) {
+            &:hover polyline {
+                animation: rightPolyline 1s linear forwards;
+            }
+        }
+
+        @keyframes right {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dashoffset: -56.57;
+            }
+            50.00001% {
+                stroke-dashoffset: 56.57;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+
+    > div {
+        &.opacity {
+            opacity: 0;
+        }
+
+        &.animation {
+            animation: event 0.5s ease forwards;
+        }
+
+        @keyframes event {
+            0% {
+                opacity: 0;
+                transform: translateY(200px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import queryString from 'query-string';
+import Container from '../Container/Container';
 import Gallery from '../Gallery/Gallery';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
@@ -13,7 +14,7 @@ import './Events.scss';
 
 interface Props extends PropsWithRouter {
     browser: Browser;
-    type: 'Calendar' | 'Preview';
+    type: 'Calendar' | 'Standard';
 }
 
 interface States {
@@ -25,7 +26,6 @@ interface States {
 
 class Events extends React.Component<Props, States> {
     private events: React.RefObject<HTMLDivElement>;
-    private timeout: any = [];
     private date = new Date();
     private month = this.date.getMonth();
     private year = this.date.getFullYear();
@@ -54,10 +54,6 @@ class Events extends React.Component<Props, States> {
     }
 
     componentDidUpdate(prevProps: Props, prevState: States) {
-        // IF MONTH, YEAR OR MEDIA CHANGES
-        if (this.state.month !== prevState.month || this.state.year !== prevState.year || this.props.browser.media !== prevProps.browser.media) {
-            this.handleAnimation();
-        }
         // IF EVENT IS ACTIVE AND CHANGES
         if (this.state.event && this.state.event !== prevState.event) {
             window.history.replaceState(null, null, `?event=${this.state.event.link}`);
@@ -76,35 +72,6 @@ class Events extends React.Component<Props, States> {
             return events[0].date instanceof Date ? events[0].date.getMonth() : events[0].date.start.getMonth();
         } else {
             return this.month;
-        }
-    };
-
-    private handleAnimation = () => {
-        // DEFINE VARIABELS
-        let index = 0;
-        let events = document.querySelectorAll('.event') as unknown as HTMLElement[];
-        // RESET TIMEOUT
-        this.timeout.forEach((timeout: any) => clearTimeout(timeout));
-        // RESET PROJECTS
-        events.forEach(event => {
-            event.classList.add('opacity');
-            event.classList.remove('animation');
-        });
-        // RECURSIVE FUNCTION
-        let animation = () => {
-            events[index].classList.remove('opacity');
-            events[index].offsetWidth;
-            events[index].classList.add('animation');
-            events[index].style.animationPlayState = 'paused';
-            events[index].style.animationPlayState = 'running';
-            index++;
-            if (index < events.length) {
-                this.timeout.push(setTimeout(() => animation(), 100));
-            }
-        };
-        // ANIMATE EVENTS
-        if (events.length !== 0) {
-            animation();
         }
     };
 
@@ -138,26 +105,6 @@ class Events extends React.Component<Props, States> {
         }
         // UPDATE STATE
         this.setState({ filters });
-        // ANIMATE EVENTS
-        const previousEvents = getEvents()
-            .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => this.state.filters.length === 0 || this.state.filters.includes(item.type))
-            .filter(item =>
-                item.date instanceof Date
-                    ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
-                    : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
-            );
-        const nextEvents = getEvents()
-            .sort((a, b) => (a.date instanceof Date ? a.date : a.date.start).getTime() - (b.date instanceof Date ? b.date : b.date.start).getTime())
-            .filter(item => filters.length === 0 || this.state.filters.includes(item.type))
-            .filter(item =>
-                item.date instanceof Date
-                    ? item.date.getMonth() === this.state.month && item.date.getFullYear() === this.state.year
-                    : item.date.start.getMonth() === this.state.month && item.date.start.getFullYear() === this.state.year
-            );
-        if (previousEvents.length !== nextEvents.length || JSON.stringify(previousEvents) !== JSON.stringify(nextEvents)) {
-            setTimeout(() => this.handleAnimation());
-        }
     };
 
     private handleClickNextMonth = () => {
@@ -575,8 +522,8 @@ class Events extends React.Component<Props, States> {
                     ))}
                 </div>
                 {currentEvents.length !== 0 ? (
-                    <div id='eventsGrid' style={{ marginTop: this.props.type === 'Preview' ? this.props.browser.variables.spacingVerticalS : 0 }}>
-                        {currentEvents.map((event: Event, index: number) => {
+                    <Container browser={this.props.browser} type='Grid'>
+                        {currentEvents.map((event: Event) => {
                             const title = event.title;
                             const price = event.price;
                             const description = event.descriptionShort;
@@ -623,10 +570,10 @@ class Events extends React.Component<Props, States> {
                                 </div>
                             );
                         })}
-                    </div>
+                    </Container>
                 ) : (
                     <div id='eventsMessage'>
-                        {upcompingEvents.length === 0 || this.props.type === 'Preview' ? (
+                        {upcompingEvents.length === 0 || this.props.type === 'Standard' ? (
                             <p>{`${getLanguage(language, 'eventUnavailable').split('<%split%>')[0]} ...`}</p>
                         ) : (
                             <p>

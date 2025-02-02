@@ -173,7 +173,7 @@ class Overview extends React.Component<Props> {
                                     events. Discover our upcoming events and let's experience great things together!
                                 </p>
                             )}
-                            <Events browser={this.props.browser} type='Preview' />
+                            <Events browser={this.props.browser} type='Standard' />
                         </div>
                     </article>
                     <article data-name={getLanguage(language, 'titlePossibilities')}>

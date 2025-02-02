@@ -1,5 +1,6 @@
 import * as React from 'react';
 import queryString from 'query-string';
+import Container from '../Container/Container';
 import Gallery from '../Gallery/Gallery';
 import Modal from '../Modal/Modal';
 import Parallax from '../Parallax/Parallax';
@@ -22,7 +23,6 @@ interface States {
 
 class Rooms extends React.Component<Props, States> {
     private rooms: React.RefObject<HTMLDivElement>;
-    private timeout: any = [];
 
     constructor(props: Props) {
         super(props);
@@ -46,10 +46,6 @@ class Rooms extends React.Component<Props, States> {
     }
 
     componentDidUpdate(prevProps: Props, prevState: States) {
-        // IF MEDIA CHANGES
-        if (this.props.browser.media !== prevProps.browser.media && (this.props.browser.media === 'Medium' || prevProps.browser.media === 'Medium')) {
-            this.handleAnimation();
-        }
         // IF ROOM IS ACTIVE AND CHANGES
         if (this.state.room && this.state.room !== prevState.room) {
             window.history.replaceState(null, null, `?room=${this.state.room.link}`);
@@ -60,38 +56,8 @@ class Rooms extends React.Component<Props, States> {
         }
     }
 
-    private handleAnimation = () => {
-        // DEFINE VARIABELS
-        let index = 0;
-        let rooms = document.querySelectorAll('.room') as unknown as HTMLElement[];
-        // RESET TIMEOUT
-        this.timeout.forEach((timeout: any) => clearTimeout(timeout));
-        // RESET PROJECTS
-        rooms.forEach(room => {
-            room.classList.add('opacity');
-            room.classList.remove('animation');
-        });
-        // RECURSIVE FUNCTION
-        let animation = () => {
-            rooms[index].classList.remove('opacity');
-            rooms[index].offsetWidth;
-            rooms[index].classList.add('animation');
-            rooms[index].style.animationPlayState = 'paused';
-            rooms[index].style.animationPlayState = 'running';
-            index++;
-            if (index < rooms.length) {
-                this.timeout.push(setTimeout(() => animation(), 100));
-            }
-        };
-        // ANIMATE ROOMS
-        if (rooms.length !== 0) {
-            animation();
-        }
-    };
-
     private handleChangeFilter = (filter: FilterRoom) => {
-        // UPDATE STATE
-        this.setState({ filter }, () => this.handleAnimation());
+        this.setState({ filter });
     };
 
     private handleClickRoom = (room: Room) => {
@@ -222,7 +188,7 @@ class Rooms extends React.Component<Props, States> {
                         </div>
                     ))}
                 </div>
-                <div id='roomsGrid'>
+                <Container browser={this.props.browser} type='Column'>
                     {rooms.map((room: Room, index: number) => {
                         const title = room.title;
                         const description = room.descriptionShort;
@@ -251,7 +217,7 @@ class Rooms extends React.Component<Props, States> {
                             </div>
                         );
                     })}
-                </div>
+                </Container>
             </div>
         );
     }

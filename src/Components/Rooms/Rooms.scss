@@ -25,88 +25,63 @@
         }
     }
 
-    #roomsGrid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 50px;
+    .container .room {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        border: $border-m solid $color-blue;
 
-        .room {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            overflow: hidden;
-            border: $border-m solid $color-blue;
+        .roomImage {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            max-width: 400px;
+            background: $color-transparent;
 
-            &.opacity {
-                opacity: 0;
-            }
-
-            &.animation {
-                animation: room 0.5s ease forwards;
-            }
-
-            @keyframes room {
-                0% {
-                    opacity: 0;
-                    transform: translateY(200px);
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0px);
-                }
-            }
-
-            .roomImage {
-                position: relative;
+            img {
                 height: 100%;
                 width: 100%;
-                max-width: 400px;
-                background: $color-transparent;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
 
-                img {
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
-                    opacity: 0;
-                    transition: opacity 0.5s ease;
-                }
+            .parallax {
+                position: absolute;
+            }
+        }
 
-                .parallax {
-                    position: absolute;
-                }
+        .roomContent {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-box-vertical);
+            padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
+            height: 100%;
+            width: 100%;
+
+            .roomDescription {
+                line-height: $line-height-m;
+                text-align: left;
+            }
+
+            .roomButton {
+                margin-top: auto;
+            }
+        }
+
+        @media (max-width: $media-m) {
+            flex-direction: column;
+
+            .roomImage {
+                padding-bottom: 75%;
+                max-width: 100%;
             }
 
             .roomContent {
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--spacing-box-vertical);
-                padding: var(--spacing-box-vertical) var(--spacing-box-horizontal);
-                height: 100%;
-                width: 100%;
-
-                .roomDescription {
-                    line-height: $line-height-m;
-                    text-align: left;
-                }
-
-                .roomButton {
-                    margin-top: auto;
-                }
-            }
-
-            @media (max-width: $media-m) {
-                flex-direction: column;
-
-                .roomImage {
-                    padding-bottom: 75%;
-                    max-width: 100%;
-                }
-
-                .roomContent {
-                    align-items: center;
-                }
+                align-items: center;
             }
         }
     }

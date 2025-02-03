@@ -150,7 +150,7 @@ class Events extends React.Component<Props, States> {
         const date =
             event.date instanceof Date
                 ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
-                : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                : `${event.date.start.getMonth() === event.date.end.getMonth() ? `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })}.` : event.date.start.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
         const descriptionLong = event.descriptionLong;
         const descriptionDetails = event.descriptionDetails;
         const descriptionProgram = event.descriptionProgram;
@@ -258,10 +258,7 @@ class Events extends React.Component<Props, States> {
                                                     (item.email as EmailCustom).body !== undefined
                                                         ? 'Custom'
                                                         : 'Default';
-                                                const emailDate =
-                                                    event.date instanceof Date
-                                                        ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`
-                                                        : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: 'long', year: 'numeric' })}`;
+                                                const emailDate = date;
                                                 const emailSubject =
                                                     emailType === 'Custom'
                                                         ? (item.email as EmailCustom).subject[language]
@@ -531,7 +528,7 @@ class Events extends React.Component<Props, States> {
                             const date =
                                 event.date instanceof Date
                                     ? `${event.date.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`
-                                    : `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                                    : `${event.date.start.getMonth() === event.date.end.getMonth() ? `${event.date.start.toLocaleString(getLocal(language), { day: '2-digit' })}.` : event.date.start.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit' })} - ${event.date.end.toLocaleString(getLocal(language), { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
                             return (
                                 <div className='event' key={`event_${event.link}`}>
                                     <div className='eventImage'>

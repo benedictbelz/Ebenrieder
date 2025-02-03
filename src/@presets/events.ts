@@ -1698,7 +1698,7 @@ export function getEvents(): Event[] {
             ]
         },
         {
-            type: 'Workshop',
+            type: 'Food',
             title: {
                 de: 'Wild Dinner',
                 en: 'Wild Dinner'
@@ -1912,7 +1912,6 @@ export function getEvents(): Event[] {
             link: 'keramik_workshop',
             imagePreview: 'assets/media/events/keramik_workshop_08.jpg',
             imageGallery: [
-                'assets/media/events/keramik_workshop_01.jpg',
                 'assets/media/events/keramik_workshop_02.jpg',
                 'assets/media/events/keramik_workshop_03.jpg',
                 'assets/media/events/keramik_workshop_04.jpg',

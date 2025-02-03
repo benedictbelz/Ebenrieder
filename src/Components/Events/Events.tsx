@@ -160,7 +160,7 @@ class Events extends React.Component<Props, States> {
         const title = event.title;
         // DEFINE SHARE
         const shareSubject = `Ebenrieder | ${title[language]}`;
-        const shareBody = `https://ebenrieder.de/event=${link}`;
+        const shareBody = `https://ebenrieder.de/?event=${link}`;
         // RETURN MODAL
         return (
             <Modal className='modalEvent' browser={this.props.browser} handleClose={() => this.setState({ event: null })}>

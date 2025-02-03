@@ -82,7 +82,7 @@ class Rooms extends React.Component<Props, States> {
         const link = room.link;
         // DEFINE SHARE
         const shareSubject = `Ebenrieder | ${title[language]}`;
-        const shareBody = `https://ebenrieder.de/room=${link}`;
+        const shareBody = `https://ebenrieder.de/?room=${link}`;
         // RETURN MODAL
         return (
             <Modal className='modalRoom' browser={this.props.browser} handleClose={() => this.setState({ room: null })}>

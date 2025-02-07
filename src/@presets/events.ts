@@ -1717,7 +1717,7 @@ export function getEvents(): Event[] {
                     en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
-            date: new Date(2025, 3, 6),
+            date: new Date(2025, 3, 26),
             price: {
                 event: 179,
                 singleRoom: 760,
@@ -1753,8 +1753,8 @@ export function getEvents(): Event[] {
                         en: 'Start'
                     },
                     content: {
-                        de: 'am 06.04.2025 um 12:00 Uhr',
-                        en: "on 06.04.2025 at 12:00 o'clock"
+                        de: 'am 26.04.2025 um 12:00 Uhr',
+                        en: "on 26.04.2025 at 12:00 o'clock"
                     }
                 },
                 {
@@ -1763,8 +1763,8 @@ export function getEvents(): Event[] {
                         en: 'End'
                     },
                     content: {
-                        de: 'am 06.04.2025 um 22:00 Uhr',
-                        en: "on 06.04.2025 at 22:00 o'clock"
+                        de: 'am 26.04.2025 um 22:00 Uhr',
+                        en: "on 26.04.2025 at 22:00 o'clock"
                     }
                 },
                 {

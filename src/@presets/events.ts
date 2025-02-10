@@ -1707,21 +1707,11 @@ export function getEvents(): Event[] {
                 {
                     de: 'Mit Victoria Lorenz & Johannes Höcherl',
                     en: 'With Victoria Lorenz & Johannes Höcherl'
-                },
-                {
-                    de: 'Einzelzimmer <%singleRoom%> EUR',
-                    en: 'Single room <%singleRoom%> EUR'
-                },
-                {
-                    de: 'Doppelzimmer <%doubleRoom%> EUR',
-                    en: 'Double room <%doubleRoom%> EUR'
                 }
             ],
             date: new Date(2025, 3, 26),
             price: {
-                event: 179,
-                singleRoom: 760,
-                doubleRoom: 710
+                event: 179
             },
             status: 'Available',
             link: 'wild_dinner',
@@ -1807,8 +1797,8 @@ export function getEvents(): Event[] {
                         en: 'Accomodation'
                     },
                     content: {
-                        de: '<%singleRoom%> EUR im Einzelzimmer, <%doubleRoom%> EUR im Doppelzimmer',
-                        en: '<%singleRoom%> EUR in a single room, <%doubleRoom%> EUR in a double room'
+                        de: 'ab 180 EUR pro Nacht, Infos und Preise auf Anfrage',
+                        en: 'from 180 EUR per night, information and prices on request'
                     }
                 }
             ],
@@ -1866,7 +1856,16 @@ export function getEvents(): Event[] {
                         de: 'Unterkunft buchen',
                         en: 'Book accomodation'
                     },
-                    link: 'https://resavio.com/booking/de/2900/offers?checkin=2025-04-04&checkout=2025-04-07'
+                    email: {
+                        text: 'Room',
+                        event: true,
+                        date: 'Fill',
+                        quantityNights: true,
+                        quantityPeople: true,
+                        name: true,
+                        address: true,
+                        room: 'Select'
+                    }
                 },
                 {
                     label: {

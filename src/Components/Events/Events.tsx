@@ -187,10 +187,10 @@ class Events extends React.Component<Props, States> {
                                     <h1>{title[language]}</h1>
                                     <div className='modalSubtitle'>
                                         <span>{date}</span>
-                                        <span>•</span>
                                         {subtitle &&
                                             subtitle.map((item, index) => (
                                                 <React.Fragment key={`subtitle_${index}`}>
+                                                    <span>•</span>
                                                     <span
                                                         dangerouslySetInnerHTML={{
                                                             __html: item[language]
@@ -206,7 +206,6 @@ class Events extends React.Component<Props, States> {
                                                                 .replace('<%doubleRoomShared%>', typeof price !== 'number' ? `${price.doubleRoomShared}` : '')
                                                         }}
                                                     />
-                                                    {index !== subtitle.length - 1 && <span>•</span>}
                                                 </React.Fragment>
                                             ))}
                                         {typeof price === 'number' && (
